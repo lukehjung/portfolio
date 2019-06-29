@@ -1,0 +1,13 @@
+name: Flex
+markdown: redcarpet
+highlighter: true
+title: Jonathan Photography
+baseurl: ""
+url: "http://lukehjung.github.io"
+description: >
+  Amateur Photography blog by Jonathan
+sass:
+  sass_dir: _sass
+include: ['_pages']
+kramdown:
+  input: GFM
