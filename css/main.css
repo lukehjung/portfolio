@@ -41,7 +41,7 @@
 img {
   background-image: center; 
   background-position: center;
-  max-width: 90%;
+  max-width: 100%;
   height: auto;
 }
 
@@ -55,8 +55,6 @@ html, body {
   height: 100%;
   width: 100%;
   -webkit-font-smoothing: antialiased;
-  overflow: scroll
-
 }
 
 body {
@@ -65,7 +63,7 @@ body {
   font-family: 'Raleway', Arial, sans-serif;
   font-weight: 400;
   font-size: 0.85em;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 a {
