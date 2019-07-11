@@ -1,7 +1,8 @@
 ---
 layout: default
 title: lifestyle
-cover: cover.jpg
+permalink: /lifestyle/
 ---
 
-Hello it is me.
+
+Lifestyle page

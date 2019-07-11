@@ -25,12 +25,12 @@
         <div class="header">
           <h1 class="title"><a href="/"><img id="logo" src="/images/logo.png"></a></h1>
         </div>
-        <div class="posts">
-          <ul class="posts-list">
-            {% for post in site.posts %}
-              <li class="post-link">
-                <a class="post-title" href="{{ post.url }}">
-                  {{ post.title }}
+        <div class="pages">
+          <ul class="pages-list">
+            {% for page in site.pages %}
+              <li class="page-link">
+                <a class="page-title" href="{{ site.baseurl }}{{ page.permalink }}">
+                  {{ page.title }}
                 </a>
               </li>
             {% endfor %}
@@ -38,7 +38,11 @@
         </div>
         <div class="footer">
           <span id="footer-links">
-            <a href="{{ site.baseurl }}/about/" class="footer-link">Contact</a>
+           {% for post in site.posts %}
+              <a class="post-title" href="{{ post.url }}">
+                {{ post.title }}
+              </a>
+            {% endfor %}
           </span>
         </div>
       </div>

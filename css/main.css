@@ -91,19 +91,19 @@ a:hover {
   max-width: 128px;
 }
 
-.posts a {
+.pages a {
   color: #444;
 }
 
-.posts a:hover {
+.pages a:hover {
   color: #777;
 }
 
-.posts-list {
+.pages-list {
   list-style-type: none;
 }
 
-.posts-list li {
+.pages-list li {
   text-align: center;
   line-height: 1.75em;
 }
@@ -135,7 +135,7 @@ a:hover {
   display: block;
 }
 
-.posts {
+.pages {
   border-top: 1px solid #e7e7e7;
   margin-top: 1em;
   padding-top: 1.5em;
@@ -184,35 +184,35 @@ a:hover {
   text-transform: lowercase;
 }
 
-.post {
+.page {
   line-height: 24px;
   max-width: 725px;
   clear: both;
 }
 
-.post h2 {
+.page h2 {
   margin-top: 10em;
   margin-left: 5em;
   margin-bottom: 1.25em;
 }
 
-.post a,
+.page a,
 #about a {
   border-bottom: 1px solid #8085C1;
 }
 
-.post a:hover {
+.page a:hover {
   border: none;
 }
 
 /* standard */
-.post pre {
+.page pre {
   border: 1px solid #ddd;
   background-color: #eef;
   padding: 0 .4em;
 }
 
-.post p {
+.page p {
   margin-top: 20px;
   font-family: 'Source Sans Pro', Arial, sans-serif;
   font-size: 17px;
@@ -220,29 +220,29 @@ a:hover {
   text-align: justify;
 }
 
-.post ul, .post ol {
+.page ul, .page ol {
   margin-left: 5em;
   margin-bottom: 1.25em;
 }
 
-.post code {
+.page code {
   border: 2px solid #ddd;
   background-color: #eef;
   padding: 0 .2em;
 }
 
-.post pre code {
+.page pre code {
   border: none;
 }
 
 /* terminal */
-.post pre.terminal {
+.page pre.terminal {
   border: 1px solid #000;
   background-color: #333;
   color: #FFF;
 }
 
-.post pre.terminal code {
+.page pre.terminal code {
   background-color: #333;
 }
 
@@ -279,17 +279,17 @@ a:hover {
   font-size: 1.1em;
 }
 
-.post-link {
+.page-link {
   margin-bottom: 0.75em;
 }
 
-.post-title {
+.page-title {
   font-weight: 600;
   font-size: 1.25em;
   text-transform: lowercase;
 }
 
-.post-date {
+.page-date {
   color: #8a8a8a;
   font-family: Monaco, "Courier New", monospace;
   font-weight: 600;
