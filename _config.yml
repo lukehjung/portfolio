@@ -1,10 +1,10 @@
 name: Flex
-highlighter: true
-title: Jonathan Photography
+title: lukehjung
 baseurl: ""
 url: "http://lukehjung.github.io"
+title: lukehjung
 description: >
-  Amateur Photography blog by Jonathan
+  lukehjung portfolio
 sass:
   sass_dir: _sass
 include: ['_pages']
