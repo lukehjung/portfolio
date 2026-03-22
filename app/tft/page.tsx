@@ -88,7 +88,7 @@ export default function TFTStatsPage() {
     async function loadDefaultPlayers() {
       const defaultPlayers = [
         { name: 'Hyun', tag: 'JUNG' },
-        { name: 'sugs', tag: '1111' },
+        // { name: 'sugs', tag: '1111' },
         { name: 'yunjin', tag: 'downb' },
         { name: 'lenate', tag: 'na2' }
       ];
