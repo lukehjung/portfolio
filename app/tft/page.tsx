@@ -411,7 +411,7 @@ export default function TFTStatsPage() {
                                       <div key={idx} className="flex flex-col items-center w-12 shrink-0 mt-1">
                                         <div className="relative">
                                           <img 
-                                            src={`https://ddragon.leagueoflegends.com/cdn/14.8.1/img/champion/${cleanName}.png`}
+                                            src={`https://ddragon.leagueoflegends.com/cdn/16.5.1/img/champion/${cleanName}.png`}
                                             alt={cleanName}
                                             className={`w-10 h-10 rounded object-cover border-[1.5px] shadow-sm bg-gray-800 ${borderColor}`}
                                             onError={(e) => {
@@ -432,13 +432,17 @@ export default function TFTStatsPage() {
                                               return (
                                                 <img 
                                                   key={i}
-                                                  src={`https://rerollcdn.com/items/${cleanItemName}.png`}
+                                                  src={`https://ddragon.leagueoflegends.com/cdn/16.5.1/img/tft-item/${itemName}.png`}
                                                   alt={cleanItemName}
                                                   title={cleanItemName}
                                                   className="w-4 h-4 rounded-[2px] border border-gray-900 shadow-sm -ml-1.5 flex-shrink-0 first:ml-0 bg-gray-800 object-cover"
                                                   onError={(e) => {
-                                                    // Transparent pixel fallback to show the bg-gray-800 box
-                                                    e.currentTarget.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==";
+                                                    const target = e.currentTarget;
+                                                    if (target.src.includes('ddragon')) {
+                                                      target.src = `https://rerollcdn.com/items/${cleanItemName}.png`;
+                                                    } else if (target.src.includes('rerollcdn')) {
+                                                      target.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==";
+                                                    }
                                                   }}
                                                 />
                                               );
