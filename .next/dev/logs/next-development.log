@@ -1,0 +1,33 @@
+{"timestamp":"00:00:00.636","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:01.322","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:00:12.557","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:00:13.093","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:00:14.951","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:00:17.614","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:00:52.518","source":"Server","level":"LOG","message":"✓ Compiled in 22ms"}
+{"timestamp":"00:00:52.635","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:02:29.013","source":"Server","level":"ERROR","message":"⨯ Error: The default export is not a React Component in \"/resume/page\""}
+{"timestamp":"00:02:29.156","source":"Server","level":"ERROR","message":"⨯ Error: The default export is not a React Component in \"/resume/page\""}
+{"timestamp":"00:02:29.348","source":"Server","level":"ERROR","message":"⨯ Error: The default export is not a React Component in \"/resume/page\""}
+{"timestamp":"00:02:29.498","source":"Server","level":"ERROR","message":"⨯ Error: The default export is not a React Component in \"/resume/page\""}
+{"timestamp":"00:02:29.818","source":"Server","level":"ERROR","message":"⨯ Error: The default export is not a React Component in \"/resume/page\""}
+{"timestamp":"00:02:29.961","source":"Server","level":"ERROR","message":"⨯ Error: The default export is not a React Component in \"/resume/page\""}
+{"timestamp":"00:02:30.027","source":"Browser","level":"ERROR","message":"uncaughtError: Error: The default export is not a React Component in \"/resume/page\""}
+{"timestamp":"00:02:30.268","source":"Server","level":"ERROR","message":"[browser] \"\\u001b[31mUncaught Error: The default export is not a React Component in \\\"/resume/page\\\"\\u001b[39m\""}
+{"timestamp":"00:02:30.268","source":"Browser","level":"ERROR","message":"\u001b[31mUncaught Error: The default export is not a React Component in \"/resume/page\"\u001b[39m"}
+{"timestamp":"00:02:32.908","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:06:03.973","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:06:11.110","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:06:12.994","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:06:16.866","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:06:46.956","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:07:26.214","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:10:22.381","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:11:38.402","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:12:44.205","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:12:44.910","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:12:45.100","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:12:45.328","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:12:51.770","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:13:31.884","source":"Server","level":"LOG","message":"✓ Compiled in 38ms"}
+{"timestamp":"00:13:38.185","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}

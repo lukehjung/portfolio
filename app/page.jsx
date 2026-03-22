@@ -1,0 +1,406 @@
+export default function Page() {
+  return (
+    <>
+      <div id="mobile-menu-open" className="shadow-large">
+        <i className="fa fa-bars" aria-hidden="true"></i>
+      </div>
+      {/* End #mobile-menu-toggle */}
+      <header>
+        <div id="mobile-menu-close">
+          <span>Close</span> <i className="fa fa-times" aria-hidden="true"></i>
+        </div>
+        <ul id="menu" className="shadow">
+          <li>
+            <a href="#about">About</a>
+          </li>
+          <li>
+            <a href="#experience">Experience</a>
+          </li>
+          <li>
+            <a href="#education">Education</a>
+          </li>
+          <li>
+            <a href="#projects">Projects</a>
+          </li>
+          <li>
+            <a href="#skills">Skills</a>
+          </li>
+          <li>
+            <a href="#contact">Contact</a>
+          </li>
+        </ul>
+      </header>
+      {/* End header */}
+
+      <div id="lead">
+        <div id="lead-content">
+          <h1>Luke Jung</h1>
+          <h2>Amazon SDE II</h2>
+          <a
+            href="/files/Luke-Jung-Resume.pdf"
+            target="_blank"
+            className="btn-rounded-white"
+          >
+            Download Resume
+          </a>
+          <a
+            href="/resume"
+            className="btn-rounded-white"
+            style={{ marginLeft: '15px' }}
+          >
+            View Web Resume
+          </a>
+        </div>
+        {/* End #lead-content */}
+
+        <div id="lead-overlay"></div>
+
+        <div id="lead-down">
+          <span>
+            <i className="fa fa-chevron-down" aria-hidden="true"></i>
+          </span>
+        </div>
+        {/* End #lead-down */}
+      </div>
+      {/* End #lead */}
+
+      <div id="about">
+        <div className="container">
+          <div className="row">
+            <h2 className="heading">About Me</h2>
+            <p>
+              I am currently a Software Development Engineer II at Amazon working on Prime Video Live Events.
+              We develop mostly APIs powered by a java backend to help publish Amazon and non-Amazon properties.
+              I am interested in interesting projects especially in the gaming industy, email me any questions at
+              lukethejung@gmail.com
+            </p>
+          </div>
+        </div>
+      </div>
+      {/* End #about */}
+
+      <div id="experience" className="background-alt">
+        <h2 className="heading">Experience</h2>
+        <div id="experience-timeline">
+          <div data-date="December 2023 – Present">
+            <h3>Amazon: Prime Video Live Events</h3>
+            <h4>Software Development Engineer II</h4>
+            <ul>
+              <li>
+                Drove a strategic system-wide consolidation of the live event publishing pipeline, unifying logic across Amazon and non-Amazon properties, resulting in the deprecation of multiple legacy services and APIs.
+              </li>
+              <li>
+                Directed a critical system migration for six services, upgrading all connectivity protocols to a mandated Amazon standard and transitioning to new VIPs, ensuring a seamless and secure deployment.
+              </li>
+              <li>
+                Actively contributed to talent acquisition by conducting over 20 technical and behavioral interviews for Amazon, providing detailed and actionable feedback to hiring teams.
+              </li>
+              <li>
+                Significantly enhanced the Live Events Publishing platform, contributing approximately 100,000 lines of new code and refactoring 50,000 lines across 84 packages, delivering numerous features and bug fixes.
+              </li>
+              <li>
+                Spearheaded and successfully executed an operational campaign to eliminate the team's ticket backlog, achieving a historic first by reducing the queue to zero.
+              </li>
+            </ul>
+          </div>
+          <div data-date="August 2021 – December 2023">
+            <h3>Amazon: Prime Video Live Events</h3>
+            <h4>Software Development Engineer I</h4>
+            <ul>
+              <li>
+                Led the full software development lifecycle for a partner broadcast metadata history tool, from design and cross-team review to implementation, testing, and launch, ensuring seamless visibility for non-Amazon live event publishing.
+              </li>
+              <li>
+                Mentored and onboarded multiple interns and new hires, designing engaging projects, fostering best practices, and demystifying the Amazon tech stack, resulting in successful project releases.
+              </li>
+              <li>
+                Architected and implemented a globalized image localization system for live event publishing, enabling dynamic image display based on viewer locale across the Amazon platform.
+              </li>
+              <li>
+                Developed a data pipeline with fellow data engineers to provide reporting on specific operator overrides, replacing a manual report and saved 5-8 hours per week for live event publishing operators.
+              </li>
+              <li>
+                Collaborated with data engineers to automate operator override reporting, replacing manual processes and saving 5-8 hours weekly for live event publishing operators.
+              </li>
+              <li>
+                Provided technical leadership in feature development and operational support for Sports Partner Integrations reporting, establishing core infrastructure, comprehensive testing, monitoring, and operational documentation.
+              </li>
+            </ul>
+          </div>
+          <div data-date="July 2020 – July 2021">
+            <h3>UCLA Anderson, Graduate School of Management</h3>
+            <h4>Web Developer</h4>
+            <ul>
+              <li>
+                Automated the migration of 250+ Anderson Review Articles and 900+ UCLA Faculty researcher profiles using Python with compatibility for future content migration.
+              </li>
+              <li>
+                Revamped Anderson Review Webpage using Wordpress built with PHP and Javascript.
+              </li>
+              <li>
+                Configured CMS entries using Ingeniux and resolved JavaScript compatibility issues with focus on ADA accessibility and mobile/desktop responsive design.
+              </li>
+            </ul>
+          </div>
+          <div data-date="January 2020 – October 2020">
+            <h3>UCLA Strategic Communications Web Development</h3>
+            <h4>Web Developer</h4>
+            <ul>
+              <li>
+                Develops features for 25 UCLA marketing web properties including main ucla.edu and other branding sites.
+              </li>
+              <li>
+                Edits websites written in PHP, built on Laravel framework, and deployed with Docker and AWS.
+              </li>
+              <li>
+                Practices professional Git workflow using Jira suite, well versed in QA work and merging branches.
+              </li>
+              <li>
+                Works with a team of 9 other developers to update websites in weekly sprints. Actively communicate with Product Managers to ensure updates are on time and adjusted when needed.
+              </li>
+            </ul>
+          </div>
+
+          <div data-date="February 2019 – January 2020">
+            <h3>UCLA IT Services</h3>
+            <h4>Lead Assistant Desktop Support Analyst</h4>
+            <ul>
+              <li>
+                Leads 5 other student workers in assigning tasks, managing schedules and ensuring different jobs are completed, in charge of around 60+ tasks each day to satisfy multiple department needs.
+              </li>
+              <li>
+                Supports multiple issues, including Windows/Mac imaging through IBM BigFix, active directory management, installation of network servers in UCLA’s server, hardware installation and setup, and general software troubleshooting.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      {/* End #experience */}
+
+      <div id="education">
+        <h2 className="heading">Education</h2>
+        <div className="education-block">
+          <h3>University of California, Los Angeles</h3>
+          <span className="education-date">Sept 2017 - June 2021</span>
+          <h4>Bachelor of Science in Computer Science, GPA 3.6</h4>
+          <p>
+            Relevant Coursework: Data Structures, Algorithms, Networking, Computer Languages, Databases, Data Science, Machine Learning, Computer Architecture, Operating Systems, Computer Graphics, Computer Vision.
+          </p>
+        </div>
+        {/* End .education-block */}
+
+        <div className="education-block">
+          <h3>Torrey Pines High School</h3>
+          <span className="education-date">Sept 2013 - June 2017</span>
+          <h4>High School Degree, GPA 4.6</h4>
+          <p>
+            Relevant Coursework: AP Computer Science, AP Calculus AB, Multivariable and Vector Calculus.
+          </p>
+        </div>
+        {/* End .education-block */}
+      </div>
+      {/* End #education */}
+
+      <div id="projects" className="background-alt">
+        <h2 className="heading">Projects</h2>
+        <div className="container">
+          <div className="row">
+            <div className="project shadow-large">
+              <div className="project-image">
+                <a href="https://github.com/lukehjung/cs130capstoneproject" target="_blank">
+                  <img src="/images/ucla.png" alt="UCLA" />
+                </a>
+              </div>
+              {/* End .project-image */}
+              <div className="project-info">
+                <h3>UCLA Capstone Project</h3>
+                <p>
+                  -Built a webserver with a team of 4 students using C++ to parse a Nginx configuration file for our Software Engineering Class taught by 4 Google Engineers emphasizing good software engineering practices.<br />
+                  -Practiced scalable software development best practices such as thorough unit testing, functional testing, integration testing, refactoring, and leading the group as a tech lead.
+                </p>
+                <a href="https://github.com/lukehjung/cs130capstoneproject" target="_blank">View Project</a>
+              </div>
+              {/* End .project-info */}
+            </div>
+            <div className="project shadow-large">
+              <div className="project-image">
+                <a href="https://github.com/cs188-software-design-security-w20/project-paul-eggtart" target="_blank">
+                  <img src="/images/ratemyta.png" alt="RateMyTA" />
+                </a>
+              </div>
+              {/* End .project-image */}
+              <div className="project-info">
+                <h3>RateMyTA</h3>
+                <p>
+                  Generated a Python Flask website to rate different TAs on campus utilizing Google Firebase for data storage and Materialize package for Front End.
+                </p>
+                <a href="https://github.com/cs188-software-design-security-w20/project-paul-eggtart" target="_blank">View Project</a>
+              </div>
+              {/* End .project-info */}
+            </div>
+            <div className="project shadow-large">
+              <div className="project-image">
+                <a href="https://github.com/lukehjung/play-now" target="_blank">
+                  <img src="/images/youtube.png" alt="Play-Now" />
+                </a>
+              </div>
+              {/* End .project-image */}
+              <div className="project-info">
+                <h3>Play-Now</h3>
+                <p>
+                  Created a Ruby website and uploaded on AWS to watch YouTube Videos concurrently. Multiple users are able to come onto the website, play, pause, and change the timestamp to watch videos.
+                </p>
+                <a href="https://github.com/lukehjung/play-now" target="_blank">View Project</a>
+              </div>
+              {/* End .project-info */}
+            </div>
+            <div className="project shadow-large">
+              <div className="project-image">
+                <a href="https://github.com/lukehjung/SIMPSH" target="_blank">
+                  <img src="/images/simpsh.jpg" alt="Simp-Shell" />
+                </a>
+              </div>
+              {/* End .project-image */}
+              <div className="project-info">
+                <h3>Simp-Shell</h3>
+                <p>
+                  Generated a simple shell processor, similar to bash through C code for CS111, Computer Operating Systems.
+                </p>
+                <a href="https://github.com/lukehjung/SIMPSH" target="_blank">View Project</a>
+              </div>
+              {/* End .project-info */}
+            </div>
+            <div className="project shadow-large">
+              <div className="project-image">
+                <a href="https://github.com/lukehjung/Space-Invaders" target="_blank">
+                  <img src="/images/space.jpg" alt="Space Invaders" />
+                </a>
+              </div>
+              {/* End .project-image */}
+              <div className="project-info">
+                <h3>Space Invaders Game</h3>
+                <p>
+                  Created a space invaders game using javascript and opengl. Final project for CS174a project. Completely iteractive with shooting and collision detection, as well as particle effects and lives.
+                </p>
+                <a href="https://github.com/lukehjung/Space-Invaders" target="_blank">View Project</a>
+              </div>
+              {/* End .project-info */}
+            </div>
+            <div className="project shadow-large">
+              <div className="project-image">
+                <a href="https://github.com/lukehjung/IDEA-Hacks-Motion-Sensor" target="_blank">
+                  <img src="/images/hack.jpg" alt="IDEA Hacks" />
+                </a>
+              </div>
+              {/* End .project-image */}
+              <div className="project-info">
+                <h3>UCLA IDEA Hacks Motion Sensor</h3>
+                <p>
+                  Created a bluetooth-enabled arduino board that translates and interprets hand and finger gestures for another board to turn on servo motors and LEDs.
+                </p>
+                <a href="https://github.com/lukehjung/IDEA-Hacks-Motion-Sensor" target="_blank">View Project</a>
+              </div>
+              {/* End .project-info */}
+            </div>
+            {/* End .project */}
+
+            <div className="project shadow-large">
+              <div className="project-image">
+                <a href="https://github.com/lukehjung/WolframAlpha-GoogleHome-Integration" target="_blank">
+                  <img src="/images/googlehome.jpg" alt="Google Home" />
+                </a>
+              </div>
+              {/* End .project-image */}
+              <div className="project-info">
+                <h3>Google Home-Wolfram Alpha Integration</h3>
+                <p>
+                  Developed an app which connects Wolfram Alpha’s search engine to communicate with a Google Home to solvevarious math problems including derivatives and integrals.
+                </p>
+                <a href="https://github.com/lukehjung/WolframAlpha-GoogleHome-Integration" target="_blank">View Project</a>
+              </div>
+              {/* End .project-info */}
+            </div>
+            {/* End .project */}
+          </div>
+        </div>
+      </div>
+      {/* End #projects */}
+
+      <div id="skills">
+        <h2 className="heading">Skills</h2>
+        <ul>
+          <li>JavaScript</li>
+          <li>Python</li>
+          <li>Kotlin</li>
+          <li>Java</li>
+          <li>C</li>
+          <li>C++</li>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>Mathematica</li>
+          <li>R</li>
+          <li>MacOS</li>
+          <li>Linux</li>
+          <li>Jekyll</li>
+          <li>Prolog</li>
+          <li>Scheme</li>
+          <li>Ruby</li>
+          <li>AWS</li>
+          <li>PHP</li>
+          <li>Git</li>
+          <li>Jira</li>
+          <li>Agile/Scrum Workflow</li>
+          <li>Google Cloud</li>
+          <li>Docker Deployment</li>
+          <li>React</li>
+          <li>NodeJS</li>
+        </ul>
+      </div>
+      {/* End #skills */}
+
+      <div id="contact">
+        <h2 className="heading">Contact</h2>
+        <br />
+        <h3 className="heading">
+          Email: lukethejung@gmail.com<br />
+          Phone Number: 858-342-6779
+        </h3>
+      </div>
+
+      <footer>
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-5 copyright">
+              <p>Copyright &copy; 2025 Luke Jung</p>
+            </div>
+            <div className="col-sm-2 top">
+              <span id="to-top">
+                <i className="fa fa-chevron-up" aria-hidden="true"></i>
+              </span>
+            </div>
+            <div className="col-sm-5 social">
+              <ul>
+                <li>
+                  <a href="https://github.com/lukehjung" target="_blank">
+                    <i className="fa fa-github" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://linkedin.com/in/lukehjung" target="_blank">
+                    <i className="fa fa-linkedin" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.facebook.com/lukejung99" target="_blank">
+                    <i className="fa fa-facebook" aria-hidden="true"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+      {/* End footer */}
+    </>
+  );
+}
