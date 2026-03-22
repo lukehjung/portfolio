@@ -4,9 +4,8 @@ A personal portfolio website and interactive web resume built with Next.js, Reac
 
 ## 🚀 Recent Updates
 
-* **Responsive Web Resume (`/resume`):** Translated a static LaTeX resume into a fully responsive, modern web page using Next.js App Router and Tailwind CSS.
+* **Responsive Web Resume:** Translated a static LaTeX resume into a fully responsive, modern web page using Next.js App Router and Tailwind CSS, now serving as the main homepage.
 * **Tailwind CSS Integration:** Configured Tailwind CSS v4 alongside the existing legacy CSS to allow for modern, utility-first styling without breaking older components.
-* **Cross-Navigation:** Added seamless linking from the main legacy portfolio page to the newly built web resume.
 * **Git Optimization:** Added Next.js build cache (`.next`) to `.gitignore` to keep the repository clean.
 
 ## 💻 Tech Stack
@@ -31,8 +30,7 @@ To run this project locally on your machine:
    ```
 
 3. **View the application:**
-   * Main Portfolio: http://localhost:3000
-   * Web Resume: http://localhost:3000/resume
+   * Web Resume: http://localhost:3000
 
 ## 📫 Contact
 * Email: lukethejung@gmail.com
