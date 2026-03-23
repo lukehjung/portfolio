@@ -21,21 +21,32 @@ export default function EsportsClient({ initialTeams, initialPlayers }: EsportsC
       const topSlugs = ['t1', 'geng', 'g2', 'c9', 'blg', 'tl', 'fnc', 'wbg', 'fly'];
       return initialTeams.filter(t => topSlugs.includes(t.acronym.toLowerCase())).slice(0, 12);
     }
-    return initialTeams.filter(team => 
-      team.name.toLowerCase().includes(query.toLowerCase()) || 
-      team.acronym.toLowerCase().includes(query.toLowerCase()) ||
-      team.region.toLowerCase().includes(query.toLowerCase())
-    ).slice(0, 50); // cap at 50 to prevent huge dom
+    // Deep Normalization: Strip all spaces and punctuation from the search query
+    const safeQuery = query.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+
+    return initialTeams.filter(team => {
+      const safeName = team.name.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+      const safeAcronym = team.acronym.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+      const safeRegion = team.region.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+      
+      return safeName.includes(safeQuery) || 
+             safeAcronym.includes(safeQuery) ||
+             safeRegion.includes(safeQuery);
+    }).slice(0, 50); // cap at 50 to prevent huge dom
   }, [query, initialTeams]);
 
   const filteredPlayers = useMemo(() => {
     if (!query) {
       return initialPlayers.slice(0, 12); // just some random top players
     }
-    return initialPlayers.filter(player => 
-      player.summoner_name.toLowerCase().includes(query.toLowerCase()) ||
-      player.role.toLowerCase().includes(query.toLowerCase())
-    ).slice(0, 50);
+    const safeQuery = query.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+
+    return initialPlayers.filter(player => {
+      const safeName = player.summoner_name.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+      const safeRole = player.role.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+      
+      return safeName.includes(safeQuery) || safeRole.includes(safeQuery);
+    }).slice(0, 50);
   }, [query, initialPlayers]);
 
   return (
