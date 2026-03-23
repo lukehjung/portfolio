@@ -1,235 +1,167 @@
+'use client';
+
 import React from 'react';
-import { Metadata } from 'next';
+import Link from 'next/link';
 
-export const metadata: Metadata = {
-  title: 'Resume | Luke H. Jung',
-  description: 'Professional resume of Luke H. Jung, Software Engineer.',
-};
-
-export default function ResumePage() {
+export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8 font-sans">
-      <main className="w-full lg:w-2/3 max-w-7xl mx-auto bg-white text-gray-900 shadow-2xl rounded-2xl overflow-hidden relative border border-gray-200">
-        {/* Decorative Top Banner */}
-        <div className="absolute top-0 left-0 w-full h-3 bg-gradient-to-r from-blue-700 via-blue-500 to-cyan-400"></div>
+    <div className="min-h-screen bg-[#faf9f6] text-[#3c3c3c] font-sans selection:bg-[#eaddca] selection:text-[#5d4037] overflow-x-hidden">
+      
+      {/* Soft Serif Font Import */}
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap');
+        
+        h1, h2, h3 {
+          font-family: 'Merriweather', serif;
+        }
+        
+        body {
+          font-family: 'Inter', sans-serif;
+        }
 
-        <div className="p-6 sm:p-10 md:p-14">
-          {/* Header Section */}
-          <div className="flex flex-col md:flex-row items-center md:items-start justify-between border-b border-gray-200 pb-8 mb-8 gap-6">
-            <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
-              {/* Profile Image - Using a placeholder! Swap the src to your actual photo */}
-              <div className="relative">
-                <img
-                  src="/images/profilePhoto.jpg"
-                  alt="Luke Jung"
-                  className="w-28 h-28 sm:w-32 sm:h-32 rounded-full shadow-lg border-4 border-white object-cover"
-                />
-                <span className="absolute bottom-2 right-2 w-5 h-5 bg-green-500 border-4 border-white rounded-full" title="Available for work"></span>
-              </div>
-              
-              <div className="text-center md:text-left">
-                <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 mb-2">
-                  LUKE H. JUNG
-                </h1>
-                <h2 className="text-xl md:text-2xl font-medium text-blue-600 mb-4">
-                  Software Development Engineer II
-                </h2>
-                
-                <div className="flex flex-wrap justify-center md:justify-start items-center gap-3 md:gap-5 text-base text-gray-600 font-medium">
-                  <a href="mailto:lukethejung@gmail.com" className="flex items-center gap-1.5 hover:text-blue-600 transition-colors">
-                    <i className="fa fa-envelope text-gray-400"></i> lukethejung@gmail.com
-                  </a>
-                  <a href="tel:8583426779" className="flex items-center gap-1.5 hover:text-blue-600 transition-colors">
-                    <i className="fa fa-phone text-gray-400"></i> (858) 342-6779
-                  </a>
-                  <a href="http://lukehjung.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-blue-600 transition-colors">
-                    <i className="fa fa-globe text-gray-400"></i> lukehjung.com
-                  </a>
-                  <span className="flex items-center gap-1.5">
-                    <i className="fa fa-map-marker text-gray-400"></i> Seattle, WA
-                  </span>
+        @keyframes subtle-fade {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-subtle {
+          animation: subtle-fade 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+      `}</style>
+
+      {/* Subtle Warm Background Elements */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[50%] bg-[#f5ebe0] rounded-full blur-[120px] opacity-60"></div>
+        <div className="absolute bottom-[-10%] left-[-5%] w-[40%] h-[40%] bg-[#edede9] rounded-full blur-[100px] opacity-50"></div>
+      </div>
+
+      <main className="relative z-10 max-w-5xl mx-auto px-8 py-20 md:py-32">
+        
+        {/* Minimal Header */}
+        <header className="flex justify-between items-center mb-32 animate-subtle" style={{ animationDelay: '0.1s' }}>
+          <div className="flex items-center gap-2">
+            <span className="text-2xl font-black tracking-tighter text-[#5d4037]">LJ.</span>
+          </div>
+          <nav className="flex items-center gap-10 text-xs font-semibold uppercase tracking-[0.2em] text-[#8d8d8d]">
+            <Link href="/resume" className="hover:text-[#5d4037] transition-colors">Resume</Link>
+            <Link href="/esports" className="hover:text-[#5d4037] transition-colors">Esports</Link>
+            <Link href="/tft" className="hover:text-[#5d4037] transition-colors">TFT</Link>
+          </nav>
+        </header>
+
+        {/* Hero Section */}
+        <section className="mb-40 max-w-3xl animate-subtle" style={{ animationDelay: '0.3s' }}>
+          <h1 className="text-5xl md:text-7xl font-black leading-tight text-[#2d2d2d] mb-8">
+            Building software with <span className="italic font-light text-[#8d8d8d]">intention</span> and care.
+          </h1>
+          
+          <div className="space-y-6 text-lg md:text-xl text-[#6b6b6b] font-light leading-relaxed">
+            <p>
+              I&apos;m <span className="text-[#5d4037] font-medium italic">Luke H. Jung</span>. Currently a Software Development Engineer II at Amazon Prime Video, focused on building the digital infrastructure that delivers live experiences to millions.
+            </p>
+            <p>
+              I believe in clean architecture, high-fidelity design, and the quiet power of well-crafted tools.
+            </p>
+          </div>
+
+          <div className="mt-12 flex flex-wrap items-center gap-8">
+            <a 
+              href="/files/Luke-Jung-Resume.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-sm font-bold uppercase tracking-widest text-[#5d4037] border-b-2 border-[#5d4037]/20 hover:border-[#5d4037] transition-all pb-1"
+            >
+              View Resume (PDF)
+            </a>
+            <div className="flex gap-4">
+               <a href="https://linkedin.com/in/lukehjung" target="_blank" rel="noopener noreferrer" className="text-[#8d8d8d] hover:text-[#5d4037] transition-colors underline underline-offset-4 decoration-1 decoration-[#8d8d8d]/30">LinkedIn</a>
+               <a href="https://github.com/lukehjung" target="_blank" rel="noopener noreferrer" className="text-[#8d8d8d] hover:text-[#5d4037] transition-colors underline underline-offset-4 decoration-1 decoration-[#8d8d8d]/30">GitHub</a>
+            </div>
+          </div>
+        </section>
+
+        {/* Subtle Navigation Sections */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-24 animate-subtle" style={{ animationDelay: '0.6s' }}>
+          
+          {/* Resume Card */}
+          <div className="group relative min-h-[600px] p-1 rounded-sm overflow-hidden transition-all duration-700 hover:shadow-md">
+            <div className="absolute inset-0 bg-[#f0ede6] transition-all duration-700"></div>
+            <div className="relative h-full w-full bg-[#f0ede6] p-10 flex flex-col justify-between border border-[#edede9] group-hover:border-[#5d4037]/20 transition-all duration-700">
+              <div className="space-y-8">
+                <div className="aspect-[4/5] bg-[#e8e4db] overflow-hidden rounded-sm relative shadow-sm transition-shadow">
+                   <img 
+                    src="/images/profilePhoto.jpg" 
+                    alt="Luke" 
+                    className="w-full h-full object-cover opacity-90 transition-all duration-1000"
+                   />
+                </div>
+                <div>
+                   <h3 className="text-2xl font-bold text-[#2d2d2d] mb-3">Professional Resume</h3>
+                   <p className="text-[#8d8d8d] font-light leading-relaxed mb-4">
+                     A detailed look at 5.5 years of engineering experience across Amazon Prime Video and academic work at UCLA.
+                   </p>
                 </div>
               </div>
-            </div>
-
-            {/* Social Links */}
-            <div className="flex gap-3">
-              <a href="https://github.com/lukehjung" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 hover:text-gray-900 transition-all shadow-sm">
-                <i className="fa fa-github text-xl"></i>
-              </a>
-              <a href="https://linkedin.com/in/lukehjung" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 hover:bg-blue-100 hover:text-blue-800 transition-all shadow-sm">
-                <i className="fa fa-linkedin text-xl"></i>
-              </a>
+              <div className="flex items-center gap-6 mt-6">
+                <Link href="/resume" className="text-xs font-bold uppercase tracking-widest text-[#5d4037] hover:italic transition-all">
+                  Explore Experience &rarr;
+                </Link>
+                <a 
+                  href="/files/Luke-Jung-Resume.pdf" 
+                  download 
+                  className="text-xs font-bold uppercase tracking-widest text-[#8d8d8d] hover:text-[#5d4037] transition-all border-b border-transparent hover:border-[#5d4037]/20 pb-0.5"
+                >
+                  Download PDF
+                </a>
+              </div>
             </div>
           </div>
 
-          {/* Professional Summary */}
-          <section className="mb-10">
-            <div className="bg-gradient-to-r from-blue-50 to-blue-50/10 border-l-4 border-blue-500 p-5 rounded-r-xl shadow-sm">
-              <h2 className="text-lg font-bold uppercase text-blue-800 mb-2 flex items-center gap-2">
-                <i className="fa fa-user-circle-o"></i> Professional Summary
-              </h2>
-              <p className="text-gray-700 leading-relaxed text-[15px]">
-                Software Engineer with <strong className="text-gray-900">5.5 years of experience</strong> building high-scale distributed systems and global publishing platforms. Expert in <strong className="text-gray-900">Java, AWS, and Typescript</strong>, with a proven track record of leading critical security goals at <strong className="text-gray-900">Amazon</strong>, mentoring interns to full-time offers, and driving architectural consolidation for services reaching millions of global users.
-              </p>
-            </div>
-          </section>
-
-          {/* Professional Experience */}
-          <section className="mb-10">
-            <h2 className="text-2xl font-extrabold uppercase border-b-2 border-gray-100 pb-3 mb-6 text-gray-800 flex items-center gap-2">
-              <i className="fa fa-briefcase text-blue-500"></i> Professional Experience
-            </h2>
-
-            <div className="space-y-8">
-              {/* Amazon SDE II */}
-              <div className="group hover:bg-slate-50 p-4 -mx-4 rounded-xl transition-colors duration-200">
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center shadow-sm border border-gray-200">
-                      <i className="fa fa-amazon text-2xl text-gray-800"></i>
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-xl text-gray-900">AMAZON: PRIME VIDEO LIVE EVENTS</h3>
-                      <p className="font-medium text-blue-600">Software Development Engineer II (Live Events Publishing)</p>
-                    </div>
-                  </div>
-                  <div className="mt-2 sm:mt-0 text-right">
-                    <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 text-base font-semibold rounded-full">Dec 2023 &ndash; Present</span>
-                    <p className="text-base text-gray-500 mt-1"><i className="fa fa-map-marker"></i> Seattle, WA</p>
-                  </div>
-                </div>
-                <ul className="list-disc list-outside text-gray-600 space-y-2 ml-16 mt-4 text-[15px] marker:text-gray-300">
-                  <li><strong className="text-gray-800">Security Infrastructure:</strong> Led a team-wide security initiative to modernize authentication for internal services, performing deep-dive troubleshooting on outgoing network calls to reach 100% compliance with mandated security headers.</li>
-                  <li><strong className="text-gray-800">High-Scale Data Management:</strong> Designed a notification system to manage broadcast merges that handled race conditions between concurrent updates, supporting over 400 profile updates in a single workflow execution.</li>
-                  <li><strong className="text-gray-800">Regional Viewing & NBA Support:</strong> Implemented &quot;Couch Rights&quot; features to allow customers to access home-market content while traveling and developed validation rules to prevent incorrect content publishing during NBA launches.</li>
-                  <li><strong className="text-gray-800">Partner Onboarding & Ads:</strong> Engineered validation guardrails for the Fox partnership in under two weeks and built a system to offer tiered ad-supported or premium viewing options for League Pass subscribers.</li>
-                  <li><strong className="text-gray-800">Operational Excellence:</strong> Reduced the manual ticket load for support teams by 90% by creating a new automated error-reporting dashboard that replaced outdated comment-based systems with a readable, tabular format.</li>
-                  <li><strong className="text-gray-800">System Robustness:</strong> Resolved flaky integration tests and updated data classification logic to be more resilient, reducing the number of high-priority pages sent to the engineering team during peak live events.</li>
-                  <li><strong className="text-gray-800">Mentorship & Hiring:</strong> Mentored engineering interns through the full project lifecycle&mdash;including project planning, code reviews, and leadership presentations&mdash;resulting in successful full-time hiring offers.</li>
-                  <li><strong className="text-gray-800">Technical Leadership:</strong> Conducted 30+ technical and behavioral interviews for various engineering teams, spending time in pre-interview planning and post-interview debriefs to ensure a high hiring bar.</li>
-                </ul>
+          {/* Projects Container */}
+          <div className="space-y-24">
+            
+            {/* Esports Hub */}
+            <Link href="/esports" className="group block space-y-6">
+              <div className="aspect-video bg-[#e8e4db] rounded-sm p-8 flex items-center justify-center relative overflow-hidden group-hover:bg-[#dfdad0] transition-colors">
+                 <div className="text-[#5d4037]/20 text-7xl font-black italic select-none uppercase tracking-tighter">Esports</div>
+                 <div className="absolute bottom-6 right-6 text-xs font-bold uppercase tracking-[0.3em] text-[#5d4037]">Dashboard</div>
               </div>
-
-              {/* Amazon SDE I */}
-              <div className="group hover:bg-slate-50 p-4 -mx-4 rounded-xl transition-colors duration-200">
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center shadow-sm border border-gray-200">
-                      <i className="fa fa-amazon text-2xl text-gray-800"></i>
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-xl text-gray-900">AMAZON: PRIME VIDEO LIVE EVENTS</h3>
-                      <p className="font-medium text-blue-600">Software Development Engineer I (Sports Partner Integration)</p>
-                    </div>
-                  </div>
-                  <div className="mt-2 sm:mt-0 text-right">
-                    <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 text-base font-semibold rounded-full">Aug 2021 &ndash; Dec 2023</span>
-                    <p className="text-base text-gray-500 mt-1"><i className="fa fa-map-marker"></i> Seattle, WA</p>
-                  </div>
-                </div>
-                <ul className="list-disc list-outside text-gray-600 space-y-2 ml-16 mt-4 text-[15px] marker:text-gray-300">
-                  <li><strong className="text-gray-800">System Consolidation:</strong> Led a 6-month initiative to consolidate fragmented data systems, migrating 5.5 million records to a centralized service and increasing data coverage from 85% to over 97%.</li>
-                  <li><strong className="text-gray-800">Platform Modernization:</strong> Refactored over 50,000 lines of code across 84 software packages to retire older systems, improving overall platform stability for millions of concurrent viewers.</li>
-                  <li><strong className="text-gray-800">Internal Tooling:</strong> Architected a visual tool for internal operations teams to better understand and manage complex data relationships, significantly reducing the time spent on manual troubleshooting.</li>
-                  <li><strong className="text-gray-800">Automation & Efficiency:</strong> Developed automated reporting pipelines that replaced manual data entry, saving operational teams approximately 5&ndash;8 hours of work per week.</li>
-                </ul>
+              <div>
+                <h3 className="text-2xl font-bold text-[#2d2d2d] mb-3">Esports Hub</h3>
+                <p className="text-[#8d8d8d] font-light leading-relaxed mb-4">
+                  Match analysis and organizational history synthesized with AI and real-time GraphQL data.
+                </p>
+                <span className="text-xs font-bold uppercase tracking-widest text-[#5d4037] group-hover:italic transition-all">View Dashboard &rarr;</span>
               </div>
+            </Link>
 
-              {/* UCLA */}
-              <div className="group hover:bg-slate-50 p-4 -mx-4 rounded-xl transition-colors duration-200">
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg flex items-center justify-center shadow-sm border border-gray-200 overflow-hidden bg-white">
-                      <img src="/images/ucla.png" alt="UCLA Logo" className="w-full h-full object-cover" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-xl text-gray-900">UCLA ANDERSON SCHOOL OF MANAGEMENT</h3>
-                      <p className="font-medium text-blue-600">Web Developer</p>
-                    </div>
-                  </div>
-                  <div className="mt-2 sm:mt-0 text-right">
-                    <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 text-base font-semibold rounded-full">July 2020 &ndash; July 2021</span>
-                    <p className="text-base text-gray-500 mt-1"><i className="fa fa-map-marker"></i> Los Angeles, CA</p>
-                  </div>
-                </div>
-                <ul className="list-disc list-outside text-gray-600 space-y-2 ml-16 mt-4 text-[15px] marker:text-gray-300">
-                  <li><strong className="text-gray-800">Data Migration Automation:</strong> Developed automated scripts in Python to migrate over 1,150 complex website assets and researcher profiles, ensuring 100% data accuracy and future system compatibility.</li>
-                  <li><strong className="text-gray-800">CMS Optimization:</strong> Optimized content management using Ingeniux, resolving JavaScript compatibility issues and ensuring 100% ADA accessibility compliance and responsive design.</li>
-                  <li><strong className="text-gray-800">Project Planning:</strong> Collaborated with academic departments to scope technical requirements and milestones for large-scale content transitions.</li>
-                </ul>
+            {/* TFT Stats */}
+            <Link href="/tft" className="group block space-y-6">
+              <div className="aspect-video bg-[#edede9] rounded-sm p-8 flex items-center justify-center relative overflow-hidden group-hover:bg-[#e3e3dd] transition-colors">
+                 <div className="text-[#5d4037]/20 text-7xl font-black italic select-none uppercase tracking-tighter">Mastery</div>
+                 <div className="absolute bottom-6 right-6 text-xs font-bold uppercase tracking-[0.3em] text-[#5d4037]">Tactics</div>
               </div>
-            </div>
-          </section>
-
-          {/* Education & Skills Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            {/* Education */}
-            <section>
-              <h2 className="text-2xl font-extrabold uppercase border-b-2 border-gray-100 pb-3 mb-6 text-gray-800 flex items-center gap-2">
-                <i className="fa fa-graduation-cap text-blue-500"></i> Education
-              </h2>
-              <div className="bg-gray-50 border border-gray-100 p-5 rounded-xl">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-lg flex items-center justify-center shadow-sm border border-gray-200 overflow-hidden bg-white shrink-0">
-                    <img src="/images/ucla.png" alt="UCLA Logo" className="w-full h-full object-cover" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900 leading-tight">University of California, Los Angeles (UCLA)</h3>
-                    <p className="text-base text-gray-500"><i className="fa fa-map-marker"></i> Los Angeles, CA</p>
-                  </div>
-                </div>
-                <p className="font-semibold text-blue-600 mb-3">Bachelor of Science, Computer Science</p>
-                <div className="text-[14px] text-gray-600">
-                  <strong className="text-gray-800 block mb-1">Core Coursework:</strong> 
-                  Distributed Systems, Operating Systems, Networking, Algorithms, Databases, Software Engineering.
-                </div>
+              <div>
+                <h3 className="text-2xl font-bold text-[#2d2d2d] mb-3">TFT Analytics</h3>
+                <p className="text-[#8d8d8d] font-light leading-relaxed mb-4">
+                  Real-time Riot ID verification and rank progression tracking at the network edge.
+                </p>
+                <span className="text-xs font-bold uppercase tracking-widest text-[#5d4037] group-hover:italic transition-all">Track Rank &rarr;</span>
               </div>
-            </section>
+            </Link>
 
-            {/* Technical Skills */}
-            <section>
-              <h2 className="text-2xl font-extrabold uppercase border-b-2 border-gray-100 pb-3 mb-6 text-gray-800 flex items-center gap-2">
-                <i className="fa fa-code text-blue-500"></i> Technical Skills
-              </h2>
-              
-              <div className="space-y-5">
-                <div>
-                  <h3 className="text-sm font-bold text-gray-800 uppercase tracking-wider mb-2">Languages</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {['Java', 'Python', 'Kotlin', 'SQL', 'Typescript', 'React', 'Node.js', 'C++'].map(skill => (
-                      <span key={skill} className="px-3 py-1.5 bg-blue-50 text-blue-700 rounded-lg text-sm font-medium border border-blue-100 hover:bg-blue-100 transition-colors cursor-default">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="text-sm font-bold text-gray-800 uppercase tracking-wider mb-2">Cloud & Infrastructure</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {['AWS (CDK, Lambda, EC2, DynamoDB, S3, SQS, SNS)', 'Docker', 'CI/CD'].map(skill => (
-                      <span key={skill} className="px-3 py-1.5 bg-purple-50 text-purple-700 rounded-lg text-sm font-medium border border-purple-100 hover:bg-purple-100 transition-colors cursor-default">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="text-sm font-bold text-gray-800 uppercase tracking-wider mb-2">Tools & Frameworks</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {['RESTful APIs', 'TestNG', 'Spring Boot', 'Git', 'Distributed Systems Design', 'Agile/Scrum'].map(skill => (
-                      <span key={skill} className="px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium border border-gray-200 hover:bg-gray-100 transition-colors cursor-default">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </section>
           </div>
         </div>
+
+        {/* Minimal Footer */}
+        <footer className="mt-48 pt-12 border-t border-[#edede9] flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-semibold uppercase tracking-[0.3em] text-[#b0b0b0] italic">
+          <div>Built by Luke H. Jung &copy; {new Date().getFullYear()}</div>
+          <div className="flex gap-12">
+             <span>Seattle, Washington</span>
+             <span>Intention &bull; Design &bull; Scale</span>
+          </div>
+        </footer>
+
       </main>
     </div>
   );
