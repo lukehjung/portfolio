@@ -15,21 +15,29 @@ export const BioSection = ({ type, name, role, team, region }: BioSectionProps) 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let url = `/api/bio?type=${type}&name=${encodeURIComponent(name)}`;
-    if (role) url += `&role=${encodeURIComponent(role)}`;
-    if (team) url += `&team=${encodeURIComponent(team)}`;
-    if (region) url += `&region=${encodeURIComponent(region)}`;
+    const fetchBio = async () => {
+      // In production, you would use an environment variable (e.g., process.env.NEXT_PUBLIC_WORKER_URL)
+      // For local testing with Wrangler, we natively target port 8787
+      const workerUrl = process.env.NEXT_PUBLIC_BIO_API_URL || 'http://localhost:8787';
+      
+      let url = `${workerUrl}?type=${type}&name=${encodeURIComponent(name)}`;
+      if (role) url += `&role=${encodeURIComponent(role)}`;
+      if (team) url += `&team=${encodeURIComponent(team)}`;
+      if (region) url += `&region=${encodeURIComponent(region)}`;
 
-    fetch(url)
-      .then(res => res.json())
-      .then(d => {
-        setData(d);
+      try {
+        const response = await fetch(url);
+        const parsedData = await response.json();
+        setData(parsedData);
+      } catch (err) {
+        console.error("Cloudflare Worker Connection Error:", err);
+        setData({ error: "Failed to reach edge network." });
+      } finally {
         setLoading(false);
-      })
-      .catch(e => {
-        console.error(e);
-        setLoading(false);
-      });
+      }
+    };
+
+    fetchBio();
   }, [type, name, role, team, region]);
 
   if (loading) {
