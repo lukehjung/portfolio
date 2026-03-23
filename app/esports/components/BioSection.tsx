@@ -1,0 +1,100 @@
+"use client";
+
+import React, { useEffect, useState } from 'react';
+
+interface BioSectionProps {
+  type: 'player' | 'team';
+  name: string;
+  role?: string;
+  team?: string;
+  region?: string;
+}
+
+export const BioSection = ({ type, name, role, team, region }: BioSectionProps) => {
+  const [data, setData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let url = `/api/bio?type=${type}&name=${encodeURIComponent(name)}`;
+    if (role) url += `&role=${encodeURIComponent(role)}`;
+    if (team) url += `&team=${encodeURIComponent(team)}`;
+    if (region) url += `&region=${encodeURIComponent(region)}`;
+
+    fetch(url)
+      .then(res => res.json())
+      .then(d => {
+        setData(d);
+        setLoading(false);
+      })
+      .catch(e => {
+        console.error(e);
+        setLoading(false);
+      });
+  }, [type, name, role, team, region]);
+
+  if (loading) {
+    return (
+      <div className="w-full bg-slate-900/50 border border-slate-800 rounded-3xl p-8 mb-12 animate-pulse flex flex-col items-center justify-center min-h-[250px] shadow-lg">
+         <div className="w-12 h-12 border-4 border-cyan-500/30 border-t-cyan-500 rounded-full animate-spin mb-4"></div>
+         <p className="text-cyan-400 font-semibold tracking-widest uppercase text-sm">Synthesizing AI Biography...</p>
+      </div>
+    );
+  }
+
+  if (!data || data.error) {
+    return null; // Fail silently if no logic or Gemini API key missing
+  }
+
+  return (
+    <div className="w-full bg-slate-900/80 backdrop-blur-md border border-slate-800 rounded-3xl p-8 mb-12 shadow-2xl relative overflow-hidden group">
+      {/* Glow Effect */}
+      <div className="absolute top-0 right-0 -mt-20 -mr-20 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none transition duration-700 group-hover:bg-cyan-500/20"></div>
+
+      <h3 className="text-2xl font-black text-white uppercase tracking-wider mb-6 flex items-center gap-3">
+        <i className="fa fa-address-card text-cyan-500"></i> AI Synopsis
+      </h3>
+
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        {/* Left Col: Metadata */}
+        <div className="col-span-1 border-r border-slate-800/50 pr-6 space-y-6">
+          
+          <div>
+            <span className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Age</span>
+            <span className="text-lg font-semibold text-slate-200">{data.age || 'Unknown'}</span>
+          </div>
+
+          <div>
+            <span className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Height</span>
+            <span className="text-lg font-semibold text-slate-200">{data.height || 'Unknown'}</span>
+          </div>
+
+          <div>
+            <span className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Nationality</span>
+            <span className="text-lg font-semibold text-slate-200 flex items-center gap-2">
+               {data.nationality || 'Unknown'}
+            </span>
+          </div>
+
+          <div>
+            <span className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Origin</span>
+            <span className="text-sm font-semibold text-slate-400">{data.placeOfBirth || 'Unknown'}</span>
+          </div>
+          
+        </div>
+
+        {/* Right Col: Biography */}
+        <div className="col-span-1 md:col-span-3">
+           <div className="prose prose-invert prose-p:text-slate-300 prose-p:leading-relaxed max-w-none">
+             {data.summary ? (
+               data.summary.split('\\n').map((paragraph: string, idx: number) => (
+                 <p key={idx} className="mb-4 text-base md:text-lg opacity-90">{paragraph}</p>
+               ))
+             ) : (
+               <p className="text-slate-500 italic">No biography available. Please configure the LLM API.</p>
+             )}
+           </div>
+        </div>
+      </div>
+    </div>
+  );
+};

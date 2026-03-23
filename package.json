@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/lukehjung/portfolio#readme",
   "dependencies": {
+    "@google/genai": "^1.46.0",
     "glob-parent": "^6.0.2",
     "hosted-git-info": "^9.0.2",
     "ini": "^6.0.0",

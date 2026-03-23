@@ -2,6 +2,7 @@ import React from 'react';
 import { fetchEsportsData, fetchTeamMatches } from '../../api';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { BioSection } from '../../components/BioSection';
 
 export async function generateStaticParams() {
   const { players } = await fetchEsportsData();
@@ -61,6 +62,9 @@ export default async function PlayerDetailsPage({ params }: { params: { id: stri
                     )}
                 </div>
             </div>
+
+            {/* AI Biography Section */}
+            <BioSection type="player" name={player.summoner_name} role={player.role} team={team?.name} region={team?.region} />
 
             {/* Match History */}
             <div className="mt-16">

@@ -1,6 +1,7 @@
 import React from 'react';
 import { fetchEsportsData, fetchTeamMatches, Match } from '../../api';
 import { PlayerCard } from '../../components/EsportsCard';
+import { BioSection } from '../../components/BioSection';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
@@ -101,6 +102,9 @@ export default async function TeamDetailsPage({ params }: { params: { id: string
                     </h2>
                 </div>
             </div>
+
+            {/* AI Biography Section */}
+            <BioSection type="team" name={team.name} region={team.region} />
 
             {/* Main Roster */}
             <div>
