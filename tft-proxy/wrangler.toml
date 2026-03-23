@@ -1,0 +1,6 @@
+name = "tft-proxy"
+main = "src/worker.js"
+compatibility_date = "2024-03-21"
+
+# [vars]
+# RIOT_API_KEY = "dummy_for_local_dev"
