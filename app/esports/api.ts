@@ -15,6 +15,7 @@ export interface Team {
     role: string;
     team_id: string;
     image_url: string;
+    region: string;
   }
   
   const API_KEY = '0TvQnueqKa5mxJntVWt0w4LpLfEkrV1Ta8rQBb9Z';
@@ -46,13 +47,13 @@ export interface Team {
         // Only include teams with valid images and codes
         if (t.image && t.name) {
           const teamId = t.id || t.slug;
-          const hasLeague = !!t.homeLeague;
+          const currentRegion = t.homeLeague?.name || 'Global';
           
           teams.push({
             id: teamId,
             name: t.name,
             acronym: t.code || t.slug.substring(0, 4).toUpperCase(),
-            region: t.homeLeague?.name || 'Global',
+            region: currentRegion,
             image_url: t.image,
             wins: 0, // Standings are in a separate endpoint, leaving 0 for now
             losses: 0,
@@ -68,9 +69,8 @@ export interface Team {
                       shouldUpdate = true;
                   } else {
                       // Overwrite if the new team's structural league tier strictly supersedes the older affiliation
-                      const oldTeam = teams.find(x => x.id === existing.team_id);
-                      const oldRegion = oldTeam?.region || 'Global';
-                      const newRegion = t.homeLeague?.name || 'Global';
+                      const oldRegion = existing.region || 'Global';
+                      const newRegion = currentRegion;
 
                       const getScore = (reg: string) => {
                           if (reg === 'Global') return 1;
@@ -83,7 +83,7 @@ export interface Team {
                           shouldUpdate = true;
                       }
                   }
-
+ 
                   if (shouldUpdate) {
                       playerMap.set(String(p.id), {
                         id: String(p.id),
@@ -91,6 +91,7 @@ export interface Team {
                         role: p.role || 'Player',
                         team_id: teamId,
                         image_url: p.image || (existing ? existing.image_url : ''),
+                        region: currentRegion,
                       });
                   }
               }

@@ -71,10 +71,19 @@ export const BioSection = ({ type, name, role, team, region }: BioSectionProps) 
         {/* Left Col: Metadata */}
         <div className="col-span-1 border-r border-slate-800/50 pr-6 space-y-6">
           
-          <div>
-            <span className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Age</span>
-            <span className="text-lg font-semibold text-slate-200">{data.age || 'Unknown'}</span>
-          </div>
+          {type === 'player' && (
+            <div>
+              <span className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Age</span>
+              <span className="text-lg font-semibold text-slate-200">{data.age || 'Unknown'}</span>
+            </div>
+          )}
+
+          {type === 'team' && (
+            <div>
+              <span className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Year Founded</span>
+              <span className="text-lg font-semibold text-slate-200">{data.foundedYear || 'Unknown'}</span>
+            </div>
+          )}
 
           {type === 'player' && (
             <div>
@@ -86,14 +95,16 @@ export const BioSection = ({ type, name, role, team, region }: BioSectionProps) 
           <div>
             <span className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">{type === 'team' ? 'Region' : 'Nationality'}</span>
             <span className="text-lg font-semibold text-slate-200 flex items-center gap-2">
-               {data.nationality || 'Unknown'}
+               {type === 'team' ? (data.region || 'Unknown') : (data.nationality || 'Unknown')}
             </span>
           </div>
 
-          <div>
-            <span className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Origin</span>
-            <span className="text-sm font-semibold text-slate-400">{data.placeOfBirth || 'Unknown'}</span>
-          </div>
+          {type === 'player' && (
+            <div>
+              <span className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Origin</span>
+              <span className="text-sm font-semibold text-slate-400">{data.placeOfBirth || 'Unknown'}</span>
+            </div>
+          )}
           
         </div>
 
@@ -109,6 +120,27 @@ export const BioSection = ({ type, name, role, team, region }: BioSectionProps) 
                <p className="text-slate-500 italic">Biography data not returned from LLM. check console for diagnostics.</p>
              )}
            </div>
+
+           {/* Major Trophies Section for both Players and Teams */}
+           {data.trophies && data.trophies.length > 0 && (
+             <div className="mt-8 pt-8 border-t border-slate-800/50">
+               <h4 className="text-sm font-bold text-cyan-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                 <i className="fa fa-trophy"></i> Major Trophies
+               </h4>
+               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                 {data.trophies.map((trophy: any, idx: number) => (
+                   <div key={idx} className="flex flex-col bg-slate-800/30 border border-slate-700/50 rounded-xl p-3 hover:border-cyan-500/30 transition-colors">
+                     <span className="text-slate-200 font-bold">{trophy.name}</span>
+                     <div className="flex items-center gap-2 text-xs text-slate-500 font-medium">
+                       <span>{trophy.year}</span>
+                       <span className="w-1 h-1 bg-slate-600 rounded-full"></span>
+                       <span className="text-cyan-600 uppercase">{trophy.region || 'International'}</span>
+                     </div>
+                   </div>
+                 ))}
+               </div>
+             </div>
+           )}
         </div>
       </div>
     </div>

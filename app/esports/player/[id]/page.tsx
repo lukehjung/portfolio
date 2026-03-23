@@ -25,6 +25,43 @@ export default async function PlayerDetailsPage({ params }: { params: { id: stri
   const team = teams.find(t => t.id === player.team_id);
   const matches = team ? await fetchTeamMatches(team.acronym, team.region) : [];
 
+  // Unified Roster Logic (Synced with Team Page)
+  const roleOrder = ['top', 'jungle', 'mid', 'bottom', 'support'];
+  const teamPlayers = team ? players.filter(p => p.team_id === team.id) : [];
+  
+  const sortedPlayers = [...teamPlayers].sort((a, b) => {
+    const aRoleIndex = roleOrder.indexOf(a.role?.toLowerCase());
+    const bRoleIndex = roleOrder.indexOf(b.role?.toLowerCase());
+    const aValidRole = aRoleIndex !== -1;
+    const bValidRole = bRoleIndex !== -1;
+    if (aValidRole && !bValidRole) return -1;
+    if (!aValidRole && bValidRole) return 1;
+    if (aValidRole && bValidRole && aRoleIndex !== bRoleIndex) return aRoleIndex - bRoleIndex;
+    
+    // Tie-breaker: Starters usually have their name in their official image URL
+    const aIsMain = a.image_url.toLowerCase().includes(a.summoner_name.toLowerCase()) ? 1 : 0;
+    const bIsMain = b.image_url.toLowerCase().includes(b.summoner_name.toLowerCase()) ? 1 : 0;
+    return bIsMain - aIsMain;
+  });
+
+  const mainTeammates: typeof players = [];
+  const filledRoles = new Set();
+  
+  // 1. Mark the current player's role as filled so we don't show another person for their own role
+  if (player.role && roleOrder.includes(player.role.toLowerCase())) {
+      filledRoles.add(player.role.toLowerCase());
+  }
+
+  // 2. Populate other roles from the team's main roster
+  sortedPlayers.forEach(p => {
+      if (String(p.id) === id) return; // Skip current player
+      const roleKey = p.role?.toLowerCase();
+      if (roleOrder.includes(roleKey) && !filledRoles.has(roleKey)) {
+          filledRoles.add(roleKey);
+          mainTeammates.push(p);
+      }
+  });
+
   return (
     <div className="min-h-screen bg-[#0a0a0c] text-white font-sans selection:bg-purple-500/30">
         {/* Navigation Bar */}
@@ -44,7 +81,7 @@ export default async function PlayerDetailsPage({ params }: { params: { id: stri
             {/* Player Header */}
             <div className="bg-slate-900/80 border border-slate-800 backdrop-blur-md rounded-3xl p-8 mb-16 shadow-2xl flex flex-col md:flex-row items-center gap-10">
                 <div className="relative shrink-0 w-40 h-40 md:w-56 md:h-56 bg-slate-950/80 rounded-full flex items-center justify-center p-2 border-2 border-slate-700 overflow-hidden shadow-[0_0_30px_rgba(168,85,247,0.15)] group">
-                    <img src={player.image_url} alt={player.summoner_name} className="w-full h-full object-cover object-top filter grayscale group-hover:grayscale-0 transition-all duration-700" />
+                    <img src={player.image_url} alt={player.summoner_name} className="w-full h-full object-cover object-top transition-all duration-700" />
                 </div>
                 
                 <div className="text-center md:text-left">
@@ -65,6 +102,47 @@ export default async function PlayerDetailsPage({ params }: { params: { id: stri
 
             {/* AI Biography Section */}
             <BioSection type="player" name={player.summoner_name} role={player.role} team={team?.name} region={team?.region} />
+
+            {/* Unified Teammates Section */}
+            {team && mainTeammates.length > 0 && (
+              <div className="mt-16">
+                <div className="flex items-center gap-3 border-b border-slate-800 pb-4 mb-8">
+                  <i className="fa fa-users text-2xl text-cyan-500"></i>
+                  <h2 className="text-3xl font-bold">Main Roster</h2>
+                  <span className="ml-auto text-slate-500 font-medium bg-slate-800/50 px-3 py-1 rounded-lg border border-slate-700">
+                    {mainTeammates.length} Members
+                  </span>
+                </div>
+                
+                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                  {mainTeammates.map(teammate => (
+                    <Link 
+                      href={`/esports/player/${teammate.id}`} 
+                      key={teammate.id}
+                      className="group relative bg-slate-900/40 border border-slate-800 rounded-2xl p-4 transition-all hover:bg-slate-800/60 hover:border-cyan-500/50 hover:-translate-y-1 shadow-lg overflow-hidden"
+                    >
+                      <div className="flex flex-col items-center text-center">
+                        <div className="w-20 h-20 rounded-full bg-slate-950 border border-slate-700 mb-3 overflow-hidden group-hover:border-cyan-500/30 transition-colors">
+                          <img 
+                            src={teammate.image_url} 
+                            alt={teammate.summoner_name} 
+                            className="w-full h-full object-cover transition-all"
+                          />
+                        </div>
+                        <span className="text-xs font-bold text-cyan-400 uppercase tracking-widest mb-1 opacity-70">
+                          {teammate.role}
+                        </span>
+                        <span className="text-lg font-black text-white group-hover:text-cyan-400 transition-colors">
+                          {teammate.summoner_name}
+                        </span>
+                      </div>
+                      {/* Interactive Sparkle */}
+                      <div className="absolute -right-4 -bottom-4 w-12 h-12 bg-cyan-500/5 rounded-full blur-xl group-hover:bg-cyan-500/20 transition-all"></div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Match History */}
             <div className="mt-16">

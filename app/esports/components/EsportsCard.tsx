@@ -45,7 +45,7 @@ export const PlayerCard = ({ player, team }: { player: Player, team?: Team }) =>
         <div className="flex items-center gap-4">
           <div className="relative shrink-0">
             <div className="w-16 h-16 xl:w-20 xl:h-20 rounded-full overflow-hidden border-2 border-slate-700 group-hover:border-purple-500/50 transition-colors bg-slate-800">
-              <img src={player.image_url} alt={player.summoner_name} className="w-full h-full object-cover object-top filter grayscale group-hover:grayscale-0 transition-all duration-500" />
+              <img src={player.image_url} alt={player.summoner_name} className="w-full h-full object-cover object-top transition-all duration-500" />
             </div>
             {team && (
               <div className="absolute -bottom-2 -right-2 w-6 h-6 xl:w-8 xl:h-8 rounded-full bg-slate-800 border-2 border-slate-900 p-0.5 flex items-center justify-center">

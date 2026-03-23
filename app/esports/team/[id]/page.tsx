@@ -89,11 +89,7 @@ export default async function TeamDetailsPage({ params }: { params: { id: string
                 <div className="relative w-40 h-40 md:w-56 md:h-56 bg-slate-950/80 rounded-2xl flex items-center justify-center p-6 border-2 border-slate-800 shadow-[0_0_30px_rgba(34,211,238,0.1)]">
                     <img src={team.image_url} alt={team.name} className="w-full object-contain filter drop-shadow-[0_0_12px_rgba(255,255,255,0.15)]" />
                 </div>
-                
                 <div className="text-center md:text-left">
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-slate-700 bg-slate-800 font-bold uppercase tracking-widest text-xs text-slate-300 mb-4">
-                        <i className="fa fa-map-marker text-cyan-400"></i> {team.region} Region
-                    </div>
                     <h1 className="text-5xl md:text-7xl font-black tracking-tighter mb-2">
                         {team.name}
                     </h1>
