@@ -18,7 +18,7 @@ export const BioSection = ({ type, name, role, team, region }: BioSectionProps) 
     const fetchBio = async () => {
       // In production, you would use an environment variable (e.g., process.env.NEXT_PUBLIC_WORKER_URL)
       // For local testing with Wrangler, we natively target port 8787
-      const workerUrl = process.env.NEXT_PUBLIC_BIO_API_URL || 'http://localhost:8787';
+      const workerUrl = process.env.NEXT_PUBLIC_BIO_API_URL || 'https://gen-ai-bio.lukethejung.workers.dev';
       
       let url = `${workerUrl}?type=${type}&name=${encodeURIComponent(name)}`;
       if (role) url += `&role=${encodeURIComponent(role)}`;
