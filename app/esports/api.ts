@@ -136,7 +136,10 @@ export interface Team {
       });
       const leaguesData = await leaguesRes.json();
       const league = leaguesData?.data?.leagues?.find((l: any) => l.name === leagueName || l.slug === leagueName.toLowerCase());
-      const leagueParam = league ? `&leagueId=${league.id}` : '';
+      const GLOBAL_MAJORS = ['98767975604431411', '98767991325878492', '113464388705111224', '110988878756156222'];
+      const leagueIds = [...GLOBAL_MAJORS];
+      if (league && !leagueIds.includes(league.id)) leagueIds.push(league.id);
+      const leagueParam = `&leagueId=${leagueIds.join(',')}`;
 
       // 2. Fetch up to 4 pages of the specific league's schedule to find the team's 15 most recent matches
       for (let i = 0; i < 4; i++) {
