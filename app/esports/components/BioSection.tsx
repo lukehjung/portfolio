@@ -28,6 +28,10 @@ export const BioSection = ({ type, name, role, team, region }: BioSectionProps) 
       try {
         const response = await fetch(url);
         const parsedData = await response.json();
+        
+        // Diagnostic log: Check your browser's console (F12) to see this!
+        console.log("AI Worker Data Incoming:", parsedData);
+        
         setData(parsedData);
       } catch (err) {
         console.error("Cloudflare Worker Connection Error:", err);
@@ -42,15 +46,16 @@ export const BioSection = ({ type, name, role, team, region }: BioSectionProps) 
 
   if (loading) {
     return (
-      <div className="w-full bg-slate-900/50 border border-slate-800 rounded-3xl p-8 mb-12 animate-pulse flex flex-col items-center justify-center min-h-[250px] shadow-lg">
-         <div className="w-12 h-12 border-4 border-cyan-500/30 border-t-cyan-500 rounded-full animate-spin mb-4"></div>
+      <div className="w-full bg-slate-900/50 border border-slate-800 rounded-3xl p-8 mb-12 animate-pulse flex flex-col items-center justify-center min-h-[250px] shadow-lg text-center">
+         <div className="w-12 h-12 border-4 border-cyan-500/30 border-t-cyan-500 rounded-full animate-spin mb-4 mx-auto"></div>
          <p className="text-cyan-400 font-semibold tracking-widest uppercase text-sm">Synthesizing AI Biography...</p>
       </div>
     );
   }
 
-  if (!data || data.error) {
-    return null; // Fail silently if no logic or Gemini API key missing
+  // Fail gracefully if no summary and no diagnostic data is present
+  if (!data || (data.error && !data.summary)) {
+    return null;
   }
 
   return (
@@ -71,13 +76,15 @@ export const BioSection = ({ type, name, role, team, region }: BioSectionProps) 
             <span className="text-lg font-semibold text-slate-200">{data.age || 'Unknown'}</span>
           </div>
 
-          <div>
-            <span className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Height</span>
-            <span className="text-lg font-semibold text-slate-200">{data.height || 'Unknown'}</span>
-          </div>
+          {type === 'player' && (
+            <div>
+              <span className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Height</span>
+              <span className="text-lg font-semibold text-slate-200">{data.height || 'Unknown'}</span>
+            </div>
+          )}
 
           <div>
-            <span className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Nationality</span>
+            <span className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">{type === 'team' ? 'Region' : 'Nationality'}</span>
             <span className="text-lg font-semibold text-slate-200 flex items-center gap-2">
                {data.nationality || 'Unknown'}
             </span>
@@ -94,11 +101,12 @@ export const BioSection = ({ type, name, role, team, region }: BioSectionProps) 
         <div className="col-span-1 md:col-span-3">
            <div className="prose prose-invert prose-p:text-slate-300 prose-p:leading-relaxed max-w-none">
              {data.summary ? (
-               data.summary.split('\\n').map((paragraph: string, idx: number) => (
-                 <p key={idx} className="mb-4 text-base md:text-lg opacity-90">{paragraph}</p>
+               // Split by double newlines or single newlines that look like paragraphs
+               data.summary.split(/\n\n|\r\n\r\n|\n|\\n/).map((paragraph: string, idx: number) => (
+                 paragraph.trim() && <p key={idx} className="mb-4 text-base md:text-lg opacity-90">{paragraph.trim()}</p>
                ))
              ) : (
-               <p className="text-slate-500 italic">No biography available. Please configure the LLM API.</p>
+               <p className="text-slate-500 italic">Biography data not returned from LLM. check console for diagnostics.</p>
              )}
            </div>
         </div>

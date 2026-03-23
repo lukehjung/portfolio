@@ -103,13 +103,13 @@ function MatchDetailsContent() {
         <div className="w-full bg-slate-900/80 border border-slate-800 backdrop-blur-md rounded-3xl p-8 mb-8 shadow-2xl flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
             
             {/* Team 1 */}
-            <div className="flex flex-col items-center text-center w-48">
-                <div className="w-32 h-32 md:w-40 md:h-40 bg-slate-950/80 rounded-2xl flex items-center justify-center p-4 border-2 border-slate-800 shadow-[0_0_30px_rgba(255,255,255,0.05)] mb-4 transition-transform hover:scale-105">
+            <Link href={`/esports/team/${team1.id}`} className="flex flex-col items-center text-center w-48 group/team transition-transform hover:scale-105">
+                <div className="w-32 h-32 md:w-40 md:h-40 bg-slate-950/80 rounded-2xl flex items-center justify-center p-4 border-2 border-slate-800 shadow-[0_0_30px_rgba(255,255,255,0.05)] mb-4 group-hover/team:border-rose-500/50 group-hover/team:shadow-rose-500/10 transition-all">
                     {team1.image_url ? <img src={team1.image_url} alt={team1.name} className="w-full object-contain filter drop-shadow-[0_0_12px_rgba(255,255,255,0.1)]" /> : <i className="fa fa-shield text-5xl text-slate-700"></i>}
                 </div>
-                <h2 className="text-3xl font-black">{team1.acronym}</h2>
-                <span className="text-slate-400 font-bold">{team1.name}</span>
-            </div>
+                <h2 className="text-3xl font-black group-hover/team:text-rose-400 transition-colors uppercase">{team1.acronym}</h2>
+                <span className="text-slate-400 font-bold text-xs uppercase tracking-widest">{team1.name}</span>
+            </Link>
 
             {/* Score */}
             <div className="flex flex-col items-center justify-center">
@@ -133,13 +133,13 @@ function MatchDetailsContent() {
             </div>
 
             {/* Team 2 */}
-            <div className="flex flex-col items-center text-center w-48">
-                <div className="w-32 h-32 md:w-40 md:h-40 bg-slate-950/80 rounded-2xl flex items-center justify-center p-4 border-2 border-slate-800 shadow-[0_0_30px_rgba(255,255,255,0.05)] mb-4 transition-transform hover:scale-105">
+            <Link href={`/esports/team/${team2.id}`} className="flex flex-col items-center text-center w-48 group/team transition-transform hover:scale-105">
+                <div className="w-32 h-32 md:w-40 md:h-40 bg-slate-950/80 rounded-2xl flex items-center justify-center p-4 border-2 border-slate-800 shadow-[0_0_30px_rgba(255,255,255,0.05)] mb-4 group-hover/team:border-rose-500/50 group-hover/team:shadow-rose-500/10 transition-all">
                     {team2.image_url ? <img src={team2.image_url} alt={team2.name} className="w-full object-contain filter drop-shadow-[0_0_12px_rgba(255,255,255,0.1)]" /> : <i className="fa fa-shield text-5xl text-slate-700"></i>}
                 </div>
-                <h2 className="text-3xl font-black">{team2.acronym}</h2>
-                <span className="text-slate-400 font-bold">{team2.name}</span>
-            </div>
+                <h2 className="text-3xl font-black group-hover/team:text-rose-400 transition-colors uppercase">{team2.acronym}</h2>
+                <span className="text-slate-400 font-bold text-xs uppercase tracking-widest">{team2.name}</span>
+            </Link>
 
         </div>
 
