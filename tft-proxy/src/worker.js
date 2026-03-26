@@ -20,13 +20,19 @@ export default {
 
       if (!gameName || !tagLine) return new Response("Missing identifiers", { status: 400 });
 
+      const forceRefresh = url.searchParams.get('refresh') === 'true';
+
       // 1. Initialize the Cloudflare Cache
       const cacheUrl = new URL(request.url);
+      cacheUrl.searchParams.delete('refresh'); // Prevent cache key fragmentation
       const cacheKey = new Request(cacheUrl.toString(), request);
       const cache = caches.default;
       
       // 2. Check if this exact player has been fetched in the last 30 minutes
-      let response = await cache.match(cacheKey);
+      let response = null;
+      if (!forceRefresh) {
+        response = await cache.match(cacheKey);
+      }
       if (response) {
         // We found a cached version! Return it instantly to save Riot API calls.
         const newHeaders = new Headers(response.headers);
@@ -42,6 +48,13 @@ export default {
 
       try {
         const accountRes = await fetch(`https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}`, { headers });
+        if (!accountRes.ok) {
+          const errorData = await accountRes.json().catch(() => ({}));
+          return new Response(JSON.stringify({ error: errorData.status?.message || "Riot API Error" }), { 
+            status: accountRes.status, 
+            headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" } 
+          });
+        }
         const accountData = await accountRes.json();
         const puuid = accountData.puuid;
 

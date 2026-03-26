@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState, useRef } from 'react';
+import { sampleData } from './sampleData';
 
 interface TFTRankedStat {
   queueType: string;
@@ -52,25 +53,61 @@ export default function TFTStatsPage() {
   const [error, setError] = useState<string | null>(null);
   const [searchInput, setSearchInput] = useState('');
   const [expandedProfiles, setExpandedProfiles] = useState<Record<string, boolean>>({});
+  const [isSquad, setIsSquad] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const initialized = useRef(false);
 
-  async function fetchProfile(gameName: string, tagLine: string) {
+  async function fetchProfile(gameName: string, tagLine: string, forceRefresh = false) {
     setLoading(true);
     setError(null);
     try {
-      // Replace this URL with your deployed Cloudflare Worker proxy URL
-      const response = await fetch(`https://tft-proxy.lukethejung.workers.dev/api/tft/profile/${gameName}/${tagLine}`);
-      
+      let response;
+      try {
+        const fetchUrl = `https://tft-proxy.lukethejung.workers.dev/api/tft/profile/${gameName}/${tagLine}${forceRefresh ? '?refresh=true' : ''}`;
+        response = await fetch(fetchUrl);
+      } catch (networkErr: any) {
+        response = { ok: false, status: 0, statusText: networkErr.message || 'Network error' };
+      }
+
       if (!response.ok) {
-        throw new Error(`Failed to fetch: ${response.status} ${response.statusText}`);
+        const fallbackKey = `${gameName}#${tagLine}`;
+        if (fallbackKey in sampleData) {
+          setError(`Warning: Your Riot API Key is likely invalid or down (${response.status}). Using offline sample data for ${fallbackKey}!`);
+          const fallbackProfile = (sampleData as any)[fallbackKey];
+          setProfiles(prev => {
+            const existingIndex = prev.findIndex(p => p.account.puuid === fallbackProfile.account.puuid);
+            if (existingIndex >= 0) {
+              const newProfiles = [...prev];
+              newProfiles[existingIndex] = fallbackProfile;
+              return newProfiles;
+            }
+            return [fallbackProfile, ...prev];
+          });
+          return;
+        }
+
+        let errorMessage = `Failed to fetch: ${response.status} ${response.statusText}`;
+        if (response.status === 401 || response.status === 403) {
+          errorMessage = 'Invalid Riot API key or unauthorized. Please check the API key in your proxy.';
+        } else if (response.status === 404) {
+          errorMessage = 'Player not found. Please check the Riot ID and tag line.';
+        } else if (response.status === 429) {
+          errorMessage = 'Riot API rate limit exceeded. Please try again in a few moments.';
+        }
+        throw new Error(errorMessage);
       }
 
       const json = await response.json();
-      
-      // Prevent adding the same person twice
+
+      // Update profile or add new to the top
       setProfiles(prev => {
-        if (prev.find(p => p.account.puuid === json.account.puuid)) return prev;
-        return [json, ...prev]; // Add new profiles to the top
+        const existingIndex = prev.findIndex(p => p.account.puuid === json.account.puuid);
+        if (existingIndex >= 0) {
+          const newProfiles = [...prev];
+          newProfiles[existingIndex] = json;
+          return newProfiles;
+        }
+        return [json, ...prev];
       });
     } catch (err: any) {
       console.error(err);
@@ -81,22 +118,27 @@ export default function TFTStatsPage() {
   }
 
   useEffect(() => {
+    setMounted(true);
     // Prevent React StrictMode from running this twice and hitting rate limits
     if (initialized.current) return;
     initialized.current = true;
 
+    const squadMode = typeof window !== 'undefined' && window.location.search.includes('squad=all');
+    setIsSquad(squadMode);
+
     async function loadDefaultPlayers() {
-      const defaultPlayers = [
+      const defaultPlayers = squadMode ? [
         { name: 'Hyun', tag: 'JUNG' },
-        // { name: 'sugs', tag: '1111' },
         { name: 'yunjin', tag: 'downb' },
         { name: 'lenate', tag: 'na2' }
+      ] : [
+        { name: 'Hyun', tag: 'JUNG' }
       ];
 
       for (const player of defaultPlayers) {
         await fetchProfile(player.name, player.tag);
         // Wait 1.5 seconds between each player to respect Riot's Rate Limits
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        if (squadMode) await new Promise(resolve => setTimeout(resolve, 1500));
       }
     }
 
@@ -123,10 +165,10 @@ export default function TFTStatsPage() {
     const matchHistory = profile.matchHistory || [];
     const myStatsList: TFTParticipant[] = [];
     matchHistory.forEach(match => {
-      const p = match.info.participants.find(p => p.puuid === profile.account.puuid);
+      const p = match.info?.participants?.find(p => p.puuid === profile.account.puuid);
       if (p) myStatsList.push(p);
     });
-    
+
     const placements = myStatsList.map(p => p.placement);
     const avgPlacement = placements.length ? (placements.reduce((a, b) => a + b, 0) / placements.length) : 0;
     const top4Count = placements.filter(p => p <= 4).length;
@@ -169,23 +211,33 @@ export default function TFTStatsPage() {
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8 font-sans">
       <main className="max-w-[1600px] mx-auto bg-white text-gray-900 shadow-xl rounded-2xl overflow-hidden border border-gray-200 p-6 sm:p-10">
-        
+
         {/* Header */}
-        <div className="border-b border-gray-200 pb-6 mb-6 flex justify-between items-end">
+        <div className="border-b border-gray-200 pb-6 mb-6 flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4">
           <div>
-            <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 mb-2">
-              TFT Meta Dashboard
-            </h1>
+            <div className="flex items-center gap-4 mb-2">
+              <h1 className="text-3xl font-extrabold tracking-tight text-gray-900">
+                TFT Meta Dashboard
+              </h1>
+              {mounted && (
+                <button
+                  onClick={() => window.location.href = isSquad ? "/tft" : "/tft?squad=all"}
+                  className="text-xs px-3 py-1.5 bg-indigo-50 text-indigo-700 rounded-full hover:bg-indigo-100 border border-indigo-100 transition-all font-bold flex items-center shadow-sm whitespace-nowrap"
+                >
+                  {isSquad ? "View Solo (Hyun)" : "Compare Squad (3)"}
+                </button>
+              )}
+            </div>
             <p className="text-gray-500">Raw TFT player data and stats.</p>
           </div>
-          <a href="/" className="text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors">
+          <a href="/" className="text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors whitespace-nowrap mb-1">
             &larr; Back to Portfolio
           </a>
         </div>
 
         {/* Content Area */}
         <div className="min-h-[400px]">
-          
+
           {/* Search Bar */}
           <form onSubmit={handleAddFriend} className="mb-6 flex gap-4">
             <input
@@ -211,9 +263,11 @@ export default function TFTStatsPage() {
           )}
 
           {error && (
-            <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-md mb-8">
-              <p className="text-red-700 font-medium">Error loading TFT data:</p>
-              <p className="text-red-600 text-sm">{error}</p>
+            <div className={`border-l-4 p-4 rounded-md mb-8 ${error.startsWith('Warning:') ? 'bg-amber-50 border-amber-500' : 'bg-red-50 border-red-500'}`}>
+              <p className={`font-medium ${error.startsWith('Warning:') ? 'text-amber-800' : 'text-red-700'}`}>
+                {error.startsWith('Warning:') ? 'Limited Connectivity:' : 'Error loading TFT data:'}
+              </p>
+              <p className={`text-sm ${error.startsWith('Warning:') ? 'text-amber-700 font-bold' : 'text-red-600'}`}>{error}</p>
             </div>
           )}
 
@@ -223,7 +277,7 @@ export default function TFTStatsPage() {
               <h2 className="text-sm font-bold text-gray-800 uppercase tracking-wider mb-5 flex items-center gap-2">
                 <i className="fa fa-bar-chart text-blue-500"></i> Performance Comparison
               </h2>
-              
+
               <div className="overflow-x-auto">
                 <div className="min-w-[700px] space-y-3">
                   <div className="grid grid-cols-12 gap-4 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2 px-2">
@@ -232,7 +286,7 @@ export default function TFTStatsPage() {
                     <div className="col-span-3">Average Placement</div>
                     <div className="col-span-3">Top 4 Rate</div>
                   </div>
-                  
+
                   {comparisonStats.map((stat, idx) => (
                     <div key={stat.name} className="grid grid-cols-12 gap-4 items-center bg-gray-50 p-3 rounded-xl border border-gray-100 transition-colors hover:bg-gray-100">
                       <div className="col-span-3 flex items-center gap-3">
@@ -240,7 +294,7 @@ export default function TFTStatsPage() {
                         <img src={`https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons/${stat.icon}.jpg`} onError={(e) => (e.currentTarget.src = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons/29.jpg")} className="w-8 h-8 rounded-full border border-gray-300 shadow-sm" alt="icon" />
                         <span className="font-bold text-gray-800 truncate text-sm">{stat.name}</span>
                       </div>
-                      
+
                       <div className="col-span-3 flex flex-col justify-center">
                         <span className="font-extrabold text-gray-800 text-sm">{stat.displayRank}</span>
                         <span className="text-[10px] text-gray-500 font-semibold">{stat.displayLP} LP</span>
@@ -253,7 +307,7 @@ export default function TFTStatsPage() {
                           <div className="bg-gradient-to-r from-blue-400 to-blue-600 h-full rounded-full transition-all duration-1000 ease-out" style={{ width: `${((8 - stat.avgPlacement) / 7) * 100}%` }}></div>
                         </div>
                       </div>
-                      
+
                       <div className="col-span-3 flex items-center gap-3 pr-4">
                         <span className="w-10 text-right font-extrabold text-green-600 text-sm">{stat.top4Rate.toFixed(0)}%</span>
                         <div className="flex-1 bg-gray-200 h-2.5 rounded-full overflow-hidden flex shadow-inner">
@@ -269,27 +323,27 @@ export default function TFTStatsPage() {
 
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 xl:gap-10">
             {profiles.map((data, index) => {
-              
+
               // Calculate Analytics for this specific profile
               const matchHistory = data.matchHistory || [];
               const myStatsList: TFTParticipant[] = [];
-              
+
               matchHistory.forEach(match => {
-                const p = match.info.participants.find(p => p.puuid === data.account.puuid);
+                const p = match.info?.participants?.find(p => p.puuid === data.account.puuid);
                 if (p) myStatsList.push(p);
               });
 
               const myPlacements = myStatsList.map(p => p.placement);
               const avgPlacement = myPlacements.length ? (myPlacements.reduce((a, b) => a + b, 0) / myPlacements.length).toFixed(2) : 'N/A';
-              
+
               const sortedPlacements = [...myPlacements].sort((a, b) => a - b);
               const highPlacement = sortedPlacements[0] || 'N/A';
               const lowPlacement = sortedPlacements[sortedPlacements.length - 1] || 'N/A';
-              
-              const medianPlacement = myPlacements.length 
-                ? (myPlacements.length % 2 === 0 
-                    ? (sortedPlacements[myPlacements.length / 2 - 1] + sortedPlacements[myPlacements.length / 2]) / 2 
-                    : sortedPlacements[Math.floor(myPlacements.length / 2)]) 
+
+              const medianPlacement = myPlacements.length
+                ? (myPlacements.length % 2 === 0
+                  ? (sortedPlacements[myPlacements.length / 2 - 1] + sortedPlacements[myPlacements.length / 2]) / 2
+                  : sortedPlacements[Math.floor(myPlacements.length / 2)])
                 : 'N/A';
 
               const traitCounts: Record<string, number> = {};
@@ -310,18 +364,27 @@ export default function TFTStatsPage() {
 
               return (
                 <div key={data.account.puuid} className="bg-gray-50 border border-gray-200 p-6 rounded-2xl shadow-sm relative">
-                  <button 
-                    onClick={() => setProfiles(prev => prev.filter((_, i) => i !== index))}
-                    className="absolute top-4 right-4 text-gray-400 hover:text-red-500 transition-colors"
-                    title="Remove Profile"
-                  >
-                    <i className="fa fa-times text-xl"></i>
-                  </button>
-                  
+                  <div className="absolute top-4 right-4 flex gap-3">
+                    <button
+                      onClick={() => fetchProfile(data.account.gameName, data.account.tagLine, true)}
+                      className="text-gray-400 hover:text-blue-500 transition-colors"
+                      title="Force Refresh Data"
+                    >
+                      <i className={`fa fa-refresh text-xl ${loading ? 'animate-spin cursor-not-allowed' : ''}`}></i>
+                    </button>
+                    <button
+                      onClick={() => setProfiles(prev => prev.filter((_, i) => i !== index))}
+                      className="text-gray-400 hover:text-red-500 transition-colors"
+                      title="Remove Profile"
+                    >
+                      <i className="fa fa-times text-xl"></i>
+                    </button>
+                  </div>
+
                   {/* Profile Header Card */}
                   <div className="flex flex-col sm:flex-row items-center gap-6 mb-6">
-                    <img 
-                      src={`https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons/${data.summoner.profileIconId}.jpg`} 
+                    <img
+                      src={`https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons/${data.summoner.profileIconId}.jpg`}
                       alt="Profile Icon"
                       className="w-20 h-20 rounded-full border-4 border-blue-500 shadow-sm object-cover bg-gray-100"
                       onError={(e) => (e.currentTarget.src = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons/29.jpg")}
@@ -342,7 +405,7 @@ export default function TFTStatsPage() {
                       <h3 className="text-sm font-bold text-blue-900 uppercase mb-4 tracking-wider flex items-center gap-2">
                         <i className="fa fa-line-chart"></i> Recent Match Analytics ({myPlacements.length} Games)
                       </h3>
-                      
+
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-5 text-center">
                         <div className="bg-gray-50 py-3 px-2 rounded-lg border border-gray-100">
                           <p className="text-[10px] text-gray-500 font-bold uppercase mb-1">Avg Placement</p>
@@ -384,7 +447,7 @@ export default function TFTStatsPage() {
                     {data.matchHistory && data.matchHistory.length > 0 ? (
                       <div className="space-y-3">
                         {(expandedProfiles[data.account.puuid] ? data.matchHistory : data.matchHistory.slice(0, 3)).map((match) => {
-                          const myStats = match.info.participants.find(p => p.puuid === data.account.puuid);
+                          const myStats = match.info?.participants?.find(p => p.puuid === data.account.puuid);
                           if (!myStats) return null;
 
                           const isTop4 = myStats.placement <= 4;
@@ -399,23 +462,46 @@ export default function TFTStatsPage() {
                               </div>
                               <div className="flex-1">
                                 <p className="text-xs font-bold text-gray-700 mb-2">
-                                  Level {myStats.level} <span className="text-gray-400 font-normal mx-1">•</span> 
+                                  Level {myStats.level} <span className="text-gray-400 font-normal mx-1">•</span>
                                   <span className="text-gray-500 font-normal">{new Date(match.info.game_datetime).toLocaleDateString()}</span>
                                 </p>
                                 <div className="flex flex-wrap gap-2">
                                   {myStats.units.map((unit, idx) => {
-                                    const cleanName = unit.character_id.split('_').pop();
+                                    let cleanName = unit.character_id.split('_').pop() || '';
+                                    const originalName = cleanName;
+
+                                    // Fix common naming discrepancies in DDragon.
+                                    // We cannot just use .toLowerCase() and capitalize the first letter because
+                                    // DDragon strictly enforces CamelCase for two-word names (e.g. MissFortune.png),
+                                    // but explicitly drops internal capitals for apostrophe names (Cho'Gath -> Chogath.png).
+                                    if (cleanName === 'Wukong') cleanName = 'MonkeyKing';
+                                    if (cleanName === 'RenataGlasc') cleanName = 'Renata';
+                                    if (cleanName === 'ChoGath') cleanName = 'Chogath';
+                                    if (cleanName === 'KaiSa') cleanName = 'Kaisa';
+                                    if (cleanName === 'KhaZix') cleanName = 'Khazix';
+                                    if (cleanName === 'VelKoz') cleanName = 'Velkoz';
+                                    if (cleanName === 'LeBlanc') cleanName = 'Leblanc';
+
+                                    const setMatch = unit.character_id.match(/TFT(\d+)/);
+                                    const setNum = setMatch ? setMatch[1] : '16';
+
                                     const borderColor = unit.tier === 3 ? 'border-yellow-400' : unit.tier === 2 ? 'border-gray-400' : 'border-amber-700';
 
                                     return (
                                       <div key={idx} className="flex flex-col items-center w-12 shrink-0 mt-1">
                                         <div className="relative">
-                                          <img 
+                                          <img
                                             src={`https://ddragon.leagueoflegends.com/cdn/16.5.1/img/champion/${cleanName}.png`}
-                                            alt={cleanName}
+                                            alt={originalName}
                                             className={`w-10 h-10 rounded object-cover border-[1.5px] shadow-sm bg-gray-800 ${borderColor}`}
                                             onError={(e) => {
-                                              e.currentTarget.src = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons/29.jpg";
+                                              const target = e.currentTarget;
+                                              if (target.src.includes('ddragon')) {
+                                                // Fallback for TFT unique characters (Kobuko, Loris, Atakhan, etc.)
+                                                target.src = `https://ap.tft.tools/img/face/${unit.character_id.toLowerCase()}.jpg`;
+                                              } else if (target.src.includes('tft.tools')) {
+                                                target.src = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons/29.jpg";
+                                              }
                                             }}
                                           />
                                           <div className="absolute -bottom-2 w-full flex justify-center drop-shadow-[0_1px_1px_rgba(0,0,0,0.9)]">
@@ -430,7 +516,7 @@ export default function TFTStatsPage() {
                                               // E.g., "TFT_Item_GuinsoosRageblade" -> "GuinsoosRageblade"
                                               const cleanItemName = itemName.split('_').pop() || 'Item';
                                               return (
-                                                <img 
+                                                <img
                                                   key={i}
                                                   src={`https://ddragon.leagueoflegends.com/cdn/16.5.1/img/tft-item/${itemName}.png`}
                                                   alt={cleanItemName}
@@ -449,9 +535,9 @@ export default function TFTStatsPage() {
                                             })}
                                           </div>
                                         )}
-                                        
+
                                         <span className="text-[9px] text-gray-600 mt-1 truncate w-full text-center font-medium">
-                                          {cleanName}
+                                          {originalName}
                                         </span>
                                       </div>
                                     );
@@ -462,7 +548,7 @@ export default function TFTStatsPage() {
                           );
                         })}
                         {data.matchHistory.length > 3 && (
-                          <button 
+                          <button
                             onClick={() => toggleExpand(data.account.puuid)}
                             className="w-full mt-2 py-2 text-sm text-blue-600 font-semibold bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors border border-blue-100"
                           >
