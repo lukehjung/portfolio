@@ -4,3 +4,7 @@ compatibility_date = "2024-03-21"
 
 # [vars]
 # RIOT_API_KEY = "dummy_for_local_dev"
+
+[[kv_namespaces]]
+binding = "TFT_CACHE"
+id = "2f869c1827eb438eb6a970910d78151b"

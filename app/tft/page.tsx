@@ -99,6 +99,10 @@ export default function TFTStatsPage() {
 
       const json = await response.json();
 
+      if (json.isStale) {
+        setError(`Warning: Riot API is currently unavailable. Displaying the last known cached data for ${gameName}#${tagLine}.`);
+      }
+
       // Update profile or add new to the top
       setProfiles(prev => {
         const existingIndex = prev.findIndex(p => p.account.puuid === json.account.puuid);

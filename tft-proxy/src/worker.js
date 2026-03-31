@@ -45,15 +45,36 @@ export default {
       }
 
       const headers = { "X-Riot-Token": env.RIOT_API_KEY };
+      const kvKey = `profile_${gameName.toLowerCase()}_${tagLine.toLowerCase()}`;
+
+      const handleFallback = async (errResp, status = 500) => {
+        if (env.TFT_CACHE) {
+          try {
+            const cachedValue = await env.TFT_CACHE.get(kvKey);
+            if (cachedValue) {
+              const payload = JSON.parse(cachedValue);
+              payload.isStale = true;
+              return new Response(JSON.stringify(payload), {
+                status: 200,
+                headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+              });
+            }
+          } catch (e) {}
+        }
+        if (errResp) return errResp;
+        return new Response(JSON.stringify({ error: "Failed to fetch from Riot" }), { status, headers: { "Access-Control-Allow-Origin": "*" } });
+      };
 
       try {
         const accountRes = await fetch(`https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}`, { headers });
         if (!accountRes.ok) {
           const errorData = await accountRes.json().catch(() => ({}));
-          return new Response(JSON.stringify({ error: errorData.status?.message || "Riot API Error" }), { 
-            status: accountRes.status, 
+          const errStatus = accountRes.status;
+          const errResp = new Response(JSON.stringify({ error: errorData.status?.message || "Riot API Error" }), { 
+            status: errStatus, 
             headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" } 
           });
+          return handleFallback(errResp, errStatus);
         }
         const accountData = await accountRes.json();
         const puuid = accountData.puuid;
@@ -120,10 +141,15 @@ export default {
 
         // 4. Save the new data into the cache
         ctx.waitUntil(cache.put(cacheKey, response.clone()));
+        
+        // 5. Persist the response in KV indefinitely
+        if (env.TFT_CACHE) {
+          ctx.waitUntil(env.TFT_CACHE.put(kvKey, JSON.stringify(responsePayload)));
+        }
 
         return response;
       } catch (err) {
-        return new Response(JSON.stringify({ error: "Failed to fetch from Riot" }), { status: 500, headers: { "Access-Control-Allow-Origin": "*" } });
+        return handleFallback(null, 500);
       }
     }
 
