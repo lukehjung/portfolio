@@ -176,7 +176,37 @@ export default function TFTStatsPage() {
     const placements = myStatsList.map(p => p.placement);
     const avgPlacement = placements.length ? (placements.reduce((a, b) => a + b, 0) / placements.length) : 0;
     const top4Count = placements.filter(p => p <= 4).length;
-    const top4Rate = placements.length ? (top4Count / placements.length) * 100 : 0;
+    let top4Rate = placements.length ? (top4Count / placements.length) * 100 : 0;
+    let totalGames = placements.length;
+
+    // Win rate (1st places in recent matches)
+    const winCount = placements.filter(p => p === 1).length;
+    const winRate = placements.length ? (winCount / placements.length) * 100 : 0;
+
+    // Playstyle (based on recent matches)
+    const traitCounts: Record<string, number> = {};
+    myStatsList.forEach(p => {
+      if (p.traits) {
+        p.traits.forEach(t => {
+          if (t.tier_current > 0) {
+            const cleanName = t.name.split('_').pop() || t.name;
+            traitCounts[cleanName] = (traitCounts[cleanName] || 0) + 1;
+          }
+        });
+      }
+    });
+
+    const sortedTraits = Object.entries(traitCounts).sort((a, b) => b[1] - a[1]);
+    const topTraitCount = sortedTraits.length > 0 ? sortedTraits[0][1] : 0;
+    const traitForcedRatio = placements.length > 0 ? (topTraitCount / placements.length) : 0;
+    
+    let playstyle = "Mystery";
+    if (placements.length > 0) {
+      if (traitForcedRatio >= 0.7) playstyle = "Hard Forcer 🤖";
+      else if (traitForcedRatio >= 0.5) playstyle = "Two-Trick 🎭";
+      else if (traitForcedRatio <= 0.3) playstyle = "Mr. Flexible 🤸‍♂️";
+      else playstyle = "Average Joe 🤷‍♂️";
+    }
 
     // Extract Ranked Data
     const rankedList = Array.isArray(profile.ranked) ? profile.ranked : [];
@@ -198,6 +228,9 @@ export default function TFTStatsPage() {
       rankScore = (tierValues[rankedData.tier] || 0) + (rankValues[rankedData.rank] || 0) + rankedData.leaguePoints;
       displayRank = ['CHALLENGER', 'GRANDMASTER', 'MASTER'].includes(rankedData.tier) ? rankedData.tier : `${rankedData.tier} ${rankedData.rank}`;
       displayLP = rankedData.leaguePoints;
+      // Override recent match games/top4 rate with true seasonal ranked data
+      totalGames = rankedData.wins + rankedData.losses;
+      top4Rate = totalGames > 0 ? (rankedData.wins / totalGames) * 100 : 0;
     }
 
     return {
@@ -205,7 +238,9 @@ export default function TFTStatsPage() {
       icon: profile.summoner.profileIconId,
       avgPlacement,
       top4Rate,
-      games: placements.length,
+      winRate,
+      playstyle,
+      games: totalGames,
       rankScore,
       displayRank,
       displayLP
@@ -283,28 +318,33 @@ export default function TFTStatsPage() {
               </h2>
 
               <div className="overflow-x-auto">
-                <div className="min-w-[700px] space-y-3">
+                <div className="min-w-[950px] space-y-3">
                   <div className="grid grid-cols-12 gap-4 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2 px-2">
                     <div className="col-span-3">Player</div>
-                    <div className="col-span-3">Rank</div>
-                    <div className="col-span-3">Average Placement</div>
-                    <div className="col-span-3">Top 4 Rate</div>
+                    <div className="col-span-2">Rank</div>
+                    <div className="col-span-2">Avg Place</div>
+                    <div className="col-span-2">Win Rate</div>
+                    <div className="col-span-2">Top 4 Rate</div>
+                    <div className="col-span-1 text-center">Games</div>
                   </div>
 
                   {comparisonStats.map((stat, idx) => (
                     <div key={stat.name} className="grid grid-cols-12 gap-4 items-center bg-gray-50 p-3 rounded-xl border border-gray-100 transition-colors hover:bg-gray-100">
                       <div className="col-span-3 flex items-center gap-3">
-                        <span className="font-bold text-gray-400 w-4 text-sm">{idx + 1}.</span>
-                        <img src={`https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons/${stat.icon}.jpg`} onError={(e) => (e.currentTarget.src = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons/29.jpg")} className="w-8 h-8 rounded-full border border-gray-300 shadow-sm" alt="icon" />
-                        <span className="font-bold text-gray-800 truncate text-sm">{stat.name}</span>
+                        <span className="font-bold text-gray-400 w-4 text-sm shrink-0">{idx + 1}.</span>
+                        <img src={`https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons/${stat.icon}.jpg`} onError={(e) => (e.currentTarget.src = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons/29.jpg")} className="w-8 h-8 rounded-full border border-gray-300 shadow-sm shrink-0" alt="icon" />
+                        <div className="flex flex-col min-w-0">
+                          <span className="font-bold text-gray-800 truncate text-sm">{stat.name}</span>
+                          <span className="text-[10px] text-indigo-500 font-bold truncate" title={stat.playstyle}>{stat.playstyle}</span>
+                        </div>
                       </div>
 
-                      <div className="col-span-3 flex flex-col justify-center">
+                      <div className="col-span-2 flex flex-col justify-center">
                         <span className="font-extrabold text-gray-800 text-sm">{stat.displayRank}</span>
                         <span className="text-[10px] text-gray-500 font-semibold">{stat.displayLP} LP</span>
                       </div>
 
-                      <div className="col-span-3 flex items-center gap-3 pr-4">
+                      <div className="col-span-2 flex items-center gap-3 pr-2">
                         <span className="w-8 text-right font-extrabold text-blue-700 text-sm">{stat.avgPlacement.toFixed(2)}</span>
                         <div className="flex-1 bg-gray-200 h-2.5 rounded-full overflow-hidden flex shadow-inner">
                           {/* Scale: 1 is best (100% width), 8 is worst (0% width) */}
@@ -312,11 +352,22 @@ export default function TFTStatsPage() {
                         </div>
                       </div>
 
-                      <div className="col-span-3 flex items-center gap-3 pr-4">
-                        <span className="w-10 text-right font-extrabold text-green-600 text-sm">{stat.top4Rate.toFixed(0)}%</span>
+                      <div className="col-span-2 flex items-center gap-3 pr-2">
+                        <span className="w-8 text-right font-extrabold text-yellow-600 text-sm">{stat.winRate.toFixed(0)}%</span>
+                        <div className="flex-1 bg-gray-200 h-2.5 rounded-full overflow-hidden flex shadow-inner">
+                          <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 h-full rounded-full transition-all duration-1000 ease-out" style={{ width: `${stat.winRate}%` }}></div>
+                        </div>
+                      </div>
+
+                      <div className="col-span-2 flex items-center gap-3 pr-2">
+                        <span className="w-8 text-right font-extrabold text-green-600 text-sm">{stat.top4Rate.toFixed(0)}%</span>
                         <div className="flex-1 bg-gray-200 h-2.5 rounded-full overflow-hidden flex shadow-inner">
                           <div className="bg-gradient-to-r from-green-400 to-green-500 h-full rounded-full transition-all duration-1000 ease-out" style={{ width: `${stat.top4Rate}%` }}></div>
                         </div>
+                      </div>
+
+                      <div className="col-span-1 flex items-center justify-center">
+                        <span className="font-extrabold text-gray-600 text-sm">{stat.games}</span>
                       </div>
                     </div>
                   ))}
@@ -366,6 +417,10 @@ export default function TFTStatsPage() {
               const topTraitName = sortedTraits.length > 0 ? sortedTraits[0][0] : 'N/A';
               const topTraitCount = sortedTraits.length > 0 ? sortedTraits[0][1] : 0;
 
+              const rankedList = Array.isArray(data.ranked) ? data.ranked : [];
+              const rankedData = rankedList.find(r => r.queueType === 'RANKED_TFT') || null;
+              const trueTotalGames = rankedData ? (rankedData.wins + rankedData.losses) : myPlacements.length;
+
               return (
                 <div key={data.account.puuid} className="bg-gray-50 border border-gray-200 p-6 rounded-2xl shadow-sm relative">
                   <div className="absolute top-4 right-4 flex gap-3">
@@ -407,7 +462,7 @@ export default function TFTStatsPage() {
                   {myPlacements.length > 0 && (
                     <div className="bg-white border border-blue-100 p-5 rounded-xl shadow-sm mb-6">
                       <h3 className="text-sm font-bold text-blue-900 uppercase mb-4 tracking-wider flex items-center gap-2">
-                        <i className="fa fa-line-chart"></i> Recent Match Analytics ({myPlacements.length} Games)
+                        <i className="fa fa-line-chart"></i> Recent Match Analytics ({myPlacements.length} Games Analyzed)
                       </h3>
 
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-5 text-center">
@@ -420,8 +475,8 @@ export default function TFTStatsPage() {
                           <p className="text-xl font-extrabold text-gray-900">{medianPlacement}</p>
                         </div>
                         <div className="bg-gray-50 py-3 px-2 rounded-lg border border-gray-100">
-                          <p className="text-[10px] text-gray-500 font-bold uppercase mb-1">High / Low</p>
-                          <p className="text-xl font-extrabold text-gray-900">{highPlacement} <span className="text-gray-300 mx-1">/</span> {lowPlacement}</p>
+                          <p className="text-[10px] text-gray-500 font-bold uppercase mb-1">Season Games</p>
+                          <p className="text-xl font-extrabold text-gray-900">{trueTotalGames}</p>
                         </div>
                         <div className="bg-gray-50 py-3 px-2 rounded-lg border border-gray-100">
                           <p className="text-[10px] text-gray-500 font-bold uppercase mb-1">Top Trait</p>
@@ -434,7 +489,7 @@ export default function TFTStatsPage() {
                         <p className="text-[10px] text-gray-500 font-bold uppercase mb-2">Placements History</p>
                         <div className="flex flex-wrap gap-1.5">
                           {myPlacements.map((p, i) => (
-                            <div key={i} className={`w-7 h-7 flex items-center justify-center rounded font-bold text-xs shadow-sm ${p <= 4 ? 'bg-blue-500 text-white' : 'bg-white text-gray-600 border border-gray-200'}`} title={`Match ${i + 1}: ${p}${p === 1 ? 'st' : p === 2 ? 'nd' : p === 3 ? 'rd' : 'th'} Place`}>
+                            <div key={i} className={`w-7 h-7 flex items-center justify-center rounded font-bold text-xs shadow-sm ${p === 1 ? 'bg-green-500 text-white border-green-600' : p <= 4 ? 'bg-blue-500 text-white border-blue-600' : p === 8 ? 'bg-red-500 text-white border-red-600' : 'bg-white text-gray-600 border border-gray-200'}`} title={`Match ${i + 1}: ${p}${p === 1 ? 'st' : p === 2 ? 'nd' : p === 3 ? 'rd' : 'th'} Place`}>
                               {p}
                             </div>
                           ))}
@@ -450,13 +505,13 @@ export default function TFTStatsPage() {
                     </h3>
                     {data.matchHistory && data.matchHistory.length > 0 ? (
                       <div className="space-y-3">
-                        {(expandedProfiles[data.account.puuid] ? data.matchHistory : data.matchHistory.slice(0, 3)).map((match) => {
+                        {(expandedProfiles[data.account.puuid] ? data.matchHistory : data.matchHistory.slice(0, 20)).map((match) => {
                           const myStats = match.info?.participants?.find(p => p.puuid === data.account.puuid);
                           if (!myStats) return null;
 
-                          const isTop4 = myStats.placement <= 4;
-                          const cardColor = isTop4 ? "bg-blue-50/50 border-blue-100" : "bg-gray-50 border-gray-100";
-                          const placeColor = isTop4 ? "text-blue-600" : "text-gray-500";
+                          const p = myStats.placement;
+                          const cardColor = p === 1 ? "bg-green-50 border-green-200" : p <= 4 ? "bg-blue-50 border-blue-200" : p === 8 ? "bg-red-50 border-red-200" : "bg-gray-50 border-gray-200";
+                          const placeColor = p === 1 ? "text-green-600" : p <= 4 ? "text-blue-600" : p === 8 ? "text-red-600" : "text-gray-500";
 
                           return (
                             <div key={match.metadata.match_id} className={`p-3 rounded-lg border flex flex-col sm:flex-row gap-4 items-start sm:items-center ${cardColor}`}>
@@ -551,12 +606,12 @@ export default function TFTStatsPage() {
                             </div>
                           );
                         })}
-                        {data.matchHistory.length > 3 && (
+                        {data.matchHistory.length > 20 && (
                           <button
                             onClick={() => toggleExpand(data.account.puuid)}
                             className="w-full mt-2 py-2 text-sm text-blue-600 font-semibold bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors border border-blue-100"
                           >
-                            {expandedProfiles[data.account.puuid] ? 'Show Less' : `Show ${data.matchHistory.length - 3} More Matches`}
+                            {expandedProfiles[data.account.puuid] ? 'Show Less' : `Show All ${data.matchHistory.length} Matches`}
                           </button>
                         )}
                       </div>

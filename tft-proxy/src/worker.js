@@ -85,7 +85,7 @@ export default {
         let leagueData = [];
         let debugLog = "Starting ranked fetch...";
 
-        const puuidLeagueRes = await fetch(`https://na1.api.riotgames.com/tft/league/v1/entries/by-puuid/${puuid}`, { headers });
+        const puuidLeagueRes = await fetch(`https://na1.api.riotgames.com/tft/league/v1/by-puuid/${puuid}`, { headers });
         if (puuidLeagueRes.ok) {
           leagueData = await puuidLeagueRes.json();
           debugLog = "Success using tft-league-v1/by-puuid";
@@ -113,13 +113,69 @@ export default {
           }
         }
 
-        const matchRes = await fetch(`https://americas.api.riotgames.com/tft/match/v1/matches/by-puuid/${puuid}/ids?count=15`, { headers });
-        const matchIds = await matchRes.json();
+        // 1. Fetch up to 100 recent match IDs
+        const matchRes = await fetch(`https://americas.api.riotgames.com/tft/match/v1/matches/by-puuid/${puuid}/ids?count=100`, { headers });
+        const matchIds = matchRes.ok ? await matchRes.json() : [];
 
-        const matchPromises = matchIds.map(id =>
-          fetch(`https://americas.api.riotgames.com/tft/match/v1/matches/${id}`, { headers }).then(res => res.json())
-        );
-        const matchHistory = await Promise.all(matchPromises);
+        let matchHistory = [];
+        
+        if (Array.isArray(matchIds) && matchIds.length > 0) {
+          const missingIds = [];
+          
+          // 2. Look up all Match IDs in KV in parallel
+          const kvPromises = matchIds.map(async (id) => {
+             if (!env.TFT_CACHE) return { id, data: null };
+             try {
+                const cached = await env.TFT_CACHE.get(`match_${id}`);
+                return { id, data: cached ? JSON.parse(cached) : null };
+             } catch (e) {
+                return { id, data: null };
+             }
+          });
+          
+          const kvResults = await Promise.all(kvPromises);
+          
+          for (const result of kvResults) {
+             if (result.data) {
+                matchHistory.push(result.data);
+             } else {
+                missingIds.push(result.id);
+             }
+          }
+
+          // 3. Fetch all missing matches up to the 100 limit
+          const idsToFetch = missingIds;
+          
+          if (idsToFetch.length > 0) {
+             debugLog += ` | Fetching ${idsToFetch.length} new matches`;
+             
+             // Fetch sequentially to prevent hitting burst rate limits (20/sec)
+             for (const id of idsToFetch) {
+               try {
+                 const res = await fetch(`https://americas.api.riotgames.com/tft/match/v1/matches/${id}`, { headers });
+                 if (res.ok) {
+                   const matchData = await res.json();
+                   matchHistory.push(matchData);
+                   // Cache it indefinitely!
+                   if (env.TFT_CACHE) {
+                     ctx.waitUntil(env.TFT_CACHE.put(`match_${id}`, JSON.stringify(matchData)));
+                   }
+                 }
+               } catch (e) {
+                 debugLog += ` | Failed match ${id}`;
+               }
+               // Delay to respect 20 requests per 1 second limit
+               await new Promise(r => setTimeout(r, 60));
+             }
+          }
+          
+          // Sort match history by game_datetime descending
+          matchHistory.sort((a, b) => {
+             const timeA = a.info?.game_datetime || 0;
+             const timeB = b.info?.game_datetime || 0;
+             return timeB - timeA;
+          });
+        }
 
         const responsePayload = {
           account: accountData,
