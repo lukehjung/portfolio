@@ -16,6 +16,7 @@ interface TFTUnit {
   character_id: string;
   tier: number;
   itemNames?: string[];
+  rarity?: number;
 }
 
 interface TFTTrait {
@@ -417,6 +418,26 @@ export default function TFTStatsPage() {
               const topTraitName = sortedTraits.length > 0 ? sortedTraits[0][0] : 'N/A';
               const topTraitCount = sortedTraits.length > 0 ? sortedTraits[0][1] : 0;
 
+              let oneCost3Stars = 0;
+              let twoCost3Stars = 0;
+              let threeCost3Stars = 0;
+              let fourCost3Stars = 0;
+              let fiveCost3Stars = 0;
+
+              myStatsList.forEach(p => {
+                if (p.units) {
+                  p.units.forEach(u => {
+                    if (u.tier === 3) {
+                      if (u.rarity === 0) oneCost3Stars++;
+                      else if (u.rarity === 1) twoCost3Stars++;
+                      else if (u.rarity === 2) threeCost3Stars++;
+                      else if (u.rarity === 4) fourCost3Stars++;
+                      else if (u.rarity === 6) fiveCost3Stars++;
+                    }
+                  });
+                }
+              });
+
               const rankedList = Array.isArray(data.ranked) ? data.ranked : [];
               const rankedData = rankedList.find(r => r.queueType === 'RANKED_TFT') || null;
               const trueTotalGames = rankedData ? (rankedData.wins + rankedData.losses) : myPlacements.length;
@@ -488,11 +509,39 @@ export default function TFTStatsPage() {
                       <div>
                         <p className="text-[10px] text-gray-500 font-bold uppercase mb-2">Placements History</p>
                         <div className="flex flex-wrap gap-1.5">
-                          {myPlacements.map((p, i) => (
+                          {myPlacements.slice(0, trueTotalGames).map((p, i) => (
                             <div key={i} className={`w-7 h-7 flex items-center justify-center rounded font-bold text-xs shadow-sm ${p === 1 ? 'bg-green-500 text-white border-green-600' : p <= 4 ? 'bg-blue-500 text-white border-blue-600' : p === 8 ? 'bg-red-500 text-white border-red-600' : 'bg-white text-gray-600 border border-gray-200'}`} title={`Match ${i + 1}: ${p}${p === 1 ? 'st' : p === 2 ? 'nd' : p === 3 ? 'rd' : 'th'} Place`}>
                               {p}
                             </div>
                           ))}
+                        </div>
+                      </div>
+
+                      <div className="mt-5 border-t border-gray-100 pt-5">
+                        <p className="text-[10px] text-gray-500 font-bold uppercase mb-3">3-Star Milestones (Recent Matches)</p>
+                        <div className="flex flex-wrap gap-3">
+                          <div className="flex-1 min-w-[60px] bg-gray-50 py-3 rounded-lg border border-gray-200 flex flex-col justify-center text-center transition-transform hover:scale-105">
+                            <p className="text-2xl font-black text-gray-500 drop-shadow-sm">{oneCost3Stars}</p>
+                            <p className="text-[10px] text-gray-500 font-extrabold uppercase mt-1 tracking-wider">1-Cost 3★</p>
+                          </div>
+                          <div className="flex-1 min-w-[60px] bg-emerald-50 py-3 rounded-lg border border-emerald-100 flex flex-col justify-center text-center transition-transform hover:scale-105">
+                            <p className="text-2xl font-black text-emerald-600 drop-shadow-sm">{twoCost3Stars}</p>
+                            <p className="text-[10px] text-emerald-800 font-extrabold uppercase mt-1 tracking-wider">2-Cost 3★</p>
+                          </div>
+                          <div className="flex-1 min-w-[60px] bg-blue-50 py-3 rounded-lg border border-blue-100 flex flex-col justify-center text-center transition-transform hover:scale-105">
+                            <p className="text-2xl font-black text-blue-600 drop-shadow-sm">{threeCost3Stars}</p>
+                            <p className="text-[10px] text-blue-800 font-extrabold uppercase mt-1 tracking-wider">3-Cost 3★</p>
+                          </div>
+                          <div className="flex-1 min-w-[60px] bg-purple-50 py-3 rounded-lg border border-purple-100 flex flex-col justify-center text-center transition-transform hover:scale-105">
+                            <p className="text-2xl font-black text-purple-600 drop-shadow-sm">{fourCost3Stars}</p>
+                            <p className="text-[10px] text-purple-800 font-extrabold uppercase mt-1 tracking-wider">4-Cost 3★</p>
+                          </div>
+                          {fiveCost3Stars > 0 && (
+                            <div className="flex-1 min-w-[60px] bg-yellow-50 py-3 rounded-lg border border-yellow-200 shadow-inner flex flex-col justify-center text-center transition-transform hover:scale-105">
+                              <p className="text-2xl font-black text-yellow-600 drop-shadow-md">{fiveCost3Stars}</p>
+                              <p className="text-[10px] text-yellow-700 font-extrabold uppercase mt-1 tracking-wider">5-Cost 3★</p>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
