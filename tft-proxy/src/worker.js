@@ -1,4 +1,5 @@
 export default {
+  // v2.1.0 - Multi-region support enabled
   // Notice we added the `ctx` parameter here so we can hook into Cloudflare's cache
   async fetch(request, env, ctx) {
     if (request.method === "OPTIONS") {
