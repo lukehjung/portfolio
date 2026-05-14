@@ -38,6 +38,8 @@ interface TFTMatch {
   info: {
     game_datetime: number;
     participants: TFTParticipant[];
+    tft_set_core_name?: string;
+    tft_set_number?: number;
   };
 }
 
