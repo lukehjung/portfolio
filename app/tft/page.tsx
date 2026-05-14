@@ -634,14 +634,14 @@ export default function TFTStatsPage() {
 
                       {activityData.length > 0 && (
                         <div className="mt-5 border-t border-gray-100 pt-5">
-                          <p className="text-[10px] text-gray-500 font-bold uppercase mb-3 flex justify-between items-center">
+                          <div className="text-[10px] text-gray-500 font-bold uppercase mb-3 flex justify-between items-center">
                             <span>Games Played Activity (Last {matchHistory.length} Matches)</span>
                             <div className="flex bg-gray-200 rounded-md p-0.5">
                               <button onClick={() => setActivityBucket('day')} className={`px-2 py-0.5 rounded text-[9px] font-bold transition-all ${activityBucket === 'day' ? 'bg-white shadow-sm text-gray-800' : 'text-gray-500 hover:text-gray-700'}`}>DAY</button>
                               <button onClick={() => setActivityBucket('week')} className={`px-2 py-0.5 rounded text-[9px] font-bold transition-all ${activityBucket === 'week' ? 'bg-white shadow-sm text-gray-800' : 'text-gray-500 hover:text-gray-700'}`}>WEEK</button>
                               <button onClick={() => setActivityBucket('month')} className={`px-2 py-0.5 rounded text-[9px] font-bold transition-all ${activityBucket === 'month' ? 'bg-white shadow-sm text-gray-800' : 'text-gray-500 hover:text-gray-700'}`}>MONTH</button>
                             </div>
-                          </p>
+                          </div>
                           <div className="h-40 w-full bg-gray-50 rounded-xl border border-gray-100 p-2 sm:p-4">
                             <ResponsiveContainer width="100%" height="100%">
                               <LineChart data={activityData} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
