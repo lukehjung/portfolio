@@ -48,6 +48,7 @@ interface TFTProfileData {
   summoner: { summonerLevel: number; profileIconId: number; id: string };
   ranked?: TFTRankedStat[];
   recentMatches: string[];
+  matchHistory?: TFTMatch[];
   region: string;
 }
 
