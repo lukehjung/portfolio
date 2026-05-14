@@ -23,6 +23,9 @@
     "url": "https://github.com/lukehjung/portfolio/issues"
   },
   "homepage": "https://github.com/lukehjung/portfolio#readme",
+  "overrides": {
+    "postcss": "^8.5.10"
+  },
   "dependencies": {
     "@google/genai": "^1.46.0",
     "@opennextjs/cloudflare": "^1.19.9",
@@ -44,7 +47,7 @@
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "autoprefixer": "^10.4.27",
-    "postcss": "^8.5.8",
+    "postcss": "^8.5.10",
     "tailwindcss": "^4.2.2",
     "typescript": "5.9.3",
     "wrangler": "^4.90.0"
