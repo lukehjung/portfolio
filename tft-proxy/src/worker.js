@@ -14,12 +14,37 @@ export default {
     const url = new URL(request.url);
     const pathParts = url.pathname.split('/').filter(Boolean);
 
+    // Helper to map user-friendly region to Riot's routing IDs
+    function getRegionalRouting(region) {
+      const regions = {
+        'na': { platform: 'na1', cluster: 'americas' },
+        'euw': { platform: 'euw1', cluster: 'europe' },
+        'eune': { platform: 'eun1', cluster: 'europe' },
+        'kr': { platform: 'kr', cluster: 'asia' },
+        'jp': { platform: 'jp1', cluster: 'asia' },
+        'br': { platform: 'br1', cluster: 'americas' },
+        'lan': { platform: 'la1', cluster: 'americas' },
+        'las': { platform: 'la2', cluster: 'americas' },
+        'oce': { platform: 'oc1', cluster: 'sea' },
+        'tr': { platform: 'tr1', cluster: 'europe' },
+        'ru': { platform: 'ru', cluster: 'europe' },
+        'ph': { platform: 'ph2', cluster: 'sea' },
+        'sg': { platform: 'sg2', cluster: 'sea' },
+        'th': { platform: 'th2', cluster: 'sea' },
+        'tw': { platform: 'tw2', cluster: 'sea' },
+        'vn': { platform: 'vn2', cluster: 'sea' }
+      };
+      return regions[region.toLowerCase()] || regions['na'];
+    }
+
     if (pathParts[0] === 'api' && pathParts[1] === 'tft' && pathParts[2] === 'profile') {
-      const gameName = pathParts[3];
-      const tagLine = pathParts[4];
+      const region = pathParts[3];
+      const gameName = pathParts[4];
+      const tagLine = pathParts[5];
 
       if (!gameName || !tagLine) return new Response("Missing identifiers", { status: 400 });
 
+      const routing = getRegionalRouting(region);
       const forceRefresh = url.searchParams.get('refresh') === 'true';
 
       // 1. Initialize the Cloudflare Cache
@@ -45,7 +70,7 @@ export default {
       }
 
       const headers = { "X-Riot-Token": env.RIOT_API_KEY };
-      const kvKey = `profile_${gameName.toLowerCase()}_${tagLine.toLowerCase()}`;
+      const kvKey = `profile_${region.toLowerCase()}_${gameName.toLowerCase()}_${tagLine.toLowerCase()}`;
 
       const handleFallback = async (errResp, status = 500) => {
         if (env.TFT_CACHE) {
@@ -66,7 +91,7 @@ export default {
       };
 
       try {
-        const accountRes = await fetch(`https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}`, { headers });
+        const accountRes = await fetch(`https://${routing.cluster}.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}`, { headers });
         if (!accountRes.ok) {
           const errorData = await accountRes.json().catch(() => ({}));
           const errStatus = accountRes.status;
@@ -79,25 +104,25 @@ export default {
         const accountData = await accountRes.json();
         const puuid = accountData.puuid;
 
-        const summonerRes = await fetch(`https://na1.api.riotgames.com/tft/summoner/v1/summoners/by-puuid/${puuid}`, { headers });
+        const summonerRes = await fetch(`https://${routing.platform}.api.riotgames.com/tft/summoner/v1/summoners/by-puuid/${puuid}`, { headers });
         const summonerData = await summonerRes.json();
 
         let leagueData = [];
         let debugLog = "Starting ranked fetch...";
 
-        const puuidLeagueRes = await fetch(`https://na1.api.riotgames.com/tft/league/v1/by-puuid/${puuid}`, { headers });
+        const puuidLeagueRes = await fetch(`https://${routing.platform}.api.riotgames.com/tft/league/v1/by-puuid/${puuid}`, { headers });
         if (puuidLeagueRes.ok) {
           leagueData = await puuidLeagueRes.json();
           debugLog = "Success using tft-league-v1/by-puuid";
         } else {
-          const lolSummonerRes = await fetch(`https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/${puuid}`, { headers });
+          const lolSummonerRes = await fetch(`https://${routing.platform}.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/${puuid}`, { headers });
           if (lolSummonerRes.ok) {
-            const lolSummonerData = await lolSummonerRes.ok ? await lolSummonerRes.json() : {};
+            const lolSummonerData = await lolSummonerRes.json().catch(() => ({}));
             
             const possibleId = lolSummonerData.id || lolSummonerData.summonerId || summonerData.id || summonerData.summonerId;
             
             if (possibleId) {
-              const leagueRes = await fetch(`https://na1.api.riotgames.com/tft/league/v1/entries/by-summoner/${possibleId}`, { headers });
+              const leagueRes = await fetch(`https://${routing.platform}.api.riotgames.com/tft/league/v1/entries/by-summoner/${possibleId}`, { headers });
               if (leagueRes.ok) {
                 leagueData = await leagueRes.json();
                 debugLog = "Success using legacy summonerId: " + possibleId;
@@ -108,13 +133,13 @@ export default {
               debugLog = "Riot completely stripped the legacy 'id' from this account! LOL Payload: " + JSON.stringify(lolSummonerData);
             }
           } else {
-            const errorData = await lolSummonerRes.json();
+            const errorData = await lolSummonerRes.json().catch(() => ({}));
             debugLog = "Missing LoL API Permissions: " + JSON.stringify(errorData);
           }
         }
 
         // 1. Fetch up to 100 recent match IDs
-        const matchRes = await fetch(`https://americas.api.riotgames.com/tft/match/v1/matches/by-puuid/${puuid}/ids?count=100`, { headers });
+        const matchRes = await fetch(`https://${routing.cluster}.api.riotgames.com/tft/match/v1/matches/by-puuid/${puuid}/ids?count=100`, { headers });
         const matchIds = matchRes.ok ? await matchRes.json() : [];
 
         let matchHistory = [];
@@ -152,7 +177,7 @@ export default {
              // Fetch sequentially to prevent hitting burst rate limits (20/sec)
              for (const id of idsToFetch) {
                try {
-                 const res = await fetch(`https://americas.api.riotgames.com/tft/match/v1/matches/${id}`, { headers });
+                 const res = await fetch(`https://${routing.cluster}.api.riotgames.com/tft/match/v1/matches/${id}`, { headers });
                  if (res.ok) {
                    const matchData = await res.json();
                    matchHistory.push(matchData);
@@ -183,7 +208,8 @@ export default {
           ranked: leagueData,
           recentMatches: matchIds,
           matchHistory: matchHistory,
-          debugLog: debugLog
+          debugLog: debugLog,
+          region: region // Store region in payload
         };
 
         // 3. Create the response and tell Cloudflare to cache it for 1800 seconds (30 minutes)

@@ -48,7 +48,7 @@ interface TFTProfileData {
   summoner: { summonerLevel: number; profileIconId: number; id: string };
   ranked?: TFTRankedStat[];
   recentMatches: string[];
-  matchHistory?: TFTMatch[];
+  region: string;
 }
 
 export default function TFTStatsPage() {
@@ -56,19 +56,20 @@ export default function TFTStatsPage() {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [searchInput, setSearchInput] = useState('');
+  const [selectedRegion, setSelectedRegion] = useState('na');
   const [expandedProfiles, setExpandedProfiles] = useState<Record<string, boolean>>({});
   const [activityBucket, setActivityBucket] = useState<'day' | 'week' | 'month'>('day');
   const [isSquad, setIsSquad] = useState(false);
   const [mounted, setMounted] = useState(false);
   const initialized = useRef(false);
 
-  async function fetchProfile(gameName: string, tagLine: string, forceRefresh = false) {
+  async function fetchProfile(gameName: string, tagLine: string, region: string = 'na', forceRefresh = false) {
     setLoading(true);
     setError(null);
     try {
       let response;
       try {
-        const fetchUrl = `https://tft-proxy.lukethejung.workers.dev/api/tft/profile/${gameName}/${tagLine}${forceRefresh ? '?refresh=true' : ''}`;
+        const fetchUrl = `https://tft-proxy.lukethejung.workers.dev/api/tft/profile/${region}/${gameName}/${tagLine}${forceRefresh ? '?refresh=true' : ''}`;
         response = await fetch(fetchUrl);
       } catch (networkErr: any) {
         response = { ok: false, status: 0, statusText: networkErr.message || 'Network error' };
@@ -137,15 +138,15 @@ export default function TFTStatsPage() {
 
     async function loadDefaultPlayers() {
       const defaultPlayers = squadMode ? [
-        { name: 'Hyun', tag: 'JUNG' },
-        { name: 'yunjin', tag: 'downb' },
-        { name: 'lenate', tag: 'na2' }
+        { name: 'Hyun', tag: 'JUNG', region: 'na' },
+        { name: 'yunjin', tag: 'downb', region: 'na' },
+        { name: 'lenate', tag: 'na2', region: 'na' }
       ] : [
-        { name: 'Hyun', tag: 'JUNG' }
+        { name: 'Hyun', tag: 'JUNG', region: 'na' }
       ];
 
       for (const player of defaultPlayers) {
-        await fetchProfile(player.name, player.tag);
+        await fetchProfile(player.name, player.tag, player.region);
         // Wait 1.5 seconds between each player to respect Riot's Rate Limits
         if (squadMode) await new Promise(resolve => setTimeout(resolve, 1500));
       }
@@ -161,7 +162,7 @@ export default function TFTStatsPage() {
       return;
     }
     const [name, tag] = searchInput.split('#');
-    fetchProfile(name, tag);
+    fetchProfile(name, tag, selectedRegion);
     setSearchInput('');
   };
 
@@ -305,7 +306,29 @@ export default function TFTStatsPage() {
         <div className="min-h-[400px]">
 
           {/* Search Bar */}
-          <form onSubmit={handleAddFriend} className="mb-6 flex gap-4">
+          <form onSubmit={handleAddFriend} className="mb-6 flex gap-2 sm:gap-4">
+            <select 
+              value={selectedRegion}
+              onChange={(e) => setSelectedRegion(e.target.value)}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 block p-2.5 font-bold uppercase transition-all shadow-sm"
+            >
+              <option value="na">NA</option>
+              <option value="euw">EUW</option>
+              <option value="eune">EUNE</option>
+              <option value="kr">KR</option>
+              <option value="jp">JP</option>
+              <option value="br">BR</option>
+              <option value="lan">LAN</option>
+              <option value="las">LAS</option>
+              <option value="oce">OCE</option>
+              <option value="tr">TR</option>
+              <option value="ru">RU</option>
+              <option value="ph">PH</option>
+              <option value="sg">SG</option>
+              <option value="th">TH</option>
+              <option value="tw">TW</option>
+              <option value="vn">VN</option>
+            </select>
             <input
               type="text"
               placeholder="Add a friend (e.g. Doublelift#NA1)"
@@ -540,7 +563,7 @@ export default function TFTStatsPage() {
                 <div key={data.account.puuid} className="bg-gray-50 border border-gray-200 p-6 rounded-2xl shadow-sm relative">
                   <div className="absolute top-4 right-4 flex gap-3">
                     <button
-                      onClick={() => fetchProfile(data.account.gameName, data.account.tagLine, true)}
+                      onClick={() => fetchProfile(data.account.gameName, data.account.tagLine, data.region, true)}
                       className="text-gray-400 hover:text-blue-500 transition-colors"
                       title="Force Refresh Data"
                     >
