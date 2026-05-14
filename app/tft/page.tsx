@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState, useRef } from 'react';
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, BarChart, Bar, Cell } from 'recharts';
 import { sampleData } from './sampleData';
 
 interface TFTRankedStat {
@@ -54,6 +55,7 @@ export default function TFTStatsPage() {
   const [error, setError] = useState<string | null>(null);
   const [searchInput, setSearchInput] = useState('');
   const [expandedProfiles, setExpandedProfiles] = useState<Record<string, boolean>>({});
+  const [activityBucket, setActivityBucket] = useState<'day' | 'week' | 'month'>('day');
   const [isSquad, setIsSquad] = useState(false);
   const [mounted, setMounted] = useState(false);
   const initialized = useRef(false);
@@ -167,7 +169,12 @@ export default function TFTStatsPage() {
 
   // Calculate aggregated stats for the comparison graph
   const comparisonStats = profiles.map(profile => {
-    const matchHistory = profile.matchHistory || [];
+    const allMatchHistory = profile.matchHistory || [];
+    const currentSetCoreName = allMatchHistory[0]?.info?.tft_set_core_name;
+    const matchHistory = currentSetCoreName 
+      ? allMatchHistory.filter(m => m.info?.tft_set_core_name === currentSetCoreName)
+      : allMatchHistory;
+
     const myStatsList: TFTParticipant[] = [];
     matchHistory.forEach(match => {
       const p = match.info?.participants?.find(p => p.puuid === profile.account.puuid);
@@ -185,12 +192,29 @@ export default function TFTStatsPage() {
     const winRate = placements.length ? (winCount / placements.length) * 100 : 0;
 
     // Playstyle (based on recent matches)
+    const currentSetPrefix = myStatsList.length > 0 && myStatsList[0].traits?.length > 0 
+      ? myStatsList[0].traits.find(t => t.name.includes('_'))?.name.split('_')[0] 
+      : null;
+
     const traitCounts: Record<string, number> = {};
+    const ignoreTerms = ['Trait', 'Tank', 'Unique', 'Boss', 'Undetermined', 'Teamup'];
+    const nameMap: Record<string, string> = { 
+      'DRX': 'N.O.V.A.', 
+      'SummonTrait': 'Shepherd',
+      'Astronaut': 'Meeple',
+      'PsyOps': 'Psionic',
+      'ADMIN': 'Arbiter',
+      'AnimaSquad': 'Anima'
+    };
     myStatsList.forEach(p => {
       if (p.traits) {
         p.traits.forEach(t => {
           if (t.tier_current > 0) {
-            const cleanName = t.name.split('_').pop() || t.name;
+            if (currentSetPrefix && !t.name.startsWith(currentSetPrefix)) return;
+            let cleanName = t.name.includes('_') ? t.name.substring(t.name.indexOf('_') + 1) : t.name;
+            if (cleanName.startsWith('Stargazer_')) cleanName = 'Stargazer';
+            cleanName = nameMap[cleanName] || cleanName;
+            if (ignoreTerms.some(term => cleanName.includes(term))) return;
             traitCounts[cleanName] = (traitCounts[cleanName] || 0) + 1;
           }
         });
@@ -381,7 +405,12 @@ export default function TFTStatsPage() {
             {profiles.map((data, index) => {
 
               // Calculate Analytics for this specific profile
-              const matchHistory = data.matchHistory || [];
+              const allMatchHistory = data.matchHistory || [];
+              const currentSetCoreName = allMatchHistory[0]?.info?.tft_set_core_name;
+              const matchHistory = currentSetCoreName 
+                ? allMatchHistory.filter(m => m.info?.tft_set_core_name === currentSetCoreName)
+                : allMatchHistory;
+
               const myStatsList: TFTParticipant[] = [];
 
               matchHistory.forEach(match => {
@@ -402,12 +431,29 @@ export default function TFTStatsPage() {
                   : sortedPlacements[Math.floor(myPlacements.length / 2)])
                 : 'N/A';
 
+              const currentSetPrefix = myStatsList.length > 0 && myStatsList[0].traits?.length > 0 
+                ? myStatsList[0].traits.find(t => t.name.includes('_'))?.name.split('_')[0] 
+                : null;
+
               const traitCounts: Record<string, number> = {};
+              const ignoreTerms = ['Trait', 'Tank', 'Unique', 'Boss', 'Undetermined', 'Teamup'];
+              const nameMap: Record<string, string> = { 
+                'DRX': 'N.O.V.A.', 
+                'SummonTrait': 'Shepherd',
+                'Astronaut': 'Meeple',
+                'PsyOps': 'Psionic',
+                'ADMIN': 'Arbiter',
+                'AnimaSquad': 'Anima'
+              };
               myStatsList.forEach(p => {
                 if (p.traits) {
                   p.traits.forEach(t => {
                     if (t.tier_current > 0) {
-                      const cleanName = t.name.split('_').pop() || t.name;
+                      if (currentSetPrefix && !t.name.startsWith(currentSetPrefix)) return;
+                      let cleanName = t.name.includes('_') ? t.name.substring(t.name.indexOf('_') + 1) : t.name;
+                      if (cleanName.startsWith('Stargazer_')) cleanName = 'Stargazer';
+                      cleanName = nameMap[cleanName] || cleanName;
+                      if (ignoreTerms.some(term => cleanName.includes(term))) return;
                       traitCounts[cleanName] = (traitCounts[cleanName] || 0) + 1;
                     }
                   });
@@ -415,8 +461,7 @@ export default function TFTStatsPage() {
               });
 
               const sortedTraits = Object.entries(traitCounts).sort((a, b) => b[1] - a[1]);
-              const topTraitName = sortedTraits.length > 0 ? sortedTraits[0][0] : 'N/A';
-              const topTraitCount = sortedTraits.length > 0 ? sortedTraits[0][1] : 0;
+              const topTraits = sortedTraits.slice(0, 3);
 
               let oneCost3Stars = 0;
               let twoCost3Stars = 0;
@@ -441,6 +486,53 @@ export default function TFTStatsPage() {
               const rankedList = Array.isArray(data.ranked) ? data.ranked : [];
               const rankedData = rankedList.find(r => r.queueType === 'RANKED_TFT') || null;
               const trueTotalGames = rankedData ? (rankedData.wins + rankedData.losses) : myPlacements.length;
+
+              // Activity Graph Data (games per day over the available match history)
+              const activityMap: Record<string, number> = {};
+              matchHistory.forEach(match => {
+                const dateObj = new Date(match.info.game_datetime);
+                let dateStr = '';
+                if (activityBucket === 'day') {
+                  dateStr = `${dateObj.getMonth() + 1}/${dateObj.getDate()}`;
+                } else if (activityBucket === 'month') {
+                  dateStr = dateObj.toLocaleString('default', { month: 'short' });
+                } else {
+                  const d = new Date(dateObj);
+                  const day = d.getDay();
+                  const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+                  d.setDate(diff);
+                  dateStr = `Wk of ${d.getMonth() + 1}/${d.getDate()}`;
+                }
+                activityMap[dateStr] = (activityMap[dateStr] || 0) + 1;
+              });
+
+              const activityData = Object.keys(activityMap).map(dateStr => {
+                return { date: dateStr, games: activityMap[dateStr] };
+              }).sort((a, b) => {
+                if (activityBucket === 'month') {
+                  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                  return months.indexOf(a.date) - months.indexOf(b.date);
+                }
+                if (activityBucket === 'week') {
+                  const [m1, d1] = a.date.replace('Wk of ', '').split('/').map(Number);
+                  const [m2, d2] = b.date.replace('Wk of ', '').split('/').map(Number);
+                  return (m1 - m2) || (d1 - d2);
+                }
+                const [m1, d1] = a.date.split('/').map(Number);
+                const [m2, d2] = b.date.split('/').map(Number);
+                return (m1 - m2) || (d1 - d2);
+              });
+
+              // Placement Frequency Graph Data
+              const placementMap: Record<number, number> = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0 };
+              myPlacements.forEach(p => {
+                if (p >= 1 && p <= 8) placementMap[p]++;
+              });
+              const placementData = Object.keys(placementMap).map(p => ({
+                placement: `${p}${p === '1' ? 'st' : p === '2' ? 'nd' : p === '3' ? 'rd' : 'th'}`,
+                count: placementMap[Number(p)],
+                originalPlacement: Number(p)
+              }));
 
               return (
                 <div key={data.account.puuid} className="bg-gray-50 border border-gray-200 p-6 rounded-2xl shadow-sm relative">
@@ -499,23 +591,47 @@ export default function TFTStatsPage() {
                           <p className="text-[10px] text-gray-500 font-bold uppercase mb-1">Season Games</p>
                           <p className="text-xl font-extrabold text-gray-900">{trueTotalGames}</p>
                         </div>
-                        <div className="bg-gray-50 py-3 px-2 rounded-lg border border-gray-100">
-                          <p className="text-[10px] text-gray-500 font-bold uppercase mb-1">Top Trait</p>
-                          <p className="text-base font-extrabold text-indigo-700 leading-tight truncate px-2" title={topTraitName}>{topTraitName}</p>
-                          <p className="text-[9px] text-gray-400 font-semibold uppercase mt-0.5">Played {topTraitCount}x</p>
+                        <div className="bg-gray-50 py-2 px-2 rounded-lg border border-gray-100 flex flex-col justify-center">
+                          <p className="text-[10px] text-gray-500 font-bold uppercase mb-1">Top Traits</p>
+                          <div className="flex flex-col gap-0.5 text-left w-full px-1">
+                            {topTraits.length > 0 ? topTraits.map(([name, count], i) => (
+                              <div key={i} className="flex justify-between items-center w-full">
+                                <span className="text-xs font-extrabold text-indigo-700 truncate mr-2" title={name}>{name}</span>
+                                <span className="text-[9px] text-gray-400 font-bold shrink-0">{count}x</span>
+                              </div>
+                            )) : (
+                              <span className="text-xs font-extrabold text-gray-400 text-center w-full">N/A</span>
+                            )}
+                          </div>
                         </div>
                       </div>
 
-                      <div>
-                        <p className="text-[10px] text-gray-500 font-bold uppercase mb-2">Placements History</p>
-                        <div className="flex flex-wrap gap-1.5">
-                          {myPlacements.slice(0, trueTotalGames).map((p, i) => (
-                            <div key={i} className={`w-7 h-7 flex items-center justify-center rounded font-bold text-xs shadow-sm ${p === 1 ? 'bg-green-500 text-white border-green-600' : p <= 4 ? 'bg-blue-500 text-white border-blue-600' : p === 8 ? 'bg-red-500 text-white border-red-600' : 'bg-white text-gray-600 border border-gray-200'}`} title={`Match ${i + 1}: ${p}${p === 1 ? 'st' : p === 2 ? 'nd' : p === 3 ? 'rd' : 'th'} Place`}>
-                              {p}
+                      {activityData.length > 0 && (
+                        <div className="mt-5 border-t border-gray-100 pt-5">
+                          <p className="text-[10px] text-gray-500 font-bold uppercase mb-3 flex justify-between items-center">
+                            <span>Games Played Activity (Last {matchHistory.length} Matches)</span>
+                            <div className="flex bg-gray-200 rounded-md p-0.5">
+                              <button onClick={() => setActivityBucket('day')} className={`px-2 py-0.5 rounded text-[9px] font-bold transition-all ${activityBucket === 'day' ? 'bg-white shadow-sm text-gray-800' : 'text-gray-500 hover:text-gray-700'}`}>DAY</button>
+                              <button onClick={() => setActivityBucket('week')} className={`px-2 py-0.5 rounded text-[9px] font-bold transition-all ${activityBucket === 'week' ? 'bg-white shadow-sm text-gray-800' : 'text-gray-500 hover:text-gray-700'}`}>WEEK</button>
+                              <button onClick={() => setActivityBucket('month')} className={`px-2 py-0.5 rounded text-[9px] font-bold transition-all ${activityBucket === 'month' ? 'bg-white shadow-sm text-gray-800' : 'text-gray-500 hover:text-gray-700'}`}>MONTH</button>
                             </div>
-                          ))}
+                          </p>
+                          <div className="h-40 w-full bg-gray-50 rounded-xl border border-gray-100 p-2 sm:p-4">
+                            <ResponsiveContainer width="100%" height="100%">
+                              <LineChart data={activityData} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
+                                <XAxis dataKey="date" tick={{ fontSize: 10, fill: '#9ca3af', fontWeight: 'bold' }} axisLine={false} tickLine={false} />
+                                <YAxis allowDecimals={false} tick={{ fontSize: 10, fill: '#9ca3af', fontWeight: 'bold' }} axisLine={false} tickLine={false} />
+                                <Tooltip 
+                                  contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', fontSize: '12px', fontWeight: 'bold' }} 
+                                  itemStyle={{ color: '#4f46e5' }}
+                                  labelStyle={{ color: '#6b7280', marginBottom: '4px' }}
+                                />
+                                <Line type="monotone" dataKey="games" name="Games Played" stroke="#4f46e5" strokeWidth={3} dot={{ r: 4, strokeWidth: 2, fill: '#fff' }} activeDot={{ r: 6, strokeWidth: 0, fill: '#4f46e5' }} />
+                              </LineChart>
+                            </ResponsiveContainer>
+                          </div>
                         </div>
-                      </div>
+                      )}
 
                       <div className="mt-5 border-t border-gray-100 pt-5">
                         <p className="text-[10px] text-gray-500 font-bold uppercase mb-3">3-Star Milestones (Recent Matches)</p>
@@ -544,6 +660,47 @@ export default function TFTStatsPage() {
                           )}
                         </div>
                       </div>
+
+                      <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 mt-5 border-t border-gray-100 pt-5">
+                        <div>
+                          <p className="text-[10px] text-gray-500 font-bold uppercase mb-3 flex justify-between items-center">
+                            <span>Placements History</span>
+                          </p>
+                          <div className="flex flex-wrap gap-1.5 bg-gray-50 rounded-xl border border-gray-100 p-4 min-h-[10rem] items-start content-start">
+                            {myPlacements.slice(0, trueTotalGames).map((p, i) => (
+                              <div key={i} className={`w-7 h-7 flex items-center justify-center rounded font-bold text-xs shadow-sm ${p === 1 ? 'bg-green-500 text-white border-green-600' : p <= 4 ? 'bg-blue-500 text-white border-blue-600' : p === 8 ? 'bg-red-500 text-white border-red-600' : 'bg-white text-gray-600 border border-gray-200'}`} title={`Match ${i + 1}: ${p}${p === 1 ? 'st' : p === 2 ? 'nd' : p === 3 ? 'rd' : 'th'} Place`}>
+                                {p}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {myPlacements.length > 0 && (
+                          <div>
+                            <p className="text-[10px] text-gray-500 font-bold uppercase mb-3 flex justify-between items-center">
+                              <span>Placement Frequency</span>
+                            </p>
+                            <div className="h-40 w-full bg-gray-50 rounded-xl border border-gray-100 p-2 sm:p-4">
+                              <ResponsiveContainer width="100%" height="100%">
+                                <BarChart data={placementData} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
+                                  <XAxis dataKey="placement" tick={{ fontSize: 10, fill: '#9ca3af', fontWeight: 'bold' }} axisLine={false} tickLine={false} />
+                                  <YAxis allowDecimals={false} tick={{ fontSize: 10, fill: '#9ca3af', fontWeight: 'bold' }} axisLine={false} tickLine={false} />
+                                  <Tooltip 
+                                    contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', fontSize: '12px', fontWeight: 'bold' }} 
+                                    cursor={{fill: 'rgba(0,0,0,0.05)'}}
+                                    formatter={(value: any) => [value, 'Times Placed']}
+                                  />
+                                  <Bar dataKey="count" radius={[4, 4, 0, 0]}>
+                                    {placementData.map((entry, index) => (
+                                      <Cell key={`cell-${index}`} fill={entry.originalPlacement === 1 ? '#22c55e' : entry.originalPlacement <= 4 ? '#3b82f6' : entry.originalPlacement === 8 ? '#ef4444' : '#9ca3af'} />
+                                    ))}
+                                  </Bar>
+                                </BarChart>
+                              </ResponsiveContainer>
+                            </div>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   )}
 
@@ -552,9 +709,9 @@ export default function TFTStatsPage() {
                     <h3 className="text-sm font-bold text-gray-800 uppercase mb-4 tracking-wider flex items-center gap-2">
                       <i className="fa fa-history"></i> Recent Matches
                     </h3>
-                    {data.matchHistory && data.matchHistory.length > 0 ? (
+                    {matchHistory && matchHistory.length > 0 ? (
                       <div className="space-y-3">
-                        {(expandedProfiles[data.account.puuid] ? data.matchHistory : data.matchHistory.slice(0, 20)).map((match) => {
+                        {(expandedProfiles[data.account.puuid] ? matchHistory : matchHistory.slice(0, 5)).map((match) => {
                           const myStats = match.info?.participants?.find(p => p.puuid === data.account.puuid);
                           if (!myStats) return null;
 
@@ -655,12 +812,12 @@ export default function TFTStatsPage() {
                             </div>
                           );
                         })}
-                        {data.matchHistory.length > 20 && (
+                        {matchHistory.length > 5 && (
                           <button
                             onClick={() => toggleExpand(data.account.puuid)}
                             className="w-full mt-2 py-2 text-sm text-blue-600 font-semibold bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors border border-blue-100"
                           >
-                            {expandedProfiles[data.account.puuid] ? 'Show Less' : `Show All ${data.matchHistory.length} Matches`}
+                            {expandedProfiles[data.account.puuid] ? 'Show Less' : `Show All ${matchHistory.length} Matches`}
                           </button>
                         )}
                       </div>
