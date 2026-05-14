@@ -81,16 +81,18 @@ export default function TFTStatsPage() {
         if (fallbackKey in sampleData) {
           setError(`Warning: Your Riot API Key is likely invalid or down (${response.status}). Using offline sample data for ${fallbackKey}!`);
           const fallbackProfile = (sampleData as any)[fallbackKey];
-          setProfiles(prev => {
-            const existingIndex = prev.findIndex(p => p.account.puuid === fallbackProfile.account.puuid);
-            if (existingIndex >= 0) {
-              const newProfiles = [...prev];
-              newProfiles[existingIndex] = fallbackProfile;
-              return newProfiles;
-            }
-            return [fallbackProfile, ...prev];
-          });
-          return;
+          if (fallbackProfile && fallbackProfile.account) {
+            setProfiles(prev => {
+              const existingIndex = prev.findIndex(p => p.account.puuid === fallbackProfile.account.puuid);
+              if (existingIndex >= 0) {
+                const newProfiles = [...prev];
+                newProfiles[existingIndex] = { ...fallbackProfile, region: 'na' };
+                return newProfiles;
+              }
+              return [{ ...fallbackProfile, region: 'na' }, ...prev];
+            });
+            return;
+          }
         }
 
         let errorMessage = `Failed to fetch: ${response.status} ${response.statusText}`;
