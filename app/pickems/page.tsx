@@ -148,25 +148,37 @@ export default function PickemsPage() {
       .catch(() => {});
   }, [data.patchVersion]);
 
-  const teams = useMemo(() => {
-    const set = new Set<string>();
-    (data.msiTeams || []).forEach((t: string) => t && set.add(t));
-    (data.games || []).forEach((g: any) => {
-      if (g.blueTeam) set.add(g.blueTeam);
-      if (g.redTeam) set.add(g.redTeam);
+  const dedupeByLower = (names: string[]) => {
+    const seen = new Set<string>();
+    const out: string[] = [];
+    names.forEach((raw) => {
+      const trimmed = (raw || '').trim();
+      if (!trimmed) return;
+      const key = trimmed.toLowerCase();
+      if (seen.has(key)) return;
+      seen.add(key);
+      out.push(trimmed);
     });
-    return Array.from(set).sort((a, b) => a.localeCompare(b));
+    return out.sort((a, b) => a.localeCompare(b));
+  };
+
+  const teams = useMemo(() => {
+    const collected: string[] = [...(data.msiTeams || [])];
+    (data.games || []).forEach((g: any) => {
+      if (g.blueTeam) collected.push(g.blueTeam);
+      if (g.redTeam) collected.push(g.redTeam);
+    });
+    return dedupeByLower(collected);
   }, [data.msiTeams, data.games]);
 
   const players = useMemo(() => {
-    const set = new Set<string>();
-    (data.msiPlayers || []).forEach((p: string) => p && set.add(p));
+    const collected: string[] = [...(data.msiPlayers || [])];
     (data.games || []).forEach((g: any) => {
       (g.players || []).forEach((p: any) => {
-        if (p.name) set.add(p.name);
+        if (p.name) collected.push(p.name);
       });
     });
-    return Array.from(set).sort((a, b) => a.localeCompare(b));
+    return dedupeByLower(collected);
   }, [data.msiPlayers, data.games]);
 
 

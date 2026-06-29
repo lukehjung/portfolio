@@ -9,6 +9,23 @@ const PROJECT_ROOT = path.join(__dirname, '..');
 const CACHE_DIR = path.join(PROJECT_ROOT, '.scrape-cache');
 const OUTPUT_FILE = path.join(PROJECT_ROOT, 'app', 'pickems', 'msi_data.json');
 
+// Hardcoded MSI 2026 rosters. Update when teams or rosters change mid-tournament.
+// Source of truth — gol.gg's matchlist often lags by weeks for the main-event
+// teams, and the lolesports getTeams API doesn't reliably include MSI rosters.
+const MSI_2026_ROSTER = {
+  'Bilibili Gaming': ['Bin', 'Xun', 'Knight', 'Viper', 'ON'],
+  'Top Esports': ['ZUIAN', 'Tian', 'Creme', 'JackeyLove', 'fengyue'],
+  'Hanwha Life Esports': ['Zeus', 'Kanavi', 'Zeka', 'Gumayusi', 'Delight'],
+  'T1': ['Doran', 'Oner', 'Faker', 'Peyz', 'Keria'],
+  'G2 Esports': ['BrokenBlade', 'SkewMond', 'Caps', 'Hans Sama', 'Labrov'],
+  'Karmine Corp': ['Canna', 'Yike', 'kyeahoo', 'Caliste', 'Busio'],
+  'LYON': ['Castle', 'Dhokla', 'Inspired', 'Saint', 'Berserker', 'Isles'],
+  'Team Liquid': ['Morgan', 'Josedeodo', 'Quid', 'Yeon', 'CoreJJ'],
+  'Deep Cross Gaming': ['Flauren', 'Pop9', 'HongSuo', 'Feng', 'ShiauC'],
+  'Team Secret Whales': ['Pun', 'Hizto', 'Dire', 'Eddie', 'Bie'],
+  'Furia': ['Guigo', 'Tatu', 'Tutsz', 'Ayu', 'JoJo'],
+};
+
 if (!fs.existsSync(CACHE_DIR)) {
   fs.mkdirSync(CACHE_DIR, { recursive: true });
 }
@@ -85,49 +102,36 @@ async function fetchLolesportsData() {
 
   const playerImages = {};
   const teamImages = {};
-  const teamRosters = {};
 
   const rawTeams = data?.data?.teams || [];
   rawTeams.forEach((t) => {
-    if (!t.name) return;
+    if (!t.image || !t.name) return;
     const teamName = t.name.toLowerCase();
     const teamCode = t.code ? t.code.toLowerCase() : '';
-    const roster = Array.isArray(t.players)
-      ? t.players.map((p) => p.summonerName).filter(Boolean)
-      : [];
+    teamImages[teamName] = t.image;
+    if (teamCode) teamImages[teamCode] = t.image;
 
-    teamRosters[teamName] = roster;
-    if (teamCode) teamRosters[teamCode] = roster;
-
-    if (t.image) {
-      teamImages[teamName] = t.image;
-      if (teamCode) teamImages[teamCode] = t.image;
-      if (t.code === 'TL') {
-        teamImages['team liquid'] = t.image;
-        teamImages['tlaw'] = t.image;
-        teamRosters['team liquid'] = roster;
-        teamRosters['tlaw'] = roster;
-      }
-      if (t.code === 'KC') {
-        teamImages['karmine corp'] = t.image;
-        teamRosters['karmine corp'] = roster;
-      }
-      if (t.code === 'DCG') {
-        teamImages['deep cross gaming'] = t.image;
-        teamRosters['deep cross gaming'] = roster;
-      }
+    if (t.code === 'TL') {
+      teamImages['team liquid'] = t.image;
+      teamImages['tlaw'] = t.image;
+    }
+    if (t.code === 'KC') {
+      teamImages['karmine corp'] = t.image;
+    }
+    if (t.code === 'DCG') {
+      teamImages['deep cross gaming'] = t.image;
     }
 
     if (t.players && Array.isArray(t.players)) {
       t.players.forEach((p) => {
         if (p.image && p.summonerName) {
-          playerImages[p.summonerName.toLowerCase()] = p.image;
+          playerImages[p.summonerName.trim().toLowerCase()] = p.image;
         }
       });
     }
   });
 
-  return { playerImages, teamImages, teamRosters };
+  return { playerImages, teamImages };
 }
 
 async function parseMatchList() {
@@ -438,36 +442,18 @@ async function run() {
     }
 
     // Fetch player and team headshot/logo assets from Lolesports API
-    const { playerImages, teamImages, teamRosters } = await fetchLolesportsData();
+    const { playerImages, teamImages } = await fetchLolesportsData();
 
     const matches = await parseMatchList();
     console.log(`Found ${matches.length} matches in tournament matchlist.`);
 
-    // Build the list of teams + players participating in MSI from the full matchlist
-    // (not just completed games), so pickem dropdowns include teams that haven't played yet.
-    const participatingTeams = new Set();
-    matches.forEach((m) => {
-      if (m.team1) participatingTeams.add(m.team1);
-      if (m.team2) participatingTeams.add(m.team2);
-    });
-
-    const lookupRoster = (teamName) => {
-      if (!teamName) return [];
-      const lower = teamName.toLowerCase().trim();
-      if (teamRosters[lower]) return teamRosters[lower];
-      // Try suffix / prefix matches (gol.gg sometimes truncates or abbreviates names)
-      const hit = Object.keys(teamRosters).find(
-        (k) => k.includes(lower) || lower.includes(k)
-      );
-      return hit ? teamRosters[hit] : [];
-    };
-
-    const teamsList = Array.from(participatingTeams).sort((a, b) => a.localeCompare(b));
+    // Pickem dropdowns use the hardcoded MSI_2026_ROSTER as the source of truth
+    // for participating teams/players, since gol.gg's matchlist only contains
+    // play-in teams until the main event is scheduled.
+    const teamsList = Object.keys(MSI_2026_ROSTER).sort((a, b) => a.localeCompare(b));
     const playersSet = new Set();
     teamsList.forEach((team) => {
-      lookupRoster(team).forEach((name) => {
-        if (name) playersSet.add(name);
-      });
+      MSI_2026_ROSTER[team].forEach((name) => playersSet.add(name.trim()));
     });
     const playersList = Array.from(playersSet).sort((a, b) => a.localeCompare(b));
     console.log(`MSI roster: ${teamsList.length} teams, ${playersList.length} players.`);
