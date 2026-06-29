@@ -108,6 +108,7 @@ const getChampionImage = (name: string, patchVersion = '15.1.1') => {
 };
 
 const MSI_PROXY_URL = 'https://msi-proxy.lukethejung.workers.dev/api/msi';
+const PARTICIPANTS_URL = 'https://msi-proxy.lukethejung.workers.dev/api/participants';
 
 export default function PickemsPage() {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -183,25 +184,51 @@ export default function PickemsPage() {
   );
 
   useEffect(() => {
-    const saved = localStorage.getItem('pickems_participants');
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      const migrated = parsed.map((p: any) =>
-        p.name === 'Screenshot Picks' ? { ...p, name: "Luke Jung's Picks" } : p
-      );
-      const hasChristy = migrated.some((p: any) => p.name === 'Christy Oh' || p.id === '3');
-      if (!hasChristy) {
-        const christy = (defaultParticipants as any[]).find((p) => p.name === 'Christy Oh');
-        if (christy) migrated.push(christy);
+    let cancelled = false;
+
+    const fromLocal = () => {
+      const saved = localStorage.getItem('pickems_participants');
+      if (!saved) return null;
+      try {
+        return JSON.parse(saved);
+      } catch {
+        return null;
       }
-      setParticipants(migrated);
-    }
-    setHydrated(true);
+    };
+
+    fetch(PARTICIPANTS_URL)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((remote) => {
+        if (cancelled) return;
+        if (Array.isArray(remote) && remote.length > 0) {
+          setParticipants(remote);
+        } else {
+          const local = fromLocal();
+          if (Array.isArray(local) && local.length > 0) setParticipants(local);
+        }
+      })
+      .catch(() => {
+        if (cancelled) return;
+        const local = fromLocal();
+        if (Array.isArray(local) && local.length > 0) setParticipants(local);
+      })
+      .finally(() => {
+        if (!cancelled) setHydrated(true);
+      });
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   useEffect(() => {
     if (!hydrated) return;
     localStorage.setItem('pickems_participants', JSON.stringify(participants));
+    fetch(PARTICIPANTS_URL, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(participants),
+    }).catch(() => {});
   }, [participants, hydrated]);
 
   const getPlayerImage = (name: string) => {

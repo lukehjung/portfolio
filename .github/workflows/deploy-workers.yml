@@ -6,8 +6,10 @@ on:
       - master
     paths:
       - 'tft-proxy/**'
+      - 'msi-proxy/**'
       - 'wrangler.jsonc'
       - 'package.json'
+  workflow_dispatch:
 
 jobs:
   deploy-tft-proxy:
@@ -22,6 +24,19 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           workingDirectory: 'tft-proxy'
           # We explicitly use --config here to avoid Wrangler picking up the parent wrangler.jsonc
+          command: deploy --config wrangler.toml
+
+  deploy-msi-proxy:
+    if: contains(github.event.head_commit.modified, 'msi-proxy/') || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    name: Deploy MSI Proxy
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          workingDirectory: 'msi-proxy'
           command: deploy --config wrangler.toml
 
   deploy-portfolio:
