@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import msiData from './msi_data.json';
 import defaultParticipants from './participants.json';
 import {
@@ -131,6 +131,50 @@ export default function PickemsPage() {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [isAddingParticipant, setIsAddingParticipant] = useState(false);
   const [editingParticipantId, setEditingParticipantId] = useState<string | null>(null);
+  const [champions, setChampions] = useState<string[]>([]);
+
+  useEffect(() => {
+    const patch = data.patchVersion || '15.1.1';
+    fetch(`https://ddragon.leagueoflegends.com/cdn/${patch}/data/en_US/champion.json`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((json) => {
+        if (!json?.data) return;
+        const names = Object.values(json.data)
+          .map((c: any) => c.name as string)
+          .sort((a, b) => a.localeCompare(b));
+        setChampions(names);
+      })
+      .catch(() => {});
+  }, [data.patchVersion]);
+
+  const teams = useMemo(() => {
+    const set = new Set<string>();
+    (data.games || []).forEach((g: any) => {
+      if (g.blueTeam) set.add(g.blueTeam);
+      if (g.redTeam) set.add(g.redTeam);
+    });
+    return Array.from(set).sort((a, b) => a.localeCompare(b));
+  }, [data.games]);
+
+  const players = useMemo(() => {
+    const set = new Set<string>();
+    (data.games || []).forEach((g: any) => {
+      (g.players || []).forEach((p: any) => {
+        if (p.name) set.add(p.name);
+      });
+    });
+    return Array.from(set).sort((a, b) => a.localeCompare(b));
+  }, [data.games]);
+
+  const optionsForCategory = (key: string): string[] | null => {
+    const info = CATEGORIES_INFO[key];
+    if (!info) return null;
+    if (info.type === 'champion') return champions;
+    if (info.type === 'team') return teams;
+    if (info.type === 'player') return players;
+    if (info.type === 'boolean') return ['Yes', 'No'];
+    return null;
+  };
 
   const [newPlayerName, setNewPlayerName] = useState('');
   const [newPlayerAvatar, setNewPlayerAvatar] = useState('👤');
@@ -191,6 +235,7 @@ export default function PickemsPage() {
       if (item.avgDmg !== undefined) return item.avgDmg;
       if (item.elderDragons !== undefined) return item.elderDragons;
       if (item.uniqueCount !== undefined) return item.uniqueCount;
+      if (item.bans !== undefined) return item.bans;
       return 0;
     }
 
@@ -208,6 +253,7 @@ export default function PickemsPage() {
       if (item.avgDmg !== undefined) return `${item.avgDmg} DPM`;
       if (item.elderDragons !== undefined) return `${item.elderDragons} Elder Dragons`;
       if (item.uniqueCount !== undefined) return `${item.uniqueCount} pool`;
+      if (item.bans !== undefined) return `${item.bans} bans`;
       if (item.duration !== undefined) return `${item.duration}`;
       return '';
     }
@@ -1160,6 +1206,7 @@ export default function PickemsPage() {
                             item.avgDmg !== undefined ? `${item.avgDmg} DPM` :
                             item.elderDragons !== undefined ? `${item.elderDragons} Elder Dragons` :
                             item.uniqueCount !== undefined ? `${item.uniqueCount} pool size` :
+                            item.bans !== undefined ? `${item.bans} bans` :
                             item.duration !== undefined ? `${item.duration}` :
                             String(item);
 
@@ -1259,17 +1306,39 @@ export default function PickemsPage() {
                   <div className="editor-grid">
                     {CATEGORY_KEYS.map((key) => {
                       const info = CATEGORIES_INFO[key];
+                      const options = optionsForCategory(key);
+                      const currentPick = newPlayerPicks[key];
+                      const optionList = options
+                        ? (currentPick && !options.some((o) => cleanName(o) === cleanName(currentPick))
+                            ? [currentPick, ...options]
+                            : options)
+                        : null;
+
                       return (
                         <div key={key} className="form-group">
                           <label title={info.desc}>{info.label} ({info.pts} pts)</label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            value={newPlayerPicks[key]}
-                            onChange={(e) => setNewPlayerPicks({ ...newPlayerPicks, [key]: e.target.value })}
-                            placeholder={`Your pick (e.g. ${info.title})`}
-                            required
-                          />
+                          {optionList ? (
+                            <select
+                              className="form-control"
+                              value={currentPick}
+                              onChange={(e) => setNewPlayerPicks({ ...newPlayerPicks, [key]: e.target.value })}
+                              required
+                            >
+                              <option value="">Select a {info.type}…</option>
+                              {optionList.map((opt) => (
+                                <option key={opt} value={opt}>{opt}</option>
+                              ))}
+                            </select>
+                          ) : (
+                            <input
+                              type="text"
+                              className="form-control"
+                              value={currentPick}
+                              onChange={(e) => setNewPlayerPicks({ ...newPlayerPicks, [key]: e.target.value })}
+                              placeholder={`Your pick (e.g. ${info.title})`}
+                              required
+                            />
+                          )}
                         </div>
                       );
                     })}
