@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: scrape-msi
@@ -32,15 +32,22 @@ jobs:
       - name: Run scraper
         run: node scripts/scrape-msi.js
 
-      - name: Commit updated data if changed
+      - name: Upload to Cloudflare KV
+        env:
+          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CF_KV_NAMESPACE_ID: ${{ secrets.CF_KV_NAMESPACE_ID }}
         run: |
           set -euo pipefail
-          if git diff --quiet app/pickems/msi_data.json; then
-            echo "No changes — nothing to commit."
-            exit 0
+          curl -fsS -X PUT \
+            "https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/storage/kv/namespaces/${CF_KV_NAMESPACE_ID}/values/msi:aggregate" \
+            -H "Authorization: Bearer ${CF_API_TOKEN}" \
+            -H "Content-Type: application/json" \
+            --data-binary @app/pickems/msi_data.json \
+            -o /tmp/cf-response.json
+          echo "Cloudflare API response:"
+          cat /tmp/cf-response.json
+          if ! grep -q '"success":true' /tmp/cf-response.json; then
+            echo "::error::KV write failed"
+            exit 1
           fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add app/pickems/msi_data.json
-          git commit -m "chore(pickems): update msi_data.json from gol.gg"
-          git push

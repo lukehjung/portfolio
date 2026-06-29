@@ -1,0 +1,10 @@
+name = "msi-proxy"
+main = "src/worker.js"
+compatibility_date = "2024-09-23"
+
+# Read-only worker that serves msi_data.json from KV.
+# The scrape-msi GitHub Actions workflow writes to this KV namespace via REST API.
+
+[[kv_namespaces]]
+binding = "MSI_CACHE"
+id = "979f5414cc0a4305b00ee91f948cfac2"
