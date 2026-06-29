@@ -169,15 +169,6 @@ export default function PickemsPage() {
     return Array.from(set).sort((a, b) => a.localeCompare(b));
   }, [data.msiPlayers, data.games]);
 
-  const optionsForCategory = (key: string): string[] | null => {
-    const info = CATEGORIES_INFO[key];
-    if (!info) return null;
-    if (info.type === 'champion') return champions;
-    if (info.type === 'team') return teams;
-    if (info.type === 'player') return players;
-    if (info.type === 'boolean') return ['Yes', 'No'];
-    return null;
-  };
 
   const [newPlayerName, setNewPlayerName] = useState('');
   const [newPlayerAvatar, setNewPlayerAvatar] = useState('👤');
@@ -1332,42 +1323,53 @@ export default function PickemsPage() {
 
                   <h4 style={{ marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem', fontFamily: 'var(--font-heading)' }}>Picks Selections</h4>
 
+                  <datalist id="pickems-champions">
+                    {champions.map((opt) => (
+                      <option key={opt} value={opt} />
+                    ))}
+                  </datalist>
+                  <datalist id="pickems-teams">
+                    {teams.map((opt) => (
+                      <option key={opt} value={opt} />
+                    ))}
+                  </datalist>
+                  <datalist id="pickems-players">
+                    {players.map((opt) => (
+                      <option key={opt} value={opt} />
+                    ))}
+                  </datalist>
+                  <datalist id="pickems-boolean">
+                    <option value="Yes" />
+                    <option value="No" />
+                  </datalist>
+
                   <div className="editor-grid">
                     {CATEGORY_KEYS.map((key) => {
                       const info = CATEGORIES_INFO[key];
-                      const options = optionsForCategory(key);
                       const currentPick = newPlayerPicks[key];
-                      const optionList = options
-                        ? (currentPick && !options.some((o) => cleanName(o) === cleanName(currentPick))
-                            ? [currentPick, ...options]
-                            : options)
-                        : null;
+                      const listId =
+                        info.type === 'champion' ? 'pickems-champions' :
+                        info.type === 'team'     ? 'pickems-teams' :
+                        info.type === 'player'   ? 'pickems-players' :
+                        info.type === 'boolean'  ? 'pickems-boolean' :
+                        undefined;
 
                       return (
                         <div key={key} className="form-group">
                           <label title={info.desc}>{info.label} ({info.pts} pts)</label>
-                          {optionList ? (
-                            <select
-                              className="form-control"
-                              value={currentPick}
-                              onChange={(e) => setNewPlayerPicks({ ...newPlayerPicks, [key]: e.target.value })}
-                              required
-                            >
-                              <option value="">Select a {info.type}…</option>
-                              {optionList.map((opt) => (
-                                <option key={opt} value={opt}>{opt}</option>
-                              ))}
-                            </select>
-                          ) : (
-                            <input
-                              type="text"
-                              className="form-control"
-                              value={currentPick}
-                              onChange={(e) => setNewPlayerPicks({ ...newPlayerPicks, [key]: e.target.value })}
-                              placeholder={`Your pick (e.g. ${info.title})`}
-                              required
-                            />
-                          )}
+                          <input
+                            type="text"
+                            className="form-control"
+                            list={listId}
+                            value={currentPick}
+                            onChange={(e) => setNewPlayerPicks({ ...newPlayerPicks, [key]: e.target.value })}
+                            placeholder={
+                              listId
+                                ? `Search ${info.type}s… (e.g. ${info.title})`
+                                : `Your pick (e.g. ${info.title})`
+                            }
+                            required
+                          />
                         </div>
                       );
                     })}
