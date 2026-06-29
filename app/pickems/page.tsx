@@ -150,22 +150,24 @@ export default function PickemsPage() {
 
   const teams = useMemo(() => {
     const set = new Set<string>();
+    (data.msiTeams || []).forEach((t: string) => t && set.add(t));
     (data.games || []).forEach((g: any) => {
       if (g.blueTeam) set.add(g.blueTeam);
       if (g.redTeam) set.add(g.redTeam);
     });
     return Array.from(set).sort((a, b) => a.localeCompare(b));
-  }, [data.games]);
+  }, [data.msiTeams, data.games]);
 
   const players = useMemo(() => {
     const set = new Set<string>();
+    (data.msiPlayers || []).forEach((p: string) => p && set.add(p));
     (data.games || []).forEach((g: any) => {
       (g.players || []).forEach((p: any) => {
         if (p.name) set.add(p.name);
       });
     });
     return Array.from(set).sort((a, b) => a.localeCompare(b));
-  }, [data.games]);
+  }, [data.msiPlayers, data.games]);
 
   const optionsForCategory = (key: string): string[] | null => {
     const info = CATEGORIES_INFO[key];

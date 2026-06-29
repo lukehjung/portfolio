@@ -85,41 +85,49 @@ async function fetchLolesportsData() {
 
   const playerImages = {};
   const teamImages = {};
+  const teamRosters = {};
 
   const rawTeams = data?.data?.teams || [];
   rawTeams.forEach((t) => {
-    if (t.image && t.name) {
-      const teamName = t.name.toLowerCase();
-      const teamCode = t.code ? t.code.toLowerCase() : '';
+    if (!t.name) return;
+    const teamName = t.name.toLowerCase();
+    const teamCode = t.code ? t.code.toLowerCase() : '';
+    const roster = Array.isArray(t.players)
+      ? t.players.map((p) => p.summonerName).filter(Boolean)
+      : [];
+
+    teamRosters[teamName] = roster;
+    if (teamCode) teamRosters[teamCode] = roster;
+
+    if (t.image) {
       teamImages[teamName] = t.image;
-      if (teamCode) {
-        teamImages[teamCode] = t.image;
-      }
-      
-      // Match common abbreviations from gol.gg
+      if (teamCode) teamImages[teamCode] = t.image;
       if (t.code === 'TL') {
         teamImages['team liquid'] = t.image;
         teamImages['tlaw'] = t.image;
+        teamRosters['team liquid'] = roster;
+        teamRosters['tlaw'] = roster;
       }
       if (t.code === 'KC') {
         teamImages['karmine corp'] = t.image;
+        teamRosters['karmine corp'] = roster;
       }
       if (t.code === 'DCG') {
         teamImages['deep cross gaming'] = t.image;
+        teamRosters['deep cross gaming'] = roster;
       }
+    }
 
-      if (t.players && Array.isArray(t.players)) {
-        t.players.forEach((p) => {
-          if (p.image && p.summonerName) {
-            const playerIGN = p.summonerName.toLowerCase();
-            playerImages[playerIGN] = p.image;
-          }
-        });
-      }
+    if (t.players && Array.isArray(t.players)) {
+      t.players.forEach((p) => {
+        if (p.image && p.summonerName) {
+          playerImages[p.summonerName.toLowerCase()] = p.image;
+        }
+      });
     }
   });
 
-  return { playerImages, teamImages };
+  return { playerImages, teamImages, teamRosters };
 }
 
 async function parseMatchList() {
@@ -430,10 +438,39 @@ async function run() {
     }
 
     // Fetch player and team headshot/logo assets from Lolesports API
-    const { playerImages, teamImages } = await fetchLolesportsData();
+    const { playerImages, teamImages, teamRosters } = await fetchLolesportsData();
 
     const matches = await parseMatchList();
     console.log(`Found ${matches.length} matches in tournament matchlist.`);
+
+    // Build the list of teams + players participating in MSI from the full matchlist
+    // (not just completed games), so pickem dropdowns include teams that haven't played yet.
+    const participatingTeams = new Set();
+    matches.forEach((m) => {
+      if (m.team1) participatingTeams.add(m.team1);
+      if (m.team2) participatingTeams.add(m.team2);
+    });
+
+    const lookupRoster = (teamName) => {
+      if (!teamName) return [];
+      const lower = teamName.toLowerCase().trim();
+      if (teamRosters[lower]) return teamRosters[lower];
+      // Try suffix / prefix matches (gol.gg sometimes truncates or abbreviates names)
+      const hit = Object.keys(teamRosters).find(
+        (k) => k.includes(lower) || lower.includes(k)
+      );
+      return hit ? teamRosters[hit] : [];
+    };
+
+    const teamsList = Array.from(participatingTeams).sort((a, b) => a.localeCompare(b));
+    const playersSet = new Set();
+    teamsList.forEach((team) => {
+      lookupRoster(team).forEach((name) => {
+        if (name) playersSet.add(name);
+      });
+    });
+    const playersList = Array.from(playersSet).sort((a, b) => a.localeCompare(b));
+    console.log(`MSI roster: ${teamsList.length} teams, ${playersList.length} players.`);
 
     const completedMatches = matches.filter((m) => m.isCompleted);
     console.log(`Processing ${completedMatches.length} completed matches...`);
@@ -469,6 +506,8 @@ async function run() {
       patchVersion: latestVersion,
       playerImages,
       teamImages,
+      msiTeams: teamsList,
+      msiPlayers: playersList,
       gamesCount: games.length,
       games,
       stats
