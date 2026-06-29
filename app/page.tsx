@@ -46,6 +46,7 @@ export default function LandingPage() {
             <Link href="/resume" className="hover:text-[#5d4037] transition-colors">Resume</Link>
             <Link href="/esports" className="hover:text-[#5d4037] transition-colors">Esports</Link>
             <Link href="/tft" className="hover:text-[#5d4037] transition-colors">TFT</Link>
+            <Link href="/pickems" className="hover:text-[#5d4037] transition-colors">Pickems</Link>
           </nav>
         </header>
 
@@ -147,6 +148,21 @@ export default function LandingPage() {
                   Real-time Riot ID verification and rank progression tracking at the network edge.
                 </p>
                 <span className="text-xs font-bold uppercase tracking-widest text-[#5d4037] group-hover:italic transition-all">Track Rank &rarr;</span>
+              </div>
+            </Link>
+
+            {/* MSI 2026 Pick'ems */}
+            <Link href="/pickems" className="group block space-y-6">
+              <div className="aspect-video bg-[#e8e4db] rounded-sm p-8 flex items-center justify-center relative overflow-hidden group-hover:bg-[#dfdad0] transition-colors">
+                 <div className="text-[#5d4037]/20 text-7xl font-black italic select-none uppercase tracking-tighter">Pickems</div>
+                 <div className="absolute bottom-6 right-6 text-xs font-bold uppercase tracking-[0.3em] text-[#5d4037]">MSI 2026</div>
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-[#2d2d2d] mb-3">MSI Pick&apos;em Tracker</h3>
+                <p className="text-[#8d8d8d] font-light leading-relaxed mb-4">
+                  Live leaderboards and scoring for the 2026 Mid-Season Invitational, sourced from gol.gg.
+                </p>
+                <span className="text-xs font-bold uppercase tracking-widest text-[#5d4037] group-hover:italic transition-all">View Tracker &rarr;</span>
               </div>
             </Link>
 
