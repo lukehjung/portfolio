@@ -12,8 +12,31 @@ on:
   workflow_dispatch:
 
 jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      tft-proxy: ${{ steps.filter.outputs.tft-proxy }}
+      msi-proxy: ${{ steps.filter.outputs.msi-proxy }}
+      portfolio: ${{ steps.filter.outputs.portfolio }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          # On workflow_dispatch we treat everything as changed so manual deploys
+          # always trigger every downstream job.
+          filters: |
+            tft-proxy:
+              - 'tft-proxy/**'
+            msi-proxy:
+              - 'msi-proxy/**'
+            portfolio:
+              - 'app/**'
+              - 'wrangler.jsonc'
+
   deploy-tft-proxy:
-    if: contains(github.event.head_commit.modified, 'tft-proxy/') || github.event_name == 'workflow_dispatch'
+    needs: changes
+    if: needs.changes.outputs.tft-proxy == 'true' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     name: Deploy TFT Proxy
     steps:
@@ -27,7 +50,8 @@ jobs:
           command: deploy --config wrangler.toml
 
   deploy-msi-proxy:
-    if: contains(github.event.head_commit.modified, 'msi-proxy/') || github.event_name == 'workflow_dispatch'
+    needs: changes
+    if: needs.changes.outputs.msi-proxy == 'true' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     name: Deploy MSI Proxy
     steps:
@@ -40,7 +64,8 @@ jobs:
           command: deploy --config wrangler.toml
 
   deploy-portfolio:
-    if: contains(github.event.head_commit.modified, 'wrangler.jsonc') || contains(github.event.head_commit.modified, 'app/')
+    needs: changes
+    if: needs.changes.outputs.portfolio == 'true' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     name: Deploy Portfolio (OpenNext)
     steps:
