@@ -111,6 +111,15 @@ async function fetchLolesportsData() {
     teamImages[teamName] = t.image;
     if (teamCode) teamImages[teamCode] = t.image;
 
+    // Team Liquid: lolesports splits TL into Honda First / Alienware / Honda Challengers
+    // sub-brands rather than a single 'TL' team, so the historical t.code === 'TL'
+    // branch never fires. The 'Honda First' brand is the MSI roster — alias it to the
+    // gol.gg label.
+    if (t.name === 'Team Liquid Honda First') {
+      teamImages['team liquid'] = t.image;
+      teamImages['tl'] = t.image;
+      teamImages['tlaw'] = t.image;
+    }
     if (t.code === 'TL') {
       teamImages['team liquid'] = t.image;
       teamImages['tlaw'] = t.image;
