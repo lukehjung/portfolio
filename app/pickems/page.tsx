@@ -745,8 +745,18 @@ export default function PickemsPage() {
         }
         .pickems-page .match-date { font-size: 0.85rem; color: var(--text-muted); }
         .pickems-page .match-teams-score { display: flex; align-items: center; gap: 2rem; flex-grow: 1; justify-content: center; }
-        .pickems-page .match-team { display: flex; flex-direction: column; align-items: center; width: 180px; }
-        .pickems-page .match-team-name { font-family: var(--font-heading); font-size: 1.2rem; font-weight: 700; text-align: center; }
+        .pickems-page .match-team {
+          display: flex; flex-direction: row; align-items: center;
+          gap: 0.5rem; width: 220px;
+        }
+        .pickems-page .match-team-blue { justify-content: flex-end; }
+        .pickems-page .match-team-red { justify-content: flex-start; }
+        .pickems-page .match-team-logo { width: 28px; height: 28px; object-fit: contain; flex-shrink: 0; }
+        .pickems-page .match-team-name { font-family: var(--font-heading); font-size: 1.2rem; font-weight: 700; }
+        .pickems-page .match-stats { text-align: right; min-width: 150px; }
+        .pickems-page .match-stats p { font-size: 0.85rem; margin: 0; }
+        .pickems-page .match-stat-label { color: var(--text-muted); }
+        .pickems-page .match-stat-fb { color: var(--color-gold); font-weight: 600; }
         .pickems-page .match-team.winner .match-team-name { color: var(--color-blue); }
         .pickems-page .match-team.loser { opacity: 0.6; }
         .pickems-page .match-score-bubble {
@@ -798,6 +808,130 @@ export default function PickemsPage() {
         .pickems-page .chart-bar-blue { background: var(--gradient-blue); box-shadow: 0 0 12px rgba(0, 246, 255, 0.2); }
         .pickems-page .chart-bar-gold { background: var(--gradient-gold); box-shadow: 0 0 12px rgba(255, 200, 55, 0.25); }
         .pickems-page .chart-bar-participants { position: absolute; right: 0.75rem; top: 0; height: 100%; display: flex; align-items: center; gap: 0.35rem; font-size: 1.1rem; }
+
+        /* ------------------------------------------------------------------ */
+        /* Mobile overrides                                                    */
+        /* ------------------------------------------------------------------ */
+        @media (max-width: 640px) {
+          .pickems-page .app-container { padding: 1rem; }
+
+          .pickems-page header {
+            margin-bottom: 1.25rem;
+            gap: 1rem;
+            align-items: stretch;
+          }
+          .pickems-page .brand h1 { font-size: 1.6rem; line-height: 1.15; }
+          .pickems-page .brand p { font-size: 0.85rem; }
+
+          .pickems-page .tabs {
+            width: 100%;
+            justify-content: stretch;
+            padding: 0.25rem;
+          }
+          .pickems-page .tab-btn {
+            flex: 1;
+            min-width: 0;
+            justify-content: center;
+            padding: 0.65rem 0.5rem;
+            font-size: 0.85rem;
+            min-height: 44px;
+          }
+
+          .pickems-page .cards-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+          }
+          .pickems-page .pickem-card {
+            height: auto;
+            padding: 1.25rem;
+          }
+          .pickems-page .pickem-card:hover { transform: none; }
+          .pickems-page .card-media { height: 120px; }
+          .pickems-page .champion-avatar-glow { width: 64px; height: 64px; }
+          .pickems-page .leader-name-overlay { font-size: 1rem; padding: 2rem 0.75rem 0.4rem; }
+
+          .pickems-page .leaderboard-container { gap: 1rem; }
+          .pickems-page .standings-panel,
+          .pickems-page .comparison-panel { padding: 1rem; }
+          .pickems-page .comparison-panel { min-height: 0; }
+          .pickems-page .standings-panel h2,
+          .pickems-page .panel-title h2 { font-size: 1.2rem; }
+
+          .pickems-page .standing-item { padding: 0.75rem; gap: 0.5rem; }
+          .pickems-page .standing-rank { font-size: 1.05rem; width: 28px; }
+          .pickems-page .standing-avatar { font-size: 1.25rem; margin-right: 0.35rem; }
+          .pickems-page .standing-name { font-size: 0.95rem; }
+          .pickems-page .standing-score { font-size: 1.05rem; }
+          .pickems-page .standing-actions { display: flex; gap: 0.25rem; margin-left: 0.5rem; }
+          .pickems-page .standing-actions button {
+            min-width: 36px; min-height: 36px;
+            display: inline-flex; align-items: center; justify-content: center;
+          }
+
+          .pickems-page .comparison-grid {
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+          }
+
+          .pickems-page .editor-grid { grid-template-columns: 1fr; gap: 1rem; }
+          .pickems-page .modal-overlay { padding: 0; align-items: flex-end; }
+          .pickems-page .modal-content {
+            border-radius: 16px 16px 0 0;
+            max-height: 95vh;
+            max-width: 100%;
+          }
+          .pickems-page .modal-header { padding: 1rem; }
+          .pickems-page .modal-header h2 { font-size: 1.1rem; }
+          .pickems-page .modal-body { padding: 1rem; }
+          .pickems-page .modal-summary-box {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.35rem;
+            padding: 0.85rem 1rem;
+          }
+          .pickems-page .modal-summary-val { font-size: 1.1rem; word-break: break-word; }
+
+          .pickems-page .chart-container { padding: 1rem; gap: 1rem; }
+          .pickems-page .chart-row-header { flex-wrap: wrap; gap: 0.35rem; }
+          .pickems-page .chart-item-val { font-size: 0.78rem; }
+          .pickems-page .chart-bar-outer { height: 22px; }
+          .pickems-page .chart-bar-participants { font-size: 0.95rem; right: 0.5rem; gap: 0.25rem; }
+
+          .pickems-page .leaderboard-table th,
+          .pickems-page .leaderboard-table td { padding: 0.6rem 0.5rem; font-size: 0.85rem; }
+
+          .pickems-page .match-card {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.75rem;
+            padding: 1rem;
+          }
+          .pickems-page .match-card .match-meta { flex-direction: row; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+          .pickems-page .match-teams-score { gap: 0.5rem; }
+          .pickems-page .match-team { width: auto; flex: 1; min-width: 0; }
+          .pickems-page .match-team-name { font-size: 0.9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+          .pickems-page .match-score-bubble { padding: 0.4rem 0.85rem; font-size: 1.15rem; letter-spacing: 1px; }
+          .pickems-page .match-stats { text-align: left; min-width: 0; display: flex; gap: 0.75rem; flex-wrap: wrap; }
+          .pickems-page .match-stats p { font-size: 0.8rem; }
+
+          .pickems-page .footer-bar {
+            margin-top: 2.5rem;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 0.8rem;
+          }
+
+          /* Tap targets */
+          .pickems-page .btn,
+          .pickems-page .close-btn {
+            min-height: 44px;
+            padding-inline: 1rem;
+          }
+          .pickems-page .close-btn { min-width: 44px; }
+          .pickems-page .form-control { min-height: 44px; }
+        }
       `}</style>
 
       <div className="app-container">
@@ -916,12 +1050,12 @@ export default function PickemsPage() {
                       {player.score}
                       <span className="standing-pts">PTS</span>
                     </div>
-                    <div style={{ marginLeft: '0.75rem', display: 'flex', gap: '0.25rem' }}>
-                      <button onClick={() => startEdit(player)} style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer' }}>
-                        <Edit size={14} />
+                    <div className="standing-actions" style={{ marginLeft: '0.75rem', display: 'flex', gap: '0.25rem' }}>
+                      <button aria-label="Edit participant" onClick={() => startEdit(player)} style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', padding: '0.25rem' }}>
+                        <Edit size={16} />
                       </button>
-                      <button onClick={() => deleteParticipant(player.id)} style={{ background: 'transparent', border: 'none', color: 'var(--color-red)', cursor: 'pointer' }}>
-                        <Trash2 size={14} />
+                      <button aria-label="Delete participant" onClick={() => deleteParticipant(player.id)} style={{ background: 'transparent', border: 'none', color: 'var(--color-red)', cursor: 'pointer', padding: '0.25rem' }}>
+                        <Trash2 size={16} />
                       </button>
                     </div>
                   </div>
@@ -1004,25 +1138,25 @@ export default function PickemsPage() {
                     <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Duration: {game.duration}</span>
                   </div>
                   <div className="match-teams-score">
-                    <div className={`match-team ${game.winner === game.blueTeam ? 'winner' : 'loser'}`} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '0.5rem', justifyContent: 'flex-end', width: '220px' }}>
+                    <div className={`match-team match-team-blue ${game.winner === game.blueTeam ? 'winner' : 'loser'}`}>
                       {getTeamLogo(game.blueTeam) && (
-                        <img src={getTeamLogo(game.blueTeam)} alt="" style={{ width: '28px', height: '28px', objectFit: 'contain' }} />
+                        <img src={getTeamLogo(game.blueTeam)} alt="" className="match-team-logo" />
                       )}
                       <span className="match-team-name">{game.blueTeam}</span>
                     </div>
                     <div className="match-score-bubble">
                       {game.blueKills} - {game.redKills}
                     </div>
-                    <div className={`match-team ${game.winner === game.redTeam ? 'winner' : 'loser'}`} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '0.5rem', justifyContent: 'flex-start', width: '220px' }}>
+                    <div className={`match-team match-team-red ${game.winner === game.redTeam ? 'winner' : 'loser'}`}>
                       <span className="match-team-name">{game.redTeam}</span>
                       {getTeamLogo(game.redTeam) && (
-                        <img src={getTeamLogo(game.redTeam)} alt="" style={{ width: '28px', height: '28px', objectFit: 'contain' }} />
+                        <img src={getTeamLogo(game.redTeam)} alt="" className="match-team-logo" />
                       )}
                     </div>
                   </div>
-                  <div className="match-meta" style={{ textAlign: 'right', minWidth: '150px' }}>
-                    <p style={{ fontSize: '0.85rem' }}><span style={{ color: 'var(--text-muted)' }}>First Blood:</span> <span style={{ color: 'var(--color-gold)', fontWeight: 600 }}>{game.firstBloodKiller}</span></p>
-                    <p style={{ fontSize: '0.85rem' }}><span style={{ color: 'var(--text-muted)' }}>Elder Dragons:</span> 🐉 {game.blueElderDragons + game.redElderDragons}</p>
+                  <div className="match-stats">
+                    <p><span className="match-stat-label">First Blood:</span> <span className="match-stat-fb">{game.firstBloodKiller}</span></p>
+                    <p><span className="match-stat-label">Elder Dragons:</span> 🐉 {game.blueElderDragons + game.redElderDragons}</p>
                   </div>
                 </div>
               ))
