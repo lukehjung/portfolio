@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-29T06:39:30.725Z",
+  "lastUpdated": "2026-06-29T08:11:02.625Z",
   "patchVersion": "16.13.1",
   "playerImages": {
     "13": "http://static.lolesports.com/players/default-headshot.png",
@@ -7463,8 +7463,340 @@
     "evilvice esports": "https://lolstatic-a.akamaihd.net/esports-assets/production/team/evilvice-esports-ipc37xhu.png",
     "evv": "https://lolstatic-a.akamaihd.net/esports-assets/production/team/evilvice-esports-ipc37xhu.png"
   },
-  "gamesCount": 9,
+  "gamesCount": 11,
   "games": [
+    {
+      "gameId": "79539",
+      "stage": "PLAY-IN.DAY2",
+      "isPlayIn": true,
+      "date": "2026-06-29",
+      "duration": "33:35",
+      "durationSeconds": 2015,
+      "blueTeam": "Team Liquid",
+      "redTeam": "Deep Cross Gaming",
+      "winner": "Team Liquid",
+      "blueKills": 20,
+      "redKills": 10,
+      "blueBans": [
+        "Nautilus",
+        "Vi",
+        "Lee Sin",
+        "Camille",
+        "Pyke"
+      ],
+      "redBans": [
+        "Naafiri",
+        "Poppy",
+        "Nocturne",
+        "Ezreal",
+        "Caitlyn"
+      ],
+      "bluePicks": [
+        "Ornn",
+        "Xin Zhao",
+        "Akali",
+        "Varus",
+        "Bard"
+      ],
+      "redPicks": [
+        "Rumble",
+        "Jarvan IV",
+        "Cassiopeia",
+        "Jhin",
+        "Rakan"
+      ],
+      "players": [
+        {
+          "name": "Morgan",
+          "team": "Team Liquid",
+          "champion": "Ornn",
+          "role": "TOP",
+          "kills": 0,
+          "deaths": 2,
+          "assists": 12,
+          "cs": 249,
+          "damage": 13321,
+          "isBlue": true
+        },
+        {
+          "name": "Josedeodo",
+          "team": "Team Liquid",
+          "champion": "Xin Zhao",
+          "role": "JUNGLE",
+          "kills": 6,
+          "deaths": 3,
+          "assists": 8,
+          "cs": 261,
+          "damage": 26125,
+          "isBlue": true
+        },
+        {
+          "name": "Quid",
+          "team": "Team Liquid",
+          "champion": "Akali",
+          "role": "MID",
+          "kills": 8,
+          "deaths": 0,
+          "assists": 1,
+          "cs": 348,
+          "damage": 20690,
+          "isBlue": true
+        },
+        {
+          "name": "Yeon",
+          "team": "Team Liquid",
+          "champion": "Varus",
+          "role": "ADC",
+          "kills": 4,
+          "deaths": 3,
+          "assists": 9,
+          "cs": 321,
+          "damage": 32394,
+          "isBlue": true
+        },
+        {
+          "name": "CoreJJ",
+          "team": "Team Liquid",
+          "champion": "Bard",
+          "role": "SUPPORT",
+          "kills": 2,
+          "deaths": 2,
+          "assists": 15,
+          "cs": 47,
+          "damage": 6026,
+          "isBlue": true
+        },
+        {
+          "name": "Flauren",
+          "team": "Deep Cross Gaming",
+          "champion": "Rumble",
+          "role": "TOP",
+          "kills": 2,
+          "deaths": 5,
+          "assists": 1,
+          "cs": 285,
+          "damage": 22249,
+          "isBlue": false
+        },
+        {
+          "name": "Pop9",
+          "team": "Deep Cross Gaming",
+          "champion": "Jarvan IV",
+          "role": "JUNGLE",
+          "kills": 4,
+          "deaths": 6,
+          "assists": 6,
+          "cs": 215,
+          "damage": 13814,
+          "isBlue": false
+        },
+        {
+          "name": "HongSuo",
+          "team": "Deep Cross Gaming",
+          "champion": "Cassiopeia",
+          "role": "MID",
+          "kills": 2,
+          "deaths": 4,
+          "assists": 2,
+          "cs": 319,
+          "damage": 19885,
+          "isBlue": false
+        },
+        {
+          "name": "Feng",
+          "team": "Deep Cross Gaming",
+          "champion": "Jhin",
+          "role": "ADC",
+          "kills": 2,
+          "deaths": 3,
+          "assists": 4,
+          "cs": 310,
+          "damage": 16709,
+          "isBlue": false
+        },
+        {
+          "name": "ShiauC",
+          "team": "Deep Cross Gaming",
+          "champion": "Rakan",
+          "role": "SUPPORT",
+          "kills": 0,
+          "deaths": 2,
+          "assists": 7,
+          "cs": 42,
+          "damage": 3358,
+          "isBlue": false
+        }
+      ],
+      "firstBloodKiller": "HongSuo",
+      "blueElderDragons": 0,
+      "redElderDragons": 0
+    },
+    {
+      "gameId": "79540",
+      "stage": "PLAY-IN.DAY2",
+      "isPlayIn": true,
+      "date": "2026-06-29",
+      "duration": "32:33",
+      "durationSeconds": 1953,
+      "blueTeam": "Team Liquid",
+      "redTeam": "Deep Cross Gaming",
+      "winner": "Team Liquid",
+      "blueKills": 25,
+      "redKills": 17,
+      "blueBans": [
+        "Jayce",
+        "Vi",
+        "Nocturne",
+        "Syndra",
+        "Ahri"
+      ],
+      "redBans": [
+        "Naafiri",
+        "Lee Sin",
+        "Orianna",
+        "Vayne",
+        "Yasuo"
+      ],
+      "bluePicks": [
+        "Twisted Fate",
+        "Pantheon",
+        "Ryze",
+        "Ziggs",
+        "Rell"
+      ],
+      "redPicks": [
+        "Gnar",
+        "Olaf",
+        "Taliyah",
+        "Senna",
+        "Nautilus"
+      ],
+      "players": [
+        {
+          "name": "Morgan",
+          "team": "Team Liquid",
+          "champion": "Twisted Fate",
+          "role": "TOP",
+          "kills": 7,
+          "deaths": 4,
+          "assists": 12,
+          "cs": 275,
+          "damage": 24047,
+          "isBlue": true
+        },
+        {
+          "name": "Josedeodo",
+          "team": "Team Liquid",
+          "champion": "Pantheon",
+          "role": "JUNGLE",
+          "kills": 6,
+          "deaths": 7,
+          "assists": 8,
+          "cs": 211,
+          "damage": 22620,
+          "isBlue": true
+        },
+        {
+          "name": "Quid",
+          "team": "Team Liquid",
+          "champion": "Ryze",
+          "role": "MID",
+          "kills": 8,
+          "deaths": 2,
+          "assists": 10,
+          "cs": 310,
+          "damage": 22412,
+          "isBlue": true
+        },
+        {
+          "name": "Yeon",
+          "team": "Team Liquid",
+          "champion": "Ziggs",
+          "role": "ADC",
+          "kills": 2,
+          "deaths": 1,
+          "assists": 16,
+          "cs": 293,
+          "damage": 37499,
+          "isBlue": true
+        },
+        {
+          "name": "CoreJJ",
+          "team": "Team Liquid",
+          "champion": "Rell",
+          "role": "SUPPORT",
+          "kills": 2,
+          "deaths": 3,
+          "assists": 18,
+          "cs": 35,
+          "damage": 6799,
+          "isBlue": true
+        },
+        {
+          "name": "Flauren",
+          "team": "Deep Cross Gaming",
+          "champion": "Gnar",
+          "role": "TOP",
+          "kills": 1,
+          "deaths": 4,
+          "assists": 7,
+          "cs": 291,
+          "damage": 13708,
+          "isBlue": false
+        },
+        {
+          "name": "Pop9",
+          "team": "Deep Cross Gaming",
+          "champion": "Olaf",
+          "role": "JUNGLE",
+          "kills": 6,
+          "deaths": 5,
+          "assists": 9,
+          "cs": 242,
+          "damage": 20217,
+          "isBlue": false
+        },
+        {
+          "name": "HongSuo",
+          "team": "Deep Cross Gaming",
+          "champion": "Taliyah",
+          "role": "MID",
+          "kills": 4,
+          "deaths": 6,
+          "assists": 6,
+          "cs": 344,
+          "damage": 22683,
+          "isBlue": false
+        },
+        {
+          "name": "Feng",
+          "team": "Deep Cross Gaming",
+          "champion": "Senna",
+          "role": "ADC",
+          "kills": 5,
+          "deaths": 3,
+          "assists": 9,
+          "cs": 244,
+          "damage": 20905,
+          "isBlue": false
+        },
+        {
+          "name": "ShiauC",
+          "team": "Deep Cross Gaming",
+          "champion": "Nautilus",
+          "role": "SUPPORT",
+          "kills": 1,
+          "deaths": 7,
+          "assists": 10,
+          "cs": 38,
+          "damage": 6241,
+          "isBlue": false
+        }
+      ],
+      "firstBloodKiller": "Josedeodo",
+      "blueElderDragons": 0,
+      "redElderDragons": 0
+    },
     {
       "gameId": "79534",
       "stage": "PLAY-IN.DAY2",
@@ -8963,15 +9295,59 @@
   "stats": {
     "category1": {
       "title": "Champion Picked Most (Play-ins)",
-      "leader": "Orianna",
-      "value": "3 picks",
+      "leader": "Bard",
+      "value": "4 picks",
       "leaderboard": [
         {
-          "champion": "Orianna",
+          "champion": "Bard",
+          "count": 4
+        },
+        {
+          "champion": "Ryze",
+          "count": 4
+        },
+        {
+          "champion": "Gnar",
+          "count": 4
+        },
+        {
+          "champion": "Xin Zhao",
           "count": 3
         },
         {
-          "champion": "Bard",
+          "champion": "Akali",
+          "count": 3
+        },
+        {
+          "champion": "Varus",
+          "count": 3
+        },
+        {
+          "champion": "Rumble",
+          "count": 3
+        },
+        {
+          "champion": "Jarvan IV",
+          "count": 3
+        },
+        {
+          "champion": "Cassiopeia",
+          "count": 3
+        },
+        {
+          "champion": "Taliyah",
+          "count": 3
+        },
+        {
+          "champion": "Senna",
+          "count": 3
+        },
+        {
+          "champion": "Nautilus",
+          "count": 3
+        },
+        {
+          "champion": "Orianna",
           "count": 3
         },
         {
@@ -8991,12 +9367,12 @@
           "count": 3
         },
         {
-          "champion": "Gnar",
-          "count": 3
+          "champion": "Jhin",
+          "count": 2
         },
         {
-          "champion": "Ryze",
-          "count": 3
+          "champion": "Rell",
+          "count": 2
         },
         {
           "champion": "Nocturne",
@@ -9011,19 +9387,11 @@
           "count": 2
         },
         {
-          "champion": "Akali",
-          "count": 2
-        },
-        {
           "champion": "Sion",
           "count": 2
         },
         {
           "champion": "Naafiri",
-          "count": 2
-        },
-        {
-          "champion": "Cassiopeia",
           "count": 2
         },
         {
@@ -9035,23 +9403,11 @@
           "count": 2
         },
         {
-          "champion": "Varus",
-          "count": 2
-        },
-        {
-          "champion": "Xin Zhao",
-          "count": 2
-        },
-        {
           "champion": "Annie",
           "count": 2
         },
         {
           "champion": "Neeko",
-          "count": 2
-        },
-        {
-          "champion": "Jarvan IV",
           "count": 2
         },
         {
@@ -9067,10 +9423,6 @@
           "count": 2
         },
         {
-          "champion": "Rumble",
-          "count": 2
-        },
-        {
           "champion": "Vi",
           "count": 2
         },
@@ -9079,16 +9431,28 @@
           "count": 2
         },
         {
-          "champion": "Nautilus",
-          "count": 2
+          "champion": "Ornn",
+          "count": 1
         },
         {
-          "champion": "Senna",
-          "count": 2
+          "champion": "Rakan",
+          "count": 1
         },
         {
-          "champion": "Taliyah",
-          "count": 2
+          "champion": "Twisted Fate",
+          "count": 1
+        },
+        {
+          "champion": "Pantheon",
+          "count": 1
+        },
+        {
+          "champion": "Ziggs",
+          "count": 1
+        },
+        {
+          "champion": "Olaf",
+          "count": 1
         },
         {
           "champion": "Jayce",
@@ -9123,10 +9487,6 @@
           "count": 1
         },
         {
-          "champion": "Rell",
-          "count": 1
-        },
-        {
           "champion": "LeBlanc",
           "count": 1
         },
@@ -9140,10 +9500,6 @@
         },
         {
           "champion": "Yunara",
-          "count": 1
-        },
-        {
-          "champion": "Jhin",
           "count": 1
         },
         {
@@ -9174,15 +9530,815 @@
     },
     "category2": {
       "title": "Highest Winrate Champion (Min 5 games)",
-      "leader": "N/A",
-      "value": "0%",
-      "leaderboard": []
+      "leader": "Rell",
+      "value": "100.0% (2/2)",
+      "leaderboard": [
+        {
+          "champion": "Rell",
+          "winrate": 1,
+          "picks": 2,
+          "wins": 2,
+          "qualified": false
+        },
+        {
+          "champion": "Mel",
+          "winrate": 1,
+          "picks": 2,
+          "wins": 2,
+          "qualified": false
+        },
+        {
+          "champion": "Vi",
+          "winrate": 1,
+          "picks": 2,
+          "wins": 2,
+          "qualified": false
+        },
+        {
+          "champion": "Zeri",
+          "winrate": 1,
+          "picks": 2,
+          "wins": 2,
+          "qualified": false
+        },
+        {
+          "champion": "Ornn",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Twisted Fate",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Pantheon",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Ziggs",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Jayce",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Syndra",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Gragas",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Yorick",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Lucian",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Milio",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Lulu",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Yunara",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Kalista",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Renata Glasc",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Yuumi",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Bard",
+          "winrate": 0.75,
+          "picks": 4,
+          "wins": 3,
+          "qualified": false
+        },
+        {
+          "champion": "Ryze",
+          "winrate": 0.75,
+          "picks": 4,
+          "wins": 3,
+          "qualified": false
+        },
+        {
+          "champion": "Xin Zhao",
+          "winrate": 0.6666666666666666,
+          "picks": 3,
+          "wins": 2,
+          "qualified": false
+        },
+        {
+          "champion": "Akali",
+          "winrate": 0.6666666666666666,
+          "picks": 3,
+          "wins": 2,
+          "qualified": false
+        },
+        {
+          "champion": "Orianna",
+          "winrate": 0.6666666666666666,
+          "picks": 3,
+          "wins": 2,
+          "qualified": false
+        },
+        {
+          "champion": "Wukong",
+          "winrate": 0.6666666666666666,
+          "picks": 3,
+          "wins": 2,
+          "qualified": false
+        },
+        {
+          "champion": "Caitlyn",
+          "winrate": 0.6666666666666666,
+          "picks": 3,
+          "wins": 2,
+          "qualified": false
+        },
+        {
+          "champion": "Renekton",
+          "winrate": 0.6666666666666666,
+          "picks": 3,
+          "wins": 2,
+          "qualified": false
+        },
+        {
+          "champion": "Gnar",
+          "winrate": 0.5,
+          "picks": 4,
+          "wins": 2,
+          "qualified": false
+        },
+        {
+          "champion": "Nocturne",
+          "winrate": 0.5,
+          "picks": 2,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Pyke",
+          "winrate": 0.5,
+          "picks": 2,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Naafiri",
+          "winrate": 0.5,
+          "picks": 2,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Annie",
+          "winrate": 0.5,
+          "picks": 2,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Lee Sin",
+          "winrate": 0.5,
+          "picks": 2,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Ambessa",
+          "winrate": 0.5,
+          "picks": 2,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Varus",
+          "winrate": 0.3333333333333333,
+          "picks": 3,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Rumble",
+          "winrate": 0.3333333333333333,
+          "picks": 3,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Jarvan IV",
+          "winrate": 0.3333333333333333,
+          "picks": 3,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Cassiopeia",
+          "winrate": 0.3333333333333333,
+          "picks": 3,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Taliyah",
+          "winrate": 0.3333333333333333,
+          "picks": 3,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Camille",
+          "winrate": 0.3333333333333333,
+          "picks": 3,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Senna",
+          "winrate": 0,
+          "picks": 3,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Nautilus",
+          "winrate": 0,
+          "picks": 3,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Jhin",
+          "winrate": 0,
+          "picks": 2,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Sion",
+          "winrate": 0,
+          "picks": 2,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Ezreal",
+          "winrate": 0,
+          "picks": 2,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Qiyana",
+          "winrate": 0,
+          "picks": 2,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Neeko",
+          "winrate": 0,
+          "picks": 2,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Galio",
+          "winrate": 0,
+          "picks": 2,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Rakan",
+          "winrate": 0,
+          "picks": 1,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Olaf",
+          "winrate": 0,
+          "picks": 1,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Ashe",
+          "winrate": 0,
+          "picks": 1,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Seraphine",
+          "winrate": 0,
+          "picks": 1,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "LeBlanc",
+          "winrate": 0,
+          "picks": 1,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Jax",
+          "winrate": 0,
+          "picks": 1,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Yasuo",
+          "winrate": 0,
+          "picks": 1,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Poppy",
+          "winrate": 0,
+          "picks": 1,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Zaahen",
+          "winrate": 0,
+          "picks": 1,
+          "wins": 0,
+          "qualified": false
+        }
+      ]
     },
     "category3": {
       "title": "Lowest Winrate Champion (Min 5 games)",
-      "leader": "N/A",
-      "value": "0%",
-      "leaderboard": []
+      "leader": "Senna",
+      "value": "0.0% (0/3)",
+      "leaderboard": [
+        {
+          "champion": "Senna",
+          "winrate": 0,
+          "picks": 3,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Nautilus",
+          "winrate": 0,
+          "picks": 3,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Jhin",
+          "winrate": 0,
+          "picks": 2,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Sion",
+          "winrate": 0,
+          "picks": 2,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Ezreal",
+          "winrate": 0,
+          "picks": 2,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Qiyana",
+          "winrate": 0,
+          "picks": 2,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Neeko",
+          "winrate": 0,
+          "picks": 2,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Galio",
+          "winrate": 0,
+          "picks": 2,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Rakan",
+          "winrate": 0,
+          "picks": 1,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Olaf",
+          "winrate": 0,
+          "picks": 1,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Ashe",
+          "winrate": 0,
+          "picks": 1,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Seraphine",
+          "winrate": 0,
+          "picks": 1,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "LeBlanc",
+          "winrate": 0,
+          "picks": 1,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Jax",
+          "winrate": 0,
+          "picks": 1,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Yasuo",
+          "winrate": 0,
+          "picks": 1,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Poppy",
+          "winrate": 0,
+          "picks": 1,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Zaahen",
+          "winrate": 0,
+          "picks": 1,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Varus",
+          "winrate": 0.3333333333333333,
+          "picks": 3,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Rumble",
+          "winrate": 0.3333333333333333,
+          "picks": 3,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Jarvan IV",
+          "winrate": 0.3333333333333333,
+          "picks": 3,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Cassiopeia",
+          "winrate": 0.3333333333333333,
+          "picks": 3,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Taliyah",
+          "winrate": 0.3333333333333333,
+          "picks": 3,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Camille",
+          "winrate": 0.3333333333333333,
+          "picks": 3,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Gnar",
+          "winrate": 0.5,
+          "picks": 4,
+          "wins": 2,
+          "qualified": false
+        },
+        {
+          "champion": "Nocturne",
+          "winrate": 0.5,
+          "picks": 2,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Pyke",
+          "winrate": 0.5,
+          "picks": 2,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Naafiri",
+          "winrate": 0.5,
+          "picks": 2,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Annie",
+          "winrate": 0.5,
+          "picks": 2,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Lee Sin",
+          "winrate": 0.5,
+          "picks": 2,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Ambessa",
+          "winrate": 0.5,
+          "picks": 2,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Xin Zhao",
+          "winrate": 0.6666666666666666,
+          "picks": 3,
+          "wins": 2,
+          "qualified": false
+        },
+        {
+          "champion": "Akali",
+          "winrate": 0.6666666666666666,
+          "picks": 3,
+          "wins": 2,
+          "qualified": false
+        },
+        {
+          "champion": "Orianna",
+          "winrate": 0.6666666666666666,
+          "picks": 3,
+          "wins": 2,
+          "qualified": false
+        },
+        {
+          "champion": "Wukong",
+          "winrate": 0.6666666666666666,
+          "picks": 3,
+          "wins": 2,
+          "qualified": false
+        },
+        {
+          "champion": "Caitlyn",
+          "winrate": 0.6666666666666666,
+          "picks": 3,
+          "wins": 2,
+          "qualified": false
+        },
+        {
+          "champion": "Renekton",
+          "winrate": 0.6666666666666666,
+          "picks": 3,
+          "wins": 2,
+          "qualified": false
+        },
+        {
+          "champion": "Bard",
+          "winrate": 0.75,
+          "picks": 4,
+          "wins": 3,
+          "qualified": false
+        },
+        {
+          "champion": "Ryze",
+          "winrate": 0.75,
+          "picks": 4,
+          "wins": 3,
+          "qualified": false
+        },
+        {
+          "champion": "Rell",
+          "winrate": 1,
+          "picks": 2,
+          "wins": 2,
+          "qualified": false
+        },
+        {
+          "champion": "Mel",
+          "winrate": 1,
+          "picks": 2,
+          "wins": 2,
+          "qualified": false
+        },
+        {
+          "champion": "Vi",
+          "winrate": 1,
+          "picks": 2,
+          "wins": 2,
+          "qualified": false
+        },
+        {
+          "champion": "Zeri",
+          "winrate": 1,
+          "picks": 2,
+          "wins": 2,
+          "qualified": false
+        },
+        {
+          "champion": "Ornn",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Twisted Fate",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Pantheon",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Ziggs",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Jayce",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Syndra",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Gragas",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Yorick",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Lucian",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Milio",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Lulu",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Yunara",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Kalista",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Renata Glasc",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Yuumi",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        }
+      ]
     },
     "category4": {
       "title": "Champion with Most Kills",
@@ -9198,35 +10354,47 @@
           "kills": 21
         },
         {
+          "champion": "Ryze",
+          "kills": 19
+        },
+        {
+          "champion": "Taliyah",
+          "kills": 19
+        },
+        {
           "champion": "Caitlyn",
           "kills": 19
+        },
+        {
+          "champion": "Gnar",
+          "kills": 17
         },
         {
           "champion": "Mel",
           "kills": 16
         },
         {
-          "champion": "Gnar",
-          "kills": 16
+          "champion": "Akali",
+          "kills": 15
         },
         {
           "champion": "Orianna",
           "kills": 15
         },
         {
-          "champion": "Taliyah",
-          "kills": 15
+          "champion": "Cassiopeia",
+          "kills": 14
+        },
+        {
+          "champion": "Xin Zhao",
+          "kills": 13
         },
         {
           "champion": "Naafiri",
           "kills": 12
         },
         {
-          "champion": "Cassiopeia",
-          "kills": 12
-        },
-        {
-          "champion": "Ryze",
+          "champion": "Senna",
           "kills": 11
         },
         {
@@ -9238,6 +10406,10 @@
           "kills": 10
         },
         {
+          "champion": "Rumble",
+          "kills": 9
+        },
+        {
           "champion": "Renekton",
           "kills": 9
         },
@@ -9246,11 +10418,19 @@
           "kills": 9
         },
         {
+          "champion": "Varus",
+          "kills": 8
+        },
+        {
+          "champion": "Jarvan IV",
+          "kills": 8
+        },
+        {
           "champion": "Nocturne",
           "kills": 8
         },
         {
-          "champion": "Akali",
+          "champion": "Twisted Fate",
           "kills": 7
         },
         {
@@ -9262,15 +10442,7 @@
           "kills": 7
         },
         {
-          "champion": "Xin Zhao",
-          "kills": 7
-        },
-        {
           "champion": "Lee Sin",
-          "kills": 7
-        },
-        {
-          "champion": "Rumble",
           "kills": 7
         },
         {
@@ -9278,12 +10450,20 @@
           "kills": 7
         },
         {
+          "champion": "Pantheon",
+          "kills": 6
+        },
+        {
+          "champion": "Olaf",
+          "kills": 6
+        },
+        {
           "champion": "Qiyana",
           "kills": 6
         },
         {
-          "champion": "Senna",
-          "kills": 6
+          "champion": "Jhin",
+          "kills": 5
         },
         {
           "champion": "Jayce",
@@ -9294,15 +10474,15 @@
           "kills": 5
         },
         {
+          "champion": "Bard",
+          "kills": 4
+        },
+        {
+          "champion": "Rell",
+          "kills": 4
+        },
+        {
           "champion": "Gragas",
-          "kills": 4
-        },
-        {
-          "champion": "Varus",
-          "kills": 4
-        },
-        {
-          "champion": "Jarvan IV",
           "kills": 4
         },
         {
@@ -9312,6 +10492,10 @@
         {
           "champion": "Zaahen",
           "kills": 4
+        },
+        {
+          "champion": "Nautilus",
+          "kills": 3
         },
         {
           "champion": "Sion",
@@ -9330,10 +10514,6 @@
           "kills": 3
         },
         {
-          "champion": "Jhin",
-          "kills": 3
-        },
-        {
           "champion": "Yasuo",
           "kills": 3
         },
@@ -9342,19 +10522,11 @@
           "kills": 3
         },
         {
-          "champion": "Bard",
+          "champion": "Ziggs",
           "kills": 2
         },
         {
           "champion": "Annie",
-          "kills": 2
-        },
-        {
-          "champion": "Rell",
-          "kills": 2
-        },
-        {
-          "champion": "Nautilus",
           "kills": 2
         },
         {
@@ -9376,6 +10548,14 @@
         {
           "champion": "Lulu",
           "kills": 1
+        },
+        {
+          "champion": "Ornn",
+          "kills": 0
+        },
+        {
+          "champion": "Rakan",
+          "kills": 0
         },
         {
           "champion": "Yorick",
@@ -9428,6 +10608,15 @@
           "kdaFormatted": "5.00"
         },
         {
+          "player": "CoreJJ",
+          "kills": 7,
+          "deaths": 15,
+          "assists": 63,
+          "games": 5,
+          "kda": 4.666666666666667,
+          "kdaFormatted": "4.67"
+        },
+        {
           "player": "Canna",
           "kills": 27,
           "deaths": 16,
@@ -9444,6 +10633,15 @@
           "games": 6,
           "kda": 4.1875,
           "kdaFormatted": "4.19"
+        },
+        {
+          "player": "Quid",
+          "kills": 33,
+          "deaths": 15,
+          "assists": 27,
+          "games": 5,
+          "kda": 4,
+          "kdaFormatted": "4.00"
         },
         {
           "player": "Keria",
@@ -9464,13 +10662,13 @@
           "kdaFormatted": "3.71"
         },
         {
-          "player": "Josedeodo",
-          "kills": 6,
-          "deaths": 9,
-          "assists": 27,
-          "games": 3,
-          "kda": 3.6666666666666665,
-          "kdaFormatted": "3.67"
+          "player": "Morgan",
+          "kills": 16,
+          "deaths": 14,
+          "assists": 35,
+          "games": 5,
+          "kda": 3.642857142857143,
+          "kdaFormatted": "3.64"
         },
         {
           "player": "Caliste",
@@ -9482,13 +10680,22 @@
           "kdaFormatted": "3.64"
         },
         {
-          "player": "CoreJJ",
-          "kills": 3,
-          "deaths": 10,
-          "assists": 30,
-          "games": 3,
-          "kda": 3.3,
-          "kdaFormatted": "3.30"
+          "player": "Josedeodo",
+          "kills": 18,
+          "deaths": 19,
+          "assists": 43,
+          "games": 5,
+          "kda": 3.210526315789474,
+          "kdaFormatted": "3.21"
+        },
+        {
+          "player": "Yeon",
+          "kills": 17,
+          "deaths": 19,
+          "assists": 43,
+          "games": 5,
+          "kda": 3.1578947368421053,
+          "kdaFormatted": "3.16"
         },
         {
           "player": "Busio",
@@ -9509,76 +10716,49 @@
           "kdaFormatted": "2.68"
         },
         {
-          "player": "Quid",
-          "kills": 17,
-          "deaths": 13,
-          "assists": 16,
-          "games": 3,
-          "kda": 2.5384615384615383,
-          "kdaFormatted": "2.54"
-        },
-        {
-          "player": "Morgan",
-          "kills": 9,
-          "deaths": 8,
-          "assists": 11,
-          "games": 3,
-          "kda": 2.5,
-          "kdaFormatted": "2.50"
-        },
-        {
-          "player": "Yeon",
-          "kills": 11,
-          "deaths": 15,
-          "assists": 18,
-          "games": 3,
-          "kda": 1.9333333333333333,
-          "kdaFormatted": "1.93"
-        },
-        {
           "player": "Feng",
-          "kills": 6,
-          "deaths": 13,
-          "assists": 15,
-          "games": 3,
-          "kda": 1.6153846153846154,
-          "kdaFormatted": "1.62"
+          "kills": 13,
+          "deaths": 19,
+          "assists": 28,
+          "games": 5,
+          "kda": 2.1578947368421053,
+          "kdaFormatted": "2.16"
         },
         {
           "player": "ShiauC",
-          "kills": 5,
-          "deaths": 17,
-          "assists": 16,
-          "games": 3,
-          "kda": 1.2352941176470589,
-          "kdaFormatted": "1.24"
-        },
-        {
-          "player": "HongSuo",
-          "kills": 9,
-          "deaths": 16,
-          "assists": 9,
-          "games": 3,
-          "kda": 1.125,
-          "kdaFormatted": "1.13"
-        },
-        {
-          "player": "Flauren",
-          "kills": 3,
-          "deaths": 16,
-          "assists": 13,
-          "games": 3,
-          "kda": 1,
-          "kdaFormatted": "1.00"
+          "kills": 6,
+          "deaths": 26,
+          "assists": 33,
+          "games": 5,
+          "kda": 1.5,
+          "kdaFormatted": "1.50"
         },
         {
           "player": "Pop9",
+          "kills": 16,
+          "deaths": 28,
+          "assists": 25,
+          "games": 5,
+          "kda": 1.4642857142857142,
+          "kdaFormatted": "1.46"
+        },
+        {
+          "player": "HongSuo",
+          "kills": 15,
+          "deaths": 26,
+          "assists": 17,
+          "games": 5,
+          "kda": 1.2307692307692308,
+          "kdaFormatted": "1.23"
+        },
+        {
+          "player": "Flauren",
           "kills": 6,
-          "deaths": 17,
-          "assists": 10,
-          "games": 3,
-          "kda": 0.9411764705882353,
-          "kdaFormatted": "0.94"
+          "deaths": 25,
+          "assists": 21,
+          "games": 5,
+          "kda": 1.08,
+          "kdaFormatted": "1.08"
         }
       ]
     },
@@ -9630,6 +10810,22 @@
         {
           "player": "Quid",
           "team": "Team Liquid",
+          "champion": "Akali",
+          "cs": 348,
+          "gameId": "79539",
+          "match": "Team Liquid vs Deep Cross Gaming"
+        },
+        {
+          "player": "HongSuo",
+          "team": "Deep Cross Gaming",
+          "champion": "Taliyah",
+          "cs": 344,
+          "gameId": "79540",
+          "match": "Team Liquid vs Deep Cross Gaming"
+        },
+        {
+          "player": "Quid",
+          "team": "Team Liquid",
           "champion": "Taliyah",
           "cs": 334,
           "gameId": "79527",
@@ -9642,6 +10838,22 @@
           "cs": 325,
           "gameId": "79533",
           "match": "Karmine Corp vs Deep Cross Gaming"
+        },
+        {
+          "player": "Yeon",
+          "team": "Team Liquid",
+          "champion": "Varus",
+          "cs": 321,
+          "gameId": "79539",
+          "match": "Team Liquid vs Deep Cross Gaming"
+        },
+        {
+          "player": "HongSuo",
+          "team": "Deep Cross Gaming",
+          "champion": "Cassiopeia",
+          "cs": 319,
+          "gameId": "79539",
+          "match": "Team Liquid vs Deep Cross Gaming"
         },
         {
           "player": "Feng",
@@ -9682,6 +10894,22 @@
           "cs": 311,
           "gameId": "79531",
           "match": "Deep Cross Gaming vs Karmine Corp"
+        },
+        {
+          "player": "Feng",
+          "team": "Deep Cross Gaming",
+          "champion": "Jhin",
+          "cs": 310,
+          "gameId": "79539",
+          "match": "Team Liquid vs Deep Cross Gaming"
+        },
+        {
+          "player": "Quid",
+          "team": "Team Liquid",
+          "champion": "Ryze",
+          "cs": 310,
+          "gameId": "79540",
+          "match": "Team Liquid vs Deep Cross Gaming"
         },
         {
           "player": "Peyz",
@@ -9756,12 +10984,28 @@
           "match": "T1 vs Karmine Corp"
         },
         {
+          "player": "Yeon",
+          "team": "Team Liquid",
+          "champion": "Ziggs",
+          "cs": 293,
+          "gameId": "79540",
+          "match": "Team Liquid vs Deep Cross Gaming"
+        },
+        {
           "player": "Kyeahoo",
           "team": "Karmine Corp",
           "champion": "Cassiopeia",
           "cs": 292,
           "gameId": "79535",
           "match": "T1 vs Karmine Corp"
+        },
+        {
+          "player": "Flauren",
+          "team": "Deep Cross Gaming",
+          "champion": "Gnar",
+          "cs": 291,
+          "gameId": "79540",
+          "match": "Team Liquid vs Deep Cross Gaming"
         },
         {
           "player": "Yike",
@@ -9778,6 +11022,14 @@
           "cs": 286,
           "gameId": "79527",
           "match": "T1 vs Team Liquid"
+        },
+        {
+          "player": "Flauren",
+          "team": "Deep Cross Gaming",
+          "champion": "Rumble",
+          "cs": 285,
+          "gameId": "79539",
+          "match": "Team Liquid vs Deep Cross Gaming"
         },
         {
           "player": "Feng",
@@ -9820,6 +11072,14 @@
           "match": "T1 vs Team Liquid"
         },
         {
+          "player": "Morgan",
+          "team": "Team Liquid",
+          "champion": "Twisted Fate",
+          "cs": 275,
+          "gameId": "79540",
+          "match": "Team Liquid vs Deep Cross Gaming"
+        },
+        {
           "player": "Caliste",
           "team": "Karmine Corp",
           "champion": "Varus",
@@ -9858,6 +11118,14 @@
           "cs": 263,
           "gameId": "79526",
           "match": "T1 vs Team Liquid"
+        },
+        {
+          "player": "Josedeodo",
+          "team": "Team Liquid",
+          "champion": "Xin Zhao",
+          "cs": 261,
+          "gameId": "79539",
+          "match": "Team Liquid vs Deep Cross Gaming"
         },
         {
           "player": "Doran",
@@ -9932,6 +11200,14 @@
           "match": "Karmine Corp vs Deep Cross Gaming"
         },
         {
+          "player": "Morgan",
+          "team": "Team Liquid",
+          "champion": "Ornn",
+          "cs": 249,
+          "gameId": "79539",
+          "match": "Team Liquid vs Deep Cross Gaming"
+        },
+        {
           "player": "Yike",
           "team": "Karmine Corp",
           "champion": "Naafiri",
@@ -9946,6 +11222,14 @@
           "cs": 245,
           "gameId": "79527",
           "match": "T1 vs Team Liquid"
+        },
+        {
+          "player": "Feng",
+          "team": "Deep Cross Gaming",
+          "champion": "Senna",
+          "cs": 244,
+          "gameId": "79540",
+          "match": "Team Liquid vs Deep Cross Gaming"
         },
         {
           "player": "Oner",
@@ -9970,6 +11254,14 @@
           "cs": 243,
           "gameId": "79528",
           "match": "T1 vs Team Liquid"
+        },
+        {
+          "player": "Pop9",
+          "team": "Deep Cross Gaming",
+          "champion": "Olaf",
+          "cs": 242,
+          "gameId": "79540",
+          "match": "Team Liquid vs Deep Cross Gaming"
         },
         {
           "player": "Canna",
@@ -10058,6 +11350,22 @@
           "cs": 216,
           "gameId": "79528",
           "match": "T1 vs Team Liquid"
+        },
+        {
+          "player": "Pop9",
+          "team": "Deep Cross Gaming",
+          "champion": "Jarvan IV",
+          "cs": 215,
+          "gameId": "79539",
+          "match": "Team Liquid vs Deep Cross Gaming"
+        },
+        {
+          "player": "Josedeodo",
+          "team": "Team Liquid",
+          "champion": "Pantheon",
+          "cs": 211,
+          "gameId": "79540",
+          "match": "Team Liquid vs Deep Cross Gaming"
         },
         {
           "player": "HongSuo",
@@ -10172,12 +11480,36 @@
           "match": "Karmine Corp vs Deep Cross Gaming"
         },
         {
+          "player": "CoreJJ",
+          "team": "Team Liquid",
+          "champion": "Bard",
+          "cs": 47,
+          "gameId": "79539",
+          "match": "Team Liquid vs Deep Cross Gaming"
+        },
+        {
           "player": "ShiauC",
           "team": "Deep Cross Gaming",
           "champion": "Nautilus",
           "cs": 43,
           "gameId": "79532",
           "match": "Karmine Corp vs Deep Cross Gaming"
+        },
+        {
+          "player": "ShiauC",
+          "team": "Deep Cross Gaming",
+          "champion": "Rakan",
+          "cs": 42,
+          "gameId": "79539",
+          "match": "Team Liquid vs Deep Cross Gaming"
+        },
+        {
+          "player": "ShiauC",
+          "team": "Deep Cross Gaming",
+          "champion": "Nautilus",
+          "cs": 38,
+          "gameId": "79540",
+          "match": "Team Liquid vs Deep Cross Gaming"
         },
         {
           "player": "ShiauC",
@@ -10210,6 +11542,14 @@
           "cs": 36,
           "gameId": "79535",
           "match": "T1 vs Karmine Corp"
+        },
+        {
+          "player": "CoreJJ",
+          "team": "Team Liquid",
+          "champion": "Rell",
+          "cs": 35,
+          "gameId": "79540",
+          "match": "Team Liquid vs Deep Cross Gaming"
         },
         {
           "player": "Busio",
@@ -10323,6 +11663,14 @@
           "fbCount": 2
         },
         {
+          "player": "HongSuo",
+          "fbCount": 1
+        },
+        {
+          "player": "Josedeodo",
+          "fbCount": 1
+        },
+        {
           "player": "Pop9",
           "fbCount": 1
         },
@@ -10356,14 +11704,14 @@
           "games": 6
         },
         {
+          "player": "Yeon",
+          "avgDmg": 805,
+          "games": 5
+        },
+        {
           "player": "Kyeahoo",
           "avgDmg": 704,
           "games": 6
-        },
-        {
-          "player": "Quid",
-          "avgDmg": 690,
-          "games": 3
         },
         {
           "player": "Canna",
@@ -10371,14 +11719,14 @@
           "games": 6
         },
         {
+          "player": "Quid",
+          "avgDmg": 675,
+          "games": 5
+        },
+        {
           "player": "Faker",
           "avgDmg": 667,
           "games": 6
-        },
-        {
-          "player": "Yeon",
-          "avgDmg": 636,
-          "games": 3
         },
         {
           "player": "Yike",
@@ -10387,23 +11735,28 @@
         },
         {
           "player": "Morgan",
-          "avgDmg": 573,
-          "games": 3
-        },
-        {
-          "player": "Feng",
-          "avgDmg": 572,
-          "games": 3
-        },
-        {
-          "player": "Flauren",
-          "avgDmg": 568,
-          "games": 3
+          "avgDmg": 571,
+          "games": 5
         },
         {
           "player": "HongSuo",
-          "avgDmg": 522,
-          "games": 3
+          "avgDmg": 571,
+          "games": 5
+        },
+        {
+          "player": "Feng",
+          "avgDmg": 571,
+          "games": 5
+        },
+        {
+          "player": "Josedeodo",
+          "avgDmg": 564,
+          "games": 5
+        },
+        {
+          "player": "Flauren",
+          "avgDmg": 558,
+          "games": 5
         },
         {
           "player": "Oner",
@@ -10416,14 +11769,9 @@
           "games": 6
         },
         {
-          "player": "Josedeodo",
-          "avgDmg": 449,
-          "games": 3
-        },
-        {
           "player": "Pop9",
-          "avgDmg": 348,
-          "games": 3
+          "avgDmg": 415,
+          "games": 5
         },
         {
           "player": "Busio",
@@ -10431,19 +11779,19 @@
           "games": 6
         },
         {
-          "player": "CoreJJ",
-          "avgDmg": 293,
-          "games": 3
-        },
-        {
           "player": "Keria",
           "avgDmg": 283,
           "games": 6
         },
         {
+          "player": "CoreJJ",
+          "avgDmg": 253,
+          "games": 5
+        },
+        {
           "player": "ShiauC",
-          "avgDmg": 247,
-          "games": 3
+          "avgDmg": 207,
+          "games": 5
         }
       ]
     },
@@ -10495,11 +11843,25 @@
           "gameId": "79531"
         },
         {
+          "team": "Team Liquid",
+          "duration": "32:33",
+          "seconds": 1953,
+          "opponent": "Deep Cross Gaming",
+          "gameId": "79540"
+        },
+        {
           "team": "Karmine Corp",
           "duration": "33:30",
           "seconds": 2010,
           "opponent": "Deep Cross Gaming",
           "gameId": "79533"
+        },
+        {
+          "team": "Team Liquid",
+          "duration": "33:35",
+          "seconds": 2015,
+          "opponent": "Deep Cross Gaming",
+          "gameId": "79539"
         },
         {
           "team": "T1",
@@ -10519,15 +11881,11 @@
     },
     "category10": {
       "title": "Team with Most Elder Dragons",
-      "leader": "T1",
+      "leader": "Team Liquid",
       "value": "0 Elder Dragons",
       "leaderboard": [
         {
-          "team": "T1",
-          "elderDragons": 0
-        },
-        {
-          "team": "Karmine Corp",
+          "team": "Team Liquid",
           "elderDragons": 0
         },
         {
@@ -10535,7 +11893,11 @@
           "elderDragons": 0
         },
         {
-          "team": "Team Liquid",
+          "team": "T1",
+          "elderDragons": 0
+        },
+        {
+          "team": "Karmine Corp",
           "elderDragons": 0
         }
       ]
@@ -10550,6 +11912,12 @@
           "opponent": "Karmine Corp",
           "kills": 3,
           "gameId": "79532"
+        },
+        {
+          "team": "Deep Cross Gaming",
+          "opponent": "Team Liquid",
+          "kills": 10,
+          "gameId": "79539"
         },
         {
           "team": "Karmine Corp",
@@ -10600,10 +11968,22 @@
           "gameId": "79527"
         },
         {
+          "team": "Deep Cross Gaming",
+          "opponent": "Team Liquid",
+          "kills": 17,
+          "gameId": "79540"
+        },
+        {
           "team": "T1",
           "opponent": "Karmine Corp",
           "kills": 17,
           "gameId": "79536"
+        },
+        {
+          "team": "Team Liquid",
+          "opponent": "Deep Cross Gaming",
+          "kills": 20,
+          "gameId": "79539"
         },
         {
           "team": "Team Liquid",
@@ -10622,6 +12002,12 @@
           "opponent": "Deep Cross Gaming",
           "kills": 23,
           "gameId": "79531"
+        },
+        {
+          "team": "Team Liquid",
+          "opponent": "Deep Cross Gaming",
+          "kills": 25,
+          "gameId": "79540"
         },
         {
           "team": "Karmine Corp",
@@ -10726,35 +12112,22 @@
           ]
         },
         {
-          "team": "Deep Cross Gaming",
-          "uniqueCount": 15,
-          "champions": [
-            "Ambessa",
-            "Lee Sin",
-            "Galio",
-            "Ezreal",
-            "Camille",
-            "Jax",
-            "Jarvan IV",
-            "LeBlanc",
-            "Senna",
-            "Nautilus",
-            "Sion",
-            "Qiyana",
-            "Ryze",
-            "Jhin",
-            "Pyke"
-          ]
-        },
-        {
           "team": "Team Liquid",
-          "uniqueCount": 15,
+          "uniqueCount": 22,
           "champions": [
+            "Ornn",
+            "Xin Zhao",
+            "Akali",
+            "Varus",
+            "Bard",
+            "Twisted Fate",
+            "Pantheon",
+            "Ryze",
+            "Ziggs",
+            "Rell",
             "Yasuo",
             "Wukong",
-            "Akali",
             "Caitlyn",
-            "Bard",
             "Rumble",
             "Poppy",
             "Taliyah",
@@ -10763,8 +12136,34 @@
             "Zaahen",
             "Nocturne",
             "Galio",
-            "Varus",
             "Neeko"
+          ]
+        },
+        {
+          "team": "Deep Cross Gaming",
+          "uniqueCount": 21,
+          "champions": [
+            "Rumble",
+            "Jarvan IV",
+            "Cassiopeia",
+            "Jhin",
+            "Rakan",
+            "Gnar",
+            "Olaf",
+            "Taliyah",
+            "Senna",
+            "Nautilus",
+            "Ambessa",
+            "Lee Sin",
+            "Galio",
+            "Ezreal",
+            "Camille",
+            "Jax",
+            "LeBlanc",
+            "Sion",
+            "Qiyana",
+            "Ryze",
+            "Pyke"
           ]
         }
       ]
@@ -10780,6 +12179,13 @@
           "kills": 50,
           "blueKills": 27,
           "redKills": 23
+        },
+        {
+          "gameId": "79540",
+          "match": "Team Liquid vs Deep Cross Gaming",
+          "kills": 42,
+          "blueKills": 25,
+          "redKills": 17
         },
         {
           "gameId": "79534",
@@ -10824,6 +12230,13 @@
           "redKills": 3
         },
         {
+          "gameId": "79539",
+          "match": "Team Liquid vs Deep Cross Gaming",
+          "kills": 30,
+          "blueKills": 20,
+          "redKills": 10
+        },
+        {
           "gameId": "79536",
           "match": "Karmine Corp vs T1",
           "kills": 29,
@@ -10841,17 +12254,83 @@
     },
     "category14": {
       "title": "How many unique champions will be picked?",
-      "leader": "51 Champions",
-      "value": "51 unique champions picked",
+      "leader": "57 Champions",
+      "value": "57 unique champions picked",
       "leaderboard": [
         {
-          "champion": "Orianna",
+          "champion": "Bard",
+          "winrate": 0.75,
+          "picks": 4,
+          "wins": 3
+        },
+        {
+          "champion": "Ryze",
+          "winrate": 0.75,
+          "picks": 4,
+          "wins": 3
+        },
+        {
+          "champion": "Gnar",
+          "winrate": 0.5,
+          "picks": 4,
+          "wins": 2
+        },
+        {
+          "champion": "Xin Zhao",
           "winrate": 0.6666666666666666,
           "picks": 3,
           "wins": 2
         },
         {
-          "champion": "Bard",
+          "champion": "Akali",
+          "winrate": 0.6666666666666666,
+          "picks": 3,
+          "wins": 2
+        },
+        {
+          "champion": "Varus",
+          "winrate": 0.3333333333333333,
+          "picks": 3,
+          "wins": 1
+        },
+        {
+          "champion": "Rumble",
+          "winrate": 0.3333333333333333,
+          "picks": 3,
+          "wins": 1
+        },
+        {
+          "champion": "Jarvan IV",
+          "winrate": 0.3333333333333333,
+          "picks": 3,
+          "wins": 1
+        },
+        {
+          "champion": "Cassiopeia",
+          "winrate": 0.3333333333333333,
+          "picks": 3,
+          "wins": 1
+        },
+        {
+          "champion": "Taliyah",
+          "winrate": 0.3333333333333333,
+          "picks": 3,
+          "wins": 1
+        },
+        {
+          "champion": "Senna",
+          "winrate": 0,
+          "picks": 3,
+          "wins": 0
+        },
+        {
+          "champion": "Nautilus",
+          "winrate": 0,
+          "picks": 3,
+          "wins": 0
+        },
+        {
+          "champion": "Orianna",
           "winrate": 0.6666666666666666,
           "picks": 3,
           "wins": 2
@@ -10881,15 +12360,15 @@
           "wins": 2
         },
         {
-          "champion": "Gnar",
-          "winrate": 0.6666666666666666,
-          "picks": 3,
-          "wins": 2
+          "champion": "Jhin",
+          "winrate": 0,
+          "picks": 2,
+          "wins": 0
         },
         {
-          "champion": "Ryze",
-          "winrate": 0.6666666666666666,
-          "picks": 3,
+          "champion": "Rell",
+          "winrate": 1,
+          "picks": 2,
           "wins": 2
         },
         {
@@ -10911,12 +12390,6 @@
           "wins": 1
         },
         {
-          "champion": "Akali",
-          "winrate": 0.5,
-          "picks": 2,
-          "wins": 1
-        },
-        {
           "champion": "Sion",
           "winrate": 0,
           "picks": 2,
@@ -10924,12 +12397,6 @@
         },
         {
           "champion": "Naafiri",
-          "winrate": 0.5,
-          "picks": 2,
-          "wins": 1
-        },
-        {
-          "champion": "Cassiopeia",
           "winrate": 0.5,
           "picks": 2,
           "wins": 1
@@ -10947,18 +12414,6 @@
           "wins": 0
         },
         {
-          "champion": "Varus",
-          "winrate": 0,
-          "picks": 2,
-          "wins": 0
-        },
-        {
-          "champion": "Xin Zhao",
-          "winrate": 0.5,
-          "picks": 2,
-          "wins": 1
-        },
-        {
           "champion": "Annie",
           "winrate": 0.5,
           "picks": 2,
@@ -10969,12 +12424,6 @@
           "winrate": 0,
           "picks": 2,
           "wins": 0
-        },
-        {
-          "champion": "Jarvan IV",
-          "winrate": 0.5,
-          "picks": 2,
-          "wins": 1
         },
         {
           "champion": "Lee Sin",
@@ -10995,12 +12444,6 @@
           "wins": 1
         },
         {
-          "champion": "Rumble",
-          "winrate": 0.5,
-          "picks": 2,
-          "wins": 1
-        },
-        {
           "champion": "Vi",
           "winrate": 1,
           "picks": 2,
@@ -11013,22 +12456,40 @@
           "wins": 2
         },
         {
-          "champion": "Nautilus",
-          "winrate": 0,
-          "picks": 2,
-          "wins": 0
-        },
-        {
-          "champion": "Senna",
-          "winrate": 0,
-          "picks": 2,
-          "wins": 0
-        },
-        {
-          "champion": "Taliyah",
-          "winrate": 0.5,
-          "picks": 2,
+          "champion": "Ornn",
+          "winrate": 1,
+          "picks": 1,
           "wins": 1
+        },
+        {
+          "champion": "Rakan",
+          "winrate": 0,
+          "picks": 1,
+          "wins": 0
+        },
+        {
+          "champion": "Twisted Fate",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1
+        },
+        {
+          "champion": "Pantheon",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1
+        },
+        {
+          "champion": "Ziggs",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1
+        },
+        {
+          "champion": "Olaf",
+          "winrate": 0,
+          "picks": 1,
+          "wins": 0
         },
         {
           "champion": "Jayce",
@@ -11079,12 +12540,6 @@
           "wins": 1
         },
         {
-          "champion": "Rell",
-          "winrate": 1,
-          "picks": 1,
-          "wins": 1
-        },
-        {
           "champion": "LeBlanc",
           "winrate": 0,
           "picks": 1,
@@ -11107,12 +12562,6 @@
           "winrate": 1,
           "picks": 1,
           "wins": 1
-        },
-        {
-          "champion": "Jhin",
-          "winrate": 0,
-          "picks": 1,
-          "wins": 0
         },
         {
           "champion": "Yasuo",
@@ -11184,10 +12633,14 @@
         "Nautilus",
         "Neeko",
         "Nocturne",
+        "Olaf",
         "Orianna",
+        "Ornn",
+        "Pantheon",
         "Poppy",
         "Pyke",
         "Qiyana",
+        "Rakan",
         "Rell",
         "Renata Glasc",
         "Renekton",
@@ -11198,6 +12651,7 @@
         "Sion",
         "Syndra",
         "Taliyah",
+        "Twisted Fate",
         "Varus",
         "Vi",
         "Wukong",
@@ -11207,32 +12661,49 @@
         "Yunara",
         "Yuumi",
         "Zaahen",
-        "Zeri"
+        "Zeri",
+        "Ziggs"
       ]
     },
     "category16": {
       "title": "Champion Banned Most",
-      "leader": "Varus",
+      "leader": "Vi",
       "value": "7 bans",
       "leaderboard": [
+        {
+          "champion": "Vi",
+          "bans": 7
+        },
         {
           "champion": "Varus",
           "bans": 7
         },
         {
-          "champion": "Vi",
-          "bans": 5
+          "champion": "Lee Sin",
+          "bans": 6
         },
         {
           "champion": "Poppy",
-          "bans": 5
+          "bans": 6
+        },
+        {
+          "champion": "Nocturne",
+          "bans": 6
         },
         {
           "champion": "Jayce",
+          "bans": 6
+        },
+        {
+          "champion": "Naafiri",
           "bans": 5
         },
         {
-          "champion": "Lee Sin",
+          "champion": "Nautilus",
+          "bans": 4
+        },
+        {
+          "champion": "Vayne",
           "bans": 4
         },
         {
@@ -11244,23 +12715,11 @@
           "bans": 4
         },
         {
-          "champion": "Nocturne",
-          "bans": 4
-        },
-        {
           "champion": "Rumble",
           "bans": 3
         },
         {
           "champion": "Jarvan IV",
-          "bans": 3
-        },
-        {
-          "champion": "Nautilus",
-          "bans": 3
-        },
-        {
-          "champion": "Vayne",
           "bans": 3
         },
         {
@@ -11276,12 +12735,16 @@
           "bans": 3
         },
         {
-          "champion": "Naafiri",
+          "champion": "Cassiopeia",
           "bans": 3
         },
         {
-          "champion": "Cassiopeia",
-          "bans": 3
+          "champion": "Camille",
+          "bans": 2
+        },
+        {
+          "champion": "Ahri",
+          "bans": 2
         },
         {
           "champion": "Jhin",
@@ -11300,6 +12763,30 @@
           "bans": 2
         },
         {
+          "champion": "Pyke",
+          "bans": 1
+        },
+        {
+          "champion": "Ezreal",
+          "bans": 1
+        },
+        {
+          "champion": "Caitlyn",
+          "bans": 1
+        },
+        {
+          "champion": "Syndra",
+          "bans": 1
+        },
+        {
+          "champion": "Orianna",
+          "bans": 1
+        },
+        {
+          "champion": "Yasuo",
+          "bans": 1
+        },
+        {
           "champion": "Wukong",
           "bans": 1
         },
@@ -11312,19 +12799,11 @@
           "bans": 1
         },
         {
-          "champion": "Camille",
-          "bans": 1
-        },
-        {
           "champion": "Gnar",
           "bans": 1
         },
         {
           "champion": "Galio",
-          "bans": 1
-        },
-        {
-          "champion": "Ahri",
           "bans": 1
         },
         {

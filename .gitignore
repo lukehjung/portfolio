@@ -3,6 +3,7 @@ node_modules
 .next
 out/
 .env.local
+.scrape-cache/
 
 # OpenNext
 .open-next

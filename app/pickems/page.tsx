@@ -107,26 +107,11 @@ const getChampionImage = (name: string, patchVersion = '15.1.1') => {
   return `https://ddragon.leagueoflegends.com/cdn/${patchVersion}/img/champion/${clean}.png`;
 };
 
-const MSI_PROXY_URL = 'https://msi-proxy.lukethejung.workers.dev/api/msi';
-
 export default function PickemsPage() {
   const [activeTab, setActiveTab] = useState('dashboard');
-  const [data, setData] = useState<any>(msiData);
+  const data: any = msiData;
   const [participants, setParticipants] = useState<any[]>(defaultParticipants as any);
   const [hydrated, setHydrated] = useState(false);
-
-  useEffect(() => {
-    let cancelled = false;
-    fetch(MSI_PROXY_URL)
-      .then((r) => (r.ok ? r.json() : null))
-      .then((fresh) => {
-        if (!cancelled && fresh && fresh.lastUpdated) setData(fresh);
-      })
-      .catch(() => {});
-    return () => {
-      cancelled = true;
-    };
-  }, []);
 
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [isAddingParticipant, setIsAddingParticipant] = useState(false);
