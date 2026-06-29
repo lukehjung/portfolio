@@ -1,0 +1,48 @@
+[
+  {
+    "id": "1",
+    "name": "Luke",
+    "avatar": "🔥",
+    "picks": {
+      "category1": "Vi",
+      "category2": "Ashe",
+      "category3": "Jarvan IV",
+      "category4": "Ezreal",
+      "category5": "Keria",
+      "category6": "Viper",
+      "category7": "Oner",
+      "category8": "Peyz",
+      "category9": "T1",
+      "category10": "T1",
+      "category11": "FURIA",
+      "category12": "T1",
+      "category13": "31-45",
+      "category14": "105-109",
+      "category15": "No",
+      "category16": "Bard"
+    }
+  },
+  {
+    "id": "3",
+    "name": "Christy",
+    "avatar": "⚡",
+    "picks": {
+      "category1": "Jarvan IV",
+      "category2": "Naafiri",
+      "category3": "Jayce",
+      "category4": "Lucian",
+      "category5": "Peyz",
+      "category6": "Viper",
+      "category7": "Oner",
+      "category8": "Viper",
+      "category9": "T1",
+      "category10": "Hanwha Life Esports",
+      "category11": "Deep Cross Gaming",
+      "category12": "T1",
+      "category13": "46-55",
+      "category14": "110-114",
+      "category15": "No",
+      "category16": "Vi"
+    }
+  }
+]

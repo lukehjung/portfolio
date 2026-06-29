@@ -83,7 +83,7 @@ export default function TFTStatsPage() {
           const fallbackProfile = (sampleData as any)[fallbackKey];
           if (fallbackProfile && fallbackProfile.account) {
             setProfiles(prev => {
-              const existingIndex = prev.findIndex(p => p.account.puuid === fallbackProfile.account.puuid);
+              const existingIndex = prev.findIndex(p => p.account?.puuid === fallbackProfile.account.puuid);
               if (existingIndex >= 0) {
                 const newProfiles = [...prev];
                 newProfiles[existingIndex] = { ...fallbackProfile, region: 'na' };
@@ -114,7 +114,9 @@ export default function TFTStatsPage() {
 
       // Update profile or add new to the top
       setProfiles(prev => {
-        const existingIndex = prev.findIndex(p => p.account.puuid === json.account.puuid);
+        const puuid = json.account?.puuid;
+        if (!puuid) return prev; // Safety check
+        const existingIndex = prev.findIndex(p => p.account?.puuid === puuid);
         if (existingIndex >= 0) {
           const newProfiles = [...prev];
           newProfiles[existingIndex] = json;
@@ -183,7 +185,7 @@ export default function TFTStatsPage() {
 
     const myStatsList: TFTParticipant[] = [];
     matchHistory.forEach(match => {
-      const p = match.info?.participants?.find(p => p.puuid === profile.account.puuid);
+      const p = match.info?.participants?.find(p => p.puuid === profile.account?.puuid);
       if (p) myStatsList.push(p);
     });
 
@@ -442,7 +444,7 @@ export default function TFTStatsPage() {
               const myStatsList: TFTParticipant[] = [];
 
               matchHistory.forEach(match => {
-                const p = match.info?.participants?.find(p => p.puuid === data.account.puuid);
+                const p = match.info?.participants?.find(p => p.puuid === data.account?.puuid);
                 if (p) myStatsList.push(p);
               });
 
@@ -645,7 +647,7 @@ export default function TFTStatsPage() {
                             </div>
                           </div>
                           <div className="h-40 w-full bg-gray-50 rounded-xl border border-gray-100 p-2 sm:p-4">
-                            <ResponsiveContainer width="100%" height="100%">
+                            <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
                               <LineChart data={activityData} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
                                 <XAxis dataKey="date" tick={{ fontSize: 10, fill: '#9ca3af', fontWeight: 'bold' }} axisLine={false} tickLine={false} />
                                 <YAxis allowDecimals={false} tick={{ fontSize: 10, fill: '#9ca3af', fontWeight: 'bold' }} axisLine={false} tickLine={false} />
@@ -709,7 +711,7 @@ export default function TFTStatsPage() {
                               <span>Placement Frequency</span>
                             </p>
                             <div className="h-40 w-full bg-gray-50 rounded-xl border border-gray-100 p-2 sm:p-4">
-                              <ResponsiveContainer width="100%" height="100%">
+                              <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
                                 <BarChart data={placementData} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
                                   <XAxis dataKey="placement" tick={{ fontSize: 10, fill: '#9ca3af', fontWeight: 'bold' }} axisLine={false} tickLine={false} />
                                   <YAxis allowDecimals={false} tick={{ fontSize: 10, fill: '#9ca3af', fontWeight: 'bold' }} axisLine={false} tickLine={false} />
@@ -740,7 +742,7 @@ export default function TFTStatsPage() {
                     {matchHistory && matchHistory.length > 0 ? (
                       <div className="space-y-3">
                         {(expandedProfiles[data.account.puuid] ? matchHistory : matchHistory.slice(0, 5)).map((match) => {
-                          const myStats = match.info?.participants?.find(p => p.puuid === data.account.puuid);
+                          const myStats = match.info?.participants?.find(p => p.puuid === data.account?.puuid);
                           if (!myStats) return null;
 
                           const p = myStats.placement;
