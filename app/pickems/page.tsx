@@ -672,6 +672,7 @@ export default function PickemsPage() {
           border-radius: 12px; padding: 1.25rem;
           background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(255, 255, 255, 0.04);
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer;
+          min-width: 0;
         }
         .pickems-page .compare-card:hover { background: rgba(255, 255, 255, 0.02); border-color: rgba(0, 246, 255, 0.25); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25); transform: translateY(-2px); }
         .pickems-page .compare-card-title { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.75rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 500; }
@@ -858,14 +859,32 @@ export default function PickemsPage() {
           .pickems-page .standings-panel h2,
           .pickems-page .panel-title h2 { font-size: 1.2rem; }
 
-          .pickems-page .standing-item { padding: 0.75rem; gap: 0.5rem; }
-          .pickems-page .standing-rank { font-size: 1.05rem; width: 28px; }
-          .pickems-page .standing-avatar { font-size: 1.25rem; margin-right: 0.35rem; }
-          .pickems-page .standing-name { font-size: 0.95rem; }
-          .pickems-page .standing-score { font-size: 1.05rem; }
-          .pickems-page .standing-actions { display: flex; gap: 0.25rem; margin-left: 0.5rem; }
+          .pickems-page .standing-item {
+            padding: 0.65rem 0.75rem;
+            gap: 0.5rem;
+            min-width: 0;
+          }
+          .pickems-page .standing-rank { font-size: 1rem; width: 26px; flex-shrink: 0; }
+          .pickems-page .standing-avatar { font-size: 1.15rem; margin-right: 0.25rem; flex-shrink: 0; }
+          .pickems-page .standing-info { min-width: 0; flex: 1; }
+          .pickems-page .standing-name {
+            font-size: 0.9rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: block;
+          }
+          .pickems-page .standing-score { font-size: 0.95rem; flex-shrink: 0; }
+          .pickems-page .standing-pts { font-size: 0.65rem; }
+          .pickems-page .standing-actions {
+            display: flex;
+            gap: 0.1rem;
+            margin-left: 0.35rem !important;
+            flex-shrink: 0;
+          }
           .pickems-page .standing-actions button {
-            min-width: 36px; min-height: 36px;
+            min-width: 32px; min-height: 32px;
+            padding: 0.2rem !important;
             display: inline-flex; align-items: center; justify-content: center;
           }
 
@@ -873,6 +892,18 @@ export default function PickemsPage() {
             grid-template-columns: 1fr;
             gap: 0.75rem;
           }
+          .pickems-page .compare-card { padding: 0.85rem 0.9rem; }
+          .pickems-page .compare-card-title {
+            white-space: normal;
+            font-size: 0.8rem;
+            line-height: 1.3;
+            margin-bottom: 0.6rem;
+          }
+          .pickems-page .compare-pick-row { font-size: 0.82rem; gap: 0.5rem; }
+          .pickems-page .compare-player-label { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+          .pickems-page .compare-pick-val { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: right; }
+          .pickems-page .compare-result-row { font-size: 0.78rem; flex-direction: column; align-items: flex-start; gap: 0.15rem; }
+          .pickems-page .compare-result-leader { word-break: break-word; }
 
           .pickems-page .editor-grid { grid-template-columns: 1fr; gap: 1rem; }
           .pickems-page .modal-overlay { padding: 0; align-items: flex-end; }
