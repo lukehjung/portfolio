@@ -133,7 +133,16 @@ export default function PickemsPage() {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [isAddingParticipant, setIsAddingParticipant] = useState(false);
   const [editingParticipantId, setEditingParticipantId] = useState<string | null>(null);
-  const [expandedStandingId, setExpandedStandingId] = useState<string | null>(null);
+  const [expandedStandingIds, setExpandedStandingIds] = useState<Set<string>>(new Set());
+
+  const toggleStanding = (id: string) => {
+    setExpandedStandingIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
   const [champions, setChampions] = useState<string[]>([]);
 
   useEffect(() => {
@@ -1131,7 +1140,7 @@ export default function PickemsPage() {
               <h2><Trophy className="gradient-text-gold" size={24} /> Standings</h2>
               <div className="standings-list">
                 {standings.map((player, index) => {
-                  const expanded = expandedStandingId === player.id;
+                  const expanded = expandedStandingIds.has(player.id);
                   const hits = player.hits || [];
                   return (
                     <div key={player.id} className={`standing-item ${expanded ? 'expanded' : ''}`}>
@@ -1140,11 +1149,11 @@ export default function PickemsPage() {
                         role="button"
                         tabIndex={0}
                         aria-expanded={expanded}
-                        onClick={() => setExpandedStandingId(expanded ? null : player.id)}
+                        onClick={() => toggleStanding(player.id)}
                         onKeyDown={(e) => {
                           if (e.key === 'Enter' || e.key === ' ') {
                             e.preventDefault();
-                            setExpandedStandingId(expanded ? null : player.id);
+                            toggleStanding(player.id);
                           }
                         }}
                       >
