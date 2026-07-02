@@ -20,6 +20,7 @@ import {
   Target,
   AlertCircle,
   ChevronDown,
+  CheckCircle2,
 } from 'lucide-react';
 
 const CATEGORY_KEYS = [
@@ -98,6 +99,10 @@ const isPickCorrect = (categoryKey: string, pick: string, leaderName: string) =>
 // 20, tier 3 = 10, anything below = 0. Ties share a tier (multiple entries
 // with the same underlying value all get the same payout).
 const TIERED_CATEGORIES = new Set(['category1', 'category4', 'category7', 'category8', 'category10', 'category12', 'category16']);
+
+// Categories whose results are already locked in (Play-ins have concluded).
+// These get a green "finalized" treatment on the UI.
+const DONE_CATEGORIES = new Set(['category1', 'category5', 'category9', 'category13']);
 const TIER_POINTS = [50, 20, 10];
 
 const getEntryValue = (item: any): number | null => {
@@ -750,6 +755,23 @@ export default function PickemsPage() {
         .pickems-page .details-indicator { color: var(--text-muted); font-size: 0.8rem; display: flex; align-items: center; gap: 0.25rem; transition: color 0.2s ease; }
         .pickems-page .pickem-card:hover .details-indicator { color: var(--color-blue); }
 
+        .pickems-page .pickem-card.done {
+          border-color: rgba(34, 197, 94, 0.4);
+          box-shadow: var(--shadow-sm), 0 0 12px rgba(34, 197, 94, 0.12);
+        }
+        .pickems-page .pickem-card.done:hover {
+          border-color: rgba(34, 197, 94, 0.65);
+          box-shadow: var(--shadow-md), 0 0 20px rgba(34, 197, 94, 0.2);
+        }
+        .pickems-page .done-badge {
+          display: inline-flex; align-items: center; gap: 0.3rem;
+          font-family: var(--font-heading); font-size: 0.72rem; font-weight: 700;
+          background: rgba(34, 197, 94, 0.12); border: 1px solid rgba(34, 197, 94, 0.4);
+          color: #22c55e; padding: 0.25rem 0.5rem; border-radius: 6px;
+          text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .pickems-page .card-header-left { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+
         .pickems-page .leaderboard-container { display: grid; grid-template-columns: 1fr 2.5fr; gap: 2rem; align-items: start; }
         @media (max-width: 968px) { .pickems-page .leaderboard-container { grid-template-columns: 1fr; } }
         .pickems-page .standings-panel { border-radius: 16px; padding: 1.5rem; box-shadow: var(--shadow-md); }
@@ -836,6 +858,20 @@ export default function PickemsPage() {
         .pickems-page .compare-pick-incorrect { color: var(--color-red); }
         .pickems-page .compare-result-row { border-top: 1px dashed rgba(255, 255, 255, 0.05); padding-top: 0.5rem; margin-top: 0.5rem; display: flex; justify-content: space-between; font-size: 0.85rem; }
         .pickems-page .compare-result-leader { color: var(--color-blue); font-weight: 600; }
+        .pickems-page .compare-card.done {
+          border-color: rgba(34, 197, 94, 0.4);
+          box-shadow: 0 0 10px rgba(34, 197, 94, 0.1);
+        }
+        .pickems-page .compare-card.done:hover {
+          border-color: rgba(34, 197, 94, 0.65);
+          box-shadow: 0 4px 20px rgba(34, 197, 94, 0.18);
+        }
+        .pickems-page .compare-card-header {
+          display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
+          margin-bottom: 0.75rem;
+        }
+        .pickems-page .compare-card-header .compare-card-title { margin-bottom: 0; min-width: 0; flex: 1; }
+        .pickems-page .compare-done-icon { color: #22c55e; flex-shrink: 0; }
 
         .pickems-page .modal-overlay {
           position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -1194,10 +1230,19 @@ export default function PickemsPage() {
                 const stat = data.stats?.[key] || { leader: 'No Stats Yet', value: 'N/A' };
                 const isChamp = info.type === 'champion';
 
+                const isDone = DONE_CATEGORIES.has(key);
+
                 return (
-                  <div key={key} className="pickem-card glass" onClick={() => setActiveCategory(key)}>
+                  <div key={key} className={`pickem-card glass ${isDone ? 'done' : ''}`} onClick={() => setActiveCategory(key)}>
                     <div className="card-header">
-                      <span className="points-badge">{info.pts} PTS</span>
+                      <div className="card-header-left">
+                        <span className="points-badge">{info.pts} PTS</span>
+                        {isDone && (
+                          <span className="done-badge" title="Result locked in">
+                            <CheckCircle2 size={12} /> Final
+                          </span>
+                        )}
+                      </div>
                       <Info size={16} className="category-icon" />
                     </div>
 
@@ -1360,9 +1405,14 @@ export default function PickemsPage() {
                     leaderVal = data.stats?.[key]?.value || 'N/A';
                   }
 
+                  const isDone = DONE_CATEGORIES.has(key);
+
                   return (
-                    <div key={key} className="compare-card glass" onClick={() => setActiveCategory(key)}>
-                      <h4 className="compare-card-title" title={info.desc}>{info.desc}</h4>
+                    <div key={key} className={`compare-card glass ${isDone ? 'done' : ''}`} onClick={() => setActiveCategory(key)}>
+                      <div className="compare-card-header">
+                        <h4 className="compare-card-title" title={info.desc}>{info.desc}</h4>
+                        {isDone && <CheckCircle2 size={16} className="compare-done-icon" aria-label="Result locked in" />}
+                      </div>
                       {participants.map((player) => {
                         const pick = player.picks[key] || 'None';
                         const correct = isPickCorrect(key, pick, leader);
