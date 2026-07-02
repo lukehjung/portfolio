@@ -19,6 +19,7 @@ import {
   Sword,
   Target,
   AlertCircle,
+  ChevronDown,
 } from 'lucide-react';
 
 const CATEGORY_KEYS = [
@@ -132,6 +133,7 @@ export default function PickemsPage() {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [isAddingParticipant, setIsAddingParticipant] = useState(false);
   const [editingParticipantId, setEditingParticipantId] = useState<string | null>(null);
+  const [expandedStandingId, setExpandedStandingId] = useState<string | null>(null);
   const [champions, setChampions] = useState<string[]>([]);
 
   useEffect(() => {
@@ -388,22 +390,31 @@ export default function PickemsPage() {
     });
   };
 
-  const calculateParticipantScore = (participant: any) => {
+  const getParticipantBreakdown = (participant: any) => {
+    const hits: { key: string; label: string; pick: string; pts: number }[] = [];
+    if (!data.stats) return { score: 0, hits };
     let score = 0;
-    if (!data.stats) return 0;
     CATEGORY_KEYS.forEach((key) => {
       const pick = participant.picks[key];
       const leader = data.stats[key]?.leader;
       if (isPickCorrect(key, pick, leader)) {
-        score += CATEGORIES_INFO[key].pts;
+        const info = CATEGORIES_INFO[key];
+        score += info.pts;
+        hits.push({ key, label: info.label, pick, pts: info.pts });
       }
     });
-    return score;
+    return { score, hits };
   };
+
+  const calculateParticipantScore = (participant: any) =>
+    getParticipantBreakdown(participant).score;
 
   const getStandings = () =>
     participants
-      .map((p) => ({ ...p, score: calculateParticipantScore(p) }))
+      .map((p) => {
+        const { score, hits } = getParticipantBreakdown(p);
+        return { ...p, score, hits };
+      })
       .sort((a, b) => b.score - a.score);
 
   const handleAddParticipantSubmit = (e: React.FormEvent) => {
@@ -649,11 +660,44 @@ export default function PickemsPage() {
         .pickems-page .standings-panel h2 { font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
         .pickems-page .standings-list { display: flex; flex-direction: column; gap: 0.75rem; }
         .pickems-page .standing-item {
-          display: flex; align-items: center; padding: 1rem; border-radius: 12px;
+          border-radius: 12px;
           background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.04);
-          transition: all 0.2s ease;
+          transition: background 0.2s ease, border-color 0.2s ease;
+          overflow: hidden;
         }
         .pickems-page .standing-item:hover { background: rgba(255, 255, 255, 0.04); border-color: rgba(0, 246, 255, 0.15); }
+        .pickems-page .standing-item.expanded { border-color: rgba(0, 246, 255, 0.25); background: rgba(255, 255, 255, 0.035); }
+        .pickems-page .standing-row {
+          display: flex; align-items: center;
+          padding: 1rem;
+          cursor: pointer;
+          outline: none;
+          user-select: none;
+        }
+        .pickems-page .standing-row:focus-visible { box-shadow: inset 0 0 0 2px rgba(0, 246, 255, 0.35); border-radius: 12px; }
+        .pickems-page .standing-breakdown {
+          border-top: 1px dashed rgba(255, 255, 255, 0.06);
+          padding: 0.75rem 1rem 1rem;
+          background: rgba(0, 0, 0, 0.15);
+        }
+        .pickems-page .breakdown-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.35rem; }
+        .pickems-page .breakdown-item {
+          display: flex; align-items: baseline; gap: 0.5rem;
+          font-size: 0.85rem;
+          min-width: 0;
+        }
+        .pickems-page .breakdown-label { color: var(--text-secondary); flex-shrink: 0; }
+        .pickems-page .breakdown-pick {
+          color: var(--text-primary); font-weight: 500;
+          flex: 1; min-width: 0;
+          overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+        }
+        .pickems-page .breakdown-pts {
+          font-family: var(--font-heading); font-weight: 700;
+          color: var(--color-gold);
+          flex-shrink: 0;
+        }
+        .pickems-page .breakdown-empty { color: var(--text-muted); font-size: 0.85rem; font-style: italic; margin: 0; }
         .pickems-page .standing-rank { font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; width: 32px; color: var(--text-muted); }
         .pickems-page .standing-rank-1 { color: var(--color-gold); text-shadow: var(--shadow-glow-gold); }
         .pickems-page .standing-rank-2 { color: #d1d5db; }
@@ -872,11 +916,16 @@ export default function PickemsPage() {
           .pickems-page .standings-panel h2,
           .pickems-page .panel-title h2 { font-size: 1.2rem; }
 
-          .pickems-page .standing-item {
+          .pickems-page .standing-item { min-width: 0; }
+          .pickems-page .standing-row {
             padding: 0.65rem 0.75rem;
             gap: 0.5rem;
-            min-width: 0;
           }
+          .pickems-page .standing-breakdown {
+            padding: 0.65rem 0.75rem 0.85rem;
+          }
+          .pickems-page .breakdown-item { font-size: 0.78rem; gap: 0.35rem; flex-wrap: wrap; }
+          .pickems-page .breakdown-pts { font-size: 0.85rem; }
           .pickems-page .standing-rank { font-size: 1rem; width: 26px; flex-shrink: 0; }
           .pickems-page .standing-avatar { font-size: 1.15rem; margin-right: 0.25rem; flex-shrink: 0; }
           .pickems-page .standing-info { min-width: 0; flex: 1; }
@@ -1081,29 +1130,79 @@ export default function PickemsPage() {
             <div className="standings-panel glass">
               <h2><Trophy className="gradient-text-gold" size={24} /> Standings</h2>
               <div className="standings-list">
-                {standings.map((player, index) => (
-                  <div key={player.id} className="standing-item">
-                    <div className={`standing-rank ${index < 3 ? `standing-rank-${index + 1}` : ''}`}>
-                      #{index + 1}
+                {standings.map((player, index) => {
+                  const expanded = expandedStandingId === player.id;
+                  const hits = player.hits || [];
+                  return (
+                    <div key={player.id} className={`standing-item ${expanded ? 'expanded' : ''}`}>
+                      <div
+                        className="standing-row"
+                        role="button"
+                        tabIndex={0}
+                        aria-expanded={expanded}
+                        onClick={() => setExpandedStandingId(expanded ? null : player.id)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            setExpandedStandingId(expanded ? null : player.id);
+                          }
+                        }}
+                      >
+                        <div className={`standing-rank ${index < 3 ? `standing-rank-${index + 1}` : ''}`}>
+                          #{index + 1}
+                        </div>
+                        <div className="standing-avatar">{player.avatar}</div>
+                        <div className="standing-info">
+                          <span className="standing-name">{player.name}</span>
+                        </div>
+                        <div className="standing-score">
+                          {player.score}
+                          <span className="standing-pts">PTS</span>
+                        </div>
+                        <ChevronDown
+                          size={16}
+                          className="standing-chevron"
+                          style={{
+                            marginLeft: '0.4rem',
+                            transition: 'transform 0.2s ease',
+                            transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)',
+                            color: 'var(--text-muted)',
+                            flexShrink: 0,
+                          }}
+                        />
+                        <div
+                          className="standing-actions"
+                          style={{ marginLeft: '0.5rem', display: 'flex', gap: '0.25rem' }}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <button aria-label="Edit participant" onClick={() => startEdit(player)} style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', padding: '0.25rem' }}>
+                            <Edit size={16} />
+                          </button>
+                          <button aria-label="Delete participant" onClick={() => deleteParticipant(player.id)} style={{ background: 'transparent', border: 'none', color: 'var(--color-red)', cursor: 'pointer', padding: '0.25rem' }}>
+                            <Trash2 size={16} />
+                          </button>
+                        </div>
+                      </div>
+                      {expanded && (
+                        <div className="standing-breakdown">
+                          {hits.length > 0 ? (
+                            <ul className="breakdown-list">
+                              {hits.map((h: any) => (
+                                <li key={h.key} className="breakdown-item">
+                                  <span className="breakdown-label">{h.label}</span>
+                                  <span className="breakdown-pick">— {h.pick}</span>
+                                  <span className="breakdown-pts">+{h.pts}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          ) : (
+                            <p className="breakdown-empty">No correct picks yet.</p>
+                          )}
+                        </div>
+                      )}
                     </div>
-                    <div className="standing-avatar">{player.avatar}</div>
-                    <div className="standing-info">
-                      <span className="standing-name">{player.name}</span>
-                    </div>
-                    <div className="standing-score">
-                      {player.score}
-                      <span className="standing-pts">PTS</span>
-                    </div>
-                    <div className="standing-actions" style={{ marginLeft: '0.75rem', display: 'flex', gap: '0.25rem' }}>
-                      <button aria-label="Edit participant" onClick={() => startEdit(player)} style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', padding: '0.25rem' }}>
-                        <Edit size={16} />
-                      </button>
-                      <button aria-label="Delete participant" onClick={() => deleteParticipant(player.id)} style={{ background: 'transparent', border: 'none', color: 'var(--color-red)', cursor: 'pointer', padding: '0.25rem' }}>
-                        <Trash2 size={16} />
-                      </button>
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
               <button
                 className="btn btn-secondary"
