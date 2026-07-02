@@ -2,8 +2,11 @@ import Script from 'next/script';
 import './globals.css';
 
 export const metadata = {
-  title: 'Luke Portfolio',
-  description: 'Luke Jung Portfolio',
+  title: {
+    default: 'Luke H. Jung — Portfolio',
+    template: '%s | Luke H. Jung',
+  },
+  description: 'Luke H. Jung — engineer at Amazon Prime Video. Portfolio, esports tools, and side projects.',
 };
 
 export default function RootLayout({ children }) {

@@ -3,7 +3,7 @@ import EsportsClient from './EsportsClient';
 import { fetchEsportsData } from './api';
 
 export const metadata = {
-  title: 'League of Legends Esports Hub | Luke H. Jung',
+  title: 'League of Legends Esports Hub',
   description: 'Live active database of pro League of Legends teams and players.',
 };
 

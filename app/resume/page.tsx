@@ -2,7 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Resume | Luke H. Jung',
+  title: 'Resume',
   description: 'Professional resume of Luke H. Jung, Software Engineer.',
 };
 
