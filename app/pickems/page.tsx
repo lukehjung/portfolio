@@ -874,7 +874,26 @@ export default function PickemsPage() {
         .pickems-page .chart-bar-inner { height: 100%; border-radius: 7px 0 0 7px; transition: width 1s cubic-bezier(0.4, 0, 0.2, 1); }
         .pickems-page .chart-bar-blue { background: var(--gradient-blue); box-shadow: 0 0 12px rgba(0, 246, 255, 0.2); }
         .pickems-page .chart-bar-gold { background: var(--gradient-gold); box-shadow: 0 0 12px rgba(255, 200, 55, 0.25); }
-        .pickems-page .chart-bar-participants { position: absolute; right: 0.75rem; top: 0; height: 100%; display: flex; align-items: center; gap: 0.35rem; font-size: 1.1rem; }
+        .pickems-page .chart-bar-participants {
+          position: absolute; right: 0.5rem; top: 0; height: 100%;
+          display: flex; align-items: center; gap: 0.35rem;
+          pointer-events: none;
+        }
+        .pickems-page .chart-bar-participant {
+          display: inline-flex; align-items: center; gap: 0.25rem;
+          background: rgba(10, 12, 16, 0.7);
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          padding: 0.1rem 0.5rem 0.1rem 0.35rem;
+          border-radius: 999px;
+          font-size: 0.75rem;
+          line-height: 1;
+          color: var(--text-primary);
+          pointer-events: auto;
+          cursor: help;
+          backdrop-filter: blur(4px);
+        }
+        .pickems-page .chart-bar-participant-avatar { font-size: 0.9rem; line-height: 1; }
+        .pickems-page .chart-bar-participant-name { font-weight: 600; letter-spacing: 0.2px; }
 
         /* ------------------------------------------------------------------ */
         /* Mobile overrides                                                    */
@@ -998,7 +1017,9 @@ export default function PickemsPage() {
           .pickems-page .chart-row-header { flex-wrap: wrap; gap: 0.35rem; }
           .pickems-page .chart-item-val { font-size: 0.78rem; }
           .pickems-page .chart-bar-outer { height: 22px; }
-          .pickems-page .chart-bar-participants { font-size: 0.95rem; right: 0.5rem; gap: 0.25rem; }
+          .pickems-page .chart-bar-participants { right: 0.35rem; gap: 0.25rem; }
+          .pickems-page .chart-bar-participant { font-size: 0.65rem; padding: 0.08rem 0.4rem 0.08rem 0.3rem; gap: 0.2rem; }
+          .pickems-page .chart-bar-participant-avatar { font-size: 0.75rem; }
 
           .pickems-page .leaderboard-table th,
           .pickems-page .leaderboard-table td { padding: 0.6rem 0.5rem; font-size: 0.85rem; }
@@ -1438,8 +1459,13 @@ export default function PickemsPage() {
                               />
                               <div className="chart-bar-participants">
                                 {item.pickedBy.map((p: any) => (
-                                  <span key={p.id} title={`${p.name}'s pick`} style={{ cursor: 'help' }}>
-                                    {p.avatar}
+                                  <span
+                                    key={p.id}
+                                    className="chart-bar-participant"
+                                    title={`${p.name}'s pick`}
+                                  >
+                                    <span className="chart-bar-participant-avatar">{p.avatar}</span>
+                                    <span className="chart-bar-participant-name">{p.name}</span>
                                   </span>
                                 ))}
                               </div>
