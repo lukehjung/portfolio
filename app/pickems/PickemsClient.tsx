@@ -93,6 +93,58 @@ const isPickCorrect = (categoryKey: string, pick: string, leaderName: string) =>
   return cleanName(pick) === cleanName(leaderName);
 };
 
+// Categories where scoring is based on the participant's pick landing in one
+// of the top 3 distinct-value tiers of the leaderboard. Tier 1 = 50, tier 2 =
+// 20, tier 3 = 10, anything below = 0. Ties share a tier (multiple entries
+// with the same underlying value all get the same payout).
+const TIERED_CATEGORIES = new Set(['category1', 'category4', 'category7', 'category8', 'category10', 'category12', 'category16']);
+const TIER_POINTS = [50, 20, 10];
+
+const getEntryValue = (item: any): number | null => {
+  if (!item) return null;
+  if (item.count !== undefined) return item.count;
+  if (item.kills !== undefined) return item.kills;
+  if (item.fbCount !== undefined) return item.fbCount;
+  if (item.avgDmg !== undefined) return item.avgDmg;
+  if (item.elderDragons !== undefined) return item.elderDragons;
+  if (item.uniqueCount !== undefined) return item.uniqueCount;
+  if (item.bans !== undefined) return item.bans;
+  return null;
+};
+
+// Build a map from distinct leaderboard value to tier index (0/1/2).
+const buildTierMap = (leaderboard: any[]): Map<number, number> => {
+  const seen: number[] = [];
+  for (const item of leaderboard) {
+    const v = getEntryValue(item);
+    if (v == null) continue;
+    if (!seen.includes(v)) {
+      seen.push(v);
+      if (seen.length >= 3) break;
+    }
+  }
+  const tierMap = new Map<number, number>();
+  seen.forEach((v, idx) => tierMap.set(v, idx));
+  return tierMap;
+};
+
+// Return the tier points a pick earns for a tiered category. 0 if the pick
+// isn't in the top-3 tiers of the leaderboard.
+const getTierPointsForPick = (categoryKey: string, pick: string, leaderboard: any[]): number => {
+  if (!pick || !Array.isArray(leaderboard) || leaderboard.length === 0) return 0;
+  const cleanPick = cleanName(pick);
+  const match = leaderboard.find((item) => {
+    const name = item.champion || item.player || item.team || '';
+    return cleanName(name) === cleanPick;
+  });
+  if (!match) return 0;
+  const value = getEntryValue(match);
+  if (value == null) return 0;
+  const tierMap = buildTierMap(leaderboard);
+  const tier = tierMap.get(value);
+  return tier == null ? 0 : TIER_POINTS[tier];
+};
+
 const getChampionImage = (name: string, patchVersion = '15.1.1') => {
   if (!name || name === 'N/A' || name === 'Unknown') return '';
   let clean = name.replace(/[^a-zA-Z]/g, '');
@@ -314,7 +366,27 @@ export default function PickemsPage() {
       return '';
     }
 
-    const top3: any[] = leaderboard.slice(0, 3).map((item: any, idx: number) => ({
+    const isTiered = TIERED_CATEGORIES.has(activeCategory);
+    const tierMap = isTiered ? buildTierMap(leaderboard) : new Map<number, number>();
+    const tierPointsFor = (item: any): number | undefined => {
+      if (!isTiered) return undefined;
+      const v = getEntryValue(item);
+      if (v == null) return 0;
+      const tier = tierMap.get(v);
+      return tier == null ? 0 : TIER_POINTS[tier];
+    };
+
+    // For tiered categories, include every entry that lands in one of the top
+    // 3 distinct-value tiers (so all tied champs show up as leaders). For
+    // non-tiered categories, keep the classic "top 3 by index" behaviour.
+    const winnerSlice: any[] = isTiered
+      ? leaderboard.filter((item: any) => {
+          const v = getEntryValue(item);
+          return v != null && tierMap.has(v);
+        })
+      : leaderboard.slice(0, 3);
+
+    const top3: any[] = winnerSlice.map((item: any, idx: number) => ({
       name: resolveEntryName(item, activeCategory),
       value: getNumericValue(item, activeCategory),
       displayVal: getDisplayValue(item),
@@ -323,6 +395,7 @@ export default function PickemsPage() {
       pickedBy: [],
       qualified: item.qualified,
       picks: item.picks,
+      tierPts: tierPointsFor(item),
     }));
 
     participants.forEach((p) => {
@@ -346,15 +419,17 @@ export default function PickemsPage() {
             top3[addedIndex].pickedBy.push(p);
           } else {
             const lbIndex = leaderboard.indexOf(lbItem);
+            const lbTier = tierPointsFor(lbItem);
             top3.push({
               name: resolveEntryName(lbItem, activeCategory),
               value: getNumericValue(lbItem, activeCategory),
               displayVal: getDisplayValue(lbItem),
-              isTop3: false,
+              isTop3: isTiered && !!lbTier,
               rank: lbIndex + 1,
               pickedBy: [p],
               qualified: lbItem.qualified,
               picks: lbItem.picks,
+              tierPts: lbTier,
             });
           }
         } else {
@@ -405,9 +480,21 @@ export default function PickemsPage() {
     let score = 0;
     CATEGORY_KEYS.forEach((key) => {
       const pick = participant.picks[key];
-      const leader = data.stats[key]?.leader;
+      if (!pick) return;
+      const catStat = data.stats[key];
+      const info = CATEGORIES_INFO[key];
+
+      if (TIERED_CATEGORIES.has(key)) {
+        const pts = getTierPointsForPick(key, pick, catStat?.leaderboard || []);
+        if (pts > 0) {
+          score += pts;
+          hits.push({ key, label: info.label, pick, pts });
+        }
+        return;
+      }
+
+      const leader = catStat?.leader;
       if (isPickCorrect(key, pick, leader)) {
-        const info = CATEGORIES_INFO[key];
         score += info.pts;
         hits.push({ key, label: info.label, pick, pts: info.pts });
       }
@@ -1430,10 +1517,12 @@ export default function PickemsPage() {
                                 )}
                                 <span className="chart-item-name">{item.name}</span>
                                 <div className="chart-item-badges">
-                                  {item.isTop3 && (
+                                  {TIERED_CATEGORIES.has(activeCategory) && item.tierPts ? (
+                                    <span className="chart-badge chart-badge-leader">+{item.tierPts}</span>
+                                  ) : item.isTop3 ? (
                                     <span className="chart-badge chart-badge-leader">#{item.rank} Leader</span>
-                                  )}
-                                  {!item.isTop3 && item.rank && (
+                                  ) : null}
+                                  {!item.isTop3 && item.rank && !TIERED_CATEGORIES.has(activeCategory) && (
                                     <span className="chart-badge" style={{ background: 'rgba(255, 255, 255, 0.06)', color: 'var(--text-muted)', fontSize: '0.65rem' }}>
                                       #{item.rank}
                                     </span>
