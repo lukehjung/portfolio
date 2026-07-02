@@ -873,6 +873,25 @@ export default function PickemsPage() {
         .pickems-page .compare-card-header .compare-card-title { margin-bottom: 0; min-width: 0; flex: 1; }
         .pickems-page .compare-done-icon { color: #22c55e; flex-shrink: 0; }
 
+        .pickems-page .range-picks-list { display: flex; flex-direction: column; gap: 0.5rem; }
+        .pickems-page .range-pick-row {
+          display: flex; justify-content: space-between; align-items: center;
+          padding: 0.75rem 1rem; border-radius: 10px;
+          background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .pickems-page .range-pick-row.range-pick-correct {
+          background: rgba(34, 197, 94, 0.06);
+          border-color: rgba(34, 197, 94, 0.3);
+        }
+        .pickems-page .range-pick-participant { display: flex; align-items: center; gap: 0.6rem; font-weight: 600; }
+        .pickems-page .range-pick-avatar { font-size: 1.15rem; }
+        .pickems-page .range-pick-value {
+          display: inline-flex; align-items: center; gap: 0.4rem;
+          font-family: var(--font-heading); font-weight: 700; font-size: 0.95rem;
+        }
+        .pickems-page .range-pick-status.is-correct { color: #22c55e; }
+        .pickems-page .range-pick-status.is-incorrect { color: var(--color-red); }
+
         .pickems-page .modal-overlay {
           position: fixed; top: 0; left: 0; width: 100%; height: 100%;
           background: rgba(5, 5, 10, 0.8); backdrop-filter: blur(8px);
@@ -1526,6 +1545,35 @@ export default function PickemsPage() {
                   );
                 })()}
 
+                {activeCategory === 'category13' ? (
+                  <div style={{ marginTop: '1.5rem' }}>
+                    <h4 style={{ marginBottom: '0.75rem', fontFamily: 'var(--font-heading)' }}>Participant Picks</h4>
+                    <div className="range-picks-list">
+                      {(() => {
+                        const winningLeader = data.stats?.[activeCategory]?.leader || '';
+                        return participants.map((p) => {
+                          const pick = p.picks[activeCategory] || 'None';
+                          const correct = isPickCorrect(activeCategory, pick, winningLeader);
+                          return (
+                            <div key={p.id} className={`range-pick-row ${correct ? 'range-pick-correct' : ''}`}>
+                              <span className="range-pick-participant">
+                                <span className="range-pick-avatar">{p.avatar}</span>
+                                <span>{p.name}</span>
+                              </span>
+                              <span className="range-pick-value">
+                                {pick}
+                                <span className={`range-pick-status ${correct ? 'is-correct' : 'is-incorrect'}`}>
+                                  {correct ? '✓' : '✗'}
+                                </span>
+                              </span>
+                            </div>
+                          );
+                        });
+                      })()}
+                    </div>
+                  </div>
+                ) : (
+                <>
                 <div style={{ marginTop: '1.5rem' }}>
                   <h4 style={{ marginBottom: '0.75rem', fontFamily: 'var(--font-heading)' }}>Comparison Chart</h4>
                   <div className="chart-container">
@@ -1737,6 +1785,8 @@ export default function PickemsPage() {
                     <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', textAlign: 'center', padding: '1rem' }}>No rankings available yet.</p>
                   )}
                 </div>
+                </>
+                )}
               </div>
             </div>
           </div>
