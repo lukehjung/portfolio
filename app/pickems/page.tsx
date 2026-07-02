@@ -248,6 +248,19 @@ export default function PickemsPage() {
     return data.teamImages?.[clean] || '';
   };
 
+  // Resolve the display name for a leaderboard entry, respecting the category's
+  // expected type. Some entries carry both `player` and `champion` fields (e.g.
+  // CS-in-single-game tracks pros, but includes which champion they played).
+  // Without this, the fallback would show the champion instead of the pro.
+  const resolveEntryName = (item: any, categoryKey: string | null): string => {
+    if (!item) return 'Unknown';
+    const type = categoryKey ? CATEGORIES_INFO[categoryKey]?.type : undefined;
+    if (type === 'player' && item.player) return item.player;
+    if (type === 'team' && item.team) return item.team;
+    if (type === 'champion' && item.champion) return item.champion;
+    return item.champion || item.player || item.team || item.gameId || 'Unknown';
+  };
+
   const getModalChartData = () => {
     if (!activeCategory || !data.stats?.[activeCategory]) return [];
 
@@ -291,7 +304,7 @@ export default function PickemsPage() {
     }
 
     const top3: any[] = leaderboard.slice(0, 3).map((item: any, idx: number) => ({
-      name: item.champion || item.player || item.team || 'Unknown',
+      name: resolveEntryName(item, activeCategory),
       value: getNumericValue(item, activeCategory),
       displayVal: getDisplayValue(item),
       isTop3: true,
@@ -312,7 +325,7 @@ export default function PickemsPage() {
         top3[existingIndex].pickedBy.push(p);
       } else {
         const lbItem = leaderboard.find((item: any) => {
-          const name = item.champion || item.player || item.team || 'Unknown';
+          const name = resolveEntryName(item, activeCategory);
           return cleanName(name) === cleanPick;
         });
 
@@ -323,7 +336,7 @@ export default function PickemsPage() {
           } else {
             const lbIndex = leaderboard.indexOf(lbItem);
             top3.push({
-              name: lbItem.champion || lbItem.player || lbItem.team || 'Unknown',
+              name: resolveEntryName(lbItem, activeCategory),
               value: getNumericValue(lbItem, activeCategory),
               displayVal: getDisplayValue(lbItem),
               isTop3: false,
@@ -1393,7 +1406,7 @@ export default function PickemsPage() {
                       </thead>
                       <tbody>
                         {data.stats[activeCategory].leaderboard.map((item: any, index: number) => {
-                          const name = item.champion || item.player || item.team || item.gameId || 'Unknown';
+                          const name = resolveEntryName(item, activeCategory);
                           const displayVal = item.count !== undefined ? `${item.count} picks` :
                             item.winrate !== undefined ? `${(item.winrate * 100).toFixed(1)}% (${item.wins}/${item.picks})` :
                             item.kills !== undefined ? `${item.kills} kills` :
