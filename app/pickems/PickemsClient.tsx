@@ -1545,7 +1545,7 @@ export default function PickemsPage() {
                   );
                 })()}
 
-                {activeCategory === 'category13' ? (
+                {(activeCategory === 'category13' || activeCategory === 'category14') ? (
                   <div style={{ marginTop: '1.5rem' }}>
                     <h4 style={{ marginBottom: '0.75rem', fontFamily: 'var(--font-heading)' }}>Participant Picks</h4>
                     <div className="range-picks-list">
