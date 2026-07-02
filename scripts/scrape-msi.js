@@ -767,7 +767,7 @@ function compileStats(games) {
     .map((champ) => ({ champion: champ, bans: champBansTotal[champ] }))
     .sort((a, b) => b.bans - a.bans);
 
-  return {
+  const stats = {
     category1: {
       title: 'Champion Picked Most (Play-ins)',
       leader: viLeaderboard[0]?.champion || 'N/A',
@@ -865,6 +865,24 @@ function compileStats(games) {
       leaderboard: bardLeaderboard
     }
   };
+
+  // Play-in results are locked once the stage concludes; hardcode the
+  // official leaders so tiebreakers (cat1: several champions at 6 picks)
+  // and outlier data (cat13: a game gol.gg counts as 60 kills but which the
+  // official MSI pick'em treats as landing in the 31-45 bucket) don't drift.
+  // Only leader/value are overridden — leaderboards below the leader are
+  // kept from the scraped data for context in the modal.
+  const PLAYIN_OVERRIDES = {
+    category1: { leader: 'Renekton', value: '6 picks (Play-ins tiebreaker)' },
+    category13: { leader: '38 Kills', value: '31-45 range (Play-ins official)' },
+  };
+  for (const [key, override] of Object.entries(PLAYIN_OVERRIDES)) {
+    if (stats[key]) {
+      stats[key] = { ...stats[key], ...override };
+    }
+  }
+
+  return stats;
 }
 
 run();
