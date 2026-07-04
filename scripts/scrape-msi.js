@@ -9,9 +9,9 @@ const PROJECT_ROOT = path.join(__dirname, '..');
 const CACHE_DIR = path.join(PROJECT_ROOT, '.scrape-cache');
 const OUTPUT_FILE = path.join(PROJECT_ROOT, 'app', 'pickems', 'msi_data.json');
 
-const CF_ACCOUNT_ID = process.env.CF_ACCOUNT_ID;
+const CF_ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID;
 const CF_NAMESPACE_ID = process.env.CF_KV_NAMESPACE_ID;
-const CF_API_TOKEN = process.env.CF_API_TOKEN;
+const CF_API_TOKEN = process.env.CLOUDFLARE_API_TOKEN;
 const KV_KEY = 'processedGames';
 
 async function loadProcessedGames() {
