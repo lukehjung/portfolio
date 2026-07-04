@@ -9,6 +9,52 @@ const PROJECT_ROOT = path.join(__dirname, '..');
 const CACHE_DIR = path.join(PROJECT_ROOT, '.scrape-cache');
 const OUTPUT_FILE = path.join(PROJECT_ROOT, 'app', 'pickems', 'msi_data.json');
 
+const CF_ACCOUNT_ID = process.env.CF_ACCOUNT_ID;
+const CF_NAMESPACE_ID = process.env.CF_KV_NAMESPACE_ID;
+const CF_API_TOKEN = process.env.CF_API_TOKEN;
+const KV_KEY = 'processedGames';
+
+async function loadProcessedGames() {
+  if (!CF_ACCOUNT_ID || !CF_NAMESPACE_ID || !CF_API_TOKEN) {
+    console.warn('Cloudflare KV credentials not set – returning empty list');
+    return [];
+  }
+  const url = `https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/storage/kv/namespaces/${CF_NAMESPACE_ID}/values/${KV_KEY}`;
+  try {
+    const res = await fetch(url, { method: 'GET', headers: { Authorization: `Bearer ${CF_API_TOKEN}` } });
+    if (res.status === 404) return [];
+    if (!res.ok) {
+      console.error('Failed to load processed games from KV:', res.status, await res.text());
+      return [];
+    }
+    const text = await res.text();
+    return JSON.parse(text);
+  } catch (e) {
+    console.error('Error fetching processed games from KV:', e);
+    return [];
+  }
+}
+
+async function saveProcessedGames(games) {
+  if (!CF_ACCOUNT_ID || !CF_NAMESPACE_ID || !CF_API_TOKEN) {
+    console.warn('Cloudflare KV credentials not set – not persisting processed games');
+    return;
+  }
+  const url = `https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/storage/kv/namespaces/${CF_NAMESPACE_ID}/values/${KV_KEY}`;
+  try {
+    const res = await fetch(url, {
+      method: 'PUT',
+      headers: { Authorization: `Bearer ${CF_API_TOKEN}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(games)
+    });
+    if (!res.ok) {
+      console.error('Failed to save processed games to KV:', res.status, await res.text());
+    }
+  } catch (e) {
+    console.error('Error saving processed games to KV:', e);
+  }
+}
+
 // Hardcoded MSI 2026 rosters. Update when teams or rosters change mid-tournament.
 // Source of truth — gol.gg's matchlist often lags by weeks for the main-event
 // teams, and the lolesports getTeams API doesn't reliably include MSI rosters.
@@ -471,6 +517,7 @@ async function run() {
     console.log(`Processing ${completedMatches.length} completed matches...`);
 
     const games = [];
+    let processedGames = [];
 
     for (const match of completedMatches) {
       console.log(`Processing Match: ${match.team1} vs ${match.team2} (${match.score})`);
@@ -478,13 +525,26 @@ async function run() {
         const gameIds = await parseMatchGames(match);
         console.log(`Match has ${gameIds.length} games: ${gameIds.join(', ')}`);
 
+        // Ensure we have the latest processed list before handling this match
+        if (processedGames.length === 0) {
+          processedGames = await loadProcessedGames();
+        }
+
         for (const gameId of gameIds) {
+          if (processedGames.includes(gameId)) {
+            console.log(`Skipping already processed game ${gameId}`);
+            continue;
+          }
           console.log(`  Parsing Game ID: ${gameId}`);
           const gameDetails = await parseGameDetails(gameId, match.stage, match.date);
           if (gameDetails) {
             games.push(gameDetails);
+            processedGames.push(gameId);
           }
         }
+
+        // Persist the updated list after each match to keep KV in sync
+        await saveProcessedGames(processedGames);
       } catch (err) {
         console.error(`Error parsing match ${match.matchId}:`, err);
       }
