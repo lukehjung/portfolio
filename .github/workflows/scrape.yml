@@ -1,0 +1,27 @@
+name: Hourly MSI Pick'em Scrape
+
+on:
+  schedule:
+    # Runs at minute 30 of every hour between 2‑9 UTC (8‑3 PM PT) and 22‑23 UTC (2‑3 PM PT)
+    - cron: "30 2-9,22-23 * * *"
+  workflow_dispatch:
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    env:
+      CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+      CF_KV_NAMESPACE_ID: ${{ secrets.CF_KV_NAMESPACE_ID }}
+      CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - name: Install dependencies
+        run: npm ci
+      - name: Run scraper
+        run: node scripts/scrape-msi.js
+      # No commit step – processedGames is stored in Cloudflare KV
