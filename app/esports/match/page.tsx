@@ -63,8 +63,7 @@ function MatchDetailsContent() {
 
         // Fetch team logos
         const teamsRes = await fetch('https://esports-api.lolesports.com/persisted/gw/getTeams?hl=en-US', {
-            headers: { 'x-api-key': API_KEY },
-            cache: 'no-store'
+            headers: { 'x-api-key': API_KEY }
         });
         const teamsData = await teamsRes.json();
         const allTeams = teamsData?.data?.teams || [];

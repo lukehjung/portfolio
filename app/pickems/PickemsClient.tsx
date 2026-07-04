@@ -213,6 +213,64 @@ export default function PickemsPage() {
     });
   };
   const [champions, setChampions] = useState<string[]>([]);
+  
+  const [isTriggeringScraper, setIsTriggeringScraper] = useState(false);
+  const [scraperStatusMessage, setScraperStatusMessage] = useState<string | null>(null);
+  const [isTokenModalOpen, setIsTokenModalOpen] = useState(false);
+  const [tempToken, setTempToken] = useState('');
+
+  const triggerScraper = async (tokenToUse?: string) => {
+    let pat = tokenToUse || localStorage.getItem('github_pat') || '';
+    if (!pat) {
+      setTempToken('');
+      setIsTokenModalOpen(true);
+      return;
+    }
+
+    setIsTriggeringScraper(true);
+    setScraperStatusMessage('Triggering...');
+
+    try {
+      const url = 'https://api.github.com/repos/lukehjung/portfolio/actions/workflows/scrape-msi.yml/dispatches';
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Authorization': `token ${pat}`,
+          'Accept': 'application/vnd.github.v3+json',
+        },
+        body: JSON.stringify({
+          ref: 'master'
+        })
+      });
+
+      if (res.status === 204) {
+        setScraperStatusMessage('Success! Workflow started.');
+        setTimeout(() => setScraperStatusMessage(null), 5000);
+      } else {
+        const errData = await res.json().catch(() => ({}));
+        const errMsg = errData.message || `Status ${res.status}`;
+        if (res.status === 401 || res.status === 403) {
+          localStorage.removeItem('github_pat');
+          setScraperStatusMessage('Unauthorized. Token cleared.');
+        } else {
+          setScraperStatusMessage(`Failed: ${errMsg}`);
+        }
+      }
+    } catch (e: any) {
+      console.error(e);
+      setScraperStatusMessage(`Error: ${e.message || 'Unknown'}`);
+    } finally {
+      setIsTriggeringScraper(false);
+    }
+  };
+
+  const handleTokenSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!tempToken.trim()) return;
+    localStorage.setItem('github_pat', tempToken.trim());
+    setIsTokenModalOpen(false);
+    triggerScraper(tempToken.trim());
+  };
 
   const sortedGames = useMemo(() => {
     if (!data.games || !Array.isArray(data.games)) return [];
@@ -1024,6 +1082,13 @@ export default function PickemsPage() {
           padding: 0.75rem 1.25rem; border-radius: 12px;
         }
         .pickems-page .refresh-panel svg { color: var(--color-blue); }
+        .pickems-page .refresh-panel svg.spin {
+          animation: pickems-spin 1s linear infinite;
+        }
+        @keyframes pickems-spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
         .pickems-page .refresh-text p:first-child { color: var(--text-secondary); font-weight: 500; font-size: 0.9rem; }
         .pickems-page .refresh-text p:last-child { font-size: 0.75rem; }
 
@@ -1966,6 +2031,54 @@ export default function PickemsPage() {
           </div>
         )}
 
+        {isTokenModalOpen && (
+          <div className="modal-overlay" onClick={() => setIsTokenModalOpen(false)}>
+            <div className="modal-content glass" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '450px' }}>
+              <div className="modal-header">
+                <div>
+                  <h2>GitHub Token Required</h2>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.25rem' }}>To trigger the scraper workflow, provide a GitHub Personal Access Token (PAT) with <strong>workflow</strong> scope.</p>
+                </div>
+                <button className="close-btn" onClick={() => setIsTokenModalOpen(false)}>
+                  <X size={20} />
+                </button>
+              </div>
+              <form onSubmit={handleTokenSubmit}>
+                <div className="modal-body" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                  <div className="form-group">
+                    <label htmlFor="github-token-input">Personal Access Token (PAT)</label>
+                    <input
+                      id="github-token-input"
+                      type="password"
+                      className="form-control"
+                      placeholder="ghp_..."
+                      value={tempToken}
+                      onChange={(e) => setTempToken(e.target.value)}
+                      required
+                    />
+                    <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.5rem', lineHeight: '1.4' }}>
+                      Your token is saved <strong>only</strong> in your browser&apos;s local storage and is sent directly to GitHub&apos;s API.
+                      You can create a token on GitHub with <code>Actions: Read & Write</code> (or <code>workflow</code>) permissions.
+                      <br />
+                      <a href="https://github.com/settings/tokens/new?scopes=workflow" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-blue)', textDecoration: 'underline' }}>
+                        Create Token on GitHub ↗
+                      </a>
+                    </p>
+                  </div>
+                </div>
+                <div style={{ padding: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.05)', display: 'flex', justifyContent: 'flex-end', gap: '0.75rem' }}>
+                  <button type="button" className="btn btn-secondary" onClick={() => setIsTokenModalOpen(false)}>
+                    Cancel
+                  </button>
+                  <button type="submit" className="btn">
+                    Save and Trigger
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+
         <div className="footer-bar">
           <div>
             <span>MSI 2026 Mid-Season Invitational • </span>
@@ -1973,11 +2086,27 @@ export default function PickemsPage() {
           </div>
 
           <div className="refresh-panel">
-            <RefreshCw size={18} />
+            <RefreshCw size={18} className={isTriggeringScraper ? 'spin' : ''} />
             <div className="refresh-text">
               <p>Data Status</p>
               <p>Last Scraped: {hydrated ? new Date(data.lastUpdated).toLocaleString() : ''}</p>
             </div>
+            {!viewOnly && (
+              <button
+                type="button"
+                className="btn btn-secondary btn-sm"
+                style={{ marginLeft: '1rem', display: 'flex', alignItems: 'center', gap: '0.4rem', padding: '0.3rem 0.75rem', fontSize: '0.8rem', minHeight: 'auto' }}
+                disabled={isTriggeringScraper}
+                onClick={() => triggerScraper()}
+              >
+                Rerun Scraper
+              </button>
+            )}
+            {scraperStatusMessage && (
+              <span style={{ fontSize: '0.75rem', color: scraperStatusMessage.includes('Success') ? 'var(--color-blue)' : 'var(--color-red)', marginLeft: '0.5rem' }}>
+                {scraperStatusMessage}
+              </span>
+            )}
           </div>
         </div>
       </div>
