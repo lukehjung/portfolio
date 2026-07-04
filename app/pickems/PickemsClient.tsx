@@ -173,6 +173,18 @@ export default function PickemsPage() {
   const [data, setData] = useState<any>(msiData);
   const [participants, setParticipants] = useState<any[]>(defaultParticipants as any);
   const [hydrated, setHydrated] = useState(false);
+  const [viewOnly, setViewOnly] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const isPublic = params.get('viewonly') === 'true' || params.get('public') === 'true';
+      if (isPublic) {
+        setViewOnly(true);
+        setActiveTab('dashboard');
+      }
+    }
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -1236,9 +1248,11 @@ export default function PickemsPage() {
             <button className={`tab-btn ${activeTab === 'dashboard' ? 'active' : ''}`} onClick={() => setActiveTab('dashboard')}>
               <Flame size={18} /> Dashboard
             </button>
-            <button className={`tab-btn ${activeTab === 'leaderboard' ? 'active' : ''}`} onClick={() => setActiveTab('leaderboard')}>
-              <Trophy size={18} /> Standings
-            </button>
+            {!viewOnly && (
+              <button className={`tab-btn ${activeTab === 'leaderboard' ? 'active' : ''}`} onClick={() => setActiveTab('leaderboard')}>
+                <Trophy size={18} /> Standings
+              </button>
+            )}
             <button className={`tab-btn ${activeTab === 'matches' ? 'active' : ''}`} onClick={() => setActiveTab('matches')}>
               <Calendar size={18} /> Matches ({data.gamesCount || 0})
             </button>
@@ -1247,28 +1261,40 @@ export default function PickemsPage() {
 
         {activeTab === 'dashboard' && (
           <div>
-            <div className="glass" style={{ borderRadius: '16px', padding: '1.25rem', marginBottom: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                <Award className="gradient-text-gold" size={24} />
-                <div>
-                  <h4 style={{ fontWeight: 600 }}>Pick&apos;em Leaders</h4>
-                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Current standings based on {data.gamesCount} games played</p>
+            {!viewOnly ? (
+              <div className="glass" style={{ borderRadius: '16px', padding: '1.25rem', marginBottom: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                  <Award className="gradient-text-gold" size={24} />
+                  <div>
+                    <h4 style={{ fontWeight: 600 }}>Pick&apos;em Leaders</h4>
+                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Current standings based on {data.gamesCount} games played</p>
+                  </div>
+                </div>
+                <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
+                  {standings.slice(0, 3).map((player, index) => (
+                    <div key={player.id} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span style={{ fontSize: '1.25rem' }}>
+                        {index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉'}
+                      </span>
+                      <span style={{ fontWeight: 600 }}>{player.name}</span>
+                      <span style={{ color: 'var(--color-blue)', fontFamily: 'var(--font-heading)', fontWeight: 700 }}>
+                        {player.score} pts
+                      </span>
+                    </div>
+                  ))}
                 </div>
               </div>
-              <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
-                {standings.slice(0, 3).map((player, index) => (
-                  <div key={player.id} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <span style={{ fontSize: '1.25rem' }}>
-                      {index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉'}
-                    </span>
-                    <span style={{ fontWeight: 600 }}>{player.name}</span>
-                    <span style={{ color: 'var(--color-blue)', fontFamily: 'var(--font-heading)', fontWeight: 700 }}>
-                      {player.score} pts
-                    </span>
+            ) : (
+              <div className="glass" style={{ borderRadius: '16px', padding: '1.25rem', marginBottom: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', border: '1px solid rgba(0, 246, 255, 0.15)', background: 'rgba(0, 246, 255, 0.02)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                  <Info className="gradient-text-blue" size={24} />
+                  <div>
+                    <h4 style={{ fontWeight: 600 }}>Public View Mode</h4>
+                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Showing real-time tournament statistics compiled from {data.gamesCount} games. Participant standings are hidden.</p>
                   </div>
-                ))}
+                </div>
               </div>
-            </div>
+            )}
 
             <div className="cards-grid">
               {CATEGORY_KEYS.map((key) => {
@@ -1333,7 +1359,7 @@ export default function PickemsPage() {
           </div>
         )}
 
-        {activeTab === 'leaderboard' && (
+        {activeTab === 'leaderboard' && !viewOnly && (
           <div className="leaderboard-container">
             <div className="standings-panel glass">
               <h2><Trophy className="gradient-text-gold" size={24} /> Standings</h2>
@@ -1581,32 +1607,34 @@ export default function PickemsPage() {
                 })()}
 
                 {(activeCategory === 'category13' || activeCategory === 'category14') ? (
-                  <div style={{ marginTop: '1.5rem' }}>
-                    <h4 style={{ marginBottom: '0.75rem', fontFamily: 'var(--font-heading)' }}>Participant Picks</h4>
-                    <div className="range-picks-list">
-                      {(() => {
-                        const winningLeader = data.stats?.[activeCategory]?.leader || '';
-                        return participants.map((p) => {
-                          const pick = p.picks[activeCategory] || 'None';
-                          const correct = isPickCorrect(activeCategory, pick, winningLeader);
-                          return (
-                            <div key={p.id} className={`range-pick-row ${correct ? 'range-pick-correct' : ''}`}>
-                              <span className="range-pick-participant">
-                                <span className="range-pick-avatar">{p.avatar}</span>
-                                <span>{p.name}</span>
-                              </span>
-                              <span className="range-pick-value">
-                                {pick}
-                                <span className={`range-pick-status ${correct ? 'is-correct' : 'is-incorrect'}`}>
-                                  {correct ? '✓' : '✗'}
+                  !viewOnly ? (
+                    <div style={{ marginTop: '1.5rem' }}>
+                      <h4 style={{ marginBottom: '0.75rem', fontFamily: 'var(--font-heading)' }}>Participant Picks</h4>
+                      <div className="range-picks-list">
+                        {(() => {
+                          const winningLeader = data.stats?.[activeCategory]?.leader || '';
+                          return participants.map((p) => {
+                            const pick = p.picks[activeCategory] || 'None';
+                            const correct = isPickCorrect(activeCategory, pick, winningLeader);
+                            return (
+                              <div key={p.id} className={`range-pick-row ${correct ? 'range-pick-correct' : ''}`}>
+                                <span className="range-pick-participant">
+                                  <span className="range-pick-avatar">{p.avatar}</span>
+                                  <span>{p.name}</span>
                                 </span>
-                              </span>
-                            </div>
-                          );
-                        });
-                      })()}
+                                <span className="range-pick-value">
+                                  {pick}
+                                  <span className={`range-pick-status ${correct ? 'is-correct' : 'is-incorrect'}`}>
+                                    {correct ? '✓' : '✗'}
+                                  </span>
+                                </span>
+                              </div>
+                            );
+                          });
+                        })()}
+                      </div>
                     </div>
-                  </div>
+                  ) : null
                 ) : (
                 <>
                 <div style={{ marginTop: '1.5rem' }}>
@@ -1665,7 +1693,7 @@ export default function PickemsPage() {
                                       {item.picks || 0}/5 games
                                     </span>
                                   )}
-                                  {item.pickedBy.length > 0 && (
+                                  {item.pickedBy.length > 0 && !viewOnly && (
                                     <span className="chart-badge chart-badge-pick">Picked</span>
                                   )}
                                 </div>
@@ -1679,18 +1707,20 @@ export default function PickemsPage() {
                                 className={`chart-bar-inner ${item.isTop3 ? 'chart-bar-blue' : 'chart-bar-gold'}`}
                                 style={{ width: `${Math.max(barWidth, 2)}%` }}
                               />
-                              <div className="chart-bar-participants">
-                                {item.pickedBy.map((p: any) => (
-                                  <span
-                                    key={p.id}
-                                    className="chart-bar-participant"
-                                    title={`${p.name}'s pick`}
-                                  >
-                                    <span className="chart-bar-participant-avatar">{p.avatar}</span>
-                                    <span className="chart-bar-participant-name">{p.name}</span>
-                                  </span>
-                                ))}
-                              </div>
+                              {!viewOnly && (
+                                <div className="chart-bar-participants">
+                                  {item.pickedBy.map((p: any) => (
+                                    <span
+                                      key={p.id}
+                                      className="chart-bar-participant"
+                                      title={`${p.name}'s pick`}
+                                    >
+                                      <span className="chart-bar-participant-avatar">{p.avatar}</span>
+                                      <span className="chart-bar-participant-name">{p.name}</span>
+                                    </span>
+                                  ))}
+                                </div>
+                              )}
                             </div>
                           </div>
                         );
