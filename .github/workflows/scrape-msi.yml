@@ -30,6 +30,10 @@ jobs:
         run: npm install --no-save cheerio@^1.0.0
 
       - name: Run scraper
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CF_KV_NAMESPACE_ID: ${{ secrets.CF_KV_NAMESPACE_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: node scripts/scrape-msi.js
 
       - name: Upload to Cloudflare KV
