@@ -21,6 +21,7 @@ import {
   AlertCircle,
   ChevronDown,
   CheckCircle2,
+  Users,
 } from 'lucide-react';
 
 const CATEGORY_KEYS = [
@@ -259,6 +260,7 @@ export default function PickemsPage() {
     });
   };
   const [champions, setChampions] = useState<string[]>([]);
+  const [expandedMatchId, setExpandedMatchId] = useState<string | null>(null);
   
   const [isTriggeringScraper, setIsTriggeringScraper] = useState(false);
   const [scraperStatusMessage, setScraperStatusMessage] = useState<string | null>(null);
@@ -1070,8 +1072,82 @@ export default function PickemsPage() {
         .pickems-page .matches-list { display: flex; flex-direction: column; gap: 1.25rem; }
         .pickems-page .match-card {
           border-radius: 16px; padding: 1.5rem; box-shadow: var(--shadow-sm);
-          display: flex; justify-content: space-between; align-items: center; gap: 1.5rem;
+          display: flex; flex-direction: column; gap: 1rem;
           transition: all 0.2s ease;
+          cursor: pointer;
+        }
+        .pickems-page .match-card.expanded {
+          border-color: rgba(0, 246, 255, 0.25);
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+        }
+        .pickems-page .match-card-main {
+          display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; width: 100%;
+        }
+        .pickems-page .match-players-expanded {
+          border-top: 1px solid rgba(255, 255, 255, 0.05);
+          padding-top: 1.25rem;
+          margin-top: 0.5rem;
+          width: 100%;
+          cursor: default;
+        }
+        .pickems-page .match-players-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1.5rem;
+        }
+        @media (max-width: 992px) {
+          .pickems-page .match-players-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+        .pickems-page .stats-table-wrapper {
+          overflow-x: auto;
+          background: rgba(0, 0, 0, 0.2);
+          border-radius: 8px;
+          border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        .pickems-page .player-stats-table {
+          width: 100%;
+          border-collapse: collapse;
+          font-size: 0.85rem;
+          text-align: left;
+        }
+        .pickems-page .player-stats-table th {
+          background: rgba(255, 255, 255, 0.02);
+          padding: 0.5rem 0.75rem;
+          color: var(--text-secondary);
+          font-weight: 500;
+          font-size: 0.75rem;
+          text-transform: uppercase;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .pickems-page .player-stats-table td {
+          padding: 0.5rem 0.75rem;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+          vertical-align: middle;
+        }
+        .pickems-page .player-name-bold {
+          font-weight: 600;
+          color: var(--text-primary);
+        }
+        .pickems-page .player-role-small {
+          font-size: 0.7rem;
+          color: var(--text-muted);
+        }
+        .pickems-page .stat-champ-img {
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+        .pickems-page .winner-badge {
+          background: rgba(0, 230, 118, 0.15);
+          color: #00e676;
+          padding: 0.1rem 0.35rem;
+          font-size: 0.65rem;
+          border-radius: 3px;
+          font-weight: bold;
+          letter-spacing: 0.5px;
         }
         .pickems-page .match-card:hover { border-color: rgba(255, 255, 255, 0.12); transform: scale(1.002); }
         .pickems-page .match-meta { display: flex; flex-direction: column; gap: 0.25rem; }
@@ -1317,12 +1393,14 @@ export default function PickemsPage() {
           .pickems-page .leaderboard-table td { padding: 0.6rem 0.5rem; font-size: 0.85rem; }
 
           .pickems-page .match-card {
+            padding: 1rem;
+          }
+          .pickems-page .match-card-main {
             flex-direction: column;
             align-items: stretch;
             gap: 0.75rem;
-            padding: 1rem;
           }
-          .pickems-page .match-card .match-meta { flex-direction: row; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+          .pickems-page .match-card-main .match-meta { flex-direction: row; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
           .pickems-page .match-teams-score { gap: 0.5rem; }
           .pickems-page .match-team { width: auto; flex: 1; min-width: 0; }
           .pickems-page .match-team-name { font-size: 0.9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -1628,44 +1706,147 @@ export default function PickemsPage() {
         {activeTab === 'matches' && (
           <div className="matches-list">
             {sortedGames && sortedGames.length > 0 ? (
-              sortedGames.map((game: any) => (
-                <div key={game.gameId} className="match-card glass">
-                  <div className="match-meta">
-                    <span className="match-stage">{game.stage}</span>
-                    <span className="match-date">{game.date}</span>
-                    <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Duration: {game.duration}</span>
-                    <a
-                      href={`https://gol.gg/game/stats/${game.gameId}/page-game/`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="gol-link"
-                    >
-                      Gol.gg ↗
-                    </a>
-                  </div>
-                  <div className="match-teams-score">
-                    <div className={`match-team match-team-blue ${game.winner === game.blueTeam ? 'winner' : 'loser'}`}>
-                      {getTeamLogo(game.blueTeam) && (
-                        <img src={getTeamLogo(game.blueTeam)} alt="" className="match-team-logo" />
-                      )}
-                      <span className="match-team-name">{game.blueTeam}</span>
+              sortedGames.map((game: any) => {
+                const isExpanded = expandedMatchId === game.gameId;
+                return (
+                  <div
+                    key={game.gameId}
+                    className={`match-card glass ${isExpanded ? 'expanded' : ''}`}
+                    onClick={() => setExpandedMatchId(isExpanded ? null : game.gameId)}
+                  >
+                    <div className="match-card-main">
+                      <div className="match-meta">
+                        <span className="match-stage">{game.stage}</span>
+                        <span className="match-date">{game.date}</span>
+                        <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Duration: {game.duration}</span>
+                        <a
+                          href={`https://gol.gg/game/stats/${game.gameId}/page-game/`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="gol-link"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          Gol.gg ↗
+                        </a>
+                      </div>
+                      <div className="match-teams-score">
+                        <div className={`match-team match-team-blue ${game.winner === game.blueTeam ? 'winner' : 'loser'}`}>
+                          {getTeamLogo(game.blueTeam) && (
+                            <img src={getTeamLogo(game.blueTeam)} alt="" className="match-team-logo" />
+                          )}
+                          <span className="match-team-name">{game.blueTeam}</span>
+                        </div>
+                        <div className="match-score-bubble">
+                          {game.blueKills} - {game.redKills}
+                        </div>
+                        <div className={`match-team match-team-red ${game.winner === game.redTeam ? 'winner' : 'loser'}`}>
+                          <span className="match-team-name">{game.redTeam}</span>
+                          {getTeamLogo(game.redTeam) && (
+                            <img src={getTeamLogo(game.redTeam)} alt="" className="match-team-logo" />
+                          )}
+                        </div>
+                      </div>
+                      <div className="match-stats">
+                        <p><span className="match-stat-label">First Blood:</span> <span className="match-stat-fb">{game.firstBloodKiller}</span></p>
+                        <p><span className="match-stat-label">Elder Dragons:</span> 🐉 {game.blueElderDragons + game.redElderDragons}</p>
+                        <span style={{ fontSize: '0.75rem', color: 'var(--color-blue)', display: 'block', marginTop: '0.3rem', fontWeight: 600 }}>
+                          {isExpanded ? 'Collapse Stats ▲' : 'Expand Stats ▼'}
+                        </span>
+                      </div>
                     </div>
-                    <div className="match-score-bubble">
-                      {game.blueKills} - {game.redKills}
-                    </div>
-                    <div className={`match-team match-team-red ${game.winner === game.redTeam ? 'winner' : 'loser'}`}>
-                      <span className="match-team-name">{game.redTeam}</span>
-                      {getTeamLogo(game.redTeam) && (
-                        <img src={getTeamLogo(game.redTeam)} alt="" className="match-team-logo" />
-                      )}
-                    </div>
+
+                    {isExpanded && (
+                      <div className="match-players-expanded" onClick={(e) => e.stopPropagation()}>
+                        {game.players && game.players.length > 0 ? (
+                          <div className="match-players-grid">
+                            <div className="team-players-block">
+                              <h5 className="team-header blue" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#00e676', borderBottom: '1px solid rgba(0, 230, 118, 0.1)', paddingBottom: '0.4rem', marginBottom: '0.75rem', fontSize: '0.85rem' }}>
+                                🔵 {game.blueTeam} {game.winner === game.blueTeam && <span className="winner-badge">WIN</span>}
+                              </h5>
+                              <div className="stats-table-wrapper">
+                                <table className="player-stats-table">
+                                  <thead>
+                                    <tr>
+                                      <th>Player</th>
+                                      <th>Champion</th>
+                                      <th style={{ textAlign: 'center' }}>K/D/A</th>
+                                      <th style={{ textAlign: 'right' }}>CS</th>
+                                      <th style={{ textAlign: 'right' }}>Damage</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {game.players.filter((p: any) => p.isBlue).map((p: any) => (
+                                      <tr key={p.name}>
+                                        <td>
+                                          <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                            <span className="player-name-bold">{p.name}</span>
+                                            <span className="player-role-small">{p.role}</span>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                                            <img src={getChampionImage(p.champion)} alt={p.champion} className="stat-champ-img" onError={(e) => { (e.target as HTMLElement).style.display = 'none'; }} />
+                                            <span style={{ fontSize: '0.8rem' }}>{p.champion}</span>
+                                          </div>
+                                        </td>
+                                        <td style={{ textAlign: 'center', fontFamily: 'var(--font-heading)', fontWeight: 600 }}>{p.kills}/{p.deaths}/{p.assists}</td>
+                                        <td style={{ textAlign: 'right' }}>{p.cs}</td>
+                                        <td style={{ textAlign: 'right', color: 'var(--color-blue)', fontFamily: 'var(--font-heading)', fontWeight: 600 }}>{p.damage.toLocaleString()}</td>
+                                      </tr>
+                                    ))}
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+
+                            <div className="team-players-block">
+                              <h5 className="team-header red" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#ff1744', borderBottom: '1px solid rgba(255, 23, 68, 0.1)', paddingBottom: '0.4rem', marginBottom: '0.75rem', fontSize: '0.85rem' }}>
+                                🔴 {game.redTeam} {game.winner === game.redTeam && <span className="winner-badge">WIN</span>}
+                              </h5>
+                              <div className="stats-table-wrapper">
+                                <table className="player-stats-table">
+                                  <thead>
+                                    <tr>
+                                      <th>Player</th>
+                                      <th>Champion</th>
+                                      <th style={{ textAlign: 'center' }}>K/D/A</th>
+                                      <th style={{ textAlign: 'right' }}>CS</th>
+                                      <th style={{ textAlign: 'right' }}>Damage</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {game.players.filter((p: any) => !p.isBlue).map((p: any) => (
+                                      <tr key={p.name}>
+                                        <td>
+                                          <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                            <span className="player-name-bold">{p.name}</span>
+                                            <span className="player-role-small">{p.role}</span>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                                            <img src={getChampionImage(p.champion)} alt={p.champion} className="stat-champ-img" onError={(e) => { (e.target as HTMLElement).style.display = 'none'; }} />
+                                            <span style={{ fontSize: '0.8rem' }}>{p.champion}</span>
+                                          </div>
+                                        </td>
+                                        <td style={{ textAlign: 'center', fontFamily: 'var(--font-heading)', fontWeight: 600 }}>{p.kills}/{p.deaths}/{p.assists}</td>
+                                        <td style={{ textAlign: 'right' }}>{p.cs}</td>
+                                        <td style={{ textAlign: 'right', color: 'var(--color-blue)', fontFamily: 'var(--font-heading)', fontWeight: 600 }}>{p.damage.toLocaleString()}</td>
+                                      </tr>
+                                    ))}
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        ) : (
+                          <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', textAlign: 'center', padding: '1rem' }}>No player stats parsed for this game.</p>
+                        )}
+                      </div>
+                    )}
                   </div>
-                  <div className="match-stats">
-                    <p><span className="match-stat-label">First Blood:</span> <span className="match-stat-fb">{game.firstBloodKiller}</span></p>
-                    <p><span className="match-stat-label">Elder Dragons:</span> 🐉 {game.blueElderDragons + game.redElderDragons}</p>
-                  </div>
-                </div>
-              ))
+                );
+              })
             ) : (
               <div className="glass" style={{ padding: '3rem', textAlign: 'center', borderRadius: '16px' }}>
                 <AlertCircle size={48} style={{ color: 'var(--text-muted)', marginBottom: '1rem', display: 'inline-block' }} />

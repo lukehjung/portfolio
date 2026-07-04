@@ -2,16 +2,10 @@
 
 A personal portfolio website and interactive web resume built with Next.js, React, and Tailwind CSS.
 
-## 🚀 Recent Updates
-
-* **Responsive Web Resume:** Translated a static LaTeX resume into a fully responsive, modern web page using Next.js App Router and Tailwind CSS, now serving as the main homepage.
-* **Tailwind CSS Integration:** Configured Tailwind CSS v4 alongside the existing legacy CSS to allow for modern, utility-first styling without breaking older components.
-* **Git Optimization:** Added Next.js build cache (`.next`) to `.gitignore` to keep the repository clean.
-
-* **LoL Esports Section (`/esports`):** A high-fidelity, interactive dashboard featuring live tournament data, match history, and VOD integration using the LoL Esports GraphQL API.
-* **Gen-AI Biography Service:** A secure, serverless Cloudflare Worker (`gen-ai-bio`) that proxies Google's **Gemini 3.1 Flash Lite Preview** to synthesize professional player and team biographies.
-* **Specialized Edge Caching:** Implemented `caches.default` strategies at the Cloudflare Edge to persist AI responses for 7 days, providing sub-100ms load times and $0 token cost for repeat visits.
-* **TFT Data Layer (`tft-proxy`):** A dedicated Riot API proxy with 30-minute Edge Caching to securely deliver Teamfight Tactics statistics while staying within rate limits.
+* **MSI 2026 Pick'em Dashboard (`/pickems`):** An interactive prediction dashboard showing live match listings, participant points, and pick comparisons. Includes a view-only toggle (`?viewonly=true`) to share public-facing standings securely.
+* **Passcode-Secured Scraper Trigger:** Updated the Cloudflare Edge Worker (`msi-proxy`) to support secure, passcode-authorized trigger requests directly from the client, initiating the scraper workflow without exposing GitHub Personal Access Tokens.
+* **Tiered Points & Placements:** Integrated automated leaderboard mapping and scoring rules (50/20/10 points for 1st/2nd/3rd places) showing exact placements and points badges in a visual, responsive grid.
+* **Expandable Match Stats:** Matches list now supports clickable, responsive dropdown grids that expand to display detailed side-by-side team player stats tables (KDA, CS, Damage, Champion icons).
 
 ## 💻 Tech Stack
 
