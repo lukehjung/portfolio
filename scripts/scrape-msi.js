@@ -61,6 +61,40 @@ async function saveProcessedGames(games) {
   }
 }
 
+async function loadExistingGames() {
+  if (CF_ACCOUNT_ID && CF_NAMESPACE_ID && CF_API_TOKEN) {
+    const url = `https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/storage/kv/namespaces/${CF_NAMESPACE_ID}/values/msi:aggregate`;
+    try {
+      const res = await fetch(url, { method: 'GET', headers: { Authorization: `Bearer ${CF_API_TOKEN}` } });
+      if (res.ok) {
+        const data = await res.json();
+        if (data && Array.isArray(data.games)) {
+          console.log(`Loaded ${data.games.length} games from Cloudflare KV (msi:aggregate)`);
+          return data.games;
+        }
+      } else {
+        console.warn(`Failed to fetch msi:aggregate from KV: ${res.status}`);
+      }
+    } catch (e) {
+      console.error('Error fetching msi:aggregate from KV:', e);
+    }
+  }
+
+  if (fs.existsSync(OUTPUT_FILE)) {
+    try {
+      const data = JSON.parse(fs.readFileSync(OUTPUT_FILE, 'utf-8'));
+      if (data && Array.isArray(data.games)) {
+        console.log(`Loaded ${data.games.length} games from local ${OUTPUT_FILE}`);
+        return data.games;
+      }
+    } catch (e) {
+      console.error('Error reading local msi_data.json:', e);
+    }
+  }
+
+  return [];
+}
+
 // Hardcoded MSI 2026 rosters. Update when teams or rosters change mid-tournament.
 // Source of truth — gol.gg's matchlist often lags by weeks for the main-event
 // teams, and the lolesports getTeams API doesn't reliably include MSI rosters.
@@ -522,7 +556,7 @@ async function run() {
     const completedMatches = matches.filter((m) => m.isCompleted);
     console.log(`Processing ${completedMatches.length} completed matches...`);
 
-    const games = [];
+    const games = await loadExistingGames();
     let processedGames = [];
 
     for (const match of completedMatches) {
@@ -539,6 +573,10 @@ async function run() {
         for (const gameId of gameIds) {
           if (processedGames.includes(gameId)) {
             console.log(`Skipping already processed game ${gameId}`);
+            continue;
+          }
+          if (games.some((g) => g.gameId === gameId)) {
+            console.log(`Skipping game ${gameId} (already in games list)`);
             continue;
           }
           console.log(`  Parsing Game ID: ${gameId}`);
