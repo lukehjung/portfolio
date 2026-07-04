@@ -219,9 +219,9 @@ export default function PickemsPage() {
   const [isTokenModalOpen, setIsTokenModalOpen] = useState(false);
   const [tempToken, setTempToken] = useState('');
 
-  const triggerScraper = async (tokenToUse?: string) => {
-    let pat = tokenToUse || localStorage.getItem('github_pat') || '';
-    if (!pat) {
+  const triggerScraper = async (pinToUse?: string) => {
+    let pin = pinToUse || localStorage.getItem('admin_pin') || '';
+    if (!pin) {
       setTempToken('');
       setIsTokenModalOpen(true);
       return;
@@ -231,27 +231,24 @@ export default function PickemsPage() {
     setScraperStatusMessage('Triggering...');
 
     try {
-      const url = 'https://api.github.com/repos/lukehjung/portfolio/actions/workflows/scrape-msi.yml/dispatches';
+      const url = 'https://msi-proxy.lukethejung.workers.dev/api/trigger-scrape';
       const res = await fetch(url, {
         method: 'POST',
         headers: {
-          'Authorization': `token ${pat}`,
-          'Accept': 'application/vnd.github.v3+json',
-        },
-        body: JSON.stringify({
-          ref: 'master'
-        })
+          'x-admin-pin': pin
+        }
       });
 
-      if (res.status === 204) {
+      const responseData = await res.json().catch(() => ({}));
+
+      if (res.ok) {
         setScraperStatusMessage('Success! Workflow started.');
         setTimeout(() => setScraperStatusMessage(null), 5000);
       } else {
-        const errData = await res.json().catch(() => ({}));
-        const errMsg = errData.message || `Status ${res.status}`;
-        if (res.status === 401 || res.status === 403) {
-          localStorage.removeItem('github_pat');
-          setScraperStatusMessage('Unauthorized. Token cleared.');
+        const errMsg = responseData.error || `Status ${res.status}`;
+        if (res.status === 401) {
+          localStorage.removeItem('admin_pin');
+          setScraperStatusMessage('Invalid Passcode.');
         } else {
           setScraperStatusMessage(`Failed: ${errMsg}`);
         }
@@ -267,7 +264,7 @@ export default function PickemsPage() {
   const handleTokenSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!tempToken.trim()) return;
-    localStorage.setItem('github_pat', tempToken.trim());
+    localStorage.setItem('admin_pin', tempToken.trim());
     setIsTokenModalOpen(false);
     triggerScraper(tempToken.trim());
   };
@@ -2036,8 +2033,8 @@ export default function PickemsPage() {
             <div className="modal-content glass" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '450px' }}>
               <div className="modal-header">
                 <div>
-                  <h2>GitHub Token Required</h2>
-                  <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.25rem' }}>To trigger the scraper workflow, provide a GitHub Personal Access Token (PAT) with <strong>workflow</strong> scope.</p>
+                  <h2>Admin Passcode Required</h2>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.25rem' }}>To trigger the scraper workflow, enter the Admin Passcode/PIN configured on your Cloudflare Worker.</p>
                 </div>
                 <button className="close-btn" onClick={() => setIsTokenModalOpen(false)}>
                   <X size={20} />
@@ -2046,23 +2043,18 @@ export default function PickemsPage() {
               <form onSubmit={handleTokenSubmit}>
                 <div className="modal-body" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                   <div className="form-group">
-                    <label htmlFor="github-token-input">Personal Access Token (PAT)</label>
+                    <label htmlFor="admin-passcode-input">Admin Passcode (PIN)</label>
                     <input
-                      id="github-token-input"
+                      id="admin-passcode-input"
                       type="password"
                       className="form-control"
-                      placeholder="ghp_..."
+                      placeholder="Enter Admin PIN"
                       value={tempToken}
                       onChange={(e) => setTempToken(e.target.value)}
                       required
                     />
                     <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.5rem', lineHeight: '1.4' }}>
-                      Your token is saved <strong>only</strong> in your browser&apos;s local storage and is sent directly to GitHub&apos;s API.
-                      You can create a token on GitHub with <code>Actions: Read & Write</code> (or <code>workflow</code>) permissions.
-                      <br />
-                      <a href="https://github.com/settings/tokens/new?scopes=workflow" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-blue)', textDecoration: 'underline' }}>
-                        Create Token on GitHub ↗
-                      </a>
+                      The passcode is saved securely in your browser&apos;s local storage so you only have to enter it once per device.
                     </p>
                   </div>
                 </div>

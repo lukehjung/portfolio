@@ -3,8 +3,8 @@ const PARTICIPANTS_KEY = 'pickems:participants';
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'GET, PUT, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type',
+  'Access-Control-Allow-Methods': 'GET, PUT, POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, x-admin-pin',
 };
 
 const json = (body, init = {}) =>
@@ -40,6 +40,42 @@ export default {
           ...corsHeaders,
         },
       });
+    }
+
+    if (url.pathname === '/api/trigger-scrape' && request.method === 'POST') {
+      const pin = request.headers.get('x-admin-pin');
+      if (!pin || pin !== env.ADMIN_PIN) {
+        return json({ error: 'Unauthorized: Invalid Admin PIN' }, { status: 401 });
+      }
+
+      if (!env.GITHUB_PAT) {
+        return json({ error: 'Server configuration error: GITHUB_PAT secret not set on Worker' }, { status: 500 });
+      }
+
+      try {
+        const githubUrl = 'https://api.github.com/repos/lukehjung/portfolio/actions/workflows/scrape-msi.yml/dispatches';
+        const res = await fetch(githubUrl, {
+          method: 'POST',
+          headers: {
+            'Authorization': `token ${env.GITHUB_PAT}`,
+            'Accept': 'application/vnd.github.v3+json',
+            'User-Agent': 'Cloudflare-Worker'
+          },
+          body: JSON.stringify({
+            ref: 'master'
+          })
+        });
+
+        if (res.status === 204) {
+          return json({ success: true, message: 'Scraper workflow triggered successfully.' });
+        } else {
+          const errData = await res.json().catch(() => ({}));
+          const errMsg = errData.message || `Status ${res.status}`;
+          return json({ error: `GitHub API error: ${errMsg}` }, { status: res.status });
+        }
+      } catch (e) {
+        return json({ error: `Server error triggering workflow: ${e.message}` }, { status: 500 });
+      }
     }
 
     if (url.pathname === '/api/participants') {
