@@ -26,7 +26,7 @@ export interface Team {
         headers: {
           'x-api-key': API_KEY
         },
-        next: { revalidate: 3600 } // Cache for 1 hour to prevent rate limits
+        cache: 'no-store'
       });
   
       if (!res.ok) {
