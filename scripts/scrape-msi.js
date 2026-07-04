@@ -68,9 +68,11 @@ async function loadExistingGames() {
       const res = await fetch(url, { method: 'GET', headers: { Authorization: `Bearer ${CF_API_TOKEN}` } });
       if (res.ok) {
         const data = await res.json();
-        if (data && Array.isArray(data.games)) {
+        if (data && Array.isArray(data.games) && data.games.length > 0) {
           console.log(`Loaded ${data.games.length} games from Cloudflare KV (msi:aggregate)`);
           return data.games;
+        } else {
+          console.warn(`Cloudflare KV returned 0 games, falling back to local file`);
         }
       } else {
         console.warn(`Failed to fetch msi:aggregate from KV: ${res.status}`);
