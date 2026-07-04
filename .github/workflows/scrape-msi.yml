@@ -5,6 +5,9 @@ on:
     # Hourly during the MSI broadcast window (8pm-2am PDT = 03:00-09:00 UTC).
     # Adjust as the tournament schedule shifts; manual runs via workflow_dispatch are always available.
     - cron: '0 3-9 * * *'
+  push:
+    branches:
+      - master
   workflow_dispatch:
 
 permissions:
