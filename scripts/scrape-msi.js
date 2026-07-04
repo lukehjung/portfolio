@@ -12,23 +12,6 @@ const OUTPUT_FILE = path.join(PROJECT_ROOT, 'app', 'pickems', 'msi_data.json');
 const CF_ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID;
 const CF_NAMESPACE_ID = process.env.CF_KV_NAMESPACE_ID;
 const CF_API_TOKEN = process.env.CLOUDFLARE_API_TOKEN;
-const logs = [];
-const originalLog = console.log;
-const originalWarn = console.warn;
-const originalError = console.error;
-
-console.log = (...args) => {
-  logs.push('[INFO] ' + args.map(a => typeof a === 'object' ? JSON.stringify(a) : a).join(' '));
-  originalLog(...args);
-};
-console.warn = (...args) => {
-  logs.push('[WARN] ' + args.map(a => typeof a === 'object' ? JSON.stringify(a) : a).join(' '));
-  originalWarn(...args);
-};
-console.error = (...args) => {
-  logs.push('[ERROR] ' + args.map(a => typeof a === 'object' ? JSON.stringify(a) : a).join(' '));
-  originalError(...args);
-};
 
 // Debug log (masking sensitive parts)
 console.log('KV envs:', {
@@ -629,8 +612,7 @@ async function run() {
       msiPlayers: playersList,
       gamesCount: games.length,
       games,
-      stats,
-      logs
+      stats
     };
 
     fs.writeFileSync(OUTPUT_FILE, JSON.stringify(outputData, null, 2), 'utf-8');
