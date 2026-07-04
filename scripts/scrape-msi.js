@@ -12,6 +12,12 @@ const OUTPUT_FILE = path.join(PROJECT_ROOT, 'app', 'pickems', 'msi_data.json');
 const CF_ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID;
 const CF_NAMESPACE_ID = process.env.CF_KV_NAMESPACE_ID;
 const CF_API_TOKEN = process.env.CLOUDFLARE_API_TOKEN;
+// Debug log (masking sensitive parts)
+console.log('KV envs:', {
+  account: CF_ACCOUNT_ID ? CF_ACCOUNT_ID.slice(0, 4) + '...' : null,
+  namespace: CF_NAMESPACE_ID || null,
+  token: CF_API_TOKEN ? CF_API_TOKEN.slice(0, 4) + '...' : null
+});
 const KV_KEY = 'processedGames';
 
 async function loadProcessedGames() {
