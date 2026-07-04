@@ -202,6 +202,18 @@ export default function PickemsPage() {
   };
   const [champions, setChampions] = useState<string[]>([]);
 
+  const sortedGames = useMemo(() => {
+    if (!data.games || !Array.isArray(data.games)) return [];
+    return [...data.games].sort((a: any, b: any) => {
+      const dateA = a.date || '';
+      const dateB = b.date || '';
+      if (dateA !== dateB) {
+        return dateB.localeCompare(dateA);
+      }
+      return (b.gameId || '').localeCompare(a.gameId || '');
+    });
+  }, [data.games]);
+
   useEffect(() => {
     const patch = data.patchVersion || '15.1.1';
     fetch(`https://ddragon.leagueoflegends.com/cdn/${patch}/data/en_US/champion.json`)
@@ -953,6 +965,21 @@ export default function PickemsPage() {
           font-family: var(--font-heading); font-weight: 600; text-transform: uppercase;
         }
         .pickems-page .match-date { font-size: 0.85rem; color: var(--text-muted); }
+        .pickems-page .gol-link {
+          font-size: 0.8rem;
+          color: var(--color-blue);
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.2rem;
+          margin-top: 0.25rem;
+          opacity: 0.7;
+          transition: opacity 0.2s ease;
+        }
+        .pickems-page .gol-link:hover {
+          opacity: 1;
+          text-decoration: underline;
+        }
         .pickems-page .match-teams-score { display: flex; align-items: center; gap: 2rem; flex-grow: 1; justify-content: center; }
         .pickems-page .match-team {
           display: flex; flex-direction: row; align-items: center;
@@ -1458,13 +1485,21 @@ export default function PickemsPage() {
 
         {activeTab === 'matches' && (
           <div className="matches-list">
-            {data.games && data.games.length > 0 ? (
-              [...data.games].reverse().map((game: any) => (
+            {sortedGames && sortedGames.length > 0 ? (
+              sortedGames.map((game: any) => (
                 <div key={game.gameId} className="match-card glass">
                   <div className="match-meta">
                     <span className="match-stage">{game.stage}</span>
                     <span className="match-date">{game.date}</span>
                     <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Duration: {game.duration}</span>
+                    <a
+                      href={`https://gol.gg/game/stats/${game.gameId}/page-game/`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="gol-link"
+                    >
+                      Gol.gg ↗
+                    </a>
                   </div>
                   <div className="match-teams-score">
                     <div className={`match-team match-team-blue ${game.winner === game.blueTeam ? 'winner' : 'loser'}`}>
