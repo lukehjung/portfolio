@@ -150,6 +150,52 @@ const getTierPointsForPick = (categoryKey: string, pick: string, leaderboard: an
   return tier == null ? 0 : TIER_POINTS[tier];
 };
 
+const getPickPlacementInfo = (key: string, pick: string, catStat: any, info: any) => {
+  if (!pick) return { correct: false, tier: -1, pts: 0, text: '' };
+
+  if (TIERED_CATEGORIES.has(key)) {
+    const leaderboard = catStat?.leaderboard || [];
+    if (leaderboard.length === 0) return { correct: false, tier: -1, pts: 0, text: '' };
+
+    const cleanPick = cleanName(pick);
+    const match = leaderboard.find((item: any) => {
+      const name = item.champion || item.player || item.team || '';
+      return cleanName(name) === cleanPick;
+    });
+
+    if (!match) return { correct: false, tier: -1, pts: 0, text: '' };
+    const value = getEntryValue(match);
+    if (value == null) return { correct: false, tier: -1, pts: 0, text: '' };
+
+    const tierMap = buildTierMap(leaderboard);
+    const tier = tierMap.get(value); // 0, 1, 2
+    if (tier == null || tier > 2) return { correct: false, tier: -1, pts: 0, text: '' };
+
+    const pts = TIER_POINTS[tier] || 0;
+    const ordinals = ['1st', '2nd', '3rd'];
+    return {
+      correct: true,
+      tier,
+      pts,
+      text: `(${ordinals[tier]}, +${pts} pts)`
+    };
+  }
+
+  // Non-tiered category
+  const leader = catStat?.leader;
+  const correct = isPickCorrect(key, pick, leader);
+  if (correct) {
+    return {
+      correct: true,
+      tier: 0,
+      pts: info.pts,
+      text: `(1st, +${info.pts} pts)`
+    };
+  }
+
+  return { correct: false, tier: -1, pts: 0, text: '' };
+};
+
 const getChampionImage = (name: string, patchVersion = '15.1.1') => {
   if (!name || name === 'N/A' || name === 'Unknown') return '';
   let clean = name.replace(/[^a-zA-Z]/g, '');
@@ -921,7 +967,7 @@ export default function PickemsPage() {
         .pickems-page .btn-secondary { background: transparent; color: var(--text-primary); border: 1px solid var(--border-color); box-shadow: none; }
         .pickems-page .btn-secondary:hover { background: rgba(255, 255, 255, 0.05); border-color: var(--text-secondary); box-shadow: none; }
 
-        .pickems-page .comparison-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.25rem; }
+        .pickems-page .comparison-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
         .pickems-page .compare-card {
           border-radius: 12px; padding: 1.25rem;
           background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(255, 255, 255, 0.04);
@@ -934,6 +980,9 @@ export default function PickemsPage() {
         .pickems-page .compare-player-label { color: var(--text-muted); }
         .pickems-page .compare-pick-val { font-family: var(--font-heading); font-weight: 700; }
         .pickems-page .compare-pick-correct { color: var(--color-green); }
+        .pickems-page .compare-pick-tier-0 { color: var(--color-green); }
+        .pickems-page .compare-pick-tier-1 { color: #66bb6a; }
+        .pickems-page .compare-pick-tier-2 { color: #a5d6a7; }
         .pickems-page .compare-pick-incorrect { color: var(--color-red); }
         .pickems-page .compare-result-row { border-top: 1px dashed rgba(255, 255, 255, 0.05); padding-top: 0.5rem; margin-top: 0.5rem; display: flex; justify-content: space-between; font-size: 0.85rem; }
         .pickems-page .compare-result-leader { color: var(--color-blue); font-weight: 600; }
@@ -1549,12 +1598,17 @@ export default function PickemsPage() {
                       </div>
                       {participants.map((player) => {
                         const pick = player.picks[key] || 'None';
-                        const correct = isPickCorrect(key, pick, leader);
+                        const placement = getPickPlacementInfo(key, pick, data.stats?.[key], info);
+                        const correct = placement.correct;
+                        const tier = placement.tier;
+                        const text = placement.text;
+                        const className = correct ? `compare-pick-tier-${tier}` : 'compare-pick-incorrect';
+
                         return (
                           <div key={player.id} className="compare-pick-row">
                             <span className="compare-player-label">{player.name}:</span>
-                            <span className={`compare-pick-val ${correct ? 'compare-pick-correct' : 'compare-pick-incorrect'}`}>
-                              {pick} {correct ? '✓' : '✗'}
+                            <span className={`compare-pick-val ${className}`}>
+                              {pick} {correct ? '✓' : '✗'} <span style={{ fontSize: '0.75rem', opacity: 0.85, fontWeight: 500 }}>{text}</span>
                             </span>
                           </div>
                         );
