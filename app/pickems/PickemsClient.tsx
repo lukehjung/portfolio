@@ -267,12 +267,30 @@ export default function PickemsPage() {
   const [isTokenModalOpen, setIsTokenModalOpen] = useState(false);
   const [tempToken, setTempToken] = useState('');
 
-  const triggerScraper = async (pinToUse?: string) => {
+  const triggerScraper = async (pinToUse?: string, forceRestart = false) => {
     let pin = pinToUse || localStorage.getItem('admin_pin') || '';
     if (!pin) {
       setTempToken('');
       setIsTokenModalOpen(true);
       return;
+    }
+
+    // Cooldown check (5 minutes = 300,000 ms)
+    if (!forceRestart) {
+      const lastTrigger = localStorage.getItem('last_scrape_trigger_time');
+      if (lastTrigger) {
+        const diff = Date.now() - parseInt(lastTrigger, 10);
+        const cooldownPeriod = 5 * 60 * 1000;
+        if (diff < cooldownPeriod) {
+          const remainingMin = Math.ceil((cooldownPeriod - diff) / 60000);
+          const confirmForce = window.confirm(
+            `A scrape was already triggered recently (${remainingMin}m remaining on cooldown).\n\nDo you want to force a restart anyway?`
+          );
+          if (!confirmForce) {
+            return;
+          }
+        }
+      }
     }
 
     setIsTriggeringScraper(true);
@@ -291,6 +309,7 @@ export default function PickemsPage() {
 
       if (res.ok) {
         setScraperStatusMessage('Success! Workflow started.');
+        localStorage.setItem('last_scrape_trigger_time', Date.now().toString());
         setTimeout(() => setScraperStatusMessage(null), 5000);
       } else {
         const errMsg = responseData.error || `Status ${res.status}`;
@@ -969,7 +988,7 @@ export default function PickemsPage() {
         .pickems-page .btn-secondary { background: transparent; color: var(--text-primary); border: 1px solid var(--border-color); box-shadow: none; }
         .pickems-page .btn-secondary:hover { background: rgba(255, 255, 255, 0.05); border-color: var(--text-secondary); box-shadow: none; }
 
-        .pickems-page .comparison-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+        .pickems-page .comparison-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; }
         .pickems-page .compare-card {
           border-radius: 12px; padding: 1.25rem;
           background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(255, 255, 255, 0.04);
