@@ -29,6 +29,7 @@
   "dependencies": {
     "@google/genai": "^1.46.0",
     "@opennextjs/cloudflare": "^1.19.9",
+    "cheerio": "^1.2.0",
     "glob-parent": "^6.0.2",
     "hosted-git-info": "^9.0.2",
     "ini": "^6.0.0",
