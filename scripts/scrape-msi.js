@@ -560,18 +560,13 @@ async function run() {
     console.log(`Processing ${completedMatches.length} completed matches...`);
 
     const games = await loadExistingGames();
-    let processedGames = [];
+    let processedGames = games.map((g) => String(g.gameId));
 
     for (const match of completedMatches) {
       console.log(`Processing Match: ${match.team1} vs ${match.team2} (${match.score})`);
       try {
         const gameIds = await parseMatchGames(match);
         console.log(`Match has ${gameIds.length} games: ${gameIds.join(', ')}`);
-
-        // Ensure we have the latest processed list before handling this match
-        if (processedGames.length === 0) {
-          processedGames = await loadProcessedGames();
-        }
 
         for (const gameId of gameIds) {
           if (processedGames.includes(gameId)) {
@@ -590,8 +585,8 @@ async function run() {
           }
         }
 
-        // Persist the updated list after each match to keep KV in sync
-        await saveProcessedGames(processedGames);
+        // saveProcessedGames is no longer needed since processedGames is derived dynamically
+        // await saveProcessedGames(processedGames);
       } catch (err) {
         console.error(`Error parsing match ${match.matchId}:`, err);
       }
