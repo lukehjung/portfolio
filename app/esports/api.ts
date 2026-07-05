@@ -22,19 +22,41 @@ export interface Team {
   
   export async function fetchEsportsData(): Promise<{ teams: Team[], players: Player[] }> {
     try {
-      const res = await fetch('https://esports-api.lolesports.com/persisted/gw/getTeams?hl=en-US', {
-        headers: {
-          'x-api-key': API_KEY
-        },
-        next: { revalidate: 3600 } // Cache for 1 hour to prevent rate limits
-      });
-  
-      if (!res.ok) {
-        console.error('Failed to fetch from lolesports API');
-        return { teams: [], players: [] };
+      let data: any;
+      if (typeof window === 'undefined') {
+        const https = require('https');
+        data = await new Promise((resolve, reject) => {
+          const req = https.get('https://esports-api.lolesports.com/persisted/gw/getTeams?hl=en-US', {
+            headers: {
+              'x-api-key': API_KEY
+            }
+          }, (res: any) => {
+            if (res.statusCode !== 200) {
+              reject(new Error(`Status ${res.statusCode}`));
+              return;
+            }
+            let body = '';
+            res.on('data', (chunk: any) => body += chunk);
+            res.on('end', () => {
+              try {
+                resolve(JSON.parse(body));
+              } catch (e) {
+                reject(e);
+              }
+            });
+          });
+          req.on('error', reject);
+        });
+      } else {
+        const res = await fetch('https://esports-api.lolesports.com/persisted/gw/getTeams?hl=en-US', {
+          headers: {
+            'x-api-key': API_KEY
+          }
+        });
+        if (!res.ok) throw new Error(`Status ${res.status}`);
+        data = await res.json();
       }
-  
-      const data = await res.json();
+
       const rawTeams = data?.data?.teams || [];
   
       const teams: Team[] = [];
