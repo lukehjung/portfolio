@@ -260,7 +260,8 @@ export default function PickemsPage() {
     });
   };
   const [champions, setChampions] = useState<string[]>([]);
-  const [expandedMatchId, setExpandedMatchId] = useState<string | null>(null);
+  const [expandedMatchKey, setExpandedMatchKey] = useState<string | null>(null);
+  const [selectedGameIdMap, setSelectedGameIdMap] = useState<{ [matchKey: string]: string }>({});
   
   const [isTriggeringScraper, setIsTriggeringScraper] = useState(false);
   const [scraperStatusMessage, setScraperStatusMessage] = useState<string | null>(null);
@@ -345,6 +346,54 @@ export default function PickemsPage() {
         return dateB.localeCompare(dateA);
       }
       return (b.gameId || '').localeCompare(a.gameId || '');
+    });
+  }, [data.games]);
+
+  const groupedMatches = useMemo(() => {
+    if (!data.games || !Array.isArray(data.games)) return [];
+    const matchesMap: { [key: string]: any } = {};
+    
+    // Sort games by gameId ascending first
+    const sortedGamesAsc = [...data.games].sort((a: any, b: any) => (a.gameId || '').localeCompare(b.gameId || ''));
+    
+    sortedGamesAsc.forEach((game: any) => {
+      const teams = [game.blueTeam, game.redTeam].sort();
+      const key = `${teams[0]}_vs_${teams[1]}_${game.stage}`;
+      
+      if (!matchesMap[key]) {
+        matchesMap[key] = {
+          key,
+          team1: teams[0],
+          team2: teams[1],
+          stage: game.stage,
+          date: game.date,
+          games: [],
+          wins: {
+            [teams[0]]: 0,
+            [teams[1]]: 0
+          }
+        };
+      }
+      
+      matchesMap[key].games.push(game);
+      if (game.winner) {
+        matchesMap[key].wins[game.winner] = (matchesMap[key].wins[game.winner] || 0) + 1;
+      }
+      
+      if (game.date > matchesMap[key].date) {
+        matchesMap[key].date = game.date;
+      }
+    });
+    
+    return Object.values(matchesMap).sort((a: any, b: any) => {
+      const dateA = a.date || '';
+      const dateB = b.date || '';
+      if (dateA !== dateB) {
+        return dateB.localeCompare(dateA);
+      }
+      const lastGameA = a.games[a.games.length - 1]?.gameId || '';
+      const lastGameB = b.games[b.games.length - 1]?.gameId || '';
+      return lastGameB.localeCompare(lastGameA);
     });
   }, [data.games]);
 
@@ -1109,6 +1158,20 @@ export default function PickemsPage() {
           width: 100%;
           cursor: default;
         }
+        .pickems-page .game-tabs {
+          display: flex; gap: 0.5rem; margin-bottom: 1.25rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 0.75rem; flex-wrap: wrap;
+        }
+        .pickems-page .game-tab-btn {
+          background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); color: var(--text-secondary);
+          padding: 0.4rem 1.25rem; border-radius: 8px; font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease;
+        }
+        .pickems-page .game-tab-btn:hover {
+          background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.2); color: var(--text-primary);
+        }
+        .pickems-page .game-tab-btn.active {
+          background: rgba(0, 246, 255, 0.1); border-color: var(--color-blue); color: var(--color-blue); font-weight: 600;
+          box-shadow: 0 0 10px rgba(0, 246, 255, 0.15);
+        }
         .pickems-page .match-players-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -1724,58 +1787,90 @@ export default function PickemsPage() {
 
         {activeTab === 'matches' && (
           <div className="matches-list">
-            {sortedGames && sortedGames.length > 0 ? (
-              sortedGames.map((game: any) => {
-                const isExpanded = expandedMatchId === game.gameId;
+            {groupedMatches && groupedMatches.length > 0 ? (
+              groupedMatches.map((match: any) => {
+                const isExpanded = expandedMatchKey === match.key;
+                const selectedGameId = selectedGameIdMap[match.key] || match.games[0]?.gameId;
+                const game = match.games.find((g: any) => g.gameId === selectedGameId) || match.games[0];
+                
                 return (
                   <div
-                    key={game.gameId}
+                    key={match.key}
                     className={`match-card glass ${isExpanded ? 'expanded' : ''}`}
-                    onClick={() => setExpandedMatchId(isExpanded ? null : game.gameId)}
+                    onClick={() => setExpandedMatchKey(isExpanded ? null : match.key)}
                   >
                     <div className="match-card-main">
                       <div className="match-meta">
-                        <span className="match-stage">{game.stage}</span>
-                        <span className="match-date">{game.date}</span>
-                        <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Duration: {game.duration}</span>
-                        <a
-                          href={`https://gol.gg/game/stats/${game.gameId}/page-game/`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="gol-link"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          Gol.gg ↗
-                        </a>
+                        <span className="match-stage">{match.stage}</span>
+                        <span className="match-date">{match.date}</span>
+                        <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                          Series: Best of {match.games.length <= 1 ? '1' : match.games.length <= 3 ? '3' : '5'} ({match.games.length} game{match.games.length > 1 ? 's' : ''})
+                        </span>
                       </div>
+                      
                       <div className="match-teams-score">
-                        <div className={`match-team match-team-blue ${game.winner === game.blueTeam ? 'winner' : 'loser'}`}>
-                          {getTeamLogo(game.blueTeam) && (
-                            <img src={getTeamLogo(game.blueTeam)} alt="" className="match-team-logo" />
+                        <div className={`match-team match-team-blue ${match.wins[match.team1] > match.wins[match.team2] ? 'winner' : ''}`}>
+                          {getTeamLogo(match.team1) && (
+                            <img src={getTeamLogo(match.team1)} alt="" className="match-team-logo" />
                           )}
-                          <span className="match-team-name">{game.blueTeam}</span>
+                          <span className="match-team-name">{match.team1}</span>
                         </div>
-                        <div className="match-score-bubble">
-                          {game.blueKills} - {game.redKills}
+                        <div className="match-score-bubble" style={{ fontWeight: 700, minWidth: '70px' }}>
+                          {match.wins[match.team1]} - {match.wins[match.team2]}
                         </div>
-                        <div className={`match-team match-team-red ${game.winner === game.redTeam ? 'winner' : 'loser'}`}>
-                          <span className="match-team-name">{game.redTeam}</span>
-                          {getTeamLogo(game.redTeam) && (
-                            <img src={getTeamLogo(game.redTeam)} alt="" className="match-team-logo" />
+                        <div className={`match-team match-team-red ${match.wins[match.team2] > match.wins[match.team1] ? 'winner' : ''}`}>
+                          <span className="match-team-name">{match.team2}</span>
+                          {getTeamLogo(match.team2) && (
+                            <img src={getTeamLogo(match.team2)} alt="" className="match-team-logo" />
                           )}
                         </div>
                       </div>
-                      <div className="match-stats">
-                        <p><span className="match-stat-label">First Blood:</span> <span className="match-stat-fb">{game.firstBloodKiller}</span></p>
-                        <p><span className="match-stat-label">Elder Dragons:</span> 🐉 {game.blueElderDragons + game.redElderDragons}</p>
-                        <span style={{ fontSize: '0.75rem', color: 'var(--color-blue)', display: 'block', marginTop: '0.3rem', fontWeight: 600 }}>
-                          {isExpanded ? 'Collapse Stats ▲' : 'Expand Stats ▼'}
+                      
+                      <div className="match-stats" style={{ textAlign: 'right' }}>
+                        <span style={{ fontSize: '0.75rem', color: 'var(--color-blue)', display: 'block', fontWeight: 600 }}>
+                          {isExpanded ? 'Collapse Series ▲' : 'Expand Series ▼'}
                         </span>
                       </div>
                     </div>
 
                     {isExpanded && (
                       <div className="match-players-expanded" onClick={(e) => e.stopPropagation()}>
+                        {/* Game Selection Tabs */}
+                        <div className="game-tabs">
+                          {match.games.map((g: any, idx: number) => {
+                            const isSelected = game.gameId === g.gameId;
+                            return (
+                              <button
+                                key={g.gameId}
+                                className={`game-tab-btn ${isSelected ? 'active' : ''}`}
+                                onClick={() => setSelectedGameIdMap(prev => ({ ...prev, [match.key]: g.gameId }))}
+                              >
+                                Game {idx + 1}
+                              </button>
+                            );
+                          })}
+                        </div>
+
+                        {/* Selected Game Details */}
+                        <div className="match-meta" style={{ flexDirection: 'row', alignItems: 'center', gap: '1rem', marginBottom: '1rem', flexWrap: 'wrap' }}>
+                          <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Duration: {game.duration}</span>
+                          <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Winner: <strong style={{ color: 'var(--color-blue)' }}>{game.winner}</strong></span>
+                          <a
+                            href={`https://gol.gg/game/stats/${game.gameId}/page-game/`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="gol-link"
+                            style={{ margin: 0 }}
+                          >
+                            Gol.gg Stats ↗
+                          </a>
+                        </div>
+
+                        <div className="match-stats" style={{ display: 'flex', gap: '2rem', marginBottom: '1.25rem', padding: '0.75rem', background: 'rgba(255,255,255,0.02)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.03)' }}>
+                          <p style={{ margin: 0 }}><span className="match-stat-label">First Blood:</span> <span className="match-stat-fb">{game.firstBloodKiller}</span></p>
+                          <p style={{ margin: 0 }}><span className="match-stat-label">Elder Dragons:</span> 🐉 {game.blueElderDragons + game.redElderDragons}</p>
+                        </div>
+
                         {game.players && game.players.length > 0 ? (
                           <div className="match-players-grid">
                             <div className="team-players-block">
