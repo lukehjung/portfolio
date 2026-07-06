@@ -1,8 +1,19 @@
-import { TIERED_CATEGORIES, TIER_POINTS } from './constants';
+import { TIERED_CATEGORIES, TIER_POINTS, CATEGORIES_INFO } from './constants';
 
 export const cleanName = (str: string) => {
   if (!str) return '';
   return str.toLowerCase().replace(/[^a-z0-9]/g, '');
+};
+
+export const resolveEntryName = (item: any, categoryKey: string): string => {
+  if (!item) return '';
+  if (typeof item === 'string') return item;
+  const info = CATEGORIES_INFO[categoryKey];
+  if (!info) return String(item);
+  if (info.type === 'champion') return item.champion || '';
+  if (info.type === 'player') return item.player || '';
+  if (info.type === 'team') return item.team || '';
+  return item.champion || item.player || item.team || String(item);
 };
 
 export const isKillsRangeMatch = (pickRange: string, actualKillsText: string) => {
@@ -78,7 +89,7 @@ export const getTierPointsForPick = (categoryKey: string, pick: string, leaderbo
   if (!pick || !Array.isArray(leaderboard) || leaderboard.length === 0) return 0;
   const cleanPick = cleanName(pick);
   const match = leaderboard.find((item) => {
-    const name = item.champion || item.player || item.team || '';
+    const name = resolveEntryName(item, categoryKey);
     return cleanName(name) === cleanPick;
   });
   if (!match) return 0;
@@ -98,7 +109,7 @@ export const getPickPlacementInfo = (key: string, pick: string, catStat: any, in
 
     const cleanPick = cleanName(pick);
     const match = leaderboard.find((item: any) => {
-      const name = item.champion || item.player || item.team || '';
+      const name = resolveEntryName(item, key);
       return cleanName(name) === cleanPick;
     });
 
