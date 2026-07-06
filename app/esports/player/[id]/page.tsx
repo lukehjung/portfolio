@@ -5,6 +5,10 @@ import { notFound } from 'next/navigation';
 import { BioSection } from '../../components/BioSection';
 
 export async function generateStaticParams() {
+  if (process.env.SKIP_ESPORTS_BUILD === 'true') {
+    console.log('Skipping player page pre-rendering due to SKIP_ESPORTS_BUILD');
+    return [{ id: 'placeholder' }];
+  }
   const { players } = await fetchEsportsData();
   // We explicitly map only the ID to allow successful Next.js export
   return players.map((p) => ({

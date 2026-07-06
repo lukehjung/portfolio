@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-04T09:35:06.893Z",
+  "lastUpdated": "2026-07-05T09:37:13.721Z",
   "patchVersion": "16.13.1",
   "playerImages": {
     "13": "http://static.lolesports.com/players/default-headshot.png",
@@ -7534,7 +7534,7 @@
     "Zeus",
     "ZUIAN"
   ],
-  "gamesCount": 32,
+  "gamesCount": 40,
   "games": [
     {
       "gameId": "79539",
@@ -12847,6 +12847,1334 @@
       "firstBloodKiller": "ShiauC",
       "blueElderDragons": 0,
       "redElderDragons": 0
+    },
+    {
+      "gameId": "79696",
+      "stage": "ROUND2",
+      "isPlayIn": false,
+      "date": "2026-07-05",
+      "duration": "33:13",
+      "durationSeconds": 1993,
+      "blueTeam": "Hanwha Life Esports",
+      "redTeam": "G2 Esports",
+      "winner": "Hanwha Life Esports",
+      "blueKills": 27,
+      "redKills": 19,
+      "blueBans": [
+        "Poppy",
+        "Bard",
+        "Varus",
+        "Rell",
+        "Renekton"
+      ],
+      "redBans": [
+        "Orianna",
+        "Jayce",
+        "Trundle",
+        "Cassiopeia",
+        "Rumble"
+      ],
+      "bluePicks": [
+        "Ambessa",
+        "Vi",
+        "Yone",
+        "Ziggs",
+        "Camille"
+      ],
+      "redPicks": [
+        "Warwick",
+        "Xin Zhao",
+        "Ryze",
+        "Seraphine",
+        "Nautilus"
+      ],
+      "players": [
+        {
+          "name": "Zeus",
+          "team": "Hanwha Life Esports",
+          "champion": "Ambessa",
+          "role": "TOP",
+          "kills": 9,
+          "deaths": 3,
+          "assists": 10,
+          "cs": 242,
+          "damage": 29137,
+          "isBlue": true
+        },
+        {
+          "name": "Kanavi",
+          "team": "Hanwha Life Esports",
+          "champion": "Vi",
+          "role": "JUNGLE",
+          "kills": 7,
+          "deaths": 2,
+          "assists": 17,
+          "cs": 262,
+          "damage": 22858,
+          "isBlue": true
+        },
+        {
+          "name": "Zeka",
+          "team": "Hanwha Life Esports",
+          "champion": "Yone",
+          "role": "MID",
+          "kills": 5,
+          "deaths": 3,
+          "assists": 10,
+          "cs": 293,
+          "damage": 23018,
+          "isBlue": true
+        },
+        {
+          "name": "Gumayusi",
+          "team": "Hanwha Life Esports",
+          "champion": "Ziggs",
+          "role": "ADC",
+          "kills": 4,
+          "deaths": 5,
+          "assists": 14,
+          "cs": 311,
+          "damage": 37883,
+          "isBlue": true
+        },
+        {
+          "name": "Delight",
+          "team": "Hanwha Life Esports",
+          "champion": "Camille",
+          "role": "SUPPORT",
+          "kills": 2,
+          "deaths": 6,
+          "assists": 9,
+          "cs": 46,
+          "damage": 9441,
+          "isBlue": true
+        },
+        {
+          "name": "BrokenBlade",
+          "team": "G2 Esports",
+          "champion": "Warwick",
+          "role": "TOP",
+          "kills": 9,
+          "deaths": 4,
+          "assists": 8,
+          "cs": 275,
+          "damage": 23080,
+          "isBlue": false
+        },
+        {
+          "name": "SkewMond",
+          "team": "G2 Esports",
+          "champion": "Xin Zhao",
+          "role": "JUNGLE",
+          "kills": 5,
+          "deaths": 4,
+          "assists": 7,
+          "cs": 216,
+          "damage": 19373,
+          "isBlue": false
+        },
+        {
+          "name": "Caps",
+          "team": "G2 Esports",
+          "champion": "Ryze",
+          "role": "MID",
+          "kills": 3,
+          "deaths": 5,
+          "assists": 7,
+          "cs": 300,
+          "damage": 25551,
+          "isBlue": false
+        },
+        {
+          "name": "Hans Sama",
+          "team": "G2 Esports",
+          "champion": "Seraphine",
+          "role": "ADC",
+          "kills": 2,
+          "deaths": 6,
+          "assists": 12,
+          "cs": 229,
+          "damage": 17327,
+          "isBlue": false
+        },
+        {
+          "name": "Labrov",
+          "team": "G2 Esports",
+          "champion": "Nautilus",
+          "role": "SUPPORT",
+          "kills": 0,
+          "deaths": 8,
+          "assists": 16,
+          "cs": 23,
+          "damage": 8516,
+          "isBlue": false
+        }
+      ],
+      "firstBloodKiller": "SkewMond",
+      "blueElderDragons": 0,
+      "redElderDragons": 0
+    },
+    {
+      "gameId": "79697",
+      "stage": "ROUND2",
+      "isPlayIn": false,
+      "date": "2026-07-05",
+      "duration": "24:24",
+      "durationSeconds": 1464,
+      "blueTeam": "Hanwha Life Esports",
+      "redTeam": "G2 Esports",
+      "winner": "Hanwha Life Esports",
+      "blueKills": 29,
+      "redKills": 7,
+      "blueBans": [
+        "Poppy",
+        "Bard",
+        "Varus",
+        "Annie",
+        "Aatrox"
+      ],
+      "redBans": [
+        "Orianna",
+        "Jayce",
+        "Rumble",
+        "Akali",
+        "Viktor"
+      ],
+      "bluePicks": [
+        "Anivia",
+        "Jarvan IV",
+        "Sylas",
+        "Lucian",
+        "Milio"
+      ],
+      "redPicks": [
+        "Yasuo",
+        "Lee Sin",
+        "Syndra",
+        "Yunara",
+        "Lulu"
+      ],
+      "players": [
+        {
+          "name": "Zeus",
+          "team": "Hanwha Life Esports",
+          "champion": "Anivia",
+          "role": "TOP",
+          "kills": 3,
+          "deaths": 1,
+          "assists": 8,
+          "cs": 229,
+          "damage": 15073,
+          "isBlue": true
+        },
+        {
+          "name": "Kanavi",
+          "team": "Hanwha Life Esports",
+          "champion": "Jarvan IV",
+          "role": "JUNGLE",
+          "kills": 1,
+          "deaths": 4,
+          "assists": 21,
+          "cs": 152,
+          "damage": 14297,
+          "isBlue": true
+        },
+        {
+          "name": "Zeka",
+          "team": "Hanwha Life Esports",
+          "champion": "Sylas",
+          "role": "MID",
+          "kills": 13,
+          "deaths": 1,
+          "assists": 11,
+          "cs": 170,
+          "damage": 23945,
+          "isBlue": true
+        },
+        {
+          "name": "Gumayusi",
+          "team": "Hanwha Life Esports",
+          "champion": "Lucian",
+          "role": "ADC",
+          "kills": 11,
+          "deaths": 1,
+          "assists": 10,
+          "cs": 243,
+          "damage": 27311,
+          "isBlue": true
+        },
+        {
+          "name": "Delight",
+          "team": "Hanwha Life Esports",
+          "champion": "Milio",
+          "role": "SUPPORT",
+          "kills": 1,
+          "deaths": 0,
+          "assists": 22,
+          "cs": 18,
+          "damage": 5076,
+          "isBlue": true
+        },
+        {
+          "name": "BrokenBlade",
+          "team": "G2 Esports",
+          "champion": "Yasuo",
+          "role": "TOP",
+          "kills": 0,
+          "deaths": 6,
+          "assists": 3,
+          "cs": 177,
+          "damage": 12018,
+          "isBlue": false
+        },
+        {
+          "name": "SkewMond",
+          "team": "G2 Esports",
+          "champion": "Lee Sin",
+          "role": "JUNGLE",
+          "kills": 2,
+          "deaths": 5,
+          "assists": 2,
+          "cs": 158,
+          "damage": 7404,
+          "isBlue": false
+        },
+        {
+          "name": "Caps",
+          "team": "G2 Esports",
+          "champion": "Syndra",
+          "role": "MID",
+          "kills": 4,
+          "deaths": 6,
+          "assists": 1,
+          "cs": 210,
+          "damage": 32709,
+          "isBlue": false
+        },
+        {
+          "name": "Hans Sama",
+          "team": "G2 Esports",
+          "champion": "Yunara",
+          "role": "ADC",
+          "kills": 1,
+          "deaths": 5,
+          "assists": 3,
+          "cs": 203,
+          "damage": 13190,
+          "isBlue": false
+        },
+        {
+          "name": "Labrov",
+          "team": "G2 Esports",
+          "champion": "Lulu",
+          "role": "SUPPORT",
+          "kills": 0,
+          "deaths": 7,
+          "assists": 4,
+          "cs": 25,
+          "damage": 6724,
+          "isBlue": false
+        }
+      ],
+      "firstBloodKiller": "Zeka",
+      "blueElderDragons": 0,
+      "redElderDragons": 0
+    },
+    {
+      "gameId": "79686",
+      "stage": "ROUND1",
+      "isPlayIn": false,
+      "date": "2026-07-05",
+      "duration": "32:07",
+      "durationSeconds": 1927,
+      "blueTeam": "Team Secret Whales",
+      "redTeam": "Top Esports",
+      "winner": "Team Secret Whales",
+      "blueKills": 29,
+      "redKills": 6,
+      "blueBans": [
+        "Cassiopeia",
+        "Varus",
+        "Rumble",
+        "Shen",
+        "Camille"
+      ],
+      "redBans": [
+        "Poppy",
+        "Ezreal",
+        "Orianna",
+        "Kaisa",
+        "Sivir"
+      ],
+      "bluePicks": [
+        "Ryze",
+        "Nautilus",
+        "Lee Sin",
+        "Senna",
+        "Olaf"
+      ],
+      "redPicks": [
+        "Jarvan IV",
+        "Ziggs",
+        "Jayce",
+        "Rell",
+        "Yone"
+      ],
+      "players": [
+        {
+          "name": "Pun",
+          "team": "Team Secret Whales",
+          "champion": "Olaf",
+          "role": "TOP",
+          "kills": 7,
+          "deaths": 1,
+          "assists": 12,
+          "cs": 272,
+          "damage": 20169,
+          "isBlue": true
+        },
+        {
+          "name": "Hizto",
+          "team": "Team Secret Whales",
+          "champion": "Lee Sin",
+          "role": "JUNGLE",
+          "kills": 9,
+          "deaths": 1,
+          "assists": 9,
+          "cs": 252,
+          "damage": 16599,
+          "isBlue": true
+        },
+        {
+          "name": "Dire",
+          "team": "Team Secret Whales",
+          "champion": "Ryze",
+          "role": "MID",
+          "kills": 10,
+          "deaths": 0,
+          "assists": 11,
+          "cs": 302,
+          "damage": 34037,
+          "isBlue": true
+        },
+        {
+          "name": "Eddie",
+          "team": "Team Secret Whales",
+          "champion": "Senna",
+          "role": "ADC",
+          "kills": 2,
+          "deaths": 1,
+          "assists": 23,
+          "cs": 258,
+          "damage": 19624,
+          "isBlue": true
+        },
+        {
+          "name": "Bie",
+          "team": "Team Secret Whales",
+          "champion": "Nautilus",
+          "role": "SUPPORT",
+          "kills": 1,
+          "deaths": 3,
+          "assists": 21,
+          "cs": 39,
+          "damage": 8021,
+          "isBlue": true
+        },
+        {
+          "name": "ZUIAN",
+          "team": "Top Esports",
+          "champion": "Jayce",
+          "role": "TOP",
+          "kills": 0,
+          "deaths": 5,
+          "assists": 3,
+          "cs": 259,
+          "damage": 16772,
+          "isBlue": false
+        },
+        {
+          "name": "Tian",
+          "team": "Top Esports",
+          "champion": "Jarvan IV",
+          "role": "JUNGLE",
+          "kills": 0,
+          "deaths": 5,
+          "assists": 5,
+          "cs": 204,
+          "damage": 8805,
+          "isBlue": false
+        },
+        {
+          "name": "Creme",
+          "team": "Top Esports",
+          "champion": "Yone",
+          "role": "MID",
+          "kills": 1,
+          "deaths": 5,
+          "assists": 3,
+          "cs": 287,
+          "damage": 14147,
+          "isBlue": false
+        },
+        {
+          "name": "JackeyLove",
+          "team": "Top Esports",
+          "champion": "Ziggs",
+          "role": "ADC",
+          "kills": 5,
+          "deaths": 7,
+          "assists": 1,
+          "cs": 303,
+          "damage": 28936,
+          "isBlue": false
+        },
+        {
+          "name": "fengyue",
+          "team": "Top Esports",
+          "champion": "Rell",
+          "role": "SUPPORT",
+          "kills": 0,
+          "deaths": 7,
+          "assists": 6,
+          "cs": 38,
+          "damage": 6352,
+          "isBlue": false
+        }
+      ],
+      "firstBloodKiller": "JackeyLove",
+      "blueElderDragons": 0,
+      "redElderDragons": 0
+    },
+    {
+      "gameId": "79687",
+      "stage": "ROUND1",
+      "isPlayIn": false,
+      "date": "2026-07-05",
+      "duration": "28:19",
+      "durationSeconds": 1699,
+      "blueTeam": "Team Secret Whales",
+      "redTeam": "Top Esports",
+      "winner": "Top Esports",
+      "blueKills": 3,
+      "redKills": 15,
+      "blueBans": [
+        "Cassiopeia",
+        "Varus",
+        "Orianna",
+        "Kaisa",
+        "Camille"
+      ],
+      "redBans": [
+        "Poppy",
+        "Ezreal",
+        "Akali",
+        "Jhin",
+        "Caitlyn"
+      ],
+      "bluePicks": [
+        "Bard",
+        "Aurora",
+        "Naafiri",
+        "Miss Fortune",
+        "Ornn"
+      ],
+      "redPicks": [
+        "Vi",
+        "Rumble",
+        "Ahri",
+        "Yunara",
+        "Lulu"
+      ],
+      "players": [
+        {
+          "name": "Pun",
+          "team": "Team Secret Whales",
+          "champion": "Ornn",
+          "role": "TOP",
+          "kills": 0,
+          "deaths": 5,
+          "assists": 2,
+          "cs": 181,
+          "damage": 6552,
+          "isBlue": true
+        },
+        {
+          "name": "Hizto",
+          "team": "Team Secret Whales",
+          "champion": "Naafiri",
+          "role": "JUNGLE",
+          "kills": 2,
+          "deaths": 2,
+          "assists": 0,
+          "cs": 189,
+          "damage": 7268,
+          "isBlue": true
+        },
+        {
+          "name": "Dire",
+          "team": "Team Secret Whales",
+          "champion": "Aurora",
+          "role": "MID",
+          "kills": 0,
+          "deaths": 3,
+          "assists": 1,
+          "cs": 231,
+          "damage": 14753,
+          "isBlue": true
+        },
+        {
+          "name": "Eddie",
+          "team": "Team Secret Whales",
+          "champion": "Miss Fortune",
+          "role": "ADC",
+          "kills": 1,
+          "deaths": 3,
+          "assists": 1,
+          "cs": 255,
+          "damage": 11348,
+          "isBlue": true
+        },
+        {
+          "name": "Bie",
+          "team": "Team Secret Whales",
+          "champion": "Bard",
+          "role": "SUPPORT",
+          "kills": 0,
+          "deaths": 2,
+          "assists": 2,
+          "cs": 35,
+          "damage": 5147,
+          "isBlue": true
+        },
+        {
+          "name": "ZUIAN",
+          "team": "Top Esports",
+          "champion": "Rumble",
+          "role": "TOP",
+          "kills": 3,
+          "deaths": 2,
+          "assists": 6,
+          "cs": 244,
+          "damage": 22493,
+          "isBlue": false
+        },
+        {
+          "name": "Tian",
+          "team": "Top Esports",
+          "champion": "Vi",
+          "role": "JUNGLE",
+          "kills": 0,
+          "deaths": 0,
+          "assists": 9,
+          "cs": 238,
+          "damage": 11095,
+          "isBlue": false
+        },
+        {
+          "name": "Creme",
+          "team": "Top Esports",
+          "champion": "Ahri",
+          "role": "MID",
+          "kills": 3,
+          "deaths": 0,
+          "assists": 7,
+          "cs": 241,
+          "damage": 22681,
+          "isBlue": false
+        },
+        {
+          "name": "JackeyLove",
+          "team": "Top Esports",
+          "champion": "Yunara",
+          "role": "ADC",
+          "kills": 7,
+          "deaths": 1,
+          "assists": 4,
+          "cs": 302,
+          "damage": 31092,
+          "isBlue": false
+        },
+        {
+          "name": "fengyue",
+          "team": "Top Esports",
+          "champion": "Lulu",
+          "role": "SUPPORT",
+          "kills": 2,
+          "deaths": 0,
+          "assists": 13,
+          "cs": 39,
+          "damage": 6565,
+          "isBlue": false
+        }
+      ],
+      "firstBloodKiller": "Creme",
+      "blueElderDragons": 0,
+      "redElderDragons": 0
+    },
+    {
+      "gameId": "79688",
+      "stage": "ROUND1",
+      "isPlayIn": false,
+      "date": "2026-07-05",
+      "duration": "30:56",
+      "durationSeconds": 1856,
+      "blueTeam": "Top Esports",
+      "redTeam": "Team Secret Whales",
+      "winner": "Team Secret Whales",
+      "blueKills": 5,
+      "redKills": 19,
+      "blueBans": [
+        "Akali",
+        "Camille",
+        "Poppy",
+        "Volibear",
+        "Shen"
+      ],
+      "redBans": [
+        "Orianna",
+        "Cassiopeia",
+        "Varus",
+        "Annie",
+        "Ambessa"
+      ],
+      "bluePicks": [
+        "Wukong",
+        "Ashe",
+        "Seraphine",
+        "Sion",
+        "Hwei"
+      ],
+      "redPicks": [
+        "Ezreal",
+        "Karma",
+        "Xin Zhao",
+        "Sylas",
+        "Sett"
+      ],
+      "players": [
+        {
+          "name": "ZUIAN",
+          "team": "Top Esports",
+          "champion": "Sion",
+          "role": "TOP",
+          "kills": 0,
+          "deaths": 4,
+          "assists": 1,
+          "cs": 195,
+          "damage": 18473,
+          "isBlue": true
+        },
+        {
+          "name": "Tian",
+          "team": "Top Esports",
+          "champion": "Wukong",
+          "role": "JUNGLE",
+          "kills": 2,
+          "deaths": 4,
+          "assists": 1,
+          "cs": 228,
+          "damage": 12663,
+          "isBlue": true
+        },
+        {
+          "name": "Creme",
+          "team": "Top Esports",
+          "champion": "Hwei",
+          "role": "MID",
+          "kills": 0,
+          "deaths": 4,
+          "assists": 2,
+          "cs": 282,
+          "damage": 22364,
+          "isBlue": true
+        },
+        {
+          "name": "JackeyLove",
+          "team": "Top Esports",
+          "champion": "Ashe",
+          "role": "ADC",
+          "kills": 3,
+          "deaths": 3,
+          "assists": 2,
+          "cs": 330,
+          "damage": 20249,
+          "isBlue": true
+        },
+        {
+          "name": "fengyue",
+          "team": "Top Esports",
+          "champion": "Seraphine",
+          "role": "SUPPORT",
+          "kills": 0,
+          "deaths": 4,
+          "assists": 5,
+          "cs": 46,
+          "damage": 5410,
+          "isBlue": true
+        },
+        {
+          "name": "Pun",
+          "team": "Team Secret Whales",
+          "champion": "Sett",
+          "role": "TOP",
+          "kills": 5,
+          "deaths": 0,
+          "assists": 7,
+          "cs": 270,
+          "damage": 23085,
+          "isBlue": false
+        },
+        {
+          "name": "Hizto",
+          "team": "Team Secret Whales",
+          "champion": "Xin Zhao",
+          "role": "JUNGLE",
+          "kills": 3,
+          "deaths": 1,
+          "assists": 11,
+          "cs": 248,
+          "damage": 17765,
+          "isBlue": false
+        },
+        {
+          "name": "Dire",
+          "team": "Team Secret Whales",
+          "champion": "Sylas",
+          "role": "MID",
+          "kills": 3,
+          "deaths": 1,
+          "assists": 6,
+          "cs": 289,
+          "damage": 11253,
+          "isBlue": false
+        },
+        {
+          "name": "Eddie",
+          "team": "Team Secret Whales",
+          "champion": "Ezreal",
+          "role": "ADC",
+          "kills": 7,
+          "deaths": 1,
+          "assists": 9,
+          "cs": 284,
+          "damage": 30348,
+          "isBlue": false
+        },
+        {
+          "name": "Bie",
+          "team": "Team Secret Whales",
+          "champion": "Karma",
+          "role": "SUPPORT",
+          "kills": 1,
+          "deaths": 2,
+          "assists": 14,
+          "cs": 51,
+          "damage": 5933,
+          "isBlue": false
+        }
+      ],
+      "firstBloodKiller": "JackeyLove",
+      "blueElderDragons": 0,
+      "redElderDragons": 0
+    },
+    {
+      "gameId": "79689",
+      "stage": "ROUND1",
+      "isPlayIn": false,
+      "date": "2026-07-05",
+      "duration": "41:55",
+      "durationSeconds": 2515,
+      "blueTeam": "Team Secret Whales",
+      "redTeam": "Top Esports",
+      "winner": "Team Secret Whales",
+      "blueKills": 21,
+      "redKills": 14,
+      "blueBans": [
+        "Cassiopeia",
+        "Varus",
+        "Orianna",
+        "Annie",
+        "Camille"
+      ],
+      "redBans": [
+        "Poppy",
+        "Volibear",
+        "Akali",
+        "Vayne",
+        "Malphite"
+      ],
+      "bluePicks": [
+        "Caitlyn",
+        "Elise",
+        "Dr. Mundo",
+        "Yorick",
+        "Viktor"
+      ],
+      "redPicks": [
+        "Gnar",
+        "Mel",
+        "Qiyana",
+        "Pyke",
+        "Syndra"
+      ],
+      "players": [
+        {
+          "name": "Pun",
+          "team": "Team Secret Whales",
+          "champion": "Yorick",
+          "role": "TOP",
+          "kills": 3,
+          "deaths": 4,
+          "assists": 8,
+          "cs": 341,
+          "damage": 21333,
+          "isBlue": true
+        },
+        {
+          "name": "Hizto",
+          "team": "Team Secret Whales",
+          "champion": "Dr. Mundo",
+          "role": "JUNGLE",
+          "kills": 6,
+          "deaths": 0,
+          "assists": 7,
+          "cs": 269,
+          "damage": 28463,
+          "isBlue": true
+        },
+        {
+          "name": "Dire",
+          "team": "Team Secret Whales",
+          "champion": "Viktor",
+          "role": "MID",
+          "kills": 4,
+          "deaths": 4,
+          "assists": 2,
+          "cs": 393,
+          "damage": 23114,
+          "isBlue": true
+        },
+        {
+          "name": "Eddie",
+          "team": "Team Secret Whales",
+          "champion": "Caitlyn",
+          "role": "ADC",
+          "kills": 4,
+          "deaths": 4,
+          "assists": 9,
+          "cs": 401,
+          "damage": 20514,
+          "isBlue": true
+        },
+        {
+          "name": "Bie",
+          "team": "Team Secret Whales",
+          "champion": "Elise",
+          "role": "SUPPORT",
+          "kills": 4,
+          "deaths": 2,
+          "assists": 6,
+          "cs": 45,
+          "damage": 12290,
+          "isBlue": true
+        },
+        {
+          "name": "ZUIAN",
+          "team": "Top Esports",
+          "champion": "Gnar",
+          "role": "TOP",
+          "kills": 0,
+          "deaths": 5,
+          "assists": 3,
+          "cs": 352,
+          "damage": 23480,
+          "isBlue": false
+        },
+        {
+          "name": "Tian",
+          "team": "Top Esports",
+          "champion": "Qiyana",
+          "role": "JUNGLE",
+          "kills": 4,
+          "deaths": 3,
+          "assists": 3,
+          "cs": 362,
+          "damage": 26187,
+          "isBlue": false
+        },
+        {
+          "name": "Creme",
+          "team": "Top Esports",
+          "champion": "Syndra",
+          "role": "MID",
+          "kills": 5,
+          "deaths": 2,
+          "assists": 3,
+          "cs": 356,
+          "damage": 54130,
+          "isBlue": false
+        },
+        {
+          "name": "JackeyLove",
+          "team": "Top Esports",
+          "champion": "Mel",
+          "role": "ADC",
+          "kills": 5,
+          "deaths": 5,
+          "assists": 1,
+          "cs": 356,
+          "damage": 29308,
+          "isBlue": false
+        },
+        {
+          "name": "fengyue",
+          "team": "Top Esports",
+          "champion": "Pyke",
+          "role": "SUPPORT",
+          "kills": 0,
+          "deaths": 6,
+          "assists": 4,
+          "cs": 31,
+          "damage": 8310,
+          "isBlue": false
+        }
+      ],
+      "firstBloodKiller": "Bie",
+      "blueElderDragons": 0,
+      "redElderDragons": 0
+    },
+    {
+      "gameId": "79621",
+      "stage": "ROUND1",
+      "isPlayIn": false,
+      "date": "2026-07-04",
+      "duration": "33:18",
+      "durationSeconds": 1998,
+      "blueTeam": "Bilibili Gaming",
+      "redTeam": "T1",
+      "winner": "T1",
+      "blueKills": 10,
+      "redKills": 23,
+      "blueBans": [
+        "Orianna",
+        "Gnar",
+        "Rumble",
+        "Twisted Fate",
+        "Olaf"
+      ],
+      "redBans": [
+        "Varus",
+        "Vayne",
+        "Nocturne",
+        "Akali",
+        "Sylas"
+      ],
+      "bluePicks": [
+        "Caitlyn",
+        "Skarner",
+        "Elise",
+        "Aurora",
+        "Gwen"
+      ],
+      "redPicks": [
+        "Jarvan IV",
+        "Mel",
+        "Pyke",
+        "KSante",
+        "Ahri"
+      ],
+      "players": [
+        {
+          "name": "Bin",
+          "team": "Bilibili Gaming",
+          "champion": "Gwen",
+          "role": "TOP",
+          "kills": 3,
+          "deaths": 6,
+          "assists": 1,
+          "cs": 277,
+          "damage": 14269,
+          "isBlue": true
+        },
+        {
+          "name": "XUN",
+          "team": "Bilibili Gaming",
+          "champion": "Skarner",
+          "role": "JUNGLE",
+          "kills": 1,
+          "deaths": 4,
+          "assists": 6,
+          "cs": 202,
+          "damage": 8425,
+          "isBlue": true
+        },
+        {
+          "name": "Knight",
+          "team": "Bilibili Gaming",
+          "champion": "Aurora",
+          "role": "MID",
+          "kills": 2,
+          "deaths": 3,
+          "assists": 4,
+          "cs": 300,
+          "damage": 19113,
+          "isBlue": true
+        },
+        {
+          "name": "Viper",
+          "team": "Bilibili Gaming",
+          "champion": "Caitlyn",
+          "role": "ADC",
+          "kills": 1,
+          "deaths": 4,
+          "assists": 4,
+          "cs": 327,
+          "damage": 20032,
+          "isBlue": true
+        },
+        {
+          "name": "ON",
+          "team": "Bilibili Gaming",
+          "champion": "Elise",
+          "role": "SUPPORT",
+          "kills": 3,
+          "deaths": 6,
+          "assists": 5,
+          "cs": 37,
+          "damage": 11216,
+          "isBlue": true
+        },
+        {
+          "name": "Doran",
+          "team": "T1",
+          "champion": "KSante",
+          "role": "TOP",
+          "kills": 1,
+          "deaths": 3,
+          "assists": 9,
+          "cs": 265,
+          "damage": 14200,
+          "isBlue": false
+        },
+        {
+          "name": "Oner",
+          "team": "T1",
+          "champion": "Jarvan IV",
+          "role": "JUNGLE",
+          "kills": 2,
+          "deaths": 2,
+          "assists": 14,
+          "cs": 255,
+          "damage": 13975,
+          "isBlue": false
+        },
+        {
+          "name": "Faker",
+          "team": "T1",
+          "champion": "Ahri",
+          "role": "MID",
+          "kills": 3,
+          "deaths": 0,
+          "assists": 9,
+          "cs": 363,
+          "damage": 24402,
+          "isBlue": false
+        },
+        {
+          "name": "Peyz",
+          "team": "T1",
+          "champion": "Mel",
+          "role": "ADC",
+          "kills": 13,
+          "deaths": 3,
+          "assists": 4,
+          "cs": 302,
+          "damage": 23639,
+          "isBlue": false
+        },
+        {
+          "name": "Keria",
+          "team": "T1",
+          "champion": "Pyke",
+          "role": "SUPPORT",
+          "kills": 4,
+          "deaths": 2,
+          "assists": 10,
+          "cs": 32,
+          "damage": 12696,
+          "isBlue": false
+        }
+      ],
+      "firstBloodKiller": "ON",
+      "blueElderDragons": 0,
+      "redElderDragons": 1
+    },
+    {
+      "gameId": "79622",
+      "stage": "ROUND1",
+      "isPlayIn": false,
+      "date": "2026-07-04",
+      "duration": "26:57",
+      "durationSeconds": 1617,
+      "blueTeam": "T1",
+      "redTeam": "Bilibili Gaming",
+      "winner": "Bilibili Gaming",
+      "blueKills": 3,
+      "redKills": 10,
+      "blueBans": [
+        "Yone",
+        "Orianna",
+        "Varus",
+        "Xin Zhao",
+        "Pantheon"
+      ],
+      "redBans": [
+        "Nocturne",
+        "Lucian",
+        "Vayne",
+        "Zeri",
+        "Blitzcrank"
+      ],
+      "bluePicks": [
+        "Trundle",
+        "Gnar",
+        "Taliyah",
+        "Lulu",
+        "Yunara"
+      ],
+      "redPicks": [
+        "Rumble",
+        "Seraphine",
+        "Ashe",
+        "Syndra",
+        "Kindred"
+      ],
+      "players": [
+        {
+          "name": "Doran",
+          "team": "T1",
+          "champion": "Gnar",
+          "role": "TOP",
+          "kills": 0,
+          "deaths": 2,
+          "assists": 0,
+          "cs": 257,
+          "damage": 7071,
+          "isBlue": true
+        },
+        {
+          "name": "Oner",
+          "team": "T1",
+          "champion": "Trundle",
+          "role": "JUNGLE",
+          "kills": 0,
+          "deaths": 3,
+          "assists": 1,
+          "cs": 173,
+          "damage": 2761,
+          "isBlue": true
+        },
+        {
+          "name": "Faker",
+          "team": "T1",
+          "champion": "Taliyah",
+          "role": "MID",
+          "kills": 2,
+          "deaths": 1,
+          "assists": 1,
+          "cs": 245,
+          "damage": 10501,
+          "isBlue": true
+        },
+        {
+          "name": "Peyz",
+          "team": "T1",
+          "champion": "Yunara",
+          "role": "ADC",
+          "kills": 1,
+          "deaths": 2,
+          "assists": 1,
+          "cs": 274,
+          "damage": 9038,
+          "isBlue": true
+        },
+        {
+          "name": "Keria",
+          "team": "T1",
+          "champion": "Lulu",
+          "role": "SUPPORT",
+          "kills": 0,
+          "deaths": 2,
+          "assists": 2,
+          "cs": 32,
+          "damage": 2800,
+          "isBlue": true
+        },
+        {
+          "name": "Bin",
+          "team": "Bilibili Gaming",
+          "champion": "Rumble",
+          "role": "TOP",
+          "kills": 0,
+          "deaths": 0,
+          "assists": 5,
+          "cs": 256,
+          "damage": 11740,
+          "isBlue": false
+        },
+        {
+          "name": "XUN",
+          "team": "Bilibili Gaming",
+          "champion": "Kindred",
+          "role": "JUNGLE",
+          "kills": 3,
+          "deaths": 0,
+          "assists": 6,
+          "cs": 249,
+          "damage": 18304,
+          "isBlue": false
+        },
+        {
+          "name": "Knight",
+          "team": "Bilibili Gaming",
+          "champion": "Syndra",
+          "role": "MID",
+          "kills": 3,
+          "deaths": 1,
+          "assists": 2,
+          "cs": 277,
+          "damage": 15914,
+          "isBlue": false
+        },
+        {
+          "name": "Viper",
+          "team": "Bilibili Gaming",
+          "champion": "Ashe",
+          "role": "ADC",
+          "kills": 4,
+          "deaths": 1,
+          "assists": 3,
+          "cs": 255,
+          "damage": 14453,
+          "isBlue": false
+        },
+        {
+          "name": "ON",
+          "team": "Bilibili Gaming",
+          "champion": "Seraphine",
+          "role": "SUPPORT",
+          "kills": 0,
+          "deaths": 1,
+          "assists": 10,
+          "cs": 34,
+          "damage": 6680,
+          "isBlue": false
+        }
+      ],
+      "firstBloodKiller": "XUN",
+      "blueElderDragons": 0,
+      "redElderDragons": 0
     }
   ],
   "stats": {
@@ -13131,42 +14459,56 @@
     },
     "category2": {
       "title": "Highest Winrate Champion (Min 5 games)",
-      "leader": "Mel",
-      "value": "100.0% (5/5)",
+      "leader": "Vi",
+      "value": "87.5% (7/8)",
       "leaderboard": [
         {
-          "champion": "Mel",
-          "winrate": 1,
-          "picks": 5,
-          "wins": 5,
+          "champion": "Vi",
+          "winrate": 0.875,
+          "picks": 8,
+          "wins": 7,
           "qualified": true
         },
         {
-          "champion": "Bard",
+          "champion": "Mel",
           "winrate": 0.8571428571428571,
           "picks": 7,
           "wins": 6,
           "qualified": true
         },
         {
-          "champion": "Vi",
+          "champion": "Lucian",
           "winrate": 0.8333333333333334,
           "picks": 6,
           "wins": 5,
           "qualified": true
         },
         {
-          "champion": "Jayce",
+          "champion": "Milio",
           "winrate": 0.8,
           "picks": 5,
           "wins": 4,
           "qualified": true
         },
         {
-          "champion": "Lucian",
+          "champion": "Viktor",
           "winrate": 0.8,
           "picks": 5,
           "wins": 4,
+          "qualified": true
+        },
+        {
+          "champion": "Ahri",
+          "winrate": 0.8,
+          "picks": 5,
+          "wins": 4,
+          "qualified": true
+        },
+        {
+          "champion": "Bard",
+          "winrate": 0.75,
+          "picks": 8,
+          "wins": 6,
           "qualified": true
         },
         {
@@ -13177,6 +14519,20 @@
           "qualified": true
         },
         {
+          "champion": "Jayce",
+          "winrate": 0.6666666666666666,
+          "picks": 6,
+          "wins": 4,
+          "qualified": true
+        },
+        {
+          "champion": "Syndra",
+          "winrate": 0.6666666666666666,
+          "picks": 6,
+          "wins": 4,
+          "qualified": true
+        },
+        {
           "champion": "Cassiopeia",
           "winrate": 0.625,
           "picks": 8,
@@ -13184,7 +14540,7 @@
           "qualified": true
         },
         {
-          "champion": "Gnar",
+          "champion": "Ambessa",
           "winrate": 0.625,
           "picks": 8,
           "wins": 5,
@@ -13198,21 +14554,7 @@
           "qualified": true
         },
         {
-          "champion": "Rell",
-          "winrate": 0.5714285714285714,
-          "picks": 7,
-          "wins": 4,
-          "qualified": true
-        },
-        {
-          "champion": "Lee Sin",
-          "winrate": 0.5714285714285714,
-          "picks": 7,
-          "wins": 4,
-          "qualified": true
-        },
-        {
-          "champion": "Ambessa",
+          "champion": "Lulu",
           "winrate": 0.5714285714285714,
           "picks": 7,
           "wins": 4,
@@ -13220,30 +14562,51 @@
         },
         {
           "champion": "Ezreal",
+          "winrate": 0.5555555555555556,
+          "picks": 9,
+          "wins": 5,
+          "qualified": true
+        },
+        {
+          "champion": "Lee Sin",
+          "winrate": 0.5555555555555556,
+          "picks": 9,
+          "wins": 5,
+          "qualified": true
+        },
+        {
+          "champion": "Gnar",
+          "winrate": 0.5,
+          "picks": 10,
+          "wins": 5,
+          "qualified": true
+        },
+        {
+          "champion": "Xin Zhao",
           "winrate": 0.5,
           "picks": 8,
           "wins": 4,
           "qualified": true
         },
         {
-          "champion": "Xin Zhao",
+          "champion": "Ziggs",
           "winrate": 0.5,
-          "picks": 6,
-          "wins": 3,
+          "picks": 8,
+          "wins": 4,
           "qualified": true
         },
         {
-          "champion": "Ziggs",
+          "champion": "Rell",
           "winrate": 0.5,
-          "picks": 6,
-          "wins": 3,
+          "picks": 8,
+          "wins": 4,
           "qualified": true
         },
         {
           "champion": "Nautilus",
           "winrate": 0.5,
-          "picks": 6,
-          "wins": 3,
+          "picks": 8,
+          "wins": 4,
           "qualified": true
         },
         {
@@ -13254,6 +14617,27 @@
           "qualified": true
         },
         {
+          "champion": "Caitlyn",
+          "winrate": 0.5,
+          "picks": 6,
+          "wins": 3,
+          "qualified": true
+        },
+        {
+          "champion": "Jarvan IV",
+          "winrate": 0.45454545454545453,
+          "picks": 11,
+          "wins": 5,
+          "qualified": true
+        },
+        {
+          "champion": "Camille",
+          "winrate": 0.4444444444444444,
+          "picks": 9,
+          "wins": 4,
+          "qualified": true
+        },
+        {
           "champion": "Varus",
           "winrate": 0.42857142857142855,
           "picks": 7,
@@ -13261,35 +14645,35 @@
           "qualified": true
         },
         {
-          "champion": "Naafiri",
-          "winrate": 0.42857142857142855,
-          "picks": 7,
+          "champion": "Ryze",
+          "winrate": 0.4166666666666667,
+          "picks": 12,
+          "wins": 5,
+          "qualified": true
+        },
+        {
+          "champion": "Olaf",
+          "winrate": 0.4,
+          "picks": 5,
+          "wins": 2,
+          "qualified": true
+        },
+        {
+          "champion": "Yunara",
+          "winrate": 0.4,
+          "picks": 5,
+          "wins": 2,
+          "qualified": true
+        },
+        {
+          "champion": "Rumble",
+          "winrate": 0.375,
+          "picks": 8,
           "wins": 3,
           "qualified": true
         },
         {
-          "champion": "Ryze",
-          "winrate": 0.4,
-          "picks": 10,
-          "wins": 4,
-          "qualified": true
-        },
-        {
-          "champion": "Taliyah",
-          "winrate": 0.4,
-          "picks": 5,
-          "wins": 2,
-          "qualified": true
-        },
-        {
-          "champion": "Qiyana",
-          "winrate": 0.4,
-          "picks": 5,
-          "wins": 2,
-          "qualified": true
-        },
-        {
-          "champion": "Jarvan IV",
+          "champion": "Naafiri",
           "winrate": 0.375,
           "picks": 8,
           "wins": 3,
@@ -13297,20 +14681,34 @@
         },
         {
           "champion": "Wukong",
-          "winrate": 0.375,
-          "picks": 8,
+          "winrate": 0.3333333333333333,
+          "picks": 9,
           "wins": 3,
           "qualified": true
         },
         {
-          "champion": "Camille",
-          "winrate": 0.375,
-          "picks": 8,
-          "wins": 3,
+          "champion": "Taliyah",
+          "winrate": 0.3333333333333333,
+          "picks": 6,
+          "wins": 2,
           "qualified": true
         },
         {
           "champion": "Senna",
+          "winrate": 0.3333333333333333,
+          "picks": 6,
+          "wins": 2,
+          "qualified": true
+        },
+        {
+          "champion": "Qiyana",
+          "winrate": 0.3333333333333333,
+          "picks": 6,
+          "wins": 2,
+          "qualified": true
+        },
+        {
+          "champion": "Seraphine",
           "winrate": 0.2,
           "picks": 5,
           "wins": 1,
@@ -13324,9 +14722,9 @@
           "qualified": true
         },
         {
-          "champion": "Rumble",
-          "winrate": 0.16666666666666666,
-          "picks": 6,
+          "champion": "Aurora",
+          "winrate": 0.2,
+          "picks": 5,
           "wins": 1,
           "qualified": true
         },
@@ -13340,12 +14738,12 @@
         {
           "champion": "Sion",
           "winrate": 0,
-          "picks": 6,
+          "picks": 7,
           "wins": 0,
           "qualified": true
         },
         {
-          "champion": "Syndra",
+          "champion": "Yorick",
           "winrate": 1,
           "picks": 3,
           "wins": 3,
@@ -13366,13 +14764,6 @@
           "qualified": false
         },
         {
-          "champion": "Yorick",
-          "winrate": 1,
-          "picks": 2,
-          "wins": 2,
-          "qualified": false
-        },
-        {
           "champion": "Renata Glasc",
           "winrate": 1,
           "picks": 2,
@@ -13380,7 +14771,7 @@
           "qualified": false
         },
         {
-          "champion": "Skarner",
+          "champion": "Dr. Mundo",
           "winrate": 1,
           "picks": 2,
           "wins": 2,
@@ -13436,20 +14827,6 @@
           "qualified": false
         },
         {
-          "champion": "Miss Fortune",
-          "winrate": 1,
-          "picks": 1,
-          "wins": 1,
-          "qualified": false
-        },
-        {
-          "champion": "Dr. Mundo",
-          "winrate": 1,
-          "picks": 1,
-          "wins": 1,
-          "qualified": false
-        },
-        {
           "champion": "Lissandra",
           "winrate": 1,
           "picks": 1,
@@ -13464,31 +14841,17 @@
           "qualified": false
         },
         {
-          "champion": "Milio",
-          "winrate": 0.75,
-          "picks": 4,
-          "wins": 3,
+          "champion": "Sett",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
           "qualified": false
         },
         {
-          "champion": "Lulu",
-          "winrate": 0.75,
-          "picks": 4,
-          "wins": 3,
-          "qualified": false
-        },
-        {
-          "champion": "Viktor",
-          "winrate": 0.75,
-          "picks": 4,
-          "wins": 3,
-          "qualified": false
-        },
-        {
-          "champion": "Ornn",
-          "winrate": 0.6666666666666666,
-          "picks": 3,
-          "wins": 2,
+          "champion": "Kindred",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
           "qualified": false
         },
         {
@@ -13506,14 +14869,28 @@
           "qualified": false
         },
         {
-          "champion": "Ahri",
+          "champion": "Skarner",
           "winrate": 0.6666666666666666,
           "picks": 3,
           "wins": 2,
           "qualified": false
         },
         {
-          "champion": "Caitlyn",
+          "champion": "Anivia",
+          "winrate": 0.6666666666666666,
+          "picks": 3,
+          "wins": 2,
+          "qualified": false
+        },
+        {
+          "champion": "Ornn",
+          "winrate": 0.5,
+          "picks": 4,
+          "wins": 2,
+          "qualified": false
+        },
+        {
+          "champion": "Pyke",
           "winrate": 0.5,
           "picks": 4,
           "wins": 2,
@@ -13527,24 +14904,10 @@
           "qualified": false
         },
         {
-          "champion": "Pyke",
+          "champion": "Sylas",
           "winrate": 0.5,
-          "picks": 2,
-          "wins": 1,
-          "qualified": false
-        },
-        {
-          "champion": "Yunara",
-          "winrate": 0.5,
-          "picks": 2,
-          "wins": 1,
-          "qualified": false
-        },
-        {
-          "champion": "Yasuo",
-          "winrate": 0.5,
-          "picks": 2,
-          "wins": 1,
+          "picks": 4,
+          "wins": 2,
           "qualified": false
         },
         {
@@ -13556,6 +14919,13 @@
         },
         {
           "champion": "Shen",
+          "winrate": 0.5,
+          "picks": 2,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "KSante",
           "winrate": 0.5,
           "picks": 2,
           "wins": 1,
@@ -13576,7 +14946,7 @@
           "qualified": false
         },
         {
-          "champion": "Anivia",
+          "champion": "Miss Fortune",
           "winrate": 0.5,
           "picks": 2,
           "wins": 1,
@@ -13604,6 +14974,13 @@
           "qualified": false
         },
         {
+          "champion": "Yasuo",
+          "winrate": 0.3333333333333333,
+          "picks": 3,
+          "wins": 1,
+          "qualified": false
+        },
+        {
           "champion": "Poppy",
           "winrate": 0.3333333333333333,
           "picks": 3,
@@ -13625,14 +15002,21 @@
           "qualified": false
         },
         {
-          "champion": "Aurora",
+          "champion": "Yone",
           "winrate": 0.3333333333333333,
           "picks": 3,
           "wins": 1,
           "qualified": false
         },
         {
-          "champion": "Olaf",
+          "champion": "Elise",
+          "winrate": 0.3333333333333333,
+          "picks": 3,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Ashe",
           "winrate": 0.25,
           "picks": 4,
           "wins": 1,
@@ -13640,22 +15024,15 @@
         },
         {
           "champion": "Karma",
+          "winrate": 0.25,
+          "picks": 4,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Hwei",
           "winrate": 0,
           "picks": 3,
-          "wins": 0,
-          "qualified": false
-        },
-        {
-          "champion": "Ashe",
-          "winrate": 0,
-          "picks": 2,
-          "wins": 0,
-          "qualified": false
-        },
-        {
-          "champion": "Seraphine",
-          "winrate": 0,
-          "picks": 2,
           "wins": 0,
           "qualified": false
         },
@@ -13668,20 +15045,6 @@
         },
         {
           "champion": "Kaisa",
-          "winrate": 0,
-          "picks": 2,
-          "wins": 0,
-          "qualified": false
-        },
-        {
-          "champion": "Sylas",
-          "winrate": 0,
-          "picks": 2,
-          "wins": 0,
-          "qualified": false
-        },
-        {
-          "champion": "Hwei",
           "winrate": 0,
           "picks": 2,
           "wins": 0,
@@ -13702,13 +15065,6 @@
           "qualified": false
         },
         {
-          "champion": "KSante",
-          "winrate": 0,
-          "picks": 1,
-          "wins": 0,
-          "qualified": false
-        },
-        {
           "champion": "Aphelios",
           "winrate": 0,
           "picks": 1,
@@ -13723,21 +15079,7 @@
           "qualified": false
         },
         {
-          "champion": "Yone",
-          "winrate": 0,
-          "picks": 1,
-          "wins": 0,
-          "qualified": false
-        },
-        {
           "champion": "Maokai",
-          "winrate": 0,
-          "picks": 1,
-          "wins": 0,
-          "qualified": false
-        },
-        {
-          "champion": "Elise",
           "winrate": 0,
           "picks": 1,
           "wins": 0,
@@ -13752,6 +15094,27 @@
         },
         {
           "champion": "Vayne",
+          "winrate": 0,
+          "picks": 1,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Warwick",
+          "winrate": 0,
+          "picks": 1,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Gwen",
+          "winrate": 0,
+          "picks": 1,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Trundle",
           "winrate": 0,
           "picks": 1,
           "wins": 0,
@@ -13762,20 +15125,13 @@
     "category3": {
       "title": "Lowest Winrate Champion (Min 5 games)",
       "leader": "Sion",
-      "value": "0.0% (0/6)",
+      "value": "0.0% (0/7)",
       "leaderboard": [
         {
           "champion": "Sion",
           "winrate": 0,
-          "picks": 6,
+          "picks": 7,
           "wins": 0,
-          "qualified": true
-        },
-        {
-          "champion": "Rumble",
-          "winrate": 0.16666666666666666,
-          "picks": 6,
-          "wins": 1,
           "qualified": true
         },
         {
@@ -13786,7 +15142,7 @@
           "qualified": true
         },
         {
-          "champion": "Senna",
+          "champion": "Seraphine",
           "winrate": 0.2,
           "picks": 5,
           "wins": 1,
@@ -13800,45 +15156,73 @@
           "qualified": true
         },
         {
-          "champion": "Jarvan IV",
-          "winrate": 0.375,
-          "picks": 8,
-          "wins": 3,
+          "champion": "Aurora",
+          "winrate": 0.2,
+          "picks": 5,
+          "wins": 1,
           "qualified": true
         },
         {
           "champion": "Wukong",
-          "winrate": 0.375,
-          "picks": 8,
+          "winrate": 0.3333333333333333,
+          "picks": 9,
           "wins": 3,
-          "qualified": true
-        },
-        {
-          "champion": "Camille",
-          "winrate": 0.375,
-          "picks": 8,
-          "wins": 3,
-          "qualified": true
-        },
-        {
-          "champion": "Ryze",
-          "winrate": 0.4,
-          "picks": 10,
-          "wins": 4,
           "qualified": true
         },
         {
           "champion": "Taliyah",
-          "winrate": 0.4,
-          "picks": 5,
+          "winrate": 0.3333333333333333,
+          "picks": 6,
+          "wins": 2,
+          "qualified": true
+        },
+        {
+          "champion": "Senna",
+          "winrate": 0.3333333333333333,
+          "picks": 6,
           "wins": 2,
           "qualified": true
         },
         {
           "champion": "Qiyana",
+          "winrate": 0.3333333333333333,
+          "picks": 6,
+          "wins": 2,
+          "qualified": true
+        },
+        {
+          "champion": "Rumble",
+          "winrate": 0.375,
+          "picks": 8,
+          "wins": 3,
+          "qualified": true
+        },
+        {
+          "champion": "Naafiri",
+          "winrate": 0.375,
+          "picks": 8,
+          "wins": 3,
+          "qualified": true
+        },
+        {
+          "champion": "Olaf",
           "winrate": 0.4,
           "picks": 5,
           "wins": 2,
+          "qualified": true
+        },
+        {
+          "champion": "Yunara",
+          "winrate": 0.4,
+          "picks": 5,
+          "wins": 2,
+          "qualified": true
+        },
+        {
+          "champion": "Ryze",
+          "winrate": 0.4166666666666667,
+          "picks": 12,
+          "wins": 5,
           "qualified": true
         },
         {
@@ -13849,38 +15233,52 @@
           "qualified": true
         },
         {
-          "champion": "Naafiri",
-          "winrate": 0.42857142857142855,
-          "picks": 7,
-          "wins": 3,
+          "champion": "Camille",
+          "winrate": 0.4444444444444444,
+          "picks": 9,
+          "wins": 4,
           "qualified": true
         },
         {
-          "champion": "Ezreal",
+          "champion": "Jarvan IV",
+          "winrate": 0.45454545454545453,
+          "picks": 11,
+          "wins": 5,
+          "qualified": true
+        },
+        {
+          "champion": "Gnar",
+          "winrate": 0.5,
+          "picks": 10,
+          "wins": 5,
+          "qualified": true
+        },
+        {
+          "champion": "Xin Zhao",
           "winrate": 0.5,
           "picks": 8,
           "wins": 4,
           "qualified": true
         },
         {
-          "champion": "Xin Zhao",
+          "champion": "Ziggs",
           "winrate": 0.5,
-          "picks": 6,
-          "wins": 3,
+          "picks": 8,
+          "wins": 4,
           "qualified": true
         },
         {
-          "champion": "Ziggs",
+          "champion": "Rell",
           "winrate": 0.5,
-          "picks": 6,
-          "wins": 3,
+          "picks": 8,
+          "wins": 4,
           "qualified": true
         },
         {
           "champion": "Nautilus",
           "winrate": 0.5,
-          "picks": 6,
-          "wins": 3,
+          "picks": 8,
+          "wins": 4,
           "qualified": true
         },
         {
@@ -13891,21 +15289,28 @@
           "qualified": true
         },
         {
-          "champion": "Rell",
-          "winrate": 0.5714285714285714,
-          "picks": 7,
-          "wins": 4,
+          "champion": "Caitlyn",
+          "winrate": 0.5,
+          "picks": 6,
+          "wins": 3,
+          "qualified": true
+        },
+        {
+          "champion": "Ezreal",
+          "winrate": 0.5555555555555556,
+          "picks": 9,
+          "wins": 5,
           "qualified": true
         },
         {
           "champion": "Lee Sin",
-          "winrate": 0.5714285714285714,
-          "picks": 7,
-          "wins": 4,
+          "winrate": 0.5555555555555556,
+          "picks": 9,
+          "wins": 5,
           "qualified": true
         },
         {
-          "champion": "Ambessa",
+          "champion": "Lulu",
           "winrate": 0.5714285714285714,
           "picks": 7,
           "wins": 4,
@@ -13926,7 +15331,7 @@
           "qualified": true
         },
         {
-          "champion": "Gnar",
+          "champion": "Ambessa",
           "winrate": 0.625,
           "picks": 8,
           "wins": 5,
@@ -13941,6 +15346,41 @@
         },
         {
           "champion": "Jayce",
+          "winrate": 0.6666666666666666,
+          "picks": 6,
+          "wins": 4,
+          "qualified": true
+        },
+        {
+          "champion": "Syndra",
+          "winrate": 0.6666666666666666,
+          "picks": 6,
+          "wins": 4,
+          "qualified": true
+        },
+        {
+          "champion": "Bard",
+          "winrate": 0.75,
+          "picks": 8,
+          "wins": 6,
+          "qualified": true
+        },
+        {
+          "champion": "Milio",
+          "winrate": 0.8,
+          "picks": 5,
+          "wins": 4,
+          "qualified": true
+        },
+        {
+          "champion": "Viktor",
+          "winrate": 0.8,
+          "picks": 5,
+          "wins": 4,
+          "qualified": true
+        },
+        {
+          "champion": "Ahri",
           "winrate": 0.8,
           "picks": 5,
           "wins": 4,
@@ -13948,50 +15388,29 @@
         },
         {
           "champion": "Lucian",
-          "winrate": 0.8,
-          "picks": 5,
-          "wins": 4,
-          "qualified": true
-        },
-        {
-          "champion": "Vi",
           "winrate": 0.8333333333333334,
           "picks": 6,
           "wins": 5,
           "qualified": true
         },
         {
-          "champion": "Bard",
+          "champion": "Mel",
           "winrate": 0.8571428571428571,
           "picks": 7,
           "wins": 6,
           "qualified": true
         },
         {
-          "champion": "Mel",
-          "winrate": 1,
-          "picks": 5,
-          "wins": 5,
+          "champion": "Vi",
+          "winrate": 0.875,
+          "picks": 8,
+          "wins": 7,
           "qualified": true
         },
         {
-          "champion": "Karma",
+          "champion": "Hwei",
           "winrate": 0,
           "picks": 3,
-          "wins": 0,
-          "qualified": false
-        },
-        {
-          "champion": "Ashe",
-          "winrate": 0,
-          "picks": 2,
-          "wins": 0,
-          "qualified": false
-        },
-        {
-          "champion": "Seraphine",
-          "winrate": 0,
-          "picks": 2,
           "wins": 0,
           "qualified": false
         },
@@ -14004,20 +15423,6 @@
         },
         {
           "champion": "Kaisa",
-          "winrate": 0,
-          "picks": 2,
-          "wins": 0,
-          "qualified": false
-        },
-        {
-          "champion": "Sylas",
-          "winrate": 0,
-          "picks": 2,
-          "wins": 0,
-          "qualified": false
-        },
-        {
-          "champion": "Hwei",
           "winrate": 0,
           "picks": 2,
           "wins": 0,
@@ -14038,13 +15443,6 @@
           "qualified": false
         },
         {
-          "champion": "KSante",
-          "winrate": 0,
-          "picks": 1,
-          "wins": 0,
-          "qualified": false
-        },
-        {
           "champion": "Aphelios",
           "winrate": 0,
           "picks": 1,
@@ -14059,21 +15457,7 @@
           "qualified": false
         },
         {
-          "champion": "Yone",
-          "winrate": 0,
-          "picks": 1,
-          "wins": 0,
-          "qualified": false
-        },
-        {
           "champion": "Maokai",
-          "winrate": 0,
-          "picks": 1,
-          "wins": 0,
-          "qualified": false
-        },
-        {
-          "champion": "Elise",
           "winrate": 0,
           "picks": 1,
           "wins": 0,
@@ -14094,7 +15478,35 @@
           "qualified": false
         },
         {
-          "champion": "Olaf",
+          "champion": "Warwick",
+          "winrate": 0,
+          "picks": 1,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Gwen",
+          "winrate": 0,
+          "picks": 1,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Trundle",
+          "winrate": 0,
+          "picks": 1,
+          "wins": 0,
+          "qualified": false
+        },
+        {
+          "champion": "Ashe",
+          "winrate": 0.25,
+          "picks": 4,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Karma",
           "winrate": 0.25,
           "picks": 4,
           "wins": 1,
@@ -14122,6 +15534,13 @@
           "qualified": false
         },
         {
+          "champion": "Yasuo",
+          "winrate": 0.3333333333333333,
+          "picks": 3,
+          "wins": 1,
+          "qualified": false
+        },
+        {
           "champion": "Poppy",
           "winrate": 0.3333333333333333,
           "picks": 3,
@@ -14143,14 +15562,28 @@
           "qualified": false
         },
         {
-          "champion": "Aurora",
+          "champion": "Yone",
           "winrate": 0.3333333333333333,
           "picks": 3,
           "wins": 1,
           "qualified": false
         },
         {
-          "champion": "Caitlyn",
+          "champion": "Elise",
+          "winrate": 0.3333333333333333,
+          "picks": 3,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Ornn",
+          "winrate": 0.5,
+          "picks": 4,
+          "wins": 2,
+          "qualified": false
+        },
+        {
+          "champion": "Pyke",
           "winrate": 0.5,
           "picks": 4,
           "wins": 2,
@@ -14164,24 +15597,10 @@
           "qualified": false
         },
         {
-          "champion": "Pyke",
+          "champion": "Sylas",
           "winrate": 0.5,
-          "picks": 2,
-          "wins": 1,
-          "qualified": false
-        },
-        {
-          "champion": "Yunara",
-          "winrate": 0.5,
-          "picks": 2,
-          "wins": 1,
-          "qualified": false
-        },
-        {
-          "champion": "Yasuo",
-          "winrate": 0.5,
-          "picks": 2,
-          "wins": 1,
+          "picks": 4,
+          "wins": 2,
           "qualified": false
         },
         {
@@ -14193,6 +15612,13 @@
         },
         {
           "champion": "Shen",
+          "winrate": 0.5,
+          "picks": 2,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "KSante",
           "winrate": 0.5,
           "picks": 2,
           "wins": 1,
@@ -14213,17 +15639,10 @@
           "qualified": false
         },
         {
-          "champion": "Anivia",
+          "champion": "Miss Fortune",
           "winrate": 0.5,
           "picks": 2,
           "wins": 1,
-          "qualified": false
-        },
-        {
-          "champion": "Ornn",
-          "winrate": 0.6666666666666666,
-          "picks": 3,
-          "wins": 2,
           "qualified": false
         },
         {
@@ -14241,35 +15660,21 @@
           "qualified": false
         },
         {
-          "champion": "Ahri",
+          "champion": "Skarner",
           "winrate": 0.6666666666666666,
           "picks": 3,
           "wins": 2,
           "qualified": false
         },
         {
-          "champion": "Milio",
-          "winrate": 0.75,
-          "picks": 4,
-          "wins": 3,
+          "champion": "Anivia",
+          "winrate": 0.6666666666666666,
+          "picks": 3,
+          "wins": 2,
           "qualified": false
         },
         {
-          "champion": "Lulu",
-          "winrate": 0.75,
-          "picks": 4,
-          "wins": 3,
-          "qualified": false
-        },
-        {
-          "champion": "Viktor",
-          "winrate": 0.75,
-          "picks": 4,
-          "wins": 3,
-          "qualified": false
-        },
-        {
-          "champion": "Syndra",
+          "champion": "Yorick",
           "winrate": 1,
           "picks": 3,
           "wins": 3,
@@ -14290,13 +15695,6 @@
           "qualified": false
         },
         {
-          "champion": "Yorick",
-          "winrate": 1,
-          "picks": 2,
-          "wins": 2,
-          "qualified": false
-        },
-        {
           "champion": "Renata Glasc",
           "winrate": 1,
           "picks": 2,
@@ -14304,7 +15702,7 @@
           "qualified": false
         },
         {
-          "champion": "Skarner",
+          "champion": "Dr. Mundo",
           "winrate": 1,
           "picks": 2,
           "wins": 2,
@@ -14360,20 +15758,6 @@
           "qualified": false
         },
         {
-          "champion": "Miss Fortune",
-          "winrate": 1,
-          "picks": 1,
-          "wins": 1,
-          "qualified": false
-        },
-        {
-          "champion": "Dr. Mundo",
-          "winrate": 1,
-          "picks": 1,
-          "wins": 1,
-          "qualified": false
-        },
-        {
           "champion": "Lissandra",
           "winrate": 1,
           "picks": 1,
@@ -14386,36 +15770,66 @@
           "picks": 1,
           "wins": 1,
           "qualified": false
+        },
+        {
+          "champion": "Sett",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
+        },
+        {
+          "champion": "Kindred",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1,
+          "qualified": false
         }
       ]
     },
     "category4": {
       "title": "Champion with Most Kills",
-      "leader": "Cassiopeia",
-      "value": "39 kills",
+      "leader": "Mel",
+      "value": "56 kills",
       "leaderboard": [
+        {
+          "champion": "Mel",
+          "kills": 56
+        },
+        {
+          "champion": "Lucian",
+          "kills": 50
+        },
+        {
+          "champion": "Ryze",
+          "kills": 46
+        },
+        {
+          "champion": "Lee Sin",
+          "kills": 45
+        },
+        {
+          "champion": "Ezreal",
+          "kills": 42
+        },
         {
           "champion": "Cassiopeia",
           "kills": 39
         },
         {
-          "champion": "Lucian",
+          "champion": "Naafiri",
           "kills": 39
         },
         {
-          "champion": "Mel",
-          "kills": 38
+          "champion": "Jarvan IV",
+          "kills": 36
         },
         {
-          "champion": "Naafiri",
-          "kills": 37
-        },
-        {
-          "champion": "Ezreal",
+          "champion": "Wukong",
           "kills": 35
         },
         {
-          "champion": "Lee Sin",
+          "champion": "Ziggs",
           "kills": 34
         },
         {
@@ -14423,19 +15837,11 @@
           "kills": 33
         },
         {
-          "champion": "Jarvan IV",
-          "kills": 33
-        },
-        {
-          "champion": "Ryze",
-          "kills": 33
-        },
-        {
-          "champion": "Wukong",
-          "kills": 33
-        },
-        {
           "champion": "Gnar",
+          "kills": 32
+        },
+        {
+          "champion": "Ambessa",
           "kills": 32
         },
         {
@@ -14443,23 +15849,47 @@
           "kills": 32
         },
         {
+          "champion": "Syndra",
+          "kills": 30
+        },
+        {
           "champion": "Jhin",
           "kills": 29
+        },
+        {
+          "champion": "Olaf",
+          "kills": 29
+        },
+        {
+          "champion": "Xin Zhao",
+          "kills": 28
+        },
+        {
+          "champion": "Camille",
+          "kills": 28
         },
         {
           "champion": "Orianna",
           "kills": 27
         },
         {
-          "champion": "Camille",
+          "champion": "Taliyah",
           "kills": 26
         },
         {
-          "champion": "Ziggs",
-          "kills": 25
+          "champion": "Viktor",
+          "kills": 26
         },
         {
-          "champion": "Taliyah",
+          "champion": "Sylas",
+          "kills": 26
+        },
+        {
+          "champion": "Caitlyn",
+          "kills": 24
+        },
+        {
+          "champion": "Vi",
           "kills": 24
         },
         {
@@ -14467,43 +15897,27 @@
           "kills": 23
         },
         {
-          "champion": "Ambessa",
+          "champion": "Qiyana",
           "kills": 23
         },
         {
-          "champion": "Olaf",
+          "champion": "Ahri",
           "kills": 22
-        },
-        {
-          "champion": "Viktor",
-          "kills": 22
-        },
-        {
-          "champion": "Xin Zhao",
-          "kills": 20
-        },
-        {
-          "champion": "Caitlyn",
-          "kills": 19
-        },
-        {
-          "champion": "Qiyana",
-          "kills": 19
         },
         {
           "champion": "Aurora",
-          "kills": 19
-        },
-        {
-          "champion": "Syndra",
-          "kills": 18
+          "kills": 21
         },
         {
           "champion": "Rumble",
+          "kills": 20
+        },
+        {
+          "champion": "Senna",
           "kills": 17
         },
         {
-          "champion": "Vi",
+          "champion": "Yunara",
           "kills": 17
         },
         {
@@ -14511,15 +15925,7 @@
           "kills": 16
         },
         {
-          "champion": "Ahri",
-          "kills": 16
-        },
-        {
           "champion": "Akali",
-          "kills": 15
-        },
-        {
-          "champion": "Senna",
           "kills": 15
         },
         {
@@ -14529,6 +15935,14 @@
         {
           "champion": "Poppy",
           "kills": 15
+        },
+        {
+          "champion": "Yone",
+          "kills": 12
+        },
+        {
+          "champion": "Pyke",
+          "kills": 11
         },
         {
           "champion": "Twisted Fate",
@@ -14543,7 +15957,7 @@
           "kills": 10
         },
         {
-          "champion": "Sylas",
+          "champion": "Dr. Mundo",
           "kills": 10
         },
         {
@@ -14555,7 +15969,19 @@
           "kills": 9
         },
         {
+          "champion": "Skarner",
+          "kills": 9
+        },
+        {
+          "champion": "Anivia",
+          "kills": 9
+        },
+        {
           "champion": "Volibear",
+          "kills": 9
+        },
+        {
+          "champion": "Warwick",
           "kills": 9
         },
         {
@@ -14563,7 +15989,7 @@
           "kills": 8
         },
         {
-          "champion": "Yunara",
+          "champion": "Ashe",
           "kills": 8
         },
         {
@@ -14571,12 +15997,8 @@
           "kills": 8
         },
         {
-          "champion": "Skarner",
+          "champion": "Elise",
           "kills": 8
-        },
-        {
-          "champion": "Pyke",
-          "kills": 7
         },
         {
           "champion": "Shyvana",
@@ -14584,6 +16006,10 @@
         },
         {
           "champion": "Neeko",
+          "kills": 6
+        },
+        {
+          "champion": "Yorick",
           "kills": 6
         },
         {
@@ -14599,12 +16025,8 @@
           "kills": 6
         },
         {
-          "champion": "Anivia",
-          "kills": 6
-        },
-        {
-          "champion": "Yone",
-          "kills": 6
+          "champion": "Nautilus",
+          "kills": 5
         },
         {
           "champion": "LeBlanc",
@@ -14623,11 +16045,19 @@
           "kills": 5
         },
         {
+          "champion": "Miss Fortune",
+          "kills": 5
+        },
+        {
+          "champion": "Sett",
+          "kills": 5
+        },
+        {
           "champion": "Bard",
           "kills": 4
         },
         {
-          "champion": "Nautilus",
+          "champion": "Seraphine",
           "kills": 4
         },
         {
@@ -14639,11 +16069,7 @@
           "kills": 4
         },
         {
-          "champion": "Dr. Mundo",
-          "kills": 4
-        },
-        {
-          "champion": "Miss Fortune",
+          "champion": "Karma",
           "kills": 4
         },
         {
@@ -14651,7 +16077,11 @@
           "kills": 3
         },
         {
-          "champion": "Yorick",
+          "champion": "Milio",
+          "kills": 3
+        },
+        {
+          "champion": "Lulu",
           "kills": 3
         },
         {
@@ -14659,7 +16089,7 @@
           "kills": 3
         },
         {
-          "champion": "Karma",
+          "champion": "KSante",
           "kills": 3
         },
         {
@@ -14671,19 +16101,19 @@
           "kills": 3
         },
         {
+          "champion": "Gwen",
+          "kills": 3
+        },
+        {
+          "champion": "Kindred",
+          "kills": 3
+        },
+        {
           "champion": "Rakan",
           "kills": 2
         },
         {
-          "champion": "Seraphine",
-          "kills": 2
-        },
-        {
           "champion": "Annie",
-          "kills": 2
-        },
-        {
-          "champion": "Milio",
           "kills": 2
         },
         {
@@ -14699,28 +16129,12 @@
           "kills": 2
         },
         {
-          "champion": "KSante",
-          "kills": 2
-        },
-        {
           "champion": "Aphelios",
           "kills": 2
         },
         {
           "champion": "Lissandra",
           "kills": 2
-        },
-        {
-          "champion": "Ashe",
-          "kills": 1
-        },
-        {
-          "champion": "Lulu",
-          "kills": 1
-        },
-        {
-          "champion": "Elise",
-          "kills": 1
         },
         {
           "champion": "Vayne",
@@ -14748,6 +16162,10 @@
         },
         {
           "champion": "Thresh",
+          "kills": 0
+        },
+        {
+          "champion": "Trundle",
           "kills": 0
         }
       ]
@@ -14969,6 +16387,14 @@
           "match": "G2 Esports vs Top Esports"
         },
         {
+          "player": "Eddie",
+          "team": "Team Secret Whales",
+          "champion": "Caitlyn",
+          "cs": 401,
+          "gameId": "79689",
+          "match": "Team Secret Whales vs Top Esports"
+        },
+        {
           "player": "Peyz",
           "team": "T1",
           "champion": "Lucian",
@@ -14983,6 +16409,14 @@
           "cs": 393,
           "gameId": "79618",
           "match": "T1 vs Bilibili Gaming"
+        },
+        {
+          "player": "Dire",
+          "team": "Team Secret Whales",
+          "champion": "Viktor",
+          "cs": 393,
+          "gameId": "79689",
+          "match": "Team Secret Whales vs Top Esports"
         },
         {
           "player": "Yeon",
@@ -15057,6 +16491,22 @@
           "match": "Karmine Corp vs Team Liquid"
         },
         {
+          "player": "Faker",
+          "team": "T1",
+          "champion": "Ahri",
+          "cs": 363,
+          "gameId": "79621",
+          "match": "Bilibili Gaming vs T1"
+        },
+        {
+          "player": "Tian",
+          "team": "Top Esports",
+          "champion": "Qiyana",
+          "cs": 362,
+          "gameId": "79689",
+          "match": "Team Secret Whales vs Top Esports"
+        },
+        {
           "player": "Peyz",
           "team": "T1",
           "champion": "Caitlyn",
@@ -15113,6 +16563,22 @@
           "match": "Team Liquid vs Karmine Corp"
         },
         {
+          "player": "Creme",
+          "team": "Top Esports",
+          "champion": "Syndra",
+          "cs": 356,
+          "gameId": "79689",
+          "match": "Team Secret Whales vs Top Esports"
+        },
+        {
+          "player": "JackeyLove",
+          "team": "Top Esports",
+          "champion": "Mel",
+          "cs": 356,
+          "gameId": "79689",
+          "match": "Team Secret Whales vs Top Esports"
+        },
+        {
           "player": "Tutsz",
           "team": "FURIA",
           "champion": "Ryze",
@@ -15135,6 +16601,14 @@
           "cs": 353,
           "gameId": "79618",
           "match": "T1 vs Bilibili Gaming"
+        },
+        {
+          "player": "ZUIAN",
+          "team": "Top Esports",
+          "champion": "Gnar",
+          "cs": 352,
+          "gameId": "79689",
+          "match": "Team Secret Whales vs Top Esports"
         },
         {
           "player": "Faker",
@@ -15175,6 +16649,14 @@
           "cs": 344,
           "gameId": "79540",
           "match": "Team Liquid vs Deep Cross Gaming"
+        },
+        {
+          "player": "Pun",
+          "team": "Team Secret Whales",
+          "champion": "Yorick",
+          "cs": 341,
+          "gameId": "79689",
+          "match": "Team Secret Whales vs Top Esports"
         },
         {
           "player": "JackeyLove",
@@ -15249,6 +16731,14 @@
           "match": "LYON vs FURIA"
         },
         {
+          "player": "JackeyLove",
+          "team": "Top Esports",
+          "champion": "Ashe",
+          "cs": 330,
+          "gameId": "79688",
+          "match": "Top Esports vs Team Secret Whales"
+        },
+        {
           "player": "Eddie",
           "team": "Team Secret Whales",
           "champion": "Caitlyn",
@@ -15263,6 +16753,14 @@
           "cs": 329,
           "gameId": "79575",
           "match": "Team Liquid vs T1"
+        },
+        {
+          "player": "Viper",
+          "team": "Bilibili Gaming",
+          "champion": "Caitlyn",
+          "cs": 327,
+          "gameId": "79621",
+          "match": "Bilibili Gaming vs T1"
         },
         {
           "player": "ZUIAN",
@@ -15393,6 +16891,14 @@
           "match": "Top Esports vs G2 Esports"
         },
         {
+          "player": "Gumayusi",
+          "team": "Hanwha Life Esports",
+          "champion": "Ziggs",
+          "cs": 311,
+          "gameId": "79696",
+          "match": "Hanwha Life Esports vs G2 Esports"
+        },
+        {
           "player": "Feng",
           "team": "Deep Cross Gaming",
           "champion": "Jhin",
@@ -15465,12 +16971,44 @@
           "match": "Team Liquid vs T1"
         },
         {
+          "player": "JackeyLove",
+          "team": "Top Esports",
+          "champion": "Ziggs",
+          "cs": 303,
+          "gameId": "79686",
+          "match": "Team Secret Whales vs Top Esports"
+        },
+        {
           "player": "Tian",
           "team": "Top Esports",
           "champion": "Naafiri",
           "cs": 302,
           "gameId": "79608",
           "match": "Top Esports vs G2 Esports"
+        },
+        {
+          "player": "Dire",
+          "team": "Team Secret Whales",
+          "champion": "Ryze",
+          "cs": 302,
+          "gameId": "79686",
+          "match": "Team Secret Whales vs Top Esports"
+        },
+        {
+          "player": "JackeyLove",
+          "team": "Top Esports",
+          "champion": "Yunara",
+          "cs": 302,
+          "gameId": "79687",
+          "match": "Team Secret Whales vs Top Esports"
+        },
+        {
+          "player": "Peyz",
+          "team": "T1",
+          "champion": "Mel",
+          "cs": 302,
+          "gameId": "79621",
+          "match": "Bilibili Gaming vs T1"
         },
         {
           "player": "Peyz",
@@ -15487,6 +17025,22 @@
           "cs": 300,
           "gameId": "79609",
           "match": "Top Esports vs G2 Esports"
+        },
+        {
+          "player": "Caps",
+          "team": "G2 Esports",
+          "champion": "Ryze",
+          "cs": 300,
+          "gameId": "79696",
+          "match": "Hanwha Life Esports vs G2 Esports"
+        },
+        {
+          "player": "Knight",
+          "team": "Bilibili Gaming",
+          "champion": "Aurora",
+          "cs": 300,
+          "gameId": "79621",
+          "match": "Bilibili Gaming vs T1"
         },
         {
           "player": "Viper",
@@ -15601,6 +17155,14 @@
           "match": "FURIA vs LYON"
         },
         {
+          "player": "Zeka",
+          "team": "Hanwha Life Esports",
+          "champion": "Yone",
+          "cs": 293,
+          "gameId": "79696",
+          "match": "Hanwha Life Esports vs G2 Esports"
+        },
+        {
           "player": "Kyeahoo",
           "team": "Karmine Corp",
           "champion": "Cassiopeia",
@@ -15665,6 +17227,14 @@
           "match": "Hanwha Life Esports vs Team Secret Whales"
         },
         {
+          "player": "Dire",
+          "team": "Team Secret Whales",
+          "champion": "Sylas",
+          "cs": 289,
+          "gameId": "79688",
+          "match": "Top Esports vs Team Secret Whales"
+        },
+        {
           "player": "Yike",
           "team": "Karmine Corp",
           "champion": "Wukong",
@@ -15679,6 +17249,14 @@
           "cs": 287,
           "gameId": "79619",
           "match": "Bilibili Gaming vs T1"
+        },
+        {
+          "player": "Creme",
+          "team": "Top Esports",
+          "champion": "Yone",
+          "cs": 287,
+          "gameId": "79686",
+          "match": "Team Secret Whales vs Top Esports"
         },
         {
           "player": "Morgan",
@@ -15721,6 +17299,14 @@
           "match": "Team Liquid vs Karmine Corp"
         },
         {
+          "player": "Eddie",
+          "team": "Team Secret Whales",
+          "champion": "Ezreal",
+          "cs": 284,
+          "gameId": "79688",
+          "match": "Top Esports vs Team Secret Whales"
+        },
+        {
           "player": "Oner",
           "team": "T1",
           "champion": "Nocturne",
@@ -15735,6 +17321,14 @@
           "cs": 283,
           "gameId": "79615",
           "match": "LYON vs FURIA"
+        },
+        {
+          "player": "Creme",
+          "team": "Top Esports",
+          "champion": "Hwei",
+          "cs": 282,
+          "gameId": "79688",
+          "match": "Top Esports vs Team Secret Whales"
         },
         {
           "player": "Knight",
@@ -15801,6 +17395,22 @@
           "match": "Team Liquid vs T1"
         },
         {
+          "player": "Bin",
+          "team": "Bilibili Gaming",
+          "champion": "Gwen",
+          "cs": 277,
+          "gameId": "79621",
+          "match": "Bilibili Gaming vs T1"
+        },
+        {
+          "player": "Knight",
+          "team": "Bilibili Gaming",
+          "champion": "Syndra",
+          "cs": 277,
+          "gameId": "79622",
+          "match": "T1 vs Bilibili Gaming"
+        },
+        {
           "player": "Morgan",
           "team": "Team Liquid",
           "champion": "Twisted Fate",
@@ -15817,12 +17427,28 @@
           "match": "Hanwha Life Esports vs Team Secret Whales"
         },
         {
+          "player": "BrokenBlade",
+          "team": "G2 Esports",
+          "champion": "Warwick",
+          "cs": 275,
+          "gameId": "79696",
+          "match": "Hanwha Life Esports vs G2 Esports"
+        },
+        {
           "player": "Quid",
           "team": "Team Liquid",
           "champion": "Ryze",
           "cs": 274,
           "gameId": "79574",
           "match": "T1 vs Team Liquid"
+        },
+        {
+          "player": "Peyz",
+          "team": "T1",
+          "champion": "Yunara",
+          "cs": 274,
+          "gameId": "79622",
+          "match": "T1 vs Bilibili Gaming"
         },
         {
           "player": "Oner",
@@ -15847,6 +17473,14 @@
           "cs": 273,
           "gameId": "79542",
           "match": "Team Liquid vs Karmine Corp"
+        },
+        {
+          "player": "Pun",
+          "team": "Team Secret Whales",
+          "champion": "Olaf",
+          "cs": 272,
+          "gameId": "79686",
+          "match": "Team Secret Whales vs Top Esports"
         },
         {
           "player": "Caliste",
@@ -15881,12 +17515,28 @@
           "match": "G2 Esports vs Top Esports"
         },
         {
+          "player": "Pun",
+          "team": "Team Secret Whales",
+          "champion": "Sett",
+          "cs": 270,
+          "gameId": "79688",
+          "match": "Top Esports vs Team Secret Whales"
+        },
+        {
           "player": "BrokenBlade",
           "team": "G2 Esports",
           "champion": "Anivia",
           "cs": 269,
           "gameId": "79612",
           "match": "G2 Esports vs Top Esports"
+        },
+        {
+          "player": "Hizto",
+          "team": "Team Secret Whales",
+          "champion": "Dr. Mundo",
+          "cs": 269,
+          "gameId": "79689",
+          "match": "Team Secret Whales vs Top Esports"
         },
         {
           "player": "Faker",
@@ -15943,6 +17593,14 @@
           "cs": 265,
           "gameId": "79574",
           "match": "T1 vs Team Liquid"
+        },
+        {
+          "player": "Doran",
+          "team": "T1",
+          "champion": "KSante",
+          "cs": 265,
+          "gameId": "79621",
+          "match": "Bilibili Gaming vs T1"
         },
         {
           "player": "Yike",
@@ -16025,6 +17683,14 @@
           "match": "Team Liquid vs Karmine Corp"
         },
         {
+          "player": "Kanavi",
+          "team": "Hanwha Life Esports",
+          "champion": "Vi",
+          "cs": 262,
+          "gameId": "79696",
+          "match": "Hanwha Life Esports vs G2 Esports"
+        },
+        {
           "player": "Josedeodo",
           "team": "Team Liquid",
           "champion": "Xin Zhao",
@@ -16081,6 +17747,14 @@
           "match": "T1 vs Team Liquid"
         },
         {
+          "player": "ZUIAN",
+          "team": "Top Esports",
+          "champion": "Jayce",
+          "cs": 259,
+          "gameId": "79686",
+          "match": "Team Secret Whales vs Top Esports"
+        },
+        {
           "player": "Caliste",
           "team": "Karmine Corp",
           "champion": "Ashe",
@@ -16095,6 +17769,14 @@
           "cs": 258,
           "gameId": "79574",
           "match": "T1 vs Team Liquid"
+        },
+        {
+          "player": "Eddie",
+          "team": "Team Secret Whales",
+          "champion": "Senna",
+          "cs": 258,
+          "gameId": "79686",
+          "match": "Team Secret Whales vs Top Esports"
         },
         {
           "player": "HongSuo",
@@ -16145,6 +17827,14 @@
           "match": "Hanwha Life Esports vs Team Secret Whales"
         },
         {
+          "player": "Doran",
+          "team": "T1",
+          "champion": "Gnar",
+          "cs": 257,
+          "gameId": "79622",
+          "match": "T1 vs Bilibili Gaming"
+        },
+        {
           "player": "Faker",
           "team": "T1",
           "champion": "Annie",
@@ -16161,12 +17851,44 @@
           "match": "Hanwha Life Esports vs Team Secret Whales"
         },
         {
+          "player": "Bin",
+          "team": "Bilibili Gaming",
+          "champion": "Rumble",
+          "cs": 256,
+          "gameId": "79622",
+          "match": "T1 vs Bilibili Gaming"
+        },
+        {
           "player": "Canna",
           "team": "Karmine Corp",
           "champion": "Gnar",
           "cs": 255,
           "gameId": "79532",
           "match": "Karmine Corp vs Deep Cross Gaming"
+        },
+        {
+          "player": "Eddie",
+          "team": "Team Secret Whales",
+          "champion": "Miss Fortune",
+          "cs": 255,
+          "gameId": "79687",
+          "match": "Team Secret Whales vs Top Esports"
+        },
+        {
+          "player": "Oner",
+          "team": "T1",
+          "champion": "Jarvan IV",
+          "cs": 255,
+          "gameId": "79621",
+          "match": "Bilibili Gaming vs T1"
+        },
+        {
+          "player": "Viper",
+          "team": "Bilibili Gaming",
+          "champion": "Ashe",
+          "cs": 255,
+          "gameId": "79622",
+          "match": "T1 vs Bilibili Gaming"
         },
         {
           "player": "Oner",
@@ -16191,6 +17913,14 @@
           "cs": 253,
           "gameId": "79543",
           "match": "Karmine Corp vs Team Liquid"
+        },
+        {
+          "player": "Hizto",
+          "team": "Team Secret Whales",
+          "champion": "Lee Sin",
+          "cs": 252,
+          "gameId": "79686",
+          "match": "Team Secret Whales vs Top Esports"
         },
         {
           "player": "Flauren",
@@ -16233,6 +17963,14 @@
           "match": "Hanwha Life Esports vs Team Secret Whales"
         },
         {
+          "player": "XUN",
+          "team": "Bilibili Gaming",
+          "champion": "Kindred",
+          "cs": 249,
+          "gameId": "79622",
+          "match": "T1 vs Bilibili Gaming"
+        },
+        {
           "player": "Hans Sama",
           "team": "G2 Esports",
           "champion": "Xayah",
@@ -16247,6 +17985,14 @@
           "cs": 248,
           "gameId": "79611",
           "match": "G2 Esports vs Top Esports"
+        },
+        {
+          "player": "Hizto",
+          "team": "Team Secret Whales",
+          "champion": "Xin Zhao",
+          "cs": 248,
+          "gameId": "79688",
+          "match": "Top Esports vs Team Secret Whales"
         },
         {
           "player": "Yike",
@@ -16297,6 +18043,14 @@
           "match": "Hanwha Life Esports vs Team Secret Whales"
         },
         {
+          "player": "Faker",
+          "team": "T1",
+          "champion": "Taliyah",
+          "cs": 245,
+          "gameId": "79622",
+          "match": "T1 vs Bilibili Gaming"
+        },
+        {
           "player": "Feng",
           "team": "Deep Cross Gaming",
           "champion": "Senna",
@@ -16327,6 +18081,14 @@
           "cs": 244,
           "gameId": "79541",
           "match": "Team Liquid vs Deep Cross Gaming"
+        },
+        {
+          "player": "ZUIAN",
+          "team": "Top Esports",
+          "champion": "Rumble",
+          "cs": 244,
+          "gameId": "79687",
+          "match": "Team Secret Whales vs Top Esports"
         },
         {
           "player": "Oner",
@@ -16361,6 +18123,14 @@
           "match": "Team Liquid vs Deep Cross Gaming"
         },
         {
+          "player": "Gumayusi",
+          "team": "Hanwha Life Esports",
+          "champion": "Lucian",
+          "cs": 243,
+          "gameId": "79697",
+          "match": "Hanwha Life Esports vs G2 Esports"
+        },
+        {
           "player": "Pop9",
           "team": "Deep Cross Gaming",
           "champion": "Olaf",
@@ -16385,6 +18155,14 @@
           "match": "T1 vs Team Liquid"
         },
         {
+          "player": "Zeus",
+          "team": "Hanwha Life Esports",
+          "champion": "Ambessa",
+          "cs": 242,
+          "gameId": "79696",
+          "match": "Hanwha Life Esports vs G2 Esports"
+        },
+        {
           "player": "Kyeahoo",
           "team": "Karmine Corp",
           "champion": "Annie",
@@ -16399,6 +18177,22 @@
           "cs": 241,
           "gameId": "79576",
           "match": "Team Liquid vs T1"
+        },
+        {
+          "player": "Creme",
+          "team": "Top Esports",
+          "champion": "Ahri",
+          "cs": 241,
+          "gameId": "79687",
+          "match": "Team Secret Whales vs Top Esports"
+        },
+        {
+          "player": "Tian",
+          "team": "Top Esports",
+          "champion": "Vi",
+          "cs": 238,
+          "gameId": "79687",
+          "match": "Team Secret Whales vs Top Esports"
         },
         {
           "player": "XUN",
@@ -16457,6 +18251,14 @@
           "match": "Karmine Corp vs Team Liquid"
         },
         {
+          "player": "Dire",
+          "team": "Team Secret Whales",
+          "champion": "Aurora",
+          "cs": 231,
+          "gameId": "79687",
+          "match": "Team Secret Whales vs Top Esports"
+        },
+        {
           "player": "Morgan",
           "team": "Team Liquid",
           "champion": "Zaahen",
@@ -16471,6 +18273,22 @@
           "cs": 229,
           "gameId": "79574",
           "match": "T1 vs Team Liquid"
+        },
+        {
+          "player": "Hans Sama",
+          "team": "G2 Esports",
+          "champion": "Seraphine",
+          "cs": 229,
+          "gameId": "79696",
+          "match": "Hanwha Life Esports vs G2 Esports"
+        },
+        {
+          "player": "Zeus",
+          "team": "Hanwha Life Esports",
+          "champion": "Anivia",
+          "cs": 229,
+          "gameId": "79697",
+          "match": "Hanwha Life Esports vs G2 Esports"
         },
         {
           "player": "XUN",
@@ -16503,6 +18321,14 @@
           "cs": 228,
           "gameId": "79604",
           "match": "Hanwha Life Esports vs Team Secret Whales"
+        },
+        {
+          "player": "Tian",
+          "team": "Top Esports",
+          "champion": "Wukong",
+          "cs": 228,
+          "gameId": "79688",
+          "match": "Top Esports vs Team Secret Whales"
         },
         {
           "player": "Kanavi",
@@ -16633,6 +18459,14 @@
           "match": "T1 vs Team Liquid"
         },
         {
+          "player": "SkewMond",
+          "team": "G2 Esports",
+          "champion": "Xin Zhao",
+          "cs": 216,
+          "gameId": "79696",
+          "match": "Hanwha Life Esports vs G2 Esports"
+        },
+        {
           "player": "Pop9",
           "team": "Deep Cross Gaming",
           "champion": "Jarvan IV",
@@ -16697,6 +18531,14 @@
           "match": "Team Liquid vs T1"
         },
         {
+          "player": "Caps",
+          "team": "G2 Esports",
+          "champion": "Syndra",
+          "cs": 210,
+          "gameId": "79697",
+          "match": "Hanwha Life Esports vs G2 Esports"
+        },
+        {
           "player": "Kyeahoo",
           "team": "Karmine Corp",
           "champion": "Cassiopeia",
@@ -16745,6 +18587,14 @@
           "match": "Karmine Corp vs T1"
         },
         {
+          "player": "Tian",
+          "team": "Top Esports",
+          "champion": "Jarvan IV",
+          "cs": 204,
+          "gameId": "79686",
+          "match": "Team Secret Whales vs Top Esports"
+        },
+        {
           "player": "BrokenBlade",
           "team": "G2 Esports",
           "champion": "KSante",
@@ -16777,12 +18627,28 @@
           "match": "Team Liquid vs Karmine Corp"
         },
         {
+          "player": "Hans Sama",
+          "team": "G2 Esports",
+          "champion": "Yunara",
+          "cs": 203,
+          "gameId": "79697",
+          "match": "Hanwha Life Esports vs G2 Esports"
+        },
+        {
           "player": "Yike",
           "team": "Karmine Corp",
           "champion": "Wukong",
           "cs": 202,
           "gameId": "79542",
           "match": "Team Liquid vs Karmine Corp"
+        },
+        {
+          "player": "XUN",
+          "team": "Bilibili Gaming",
+          "champion": "Skarner",
+          "cs": 202,
+          "gameId": "79621",
+          "match": "Bilibili Gaming vs T1"
         },
         {
           "player": "Yike",
@@ -16857,6 +18723,14 @@
           "match": "Top Esports vs G2 Esports"
         },
         {
+          "player": "ZUIAN",
+          "team": "Top Esports",
+          "champion": "Sion",
+          "cs": 195,
+          "gameId": "79688",
+          "match": "Top Esports vs Team Secret Whales"
+        },
+        {
           "player": "Quid",
           "team": "Team Liquid",
           "champion": "Galio",
@@ -16881,6 +18755,14 @@
           "match": "Top Esports vs G2 Esports"
         },
         {
+          "player": "Hizto",
+          "team": "Team Secret Whales",
+          "champion": "Naafiri",
+          "cs": 189,
+          "gameId": "79687",
+          "match": "Team Secret Whales vs Top Esports"
+        },
+        {
           "player": "ZUIAN",
           "team": "Top Esports",
           "champion": "Sion",
@@ -16903,6 +18785,14 @@
           "cs": 181,
           "gameId": "79536",
           "match": "Karmine Corp vs T1"
+        },
+        {
+          "player": "Pun",
+          "team": "Team Secret Whales",
+          "champion": "Ornn",
+          "cs": 181,
+          "gameId": "79687",
+          "match": "Team Secret Whales vs Top Esports"
         },
         {
           "player": "Kanavi",
@@ -16937,12 +18827,28 @@
           "match": "Team Liquid vs T1"
         },
         {
+          "player": "BrokenBlade",
+          "team": "G2 Esports",
+          "champion": "Yasuo",
+          "cs": 177,
+          "gameId": "79697",
+          "match": "Hanwha Life Esports vs G2 Esports"
+        },
+        {
           "player": "Josedeodo",
           "team": "Team Liquid",
           "champion": "Wukong",
           "cs": 173,
           "gameId": "79526",
           "match": "T1 vs Team Liquid"
+        },
+        {
+          "player": "Oner",
+          "team": "T1",
+          "champion": "Trundle",
+          "cs": 173,
+          "gameId": "79622",
+          "match": "T1 vs Bilibili Gaming"
         },
         {
           "player": "Feng",
@@ -16961,12 +18867,36 @@
           "match": "LYON vs FURIA"
         },
         {
+          "player": "Zeka",
+          "team": "Hanwha Life Esports",
+          "champion": "Sylas",
+          "cs": 170,
+          "gameId": "79697",
+          "match": "Hanwha Life Esports vs G2 Esports"
+        },
+        {
           "player": "Pop9",
           "team": "Deep Cross Gaming",
           "champion": "Wukong",
           "cs": 165,
           "gameId": "79541",
           "match": "Team Liquid vs Deep Cross Gaming"
+        },
+        {
+          "player": "SkewMond",
+          "team": "G2 Esports",
+          "champion": "Lee Sin",
+          "cs": 158,
+          "gameId": "79697",
+          "match": "Hanwha Life Esports vs G2 Esports"
+        },
+        {
+          "player": "Kanavi",
+          "team": "Hanwha Life Esports",
+          "champion": "Jarvan IV",
+          "cs": 152,
+          "gameId": "79697",
+          "match": "Hanwha Life Esports vs G2 Esports"
         },
         {
           "player": "Josedeodo",
@@ -17025,6 +18955,14 @@
           "match": "Team Liquid vs Karmine Corp"
         },
         {
+          "player": "Bie",
+          "team": "Team Secret Whales",
+          "champion": "Karma",
+          "cs": 51,
+          "gameId": "79688",
+          "match": "Top Esports vs Team Secret Whales"
+        },
+        {
           "player": "JoJo",
           "team": "FURIA",
           "champion": "Karma",
@@ -17071,6 +19009,30 @@
           "cs": 47,
           "gameId": "79603",
           "match": "Hanwha Life Esports vs Team Secret Whales"
+        },
+        {
+          "player": "Delight",
+          "team": "Hanwha Life Esports",
+          "champion": "Camille",
+          "cs": 46,
+          "gameId": "79696",
+          "match": "Hanwha Life Esports vs G2 Esports"
+        },
+        {
+          "player": "fengyue",
+          "team": "Top Esports",
+          "champion": "Seraphine",
+          "cs": 46,
+          "gameId": "79688",
+          "match": "Top Esports vs Team Secret Whales"
+        },
+        {
+          "player": "Bie",
+          "team": "Team Secret Whales",
+          "champion": "Elise",
+          "cs": 45,
+          "gameId": "79689",
+          "match": "Team Secret Whales vs Top Esports"
         },
         {
           "player": "ShiauC",
@@ -17121,12 +19083,36 @@
           "match": "Karmine Corp vs Team Liquid"
         },
         {
+          "player": "Bie",
+          "team": "Team Secret Whales",
+          "champion": "Nautilus",
+          "cs": 39,
+          "gameId": "79686",
+          "match": "Team Secret Whales vs Top Esports"
+        },
+        {
+          "player": "fengyue",
+          "team": "Top Esports",
+          "champion": "Lulu",
+          "cs": 39,
+          "gameId": "79687",
+          "match": "Team Secret Whales vs Top Esports"
+        },
+        {
           "player": "ShiauC",
           "team": "Deep Cross Gaming",
           "champion": "Nautilus",
           "cs": 38,
           "gameId": "79540",
           "match": "Team Liquid vs Deep Cross Gaming"
+        },
+        {
+          "player": "fengyue",
+          "team": "Top Esports",
+          "champion": "Rell",
+          "cs": 38,
+          "gameId": "79686",
+          "match": "Team Secret Whales vs Top Esports"
         },
         {
           "player": "ShiauC",
@@ -17159,6 +19145,14 @@
           "cs": 37,
           "gameId": "79612",
           "match": "G2 Esports vs Top Esports"
+        },
+        {
+          "player": "ON",
+          "team": "Bilibili Gaming",
+          "champion": "Elise",
+          "cs": 37,
+          "gameId": "79621",
+          "match": "Bilibili Gaming vs T1"
         },
         {
           "player": "Busio",
@@ -17209,12 +19203,28 @@
           "match": "Hanwha Life Esports vs Team Secret Whales"
         },
         {
+          "player": "Bie",
+          "team": "Team Secret Whales",
+          "champion": "Bard",
+          "cs": 35,
+          "gameId": "79687",
+          "match": "Team Secret Whales vs Top Esports"
+        },
+        {
           "player": "Isles",
           "team": "LYON",
           "champion": "Camille",
           "cs": 34,
           "gameId": "79614",
           "match": "LYON vs FURIA"
+        },
+        {
+          "player": "ON",
+          "team": "Bilibili Gaming",
+          "champion": "Seraphine",
+          "cs": 34,
+          "gameId": "79622",
+          "match": "T1 vs Bilibili Gaming"
         },
         {
           "player": "Busio",
@@ -17257,6 +19267,22 @@
           "match": "T1 vs Team Liquid"
         },
         {
+          "player": "Keria",
+          "team": "T1",
+          "champion": "Pyke",
+          "cs": 32,
+          "gameId": "79621",
+          "match": "Bilibili Gaming vs T1"
+        },
+        {
+          "player": "Keria",
+          "team": "T1",
+          "champion": "Lulu",
+          "cs": 32,
+          "gameId": "79622",
+          "match": "T1 vs Bilibili Gaming"
+        },
+        {
           "player": "Busio",
           "team": "Karmine Corp",
           "champion": "Bard",
@@ -17271,6 +19297,14 @@
           "cs": 31,
           "gameId": "79619",
           "match": "Bilibili Gaming vs T1"
+        },
+        {
+          "player": "fengyue",
+          "team": "Top Esports",
+          "champion": "Pyke",
+          "cs": 31,
+          "gameId": "79689",
+          "match": "Team Secret Whales vs Top Esports"
         },
         {
           "player": "Keria",
@@ -17435,6 +19469,14 @@
         {
           "player": "Labrov",
           "team": "G2 Esports",
+          "champion": "Lulu",
+          "cs": 25,
+          "gameId": "79697",
+          "match": "Hanwha Life Esports vs G2 Esports"
+        },
+        {
+          "player": "Labrov",
+          "team": "G2 Esports",
           "champion": "Braum",
           "cs": 24,
           "gameId": "79608",
@@ -17473,6 +19515,14 @@
           "match": "Team Liquid vs T1"
         },
         {
+          "player": "Labrov",
+          "team": "G2 Esports",
+          "champion": "Nautilus",
+          "cs": 23,
+          "gameId": "79696",
+          "match": "Hanwha Life Esports vs G2 Esports"
+        },
+        {
           "player": "Keria",
           "team": "T1",
           "champion": "Milio",
@@ -17495,6 +19545,14 @@
           "cs": 19,
           "gameId": "79542",
           "match": "Team Liquid vs Karmine Corp"
+        },
+        {
+          "player": "Delight",
+          "team": "Hanwha Life Esports",
+          "champion": "Milio",
+          "cs": 18,
+          "gameId": "79697",
+          "match": "Hanwha Life Esports vs G2 Esports"
         },
         {
           "player": "Keria",
@@ -17528,6 +19586,22 @@
           "fbCount": 2
         },
         {
+          "player": "Creme",
+          "fbCount": 2
+        },
+        {
+          "player": "SkewMond",
+          "fbCount": 2
+        },
+        {
+          "player": "Zeka",
+          "fbCount": 2
+        },
+        {
+          "player": "JackeyLove",
+          "fbCount": 2
+        },
+        {
           "player": "HongSuo",
           "fbCount": 1
         },
@@ -17564,10 +19638,6 @@
           "fbCount": 1
         },
         {
-          "player": "Creme",
-          "fbCount": 1
-        },
-        {
           "player": "Caps",
           "fbCount": 1
         },
@@ -17577,14 +19647,6 @@
         },
         {
           "player": "Hans Sama",
-          "fbCount": 1
-        },
-        {
-          "player": "SkewMond",
-          "fbCount": 1
-        },
-        {
-          "player": "Zeka",
           "fbCount": 1
         },
         {
@@ -17606,6 +19668,18 @@
         {
           "player": "Canna",
           "fbCount": 1
+        },
+        {
+          "player": "Bie",
+          "fbCount": 1
+        },
+        {
+          "player": "ON",
+          "fbCount": 1
+        },
+        {
+          "player": "XUN",
+          "fbCount": 1
         }
       ]
     },
@@ -17620,19 +19694,24 @@
           "games": 3
         },
         {
+          "player": "Gumayusi",
+          "avgDmg": 923,
+          "games": 5
+        },
+        {
           "player": "Zeka",
-          "avgDmg": 959,
-          "games": 3
+          "avgDmg": 910,
+          "games": 5
+        },
+        {
+          "player": "Caps",
+          "avgDmg": 901,
+          "games": 7
         },
         {
           "player": "Peyz",
-          "avgDmg": 939,
-          "games": 12
-        },
-        {
-          "player": "Viper",
-          "avgDmg": 882,
-          "games": 3
+          "avgDmg": 880,
+          "games": 14
         },
         {
           "player": "Saint",
@@ -17645,24 +19724,14 @@
           "games": 3
         },
         {
-          "player": "Caps",
-          "avgDmg": 839,
-          "games": 5
-        },
-        {
           "player": "JackeyLove",
-          "avgDmg": 825,
-          "games": 5
-        },
-        {
-          "player": "Knight",
-          "avgDmg": 813,
-          "games": 3
+          "avgDmg": 831,
+          "games": 9
         },
         {
           "player": "Creme",
-          "avgDmg": 801,
-          "games": 5
+          "avgDmg": 807,
+          "games": 9
         },
         {
           "player": "Ayu",
@@ -17680,44 +19749,44 @@
           "games": 12
         },
         {
-          "player": "Gumayusi",
-          "avgDmg": 786,
-          "games": 3
-        },
-        {
-          "player": "Hans Sama",
-          "avgDmg": 785,
-          "games": 5
-        },
-        {
           "player": "Quid",
           "avgDmg": 762,
           "games": 12
         },
         {
+          "player": "Viper",
+          "avgDmg": 757,
+          "games": 5
+        },
+        {
           "player": "Zeus",
-          "avgDmg": 740,
-          "games": 3
+          "avgDmg": 743,
+          "games": 5
+        },
+        {
+          "player": "Knight",
+          "avgDmg": 720,
+          "games": 5
+        },
+        {
+          "player": "Hans Sama",
+          "avgDmg": 712,
+          "games": 7
         },
         {
           "player": "BrokenBlade",
-          "avgDmg": 704,
-          "games": 5
+          "avgDmg": 672,
+          "games": 7
         },
         {
           "player": "ZUIAN",
-          "avgDmg": 670,
-          "games": 5
+          "avgDmg": 647,
+          "games": 9
         },
         {
           "player": "Kyeahoo",
           "avgDmg": 646,
           "games": 9
-        },
-        {
-          "player": "Faker",
-          "avgDmg": 635,
-          "games": 12
         },
         {
           "player": "Tutsz",
@@ -17730,9 +19799,9 @@
           "games": 9
         },
         {
-          "player": "Tian",
-          "avgDmg": 622,
-          "games": 5
+          "player": "Faker",
+          "avgDmg": 625,
+          "games": 14
         },
         {
           "player": "HongSuo",
@@ -17740,14 +19809,19 @@
           "games": 6
         },
         {
+          "player": "Kanavi",
+          "avgDmg": 602,
+          "games": 5
+        },
+        {
           "player": "Guigo",
           "avgDmg": 598,
           "games": 3
         },
         {
-          "player": "SkewMond",
-          "avgDmg": 592,
-          "games": 5
+          "player": "Eddie",
+          "avgDmg": 587,
+          "games": 7
         },
         {
           "player": "Flauren",
@@ -17755,9 +19829,9 @@
           "games": 6
         },
         {
-          "player": "Kanavi",
-          "avgDmg": 578,
-          "games": 3
+          "player": "Dire",
+          "avgDmg": 577,
+          "games": 7
         },
         {
           "player": "Yike",
@@ -17770,29 +19844,24 @@
           "games": 12
         },
         {
-          "player": "Pun",
-          "avgDmg": 569,
-          "games": 3
-        },
-        {
-          "player": "Bin",
-          "avgDmg": 565,
-          "games": 3
-        },
-        {
           "player": "Feng",
           "avgDmg": 555,
           "games": 6
         },
         {
-          "player": "Doran",
+          "player": "SkewMond",
           "avgDmg": 550,
-          "games": 12
+          "games": 7
         },
         {
-          "player": "Eddie",
-          "avgDmg": 542,
-          "games": 3
+          "player": "Pun",
+          "avgDmg": 546,
+          "games": 7
+        },
+        {
+          "player": "Tian",
+          "avgDmg": 535,
+          "games": 9
         },
         {
           "player": "Josedeodo",
@@ -17800,24 +19869,29 @@
           "games": 12
         },
         {
+          "player": "Doran",
+          "avgDmg": 521,
+          "games": 14
+        },
+        {
           "player": "Inspired",
           "avgDmg": 520,
           "games": 3
         },
         {
-          "player": "Dire",
-          "avgDmg": 513,
-          "games": 3
+          "player": "Bin",
+          "avgDmg": 512,
+          "games": 5
         },
         {
           "player": "Hizto",
-          "avgDmg": 491,
-          "games": 3
+          "avgDmg": 500,
+          "games": 7
         },
         {
           "player": "XUN",
-          "avgDmg": 485,
-          "games": 3
+          "avgDmg": 477,
+          "games": 5
         },
         {
           "player": "Tatu",
@@ -17826,8 +19900,8 @@
         },
         {
           "player": "Oner",
-          "avgDmg": 444,
-          "games": 12
+          "avgDmg": 418,
+          "games": 14
         },
         {
           "player": "Pop9",
@@ -17835,18 +19909,13 @@
           "games": 6
         },
         {
-          "player": "Delight",
-          "avgDmg": 339,
-          "games": 3
-        },
-        {
           "player": "Isles",
           "avgDmg": 314,
           "games": 3
         },
         {
-          "player": "fengyue",
-          "avgDmg": 270,
+          "player": "Delight",
+          "avgDmg": 302,
           "games": 5
         },
         {
@@ -17856,13 +19925,18 @@
         },
         {
           "player": "Labrov",
-          "avgDmg": 247,
-          "games": 5
+          "avgDmg": 253,
+          "games": 7
         },
         {
           "player": "Keria",
           "avgDmg": 241,
-          "games": 12
+          "games": 14
+        },
+        {
+          "player": "fengyue",
+          "avgDmg": 239,
+          "games": 9
         },
         {
           "player": "CoreJJ",
@@ -17876,17 +19950,17 @@
         },
         {
           "player": "Bie",
-          "avgDmg": 213,
-          "games": 3
+          "avgDmg": 222,
+          "games": 7
+        },
+        {
+          "player": "ON",
+          "avgDmg": 204,
+          "games": 5
         },
         {
           "player": "JoJo",
           "avgDmg": 198,
-          "games": 3
-        },
-        {
-          "player": "ON",
-          "avgDmg": 144,
           "games": 3
         }
       ]
@@ -18034,15 +20108,15 @@
           "elderDragons": 1
         },
         {
+          "team": "T1",
+          "elderDragons": 1
+        },
+        {
           "team": "LYON",
           "elderDragons": 1
         },
         {
           "team": "Deep Cross Gaming",
-          "elderDragons": 0
-        },
-        {
-          "team": "T1",
           "elderDragons": 0
         },
         {
@@ -18094,6 +20168,18 @@
         },
         {
           "team": "Team Secret Whales",
+          "opponent": "Top Esports",
+          "kills": 3,
+          "gameId": "79687"
+        },
+        {
+          "team": "T1",
+          "opponent": "Bilibili Gaming",
+          "kills": 3,
+          "gameId": "79622"
+        },
+        {
+          "team": "Team Secret Whales",
           "opponent": "Hanwha Life Esports",
           "kills": 4,
           "gameId": "79603"
@@ -18105,10 +20191,22 @@
           "gameId": "79576"
         },
         {
+          "team": "Top Esports",
+          "opponent": "Team Secret Whales",
+          "kills": 5,
+          "gameId": "79688"
+        },
+        {
           "team": "FURIA",
           "opponent": "LYON",
           "kills": 6,
           "gameId": "79615"
+        },
+        {
+          "team": "Top Esports",
+          "opponent": "Team Secret Whales",
+          "kills": 6,
+          "gameId": "79686"
         },
         {
           "team": "T1",
@@ -18121,6 +20219,12 @@
           "opponent": "Team Liquid",
           "kills": 7,
           "gameId": "79542"
+        },
+        {
+          "team": "G2 Esports",
+          "opponent": "Hanwha Life Esports",
+          "kills": 7,
+          "gameId": "79697"
         },
         {
           "team": "G2 Esports",
@@ -18151,6 +20255,18 @@
           "opponent": "G2 Esports",
           "kills": 10,
           "gameId": "79610"
+        },
+        {
+          "team": "Bilibili Gaming",
+          "opponent": "T1",
+          "kills": 10,
+          "gameId": "79621"
+        },
+        {
+          "team": "Bilibili Gaming",
+          "opponent": "T1",
+          "kills": 10,
+          "gameId": "79622"
         },
         {
           "team": "G2 Esports",
@@ -18243,10 +20359,22 @@
           "gameId": "79612"
         },
         {
+          "team": "Top Esports",
+          "opponent": "Team Secret Whales",
+          "kills": 14,
+          "gameId": "79689"
+        },
+        {
           "team": "Bilibili Gaming",
           "opponent": "T1",
           "kills": 15,
           "gameId": "79618"
+        },
+        {
+          "team": "Top Esports",
+          "opponent": "Team Secret Whales",
+          "kills": 15,
+          "gameId": "79687"
         },
         {
           "team": "T1",
@@ -18309,6 +20437,18 @@
           "gameId": "79542"
         },
         {
+          "team": "G2 Esports",
+          "opponent": "Hanwha Life Esports",
+          "kills": 19,
+          "gameId": "79696"
+        },
+        {
+          "team": "Team Secret Whales",
+          "opponent": "Top Esports",
+          "kills": 19,
+          "gameId": "79688"
+        },
+        {
           "team": "Team Liquid",
           "opponent": "Deep Cross Gaming",
           "kills": 20,
@@ -18331,6 +20471,12 @@
           "opponent": "Team Liquid",
           "kills": 21,
           "gameId": "79574"
+        },
+        {
+          "team": "Team Secret Whales",
+          "opponent": "Top Esports",
+          "kills": 21,
+          "gameId": "79689"
         },
         {
           "team": "Team Liquid",
@@ -18393,6 +20539,12 @@
           "gameId": "79544"
         },
         {
+          "team": "T1",
+          "opponent": "Bilibili Gaming",
+          "kills": 23,
+          "gameId": "79621"
+        },
+        {
           "team": "Team Liquid",
           "opponent": "Deep Cross Gaming",
           "kills": 25,
@@ -18435,6 +20587,12 @@
           "gameId": "79609"
         },
         {
+          "team": "Hanwha Life Esports",
+          "opponent": "G2 Esports",
+          "kills": 27,
+          "gameId": "79696"
+        },
+        {
           "team": "G2 Esports",
           "opponent": "Top Esports",
           "kills": 29,
@@ -18445,6 +20603,18 @@
           "opponent": "Team Liquid",
           "kills": 29,
           "gameId": "79575"
+        },
+        {
+          "team": "Hanwha Life Esports",
+          "opponent": "G2 Esports",
+          "kills": 29,
+          "gameId": "79697"
+        },
+        {
+          "team": "Team Secret Whales",
+          "opponent": "Top Esports",
+          "kills": 29,
+          "gameId": "79686"
         },
         {
           "team": "G2 Esports",
@@ -18468,9 +20638,59 @@
     },
     "category12": {
       "title": "Team with Most Unique Champions (Champion Pool)",
-      "leader": "Team Liquid",
-      "value": "41 champions",
+      "leader": "T1",
+      "value": "44 champions",
       "leaderboard": [
+        {
+          "team": "T1",
+          "uniqueCount": 44,
+          "champions": [
+            "Jayce",
+            "Nocturne",
+            "Akali",
+            "Mel",
+            "Pyke",
+            "Gragas",
+            "Wukong",
+            "Syndra",
+            "Caitlyn",
+            "Bard",
+            "Yorick",
+            "Jarvan IV",
+            "Ryze",
+            "Lucian",
+            "Milio",
+            "Gnar",
+            "Xin Zhao",
+            "Orianna",
+            "Camille",
+            "Ambessa",
+            "Vi",
+            "Kalista",
+            "Renata Glasc",
+            "Renekton",
+            "Lee Sin",
+            "Annie",
+            "Zeri",
+            "Yuumi",
+            "Cassiopeia",
+            "Jhin",
+            "Nautilus",
+            "Galio",
+            "Kaisa",
+            "Zaahen",
+            "Senna",
+            "Leona",
+            "Taliyah",
+            "Ezreal",
+            "Lissandra",
+            "Lulu",
+            "KSante",
+            "Ahri",
+            "Trundle",
+            "Yunara"
+          ]
+        },
         {
           "team": "Team Liquid",
           "uniqueCount": 41,
@@ -18519,49 +20739,48 @@
           ]
         },
         {
-          "team": "T1",
-          "uniqueCount": 40,
+          "team": "Top Esports",
+          "uniqueCount": 39,
           "champions": [
-            "Jayce",
-            "Nocturne",
-            "Akali",
-            "Mel",
-            "Pyke",
-            "Gragas",
-            "Wukong",
-            "Syndra",
-            "Caitlyn",
-            "Bard",
-            "Yorick",
-            "Jarvan IV",
-            "Ryze",
-            "Lucian",
-            "Milio",
-            "Gnar",
-            "Xin Zhao",
-            "Orianna",
-            "Camille",
             "Ambessa",
-            "Vi",
-            "Kalista",
-            "Renata Glasc",
-            "Renekton",
-            "Lee Sin",
-            "Annie",
-            "Zeri",
-            "Yuumi",
+            "Naafiri",
             "Cassiopeia",
-            "Jhin",
+            "Varus",
             "Nautilus",
-            "Galio",
-            "Kaisa",
-            "Zaahen",
-            "Senna",
-            "Leona",
-            "Taliyah",
+            "Renekton",
+            "Jarvan IV",
+            "Aurora",
             "Ezreal",
-            "Lissandra",
-            "Lulu"
+            "Neeko",
+            "Sion",
+            "Wukong",
+            "Ryze",
+            "Aphelios",
+            "Thresh",
+            "Tristana",
+            "Nocturne",
+            "Hwei",
+            "Jhin",
+            "Karma",
+            "Ornn",
+            "Maokai",
+            "Yone",
+            "Ziggs",
+            "Pantheon",
+            "Jayce",
+            "Rell",
+            "Rumble",
+            "Vi",
+            "Ahri",
+            "Yunara",
+            "Lulu",
+            "Ashe",
+            "Seraphine",
+            "Gnar",
+            "Qiyana",
+            "Syndra",
+            "Mel",
+            "Pyke"
           ]
         },
         {
@@ -18602,39 +20821,8 @@
           ]
         },
         {
-          "team": "Top Esports",
-          "uniqueCount": 25,
-          "champions": [
-            "Ambessa",
-            "Naafiri",
-            "Cassiopeia",
-            "Varus",
-            "Nautilus",
-            "Renekton",
-            "Jarvan IV",
-            "Aurora",
-            "Ezreal",
-            "Neeko",
-            "Sion",
-            "Wukong",
-            "Ryze",
-            "Aphelios",
-            "Thresh",
-            "Tristana",
-            "Nocturne",
-            "Hwei",
-            "Jhin",
-            "Karma",
-            "Ornn",
-            "Maokai",
-            "Yone",
-            "Ziggs",
-            "Pantheon"
-          ]
-        },
-        {
           "team": "G2 Esports",
-          "uniqueCount": 25,
+          "uniqueCount": 31,
           "champions": [
             "Rumble",
             "Olaf",
@@ -18660,7 +20848,77 @@
             "Poppy",
             "Mel",
             "Sivir",
-            "Rell"
+            "Rell",
+            "Warwick",
+            "Ryze",
+            "Seraphine",
+            "Nautilus",
+            "Yasuo",
+            "Lee Sin"
+          ]
+        },
+        {
+          "team": "Team Secret Whales",
+          "uniqueCount": 27,
+          "champions": [
+            "Sion",
+            "Lee Sin",
+            "Ryze",
+            "Ezreal",
+            "Rell",
+            "Volibear",
+            "Jarvan IV",
+            "Aurora",
+            "Jhin",
+            "Elise",
+            "Renekton",
+            "Naafiri",
+            "Hwei",
+            "Caitlyn",
+            "Karma",
+            "Olaf",
+            "Senna",
+            "Nautilus",
+            "Ornn",
+            "Miss Fortune",
+            "Bard",
+            "Sett",
+            "Xin Zhao",
+            "Sylas",
+            "Yorick",
+            "Dr. Mundo",
+            "Viktor"
+          ]
+        },
+        {
+          "team": "Bilibili Gaming",
+          "uniqueCount": 25,
+          "champions": [
+            "Jayce",
+            "Poppy",
+            "Viktor",
+            "Ziggs",
+            "Shen",
+            "Renekton",
+            "Naafiri",
+            "Swain",
+            "Ezreal",
+            "Bard",
+            "Jax",
+            "Qiyana",
+            "Ryze",
+            "VelKoz",
+            "Alistar",
+            "Gwen",
+            "Skarner",
+            "Aurora",
+            "Caitlyn",
+            "Elise",
+            "Rumble",
+            "Kindred",
+            "Syndra",
+            "Ashe",
+            "Seraphine"
           ]
         },
         {
@@ -18694,24 +20952,31 @@
           ]
         },
         {
-          "team": "Bilibili Gaming",
-          "uniqueCount": 15,
+          "team": "Hanwha Life Esports",
+          "uniqueCount": 22,
           "champions": [
             "Jayce",
-            "Poppy",
-            "Viktor",
+            "Skarner",
+            "Cassiopeia",
             "Ziggs",
             "Shen",
-            "Renekton",
-            "Naafiri",
-            "Swain",
-            "Ezreal",
-            "Bard",
-            "Jax",
+            "Ambessa",
             "Qiyana",
-            "Ryze",
-            "VelKoz",
-            "Alistar"
+            "Ahri",
+            "Mel",
+            "Camille",
+            "Dr. Mundo",
+            "Nocturne",
+            "Viktor",
+            "Miss Fortune",
+            "Bard",
+            "Vi",
+            "Yone",
+            "Anivia",
+            "Jarvan IV",
+            "Sylas",
+            "Lucian",
+            "Milio"
           ]
         },
         {
@@ -18754,48 +21019,6 @@
             "Viktor",
             "KogMaw",
             "Lulu"
-          ]
-        },
-        {
-          "team": "Hanwha Life Esports",
-          "uniqueCount": 15,
-          "champions": [
-            "Jayce",
-            "Skarner",
-            "Cassiopeia",
-            "Ziggs",
-            "Shen",
-            "Ambessa",
-            "Qiyana",
-            "Ahri",
-            "Mel",
-            "Camille",
-            "Dr. Mundo",
-            "Nocturne",
-            "Viktor",
-            "Miss Fortune",
-            "Bard"
-          ]
-        },
-        {
-          "team": "Team Secret Whales",
-          "uniqueCount": 15,
-          "champions": [
-            "Sion",
-            "Lee Sin",
-            "Ryze",
-            "Ezreal",
-            "Rell",
-            "Volibear",
-            "Jarvan IV",
-            "Aurora",
-            "Jhin",
-            "Elise",
-            "Renekton",
-            "Naafiri",
-            "Hwei",
-            "Caitlyn",
-            "Karma"
           ]
         }
       ]
@@ -18935,14 +21158,44 @@
     },
     "category14": {
       "title": "How many unique champions will be picked?",
-      "leader": "89 Champions",
-      "value": "89 unique champions picked",
+      "leader": "94 Champions",
+      "value": "94 unique champions picked",
       "leaderboard": [
         {
           "champion": "Ryze",
-          "winrate": 0.4,
+          "winrate": 0.4166666666666667,
+          "picks": 12,
+          "wins": 5
+        },
+        {
+          "champion": "Jarvan IV",
+          "winrate": 0.45454545454545453,
+          "picks": 11,
+          "wins": 5
+        },
+        {
+          "champion": "Gnar",
+          "winrate": 0.5,
           "picks": 10,
+          "wins": 5
+        },
+        {
+          "champion": "Wukong",
+          "winrate": 0.3333333333333333,
+          "picks": 9,
+          "wins": 3
+        },
+        {
+          "champion": "Camille",
+          "winrate": 0.4444444444444444,
+          "picks": 9,
           "wins": 4
+        },
+        {
+          "champion": "Ezreal",
+          "winrate": 0.5555555555555556,
+          "picks": 9,
+          "wins": 5
         },
         {
           "champion": "Renekton",
@@ -18951,7 +21204,25 @@
           "wins": 6
         },
         {
-          "champion": "Jarvan IV",
+          "champion": "Lee Sin",
+          "winrate": 0.5555555555555556,
+          "picks": 9,
+          "wins": 5
+        },
+        {
+          "champion": "Xin Zhao",
+          "winrate": 0.5,
+          "picks": 8,
+          "wins": 4
+        },
+        {
+          "champion": "Bard",
+          "winrate": 0.75,
+          "picks": 8,
+          "wins": 6
+        },
+        {
+          "champion": "Rumble",
           "winrate": 0.375,
           "picks": 8,
           "wins": 3
@@ -18963,28 +21234,40 @@
           "wins": 5
         },
         {
-          "champion": "Gnar",
+          "champion": "Ziggs",
+          "winrate": 0.5,
+          "picks": 8,
+          "wins": 4
+        },
+        {
+          "champion": "Rell",
+          "winrate": 0.5,
+          "picks": 8,
+          "wins": 4
+        },
+        {
+          "champion": "Nautilus",
+          "winrate": 0.5,
+          "picks": 8,
+          "wins": 4
+        },
+        {
+          "champion": "Naafiri",
+          "winrate": 0.375,
+          "picks": 8,
+          "wins": 3
+        },
+        {
+          "champion": "Ambessa",
           "winrate": 0.625,
           "picks": 8,
           "wins": 5
         },
         {
-          "champion": "Wukong",
-          "winrate": 0.375,
+          "champion": "Vi",
+          "winrate": 0.875,
           "picks": 8,
-          "wins": 3
-        },
-        {
-          "champion": "Camille",
-          "winrate": 0.375,
-          "picks": 8,
-          "wins": 3
-        },
-        {
-          "champion": "Ezreal",
-          "winrate": 0.5,
-          "picks": 8,
-          "wins": 4
+          "wins": 7
         },
         {
           "champion": "Varus",
@@ -18993,46 +21276,22 @@
           "wins": 3
         },
         {
-          "champion": "Bard",
+          "champion": "Mel",
           "winrate": 0.8571428571428571,
           "picks": 7,
           "wins": 6
         },
         {
-          "champion": "Rell",
+          "champion": "Sion",
+          "winrate": 0,
+          "picks": 7,
+          "wins": 0
+        },
+        {
+          "champion": "Lulu",
           "winrate": 0.5714285714285714,
           "picks": 7,
           "wins": 4
-        },
-        {
-          "champion": "Naafiri",
-          "winrate": 0.42857142857142855,
-          "picks": 7,
-          "wins": 3
-        },
-        {
-          "champion": "Lee Sin",
-          "winrate": 0.5714285714285714,
-          "picks": 7,
-          "wins": 4
-        },
-        {
-          "champion": "Ambessa",
-          "winrate": 0.5714285714285714,
-          "picks": 7,
-          "wins": 4
-        },
-        {
-          "champion": "Xin Zhao",
-          "winrate": 0.5,
-          "picks": 6,
-          "wins": 3
-        },
-        {
-          "champion": "Rumble",
-          "winrate": 0.16666666666666666,
-          "picks": 6,
-          "wins": 1
         },
         {
           "champion": "Jhin",
@@ -19041,16 +21300,22 @@
           "wins": 1
         },
         {
-          "champion": "Ziggs",
-          "winrate": 0.5,
+          "champion": "Taliyah",
+          "winrate": 0.3333333333333333,
           "picks": 6,
-          "wins": 3
+          "wins": 2
         },
         {
-          "champion": "Nautilus",
-          "winrate": 0.5,
+          "champion": "Senna",
+          "winrate": 0.3333333333333333,
           "picks": 6,
-          "wins": 3
+          "wins": 2
+        },
+        {
+          "champion": "Jayce",
+          "winrate": 0.6666666666666666,
+          "picks": 6,
+          "wins": 4
         },
         {
           "champion": "Nocturne",
@@ -19059,40 +21324,34 @@
           "wins": 3
         },
         {
-          "champion": "Sion",
-          "winrate": 0,
+          "champion": "Caitlyn",
+          "winrate": 0.5,
           "picks": 6,
-          "wins": 0
+          "wins": 3
         },
         {
-          "champion": "Vi",
+          "champion": "Syndra",
+          "winrate": 0.6666666666666666,
+          "picks": 6,
+          "wins": 4
+        },
+        {
+          "champion": "Qiyana",
+          "winrate": 0.3333333333333333,
+          "picks": 6,
+          "wins": 2
+        },
+        {
+          "champion": "Lucian",
           "winrate": 0.8333333333333334,
           "picks": 6,
           "wins": 5
         },
         {
-          "champion": "Taliyah",
+          "champion": "Olaf",
           "winrate": 0.4,
           "picks": 5,
           "wins": 2
-        },
-        {
-          "champion": "Senna",
-          "winrate": 0.2,
-          "picks": 5,
-          "wins": 1
-        },
-        {
-          "champion": "Jayce",
-          "winrate": 0.8,
-          "picks": 5,
-          "wins": 4
-        },
-        {
-          "champion": "Mel",
-          "winrate": 1,
-          "picks": 5,
-          "wins": 5
         },
         {
           "champion": "Orianna",
@@ -19101,13 +21360,13 @@
           "wins": 3
         },
         {
-          "champion": "Qiyana",
-          "winrate": 0.4,
+          "champion": "Seraphine",
+          "winrate": 0.2,
           "picks": 5,
-          "wins": 2
+          "wins": 1
         },
         {
-          "champion": "Lucian",
+          "champion": "Milio",
           "winrate": 0.8,
           "picks": 5,
           "wins": 4
@@ -19119,16 +21378,46 @@
           "wins": 1
         },
         {
-          "champion": "Olaf",
-          "winrate": 0.25,
-          "picks": 4,
+          "champion": "Yunara",
+          "winrate": 0.4,
+          "picks": 5,
+          "wins": 2
+        },
+        {
+          "champion": "Viktor",
+          "winrate": 0.8,
+          "picks": 5,
+          "wins": 4
+        },
+        {
+          "champion": "Aurora",
+          "winrate": 0.2,
+          "picks": 5,
           "wins": 1
         },
         {
-          "champion": "Caitlyn",
+          "champion": "Ahri",
+          "winrate": 0.8,
+          "picks": 5,
+          "wins": 4
+        },
+        {
+          "champion": "Ornn",
           "winrate": 0.5,
           "picks": 4,
           "wins": 2
+        },
+        {
+          "champion": "Pyke",
+          "winrate": 0.5,
+          "picks": 4,
+          "wins": 2
+        },
+        {
+          "champion": "Ashe",
+          "winrate": 0.25,
+          "picks": 4,
+          "wins": 1
         },
         {
           "champion": "Neeko",
@@ -19137,27 +21426,15 @@
           "wins": 2
         },
         {
-          "champion": "Milio",
-          "winrate": 0.75,
+          "champion": "Karma",
+          "winrate": 0.25,
           "picks": 4,
-          "wins": 3
+          "wins": 1
         },
         {
-          "champion": "Lulu",
-          "winrate": 0.75,
+          "champion": "Sylas",
+          "winrate": 0.5,
           "picks": 4,
-          "wins": 3
-        },
-        {
-          "champion": "Viktor",
-          "winrate": 0.75,
-          "picks": 4,
-          "wins": 3
-        },
-        {
-          "champion": "Ornn",
-          "winrate": 0.6666666666666666,
-          "picks": 3,
           "wins": 2
         },
         {
@@ -19179,16 +21456,16 @@
           "wins": 2
         },
         {
-          "champion": "Syndra",
-          "winrate": 1,
-          "picks": 3,
-          "wins": 3
-        },
-        {
           "champion": "Annie",
           "winrate": 0.3333333333333333,
           "picks": 3,
           "wins": 1
+        },
+        {
+          "champion": "Yorick",
+          "winrate": 1,
+          "picks": 3,
+          "wins": 3
         },
         {
           "champion": "Zeri",
@@ -19198,6 +21475,12 @@
         },
         {
           "champion": "Jax",
+          "winrate": 0.3333333333333333,
+          "picks": 3,
+          "wins": 1
+        },
+        {
+          "champion": "Yasuo",
           "winrate": 0.3333333333333333,
           "picks": 3,
           "wins": 1
@@ -19221,49 +21504,37 @@
           "wins": 1
         },
         {
-          "champion": "Karma",
-          "winrate": 0,
-          "picks": 3,
-          "wins": 0
-        },
-        {
-          "champion": "Aurora",
-          "winrate": 0.3333333333333333,
-          "picks": 3,
-          "wins": 1
-        },
-        {
-          "champion": "Ahri",
+          "champion": "Skarner",
           "winrate": 0.6666666666666666,
           "picks": 3,
           "wins": 2
         },
         {
-          "champion": "Twisted Fate",
-          "winrate": 1,
-          "picks": 2,
+          "champion": "Hwei",
+          "winrate": 0,
+          "picks": 3,
+          "wins": 0
+        },
+        {
+          "champion": "Anivia",
+          "winrate": 0.6666666666666666,
+          "picks": 3,
           "wins": 2
         },
         {
-          "champion": "Pyke",
-          "winrate": 0.5,
-          "picks": 2,
+          "champion": "Yone",
+          "winrate": 0.3333333333333333,
+          "picks": 3,
           "wins": 1
         },
         {
-          "champion": "Ashe",
-          "winrate": 0,
-          "picks": 2,
-          "wins": 0
+          "champion": "Elise",
+          "winrate": 0.3333333333333333,
+          "picks": 3,
+          "wins": 1
         },
         {
-          "champion": "Seraphine",
-          "winrate": 0,
-          "picks": 2,
-          "wins": 0
-        },
-        {
-          "champion": "Yorick",
+          "champion": "Twisted Fate",
           "winrate": 1,
           "picks": 2,
           "wins": 2
@@ -19273,18 +21544,6 @@
           "winrate": 0,
           "picks": 2,
           "wins": 0
-        },
-        {
-          "champion": "Yunara",
-          "winrate": 0.5,
-          "picks": 2,
-          "wins": 1
-        },
-        {
-          "champion": "Yasuo",
-          "winrate": 0.5,
-          "picks": 2,
-          "wins": 1
         },
         {
           "champion": "Kalista",
@@ -19311,10 +21570,10 @@
           "wins": 0
         },
         {
-          "champion": "Sylas",
-          "winrate": 0,
+          "champion": "KSante",
+          "winrate": 0.5,
           "picks": 2,
-          "wins": 0
+          "wins": 1
         },
         {
           "champion": "Xayah",
@@ -19323,28 +21582,22 @@
           "wins": 1
         },
         {
-          "champion": "Skarner",
-          "winrate": 1,
-          "picks": 2,
-          "wins": 2
-        },
-        {
-          "champion": "Hwei",
-          "winrate": 0,
-          "picks": 2,
-          "wins": 0
-        },
-        {
           "champion": "Tristana",
           "winrate": 0.5,
           "picks": 2,
           "wins": 1
         },
         {
-          "champion": "Anivia",
+          "champion": "Miss Fortune",
           "winrate": 0.5,
           "picks": 2,
           "wins": 1
+        },
+        {
+          "champion": "Dr. Mundo",
+          "winrate": 1,
+          "picks": 2,
+          "wins": 2
         },
         {
           "champion": "Gragas",
@@ -19389,12 +21642,6 @@
           "wins": 0
         },
         {
-          "champion": "KSante",
-          "winrate": 0,
-          "picks": 1,
-          "wins": 0
-        },
-        {
           "champion": "Aphelios",
           "winrate": 0,
           "picks": 1,
@@ -19419,19 +21666,7 @@
           "wins": 1
         },
         {
-          "champion": "Yone",
-          "winrate": 0,
-          "picks": 1,
-          "wins": 0
-        },
-        {
           "champion": "Maokai",
-          "winrate": 0,
-          "picks": 1,
-          "wins": 0
-        },
-        {
-          "champion": "Elise",
           "winrate": 0,
           "picks": 1,
           "wins": 0
@@ -19441,18 +21676,6 @@
           "winrate": 0,
           "picks": 1,
           "wins": 0
-        },
-        {
-          "champion": "Miss Fortune",
-          "winrate": 1,
-          "picks": 1,
-          "wins": 1
-        },
-        {
-          "champion": "Dr. Mundo",
-          "winrate": 1,
-          "picks": 1,
-          "wins": 1
         },
         {
           "champion": "Lissandra",
@@ -19468,6 +21691,36 @@
         },
         {
           "champion": "Shyvana",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1
+        },
+        {
+          "champion": "Warwick",
+          "winrate": 0,
+          "picks": 1,
+          "wins": 0
+        },
+        {
+          "champion": "Sett",
+          "winrate": 1,
+          "picks": 1,
+          "wins": 1
+        },
+        {
+          "champion": "Gwen",
+          "winrate": 0,
+          "picks": 1,
+          "wins": 0
+        },
+        {
+          "champion": "Trundle",
+          "winrate": 0,
+          "picks": 1,
+          "wins": 0
+        },
+        {
+          "champion": "Kindred",
           "winrate": 1,
           "picks": 1,
           "wins": 1
@@ -19499,6 +21752,7 @@
         "Galio",
         "Gnar",
         "Gragas",
+        "Gwen",
         "Hwei",
         "Jarvan IV",
         "Jax",
@@ -19508,6 +21762,7 @@
         "Kaisa",
         "Kalista",
         "Karma",
+        "Kindred",
         "Kled",
         "KogMaw",
         "LeBlanc",
@@ -19539,6 +21794,7 @@
         "Ryze",
         "Senna",
         "Seraphine",
+        "Sett",
         "Shen",
         "Shyvana",
         "Sion",
@@ -19550,6 +21806,7 @@
         "Taliyah",
         "Thresh",
         "Tristana",
+        "Trundle",
         "Twisted Fate",
         "Varus",
         "Vayne",
@@ -19557,6 +21814,7 @@
         "Vi",
         "Viktor",
         "Volibear",
+        "Warwick",
         "Wukong",
         "Xayah",
         "Xin Zhao",
@@ -19572,68 +21830,80 @@
     },
     "category16": {
       "title": "Champion Banned Most",
-      "leader": "Vi",
-      "value": "16 bans",
+      "leader": "Orianna",
+      "value": "24 bans",
       "leaderboard": [
+        {
+          "champion": "Orianna",
+          "bans": 24
+        },
+        {
+          "champion": "Poppy",
+          "bans": 22
+        },
+        {
+          "champion": "Varus",
+          "bans": 18
+        },
         {
           "champion": "Vi",
           "bans": 16
         },
         {
-          "champion": "Poppy",
-          "bans": 16
-        },
-        {
-          "champion": "Orianna",
-          "bans": 16
-        },
-        {
           "champion": "Nocturne",
-          "bans": 14
+          "bans": 16
         },
         {
           "champion": "Jayce",
+          "bans": 16
+        },
+        {
+          "champion": "Akali",
+          "bans": 16
+        },
+        {
+          "champion": "Camille",
+          "bans": 15
+        },
+        {
+          "champion": "Cassiopeia",
           "bans": 14
+        },
+        {
+          "champion": "Vayne",
+          "bans": 13
+        },
+        {
+          "champion": "Rumble",
+          "bans": 13
+        },
+        {
+          "champion": "Bard",
+          "bans": 13
         },
         {
           "champion": "Nautilus",
           "bans": 12
         },
         {
-          "champion": "Camille",
-          "bans": 11
-        },
-        {
-          "champion": "Bard",
-          "bans": 11
-        },
-        {
-          "champion": "Akali",
-          "bans": 11
-        },
-        {
-          "champion": "Vayne",
-          "bans": 10
-        },
-        {
-          "champion": "Varus",
-          "bans": 10
-        },
-        {
           "champion": "Lee Sin",
-          "bans": 9
-        },
-        {
-          "champion": "Rumble",
-          "bans": 9
-        },
-        {
-          "champion": "Cassiopeia",
           "bans": 9
         },
         {
           "champion": "Naafiri",
           "bans": 8
+        },
+        {
+          "champion": "Trundle",
+          "bans": 8
+        },
+        {
+          "champion": "Annie",
+          "bans": 8
+        },
+        {
+          "champion": "Caitlyn",
+          "bans": 7
         },
         {
           "champion": "Jarvan IV",
@@ -19644,23 +21914,23 @@
           "bans": 7
         },
         {
-          "champion": "Trundle",
+          "champion": "Lucian",
           "bans": 7
-        },
-        {
-          "champion": "Caitlyn",
-          "bans": 6
         },
         {
           "champion": "Ziggs",
           "bans": 6
         },
         {
-          "champion": "Lucian",
+          "champion": "Gnar",
           "bans": 6
         },
         {
-          "champion": "Gnar",
+          "champion": "Ezreal",
+          "bans": 5
+        },
+        {
+          "champion": "Xin Zhao",
           "bans": 5
         },
         {
@@ -19668,7 +21938,11 @@
           "bans": 5
         },
         {
-          "champion": "Annie",
+          "champion": "Yone",
+          "bans": 5
+        },
+        {
+          "champion": "Renekton",
           "bans": 5
         },
         {
@@ -19680,7 +21954,7 @@
           "bans": 4
         },
         {
-          "champion": "Xin Zhao",
+          "champion": "Jhin",
           "bans": 4
         },
         {
@@ -19692,24 +21966,16 @@
           "bans": 4
         },
         {
-          "champion": "Yone",
-          "bans": 4
-        },
-        {
-          "champion": "Renekton",
-          "bans": 4
-        },
-        {
           "champion": "Yorick",
           "bans": 4
         },
         {
-          "champion": "Ezreal",
-          "bans": 3
+          "champion": "Kaisa",
+          "bans": 4
         },
         {
-          "champion": "Jhin",
-          "bans": 3
+          "champion": "Sylas",
+          "bans": 4
         },
         {
           "champion": "Lulu",
@@ -19720,7 +21986,11 @@
           "bans": 3
         },
         {
-          "champion": "Sylas",
+          "champion": "Twisted Fate",
+          "bans": 3
+        },
+        {
+          "champion": "Sivir",
           "bans": 3
         },
         {
@@ -19740,10 +22010,6 @@
           "bans": 2
         },
         {
-          "champion": "Kaisa",
-          "bans": 2
-        },
-        {
           "champion": "Ryze",
           "bans": 2
         },
@@ -19756,19 +22022,31 @@
           "bans": 2
         },
         {
-          "champion": "Twisted Fate",
-          "bans": 2
-        },
-        {
-          "champion": "Sivir",
-          "bans": 2
-        },
-        {
           "champion": "Jax",
           "bans": 2
         },
         {
           "champion": "Alistar",
+          "bans": 2
+        },
+        {
+          "champion": "Pantheon",
+          "bans": 2
+        },
+        {
+          "champion": "Aatrox",
+          "bans": 2
+        },
+        {
+          "champion": "Viktor",
+          "bans": 2
+        },
+        {
+          "champion": "Shen",
+          "bans": 2
+        },
+        {
+          "champion": "Volibear",
           "bans": 2
         },
         {
@@ -19812,14 +22090,6 @@
           "bans": 1
         },
         {
-          "champion": "Pantheon",
-          "bans": 1
-        },
-        {
-          "champion": "Aatrox",
-          "bans": 1
-        },
-        {
           "champion": "Leona",
           "bans": 1
         },
@@ -19832,15 +22102,35 @@
           "bans": 1
         },
         {
-          "champion": "Viktor",
-          "bans": 1
-        },
-        {
           "champion": "Braum",
           "bans": 1
         },
         {
           "champion": "Milio",
+          "bans": 1
+        },
+        {
+          "champion": "Rell",
+          "bans": 1
+        },
+        {
+          "champion": "Ambessa",
+          "bans": 1
+        },
+        {
+          "champion": "Malphite",
+          "bans": 1
+        },
+        {
+          "champion": "Olaf",
+          "bans": 1
+        },
+        {
+          "champion": "Zeri",
+          "bans": 1
+        },
+        {
+          "champion": "Blitzcrank",
           "bans": 1
         }
       ]

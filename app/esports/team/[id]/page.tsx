@@ -6,6 +6,10 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
+  if (process.env.SKIP_ESPORTS_BUILD === 'true') {
+    console.log('Skipping team page pre-rendering due to SKIP_ESPORTS_BUILD');
+    return [{ id: 'placeholder' }];
+  }
   const { teams } = await fetchEsportsData();
   return teams.map((team) => ({
     id: String(team.id),
