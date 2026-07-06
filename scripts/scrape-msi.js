@@ -520,6 +520,37 @@ async function parseGameDetails(gameId, stage, date) {
   };
 }
 
+async function fetchRiotSchedule() {
+  const url = 'https://esports-api.lolesports.com/persisted/gw/getSchedule?hl=en-US&leagueId=98767991325878492';
+  try {
+    const res = await fetch(url, {
+      headers: { 'x-api-key': '0TvQnueqKa5mxJntVWt0w4LpLfEkrV1Ta8rQBb9Z' }
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data?.data?.schedule?.events || [];
+  } catch (err) {
+    console.error('Failed to fetch Riot schedule:', err);
+    return [];
+  }
+}
+
+function matchTeams(gameBlue, gameRed, eventTeams) {
+  if (!eventTeams || eventTeams.length < 2) return false;
+  const cleanStr = (name) => name.toLowerCase().replace(/[^a-z0-9]/g, '');
+  const g1 = cleanStr(gameBlue);
+  const g2 = cleanStr(gameRed);
+  const e1 = cleanStr(eventTeams[0].name);
+  const e2 = cleanStr(eventTeams[1].name);
+  const code1 = eventTeams[0].code ? eventTeams[0].code.toLowerCase() : '';
+  const code2 = eventTeams[1].code ? eventTeams[1].code.toLowerCase() : '';
+  
+  return (g1.includes(e1) || e1.includes(g1) || (code1 && g1.includes(code1))) &&
+         (g2.includes(e2) || e2.includes(g2) || (code2 && g2.includes(code2))) ||
+         (g1.includes(e2) || e2.includes(g1) || (code2 && g1.includes(code2))) &&
+         (g2.includes(e1) || e1.includes(g2) || (code1 && g2.includes(code1)));
+}
+
 async function run() {
   console.log('Starting MSI 2026 Pick\'em scraper...');
   try {
@@ -588,6 +619,28 @@ async function run() {
     }
 
     console.log(`Successfully parsed ${games.length} games. Compiling statistics...`);
+
+    // Fetch Riot Esports schedule and map startTime to games
+    console.log('Fetching Riot Esports schedule...');
+    const scheduleEvents = await fetchRiotSchedule();
+    console.log(`Loaded ${scheduleEvents.length} schedule events.`);
+
+    games.forEach((game) => {
+      const event = scheduleEvents.find((e) => {
+        if (!e.match?.teams) return false;
+        const eDate = new Date(e.startTime.split('T')[0]);
+        const gDate = new Date(game.date);
+        const diffDays = Math.abs(eDate.getTime() - gDate.getTime()) / (1000 * 60 * 60 * 24);
+        if (diffDays > 1.5) return false;
+        return matchTeams(game.blueTeam, game.redTeam, e.match.teams);
+      });
+      if (event) {
+        game.startTime = event.startTime;
+      } else {
+        // Fallback using gameId as minor offset
+        game.startTime = `${game.date}T00:00:00Z`;
+      }
+    });
 
     // Compile Leaderboards
     const stats = compileStats(games);

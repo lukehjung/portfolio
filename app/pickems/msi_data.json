@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-06T07:56:56.975Z",
+  "lastUpdated": "2026-07-06T08:08:11.065Z",
   "patchVersion": "16.13.1",
   "playerImages": {
     "13": "http://static.lolesports.com/players/default-headshot.png",
@@ -7701,7 +7701,8 @@
       "firstBloodKiller": "HongSuo",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 10
+      "matchSeq": 10,
+      "startTime": "2026-06-29T08:00:00Z"
     },
     {
       "gameId": "79540",
@@ -7868,7 +7869,8 @@
       "firstBloodKiller": "Josedeodo",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 10
+      "matchSeq": 10,
+      "startTime": "2026-06-29T08:00:00Z"
     },
     {
       "gameId": "79534",
@@ -8035,7 +8037,8 @@
       "firstBloodKiller": "Oner",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 11
+      "matchSeq": 11,
+      "startTime": "2026-06-29T03:00:00Z"
     },
     {
       "gameId": "79535",
@@ -8202,7 +8205,8 @@
       "firstBloodKiller": "Peyz",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 11
+      "matchSeq": 11,
+      "startTime": "2026-06-29T03:00:00Z"
     },
     {
       "gameId": "79536",
@@ -8369,7 +8373,8 @@
       "firstBloodKiller": "Oner",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 11
+      "matchSeq": 11,
+      "startTime": "2026-06-29T03:00:00Z"
     },
     {
       "gameId": "79531",
@@ -8536,7 +8541,8 @@
       "firstBloodKiller": "Pop9",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 12
+      "matchSeq": 12,
+      "startTime": "2026-06-28T08:00:00Z"
     },
     {
       "gameId": "79532",
@@ -8703,7 +8709,8 @@
       "firstBloodKiller": "Caliste",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 12
+      "matchSeq": 12,
+      "startTime": "2026-06-28T08:00:00Z"
     },
     {
       "gameId": "79533",
@@ -8870,7 +8877,8 @@
       "firstBloodKiller": "ShiauC",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 12
+      "matchSeq": 12,
+      "startTime": "2026-06-28T08:00:00Z"
     },
     {
       "gameId": "79526",
@@ -9037,7 +9045,8 @@
       "firstBloodKiller": "Keria",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 13
+      "matchSeq": 13,
+      "startTime": "2026-06-28T03:00:00Z"
     },
     {
       "gameId": "79527",
@@ -9204,7 +9213,8 @@
       "firstBloodKiller": "Peyz",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 13
+      "matchSeq": 13,
+      "startTime": "2026-06-28T03:00:00Z"
     },
     {
       "gameId": "79528",
@@ -9371,7 +9381,8 @@
       "firstBloodKiller": "Oner",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 13
+      "matchSeq": 13,
+      "startTime": "2026-06-28T03:00:00Z"
     },
     {
       "gameId": "79618",
@@ -9538,7 +9549,8 @@
       "firstBloodKiller": "Faker",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 4
+      "matchSeq": 4,
+      "startTime": "2026-07-04T08:00:00Z"
     },
     {
       "gameId": "79619",
@@ -9705,7 +9717,8 @@
       "firstBloodKiller": "Oner",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 4
+      "matchSeq": 4,
+      "startTime": "2026-07-04T08:00:00Z"
     },
     {
       "gameId": "79620",
@@ -9872,7 +9885,8 @@
       "firstBloodKiller": "Knight",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 4
+      "matchSeq": 4,
+      "startTime": "2026-07-04T08:00:00Z"
     },
     {
       "gameId": "79613",
@@ -10039,7 +10053,8 @@
       "firstBloodKiller": "Tutsz",
       "blueElderDragons": 0,
       "redElderDragons": 1,
-      "matchSeq": 5
+      "matchSeq": 5,
+      "startTime": "2026-07-04T03:00:00Z"
     },
     {
       "gameId": "79614",
@@ -10206,7 +10221,8 @@
       "firstBloodKiller": "Ayu",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 5
+      "matchSeq": 5,
+      "startTime": "2026-07-04T03:00:00Z"
     },
     {
       "gameId": "79615",
@@ -10373,7 +10389,8 @@
       "firstBloodKiller": "Dhokla",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 5
+      "matchSeq": 5,
+      "startTime": "2026-07-04T03:00:00Z"
     },
     {
       "gameId": "79608",
@@ -10540,7 +10557,8 @@
       "firstBloodKiller": "Creme",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 6
+      "matchSeq": 6,
+      "startTime": "2026-07-03T08:00:00Z"
     },
     {
       "gameId": "79609",
@@ -10707,7 +10725,8 @@
       "firstBloodKiller": "Caps",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 6
+      "matchSeq": 6,
+      "startTime": "2026-07-03T08:00:00Z"
     },
     {
       "gameId": "79610",
@@ -10874,7 +10893,8 @@
       "firstBloodKiller": "ZUIAN",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 6
+      "matchSeq": 6,
+      "startTime": "2026-07-03T08:00:00Z"
     },
     {
       "gameId": "79611",
@@ -11041,7 +11061,8 @@
       "firstBloodKiller": "Hans Sama",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 6
+      "matchSeq": 6,
+      "startTime": "2026-07-03T08:00:00Z"
     },
     {
       "gameId": "79612",
@@ -11208,7 +11229,8 @@
       "firstBloodKiller": "SkewMond",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 6
+      "matchSeq": 6,
+      "startTime": "2026-07-03T08:00:00Z"
     },
     {
       "gameId": "79603",
@@ -11375,7 +11397,8 @@
       "firstBloodKiller": "Zeka",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 7
+      "matchSeq": 7,
+      "startTime": "2026-07-03T03:00:00Z"
     },
     {
       "gameId": "79604",
@@ -11542,7 +11565,8 @@
       "firstBloodKiller": "Delight",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 7
+      "matchSeq": 7,
+      "startTime": "2026-07-03T03:00:00Z"
     },
     {
       "gameId": "79605",
@@ -11709,7 +11733,8 @@
       "firstBloodKiller": "Zeus",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 7
+      "matchSeq": 7,
+      "startTime": "2026-07-03T03:00:00Z"
     },
     {
       "gameId": "79574",
@@ -11876,7 +11901,8 @@
       "firstBloodKiller": "Peyz",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 8
+      "matchSeq": 8,
+      "startTime": "2026-07-01T08:00:00Z"
     },
     {
       "gameId": "79575",
@@ -12043,7 +12069,8 @@
       "firstBloodKiller": "Faker",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 8
+      "matchSeq": 8,
+      "startTime": "2026-07-01T08:00:00Z"
     },
     {
       "gameId": "79576",
@@ -12210,7 +12237,8 @@
       "firstBloodKiller": "Oner",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 8
+      "matchSeq": 8,
+      "startTime": "2026-07-01T08:00:00Z"
     },
     {
       "gameId": "79542",
@@ -12377,7 +12405,8 @@
       "firstBloodKiller": "Morgan",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 9
+      "matchSeq": 9,
+      "startTime": "2026-06-30T08:00:00Z"
     },
     {
       "gameId": "79543",
@@ -12544,7 +12573,8 @@
       "firstBloodKiller": "Quid",
       "blueElderDragons": 0,
       "redElderDragons": 1,
-      "matchSeq": 9
+      "matchSeq": 9,
+      "startTime": "2026-06-30T08:00:00Z"
     },
     {
       "gameId": "79544",
@@ -12711,7 +12741,8 @@
       "firstBloodKiller": "Canna",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 9
+      "matchSeq": 9,
+      "startTime": "2026-06-30T08:00:00Z"
     },
     {
       "gameId": "79541",
@@ -12878,7 +12909,8 @@
       "firstBloodKiller": "ShiauC",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 10
+      "matchSeq": 10,
+      "startTime": "2026-06-29T08:00:00Z"
     },
     {
       "gameId": "79696",
@@ -13045,7 +13077,8 @@
       "firstBloodKiller": "SkewMond",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 2
+      "matchSeq": 2,
+      "startTime": "2026-07-05T08:00:00Z"
     },
     {
       "gameId": "79697",
@@ -13212,7 +13245,8 @@
       "firstBloodKiller": "Zeka",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 2
+      "matchSeq": 2,
+      "startTime": "2026-07-05T08:00:00Z"
     },
     {
       "gameId": "79686",
@@ -13379,7 +13413,8 @@
       "firstBloodKiller": "JackeyLove",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 3
+      "matchSeq": 3,
+      "startTime": "2026-07-05T03:00:00Z"
     },
     {
       "gameId": "79687",
@@ -13546,7 +13581,8 @@
       "firstBloodKiller": "Creme",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 3
+      "matchSeq": 3,
+      "startTime": "2026-07-05T03:00:00Z"
     },
     {
       "gameId": "79688",
@@ -13713,7 +13749,8 @@
       "firstBloodKiller": "JackeyLove",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 3
+      "matchSeq": 3,
+      "startTime": "2026-07-05T03:00:00Z"
     },
     {
       "gameId": "79689",
@@ -13880,7 +13917,8 @@
       "firstBloodKiller": "Bie",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 3
+      "matchSeq": 3,
+      "startTime": "2026-07-05T03:00:00Z"
     },
     {
       "gameId": "79621",
@@ -14047,7 +14085,8 @@
       "firstBloodKiller": "ON",
       "blueElderDragons": 0,
       "redElderDragons": 1,
-      "matchSeq": 4
+      "matchSeq": 4,
+      "startTime": "2026-07-04T08:00:00Z"
     },
     {
       "gameId": "79622",
@@ -14214,7 +14253,8 @@
       "firstBloodKiller": "XUN",
       "blueElderDragons": 0,
       "redElderDragons": 0,
-      "matchSeq": 4
+      "matchSeq": 4,
+      "startTime": "2026-07-04T08:00:00Z"
     }
   ],
   "stats": {
