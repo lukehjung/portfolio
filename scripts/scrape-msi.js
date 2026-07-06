@@ -556,37 +556,32 @@ async function run() {
     const playersList = Array.from(playersSet).sort((a, b) => a.localeCompare(b));
     console.log(`MSI roster: ${teamsList.length} teams, ${playersList.length} players.`);
 
-    const completedMatches = matches.filter((m) => m.isCompleted);
-    console.log(`Processing ${completedMatches.length} completed matches...`);
+    console.log(`Processing completed matches...`);
 
     const games = await loadExistingGames();
-    let processedGames = games.map((g) => String(g.gameId));
 
-    for (const match of completedMatches) {
-      console.log(`Processing Match: ${match.team1} vs ${match.team2} (${match.score})`);
+    for (let mIdx = 0; mIdx < matches.length; mIdx++) {
+      const match = matches[mIdx];
+      if (!match.isCompleted) continue;
+
+      console.log(`Processing Match ${mIdx + 1}/${matches.length}: ${match.team1} vs ${match.team2} (${match.score})`);
       try {
         const gameIds = await parseMatchGames(match);
         console.log(`Match has ${gameIds.length} games: ${gameIds.join(', ')}`);
 
         for (const gameId of gameIds) {
-          if (processedGames.includes(gameId)) {
-            console.log(`Skipping already processed game ${gameId}`);
-            continue;
+          let gameDetails = games.find((g) => String(g.gameId) === String(gameId));
+          if (!gameDetails) {
+            console.log(`  Parsing Game ID: ${gameId}`);
+            gameDetails = await parseGameDetails(gameId, match.stage, match.date);
+            if (gameDetails) {
+              games.push(gameDetails);
+            }
           }
-          if (games.some((g) => g.gameId === gameId)) {
-            console.log(`Skipping game ${gameId} (already in games list)`);
-            continue;
-          }
-          console.log(`  Parsing Game ID: ${gameId}`);
-          const gameDetails = await parseGameDetails(gameId, match.stage, match.date);
           if (gameDetails) {
-            games.push(gameDetails);
-            processedGames.push(gameId);
+            gameDetails.matchSeq = mIdx;
           }
         }
-
-        // saveProcessedGames is no longer needed since processedGames is derived dynamically
-        // await saveProcessedGames(processedGames);
       } catch (err) {
         console.error(`Error parsing match ${match.matchId}:`, err);
       }

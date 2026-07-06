@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-05T09:37:13.721Z",
+  "lastUpdated": "2026-07-06T07:56:56.975Z",
   "patchVersion": "16.13.1",
   "playerImages": {
     "13": "http://static.lolesports.com/players/default-headshot.png",
@@ -7700,7 +7700,8 @@
       ],
       "firstBloodKiller": "HongSuo",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 10
     },
     {
       "gameId": "79540",
@@ -7866,7 +7867,8 @@
       ],
       "firstBloodKiller": "Josedeodo",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 10
     },
     {
       "gameId": "79534",
@@ -8032,7 +8034,8 @@
       ],
       "firstBloodKiller": "Oner",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 11
     },
     {
       "gameId": "79535",
@@ -8198,7 +8201,8 @@
       ],
       "firstBloodKiller": "Peyz",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 11
     },
     {
       "gameId": "79536",
@@ -8364,7 +8368,8 @@
       ],
       "firstBloodKiller": "Oner",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 11
     },
     {
       "gameId": "79531",
@@ -8530,7 +8535,8 @@
       ],
       "firstBloodKiller": "Pop9",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 12
     },
     {
       "gameId": "79532",
@@ -8696,7 +8702,8 @@
       ],
       "firstBloodKiller": "Caliste",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 12
     },
     {
       "gameId": "79533",
@@ -8862,7 +8869,8 @@
       ],
       "firstBloodKiller": "ShiauC",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 12
     },
     {
       "gameId": "79526",
@@ -9028,7 +9036,8 @@
       ],
       "firstBloodKiller": "Keria",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 13
     },
     {
       "gameId": "79527",
@@ -9194,7 +9203,8 @@
       ],
       "firstBloodKiller": "Peyz",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 13
     },
     {
       "gameId": "79528",
@@ -9360,7 +9370,8 @@
       ],
       "firstBloodKiller": "Oner",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 13
     },
     {
       "gameId": "79618",
@@ -9526,7 +9537,8 @@
       ],
       "firstBloodKiller": "Faker",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 4
     },
     {
       "gameId": "79619",
@@ -9692,7 +9704,8 @@
       ],
       "firstBloodKiller": "Oner",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 4
     },
     {
       "gameId": "79620",
@@ -9858,7 +9871,8 @@
       ],
       "firstBloodKiller": "Knight",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 4
     },
     {
       "gameId": "79613",
@@ -10024,7 +10038,8 @@
       ],
       "firstBloodKiller": "Tutsz",
       "blueElderDragons": 0,
-      "redElderDragons": 1
+      "redElderDragons": 1,
+      "matchSeq": 5
     },
     {
       "gameId": "79614",
@@ -10190,7 +10205,8 @@
       ],
       "firstBloodKiller": "Ayu",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 5
     },
     {
       "gameId": "79615",
@@ -10356,7 +10372,8 @@
       ],
       "firstBloodKiller": "Dhokla",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 5
     },
     {
       "gameId": "79608",
@@ -10522,7 +10539,8 @@
       ],
       "firstBloodKiller": "Creme",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 6
     },
     {
       "gameId": "79609",
@@ -10688,7 +10706,8 @@
       ],
       "firstBloodKiller": "Caps",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 6
     },
     {
       "gameId": "79610",
@@ -10854,7 +10873,8 @@
       ],
       "firstBloodKiller": "ZUIAN",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 6
     },
     {
       "gameId": "79611",
@@ -11020,7 +11040,8 @@
       ],
       "firstBloodKiller": "Hans Sama",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 6
     },
     {
       "gameId": "79612",
@@ -11186,7 +11207,8 @@
       ],
       "firstBloodKiller": "SkewMond",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 6
     },
     {
       "gameId": "79603",
@@ -11352,7 +11374,8 @@
       ],
       "firstBloodKiller": "Zeka",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 7
     },
     {
       "gameId": "79604",
@@ -11518,7 +11541,8 @@
       ],
       "firstBloodKiller": "Delight",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 7
     },
     {
       "gameId": "79605",
@@ -11684,7 +11708,8 @@
       ],
       "firstBloodKiller": "Zeus",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 7
     },
     {
       "gameId": "79574",
@@ -11850,7 +11875,8 @@
       ],
       "firstBloodKiller": "Peyz",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 8
     },
     {
       "gameId": "79575",
@@ -12016,7 +12042,8 @@
       ],
       "firstBloodKiller": "Faker",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 8
     },
     {
       "gameId": "79576",
@@ -12182,7 +12209,8 @@
       ],
       "firstBloodKiller": "Oner",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 8
     },
     {
       "gameId": "79542",
@@ -12348,7 +12376,8 @@
       ],
       "firstBloodKiller": "Morgan",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 9
     },
     {
       "gameId": "79543",
@@ -12514,7 +12543,8 @@
       ],
       "firstBloodKiller": "Quid",
       "blueElderDragons": 0,
-      "redElderDragons": 1
+      "redElderDragons": 1,
+      "matchSeq": 9
     },
     {
       "gameId": "79544",
@@ -12680,7 +12710,8 @@
       ],
       "firstBloodKiller": "Canna",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 9
     },
     {
       "gameId": "79541",
@@ -12846,7 +12877,8 @@
       ],
       "firstBloodKiller": "ShiauC",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 10
     },
     {
       "gameId": "79696",
@@ -13012,7 +13044,8 @@
       ],
       "firstBloodKiller": "SkewMond",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 2
     },
     {
       "gameId": "79697",
@@ -13178,7 +13211,8 @@
       ],
       "firstBloodKiller": "Zeka",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 2
     },
     {
       "gameId": "79686",
@@ -13344,7 +13378,8 @@
       ],
       "firstBloodKiller": "JackeyLove",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 3
     },
     {
       "gameId": "79687",
@@ -13510,7 +13545,8 @@
       ],
       "firstBloodKiller": "Creme",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 3
     },
     {
       "gameId": "79688",
@@ -13676,7 +13712,8 @@
       ],
       "firstBloodKiller": "JackeyLove",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 3
     },
     {
       "gameId": "79689",
@@ -13842,7 +13879,8 @@
       ],
       "firstBloodKiller": "Bie",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 3
     },
     {
       "gameId": "79621",
@@ -14008,7 +14046,8 @@
       ],
       "firstBloodKiller": "ON",
       "blueElderDragons": 0,
-      "redElderDragons": 1
+      "redElderDragons": 1,
+      "matchSeq": 4
     },
     {
       "gameId": "79622",
@@ -14174,7 +14213,8 @@
       ],
       "firstBloodKiller": "XUN",
       "blueElderDragons": 0,
-      "redElderDragons": 0
+      "redElderDragons": 0,
+      "matchSeq": 4
     }
   ],
   "stats": {

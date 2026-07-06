@@ -210,6 +210,7 @@ export default function PickemsPage() {
           team2: teams[1],
           stage: game.stage,
           date: game.date,
+          matchSeq: game.matchSeq !== undefined ? game.matchSeq : 99999,
           games: [],
           wins: {
             [teams[0]]: 0,
@@ -226,17 +227,13 @@ export default function PickemsPage() {
       if (game.date > matchesMap[key].date) {
         matchesMap[key].date = game.date;
       }
+      if (game.matchSeq !== undefined && game.matchSeq < matchesMap[key].matchSeq) {
+        matchesMap[key].matchSeq = game.matchSeq;
+      }
     });
     
     return Object.values(matchesMap).sort((a: any, b: any) => {
-      const dateA = a.date || '';
-      const dateB = b.date || '';
-      if (dateA !== dateB) {
-        return dateB.localeCompare(dateA);
-      }
-      const lastGameA = a.games[a.games.length - 1]?.gameId || '';
-      const lastGameB = b.games[b.games.length - 1]?.gameId || '';
-      return lastGameB.localeCompare(lastGameA);
+      return a.matchSeq - b.matchSeq;
     });
   }, [data.games]);
 
