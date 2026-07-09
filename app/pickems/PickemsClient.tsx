@@ -885,7 +885,7 @@ export default function PickemsPage() {
           min-width: 0;
         }
         .pickems-page .compare-card:hover { background: rgba(255, 255, 255, 0.02); border-color: rgba(0, 246, 255, 0.25); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25); transform: translateY(-2px); }
-        .pickems-page .compare-card-title { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.75rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 500; }
+        .pickems-page .compare-card-title { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.75rem; white-space: normal; line-height: 1.35; font-weight: 500; }
         .pickems-page .compare-pick-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; font-size: 0.9rem; }
         .pickems-page .compare-player-label { color: var(--text-muted); }
         .pickems-page .compare-pick-val { font-family: var(--font-heading); font-weight: 700; }
