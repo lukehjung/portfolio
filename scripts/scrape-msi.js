@@ -123,12 +123,12 @@ if (!fs.existsSync(CACHE_DIR)) {
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 // Custom fetch with User-Agent
-async function fetchPage(url) {
+async function fetchPage(url, bypassCache = false) {
   const cacheKey = encodeURIComponent(url.replace('https://', '').replace(/\//g, '_')) + '.html';
   const cachePath = path.join(CACHE_DIR, cacheKey);
 
   // Check cache
-  if (fs.existsSync(cachePath)) {
+  if (!bypassCache && fs.existsSync(cachePath)) {
     console.log(`[Cache Hit] ${url}`);
     return fs.readFileSync(cachePath, 'utf-8');
   }
@@ -234,7 +234,7 @@ async function fetchLolesportsData() {
 
 async function parseMatchList() {
   const url = 'https://gol.gg/tournament/tournament-matchlist/MSI%202026/';
-  const html = await fetchPage(url);
+  const html = await fetchPage(url, true);
   const $ = cheerio.load(html);
   const matches = [];
 
@@ -276,7 +276,7 @@ async function parseMatchList() {
 }
 
 async function parseMatchGames(match) {
-  const html = await fetchPage(match.href);
+  const html = await fetchPage(match.href, true);
   const $ = cheerio.load(html);
   const gameIds = [];
 
@@ -790,9 +790,7 @@ function compileStats(games) {
       }
 
       playerGamesTotal[p.name] = (playerGamesTotal[p.name] || 0) + 1;
-      const gameDurationMinutes = game.durationSeconds / 60;
-      const playerDpm = gameDurationMinutes > 0 ? p.damage / gameDurationMinutes : 0;
-      playerDmgTotal[p.name] = (playerDmgTotal[p.name] || 0) + playerDpm;
+      playerDmgTotal[p.name] = (playerDmgTotal[p.name] || 0) + p.damage;
     });
 
     // First Blood player tracking
@@ -869,21 +867,27 @@ function compileStats(games) {
     })
     .sort((a, b) => b.kda - a.kda);
 
-  // 6. Viper: Highest CS Single Game
-  const viperLeaderboard = playerCsSingleGame.sort((a, b) => b.cs - a.cs);
+  // 6. Viper: Highest CS Single Game (grouped by player)
+  const playerCsMax = {};
+  playerCsSingleGame.forEach(item => {
+    if (!playerCsMax[item.player] || item.cs > playerCsMax[item.player].cs) {
+      playerCsMax[item.player] = item;
+    }
+  });
+  const viperLeaderboard = Object.values(playerCsMax).sort((a, b) => b.cs - a.cs);
 
   // 7. Oner: Most First Bloods
   const onerLeaderboard = Object.keys(playerFbTotal)
     .map((name) => ({ player: name, fbCount: playerFbTotal[name] }))
     .sort((a, b) => b.fbCount - a.fbCount);
 
-  // 8. Peyz: Highest Average DPM (Damage Per Minute)
+  // 8. Peyz: Highest Average Damage Per Game
   const peyzLeaderboard = Object.keys(playerGamesTotal)
     .map((name) => {
-      const totalDpm = playerDmgTotal[name] || 0;
+      const totalDmg = playerDmgTotal[name] || 0;
       const games = playerGamesTotal[name] || 0;
-      const avgDpm = games > 0 ? totalDpm / games : 0;
-      return { player: name, avgDmg: Math.round(avgDpm), games };
+      const avgDmg = games > 0 ? totalDmg / games : 0;
+      return { player: name, avgDmg: Math.round(avgDmg), games };
     })
     .sort((a, b) => b.avgDmg - a.avgDmg);
 
@@ -895,8 +899,14 @@ function compileStats(games) {
     .map((team) => ({ team, elderDragons: teamElderDragons[team] }))
     .sort((a, b) => b.elderDragons - a.elderDragons);
 
-  // 11. FURIA: Least Kills in Single Game
-  const furiaLeaderboard = teamLeastKillsSingleGame.sort((a, b) => a.kills - b.kills);
+  // 11. FURIA: Least Kills in Single Game (grouped by team)
+  const teamKillsMin = {};
+  teamLeastKillsSingleGame.forEach(item => {
+    if (!teamKillsMin[item.team] || item.kills < teamKillsMin[item.team].kills) {
+      teamKillsMin[item.team] = item;
+    }
+  });
+  const furiaLeaderboard = Object.values(teamKillsMin).sort((a, b) => a.kills - b.kills);
 
   // 12. T1: Largest unique champion pool played
   const teamPoolLeaderboard = Object.keys(teamUniqueChamps)

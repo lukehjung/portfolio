@@ -26,7 +26,7 @@ export const CATEGORIES_INFO: Record<string, any> = {
 
 export const TIERED_CATEGORIES = new Set([
   'category1', 'category4', 'category5', 'category6',
-  'category7', 'category8', 'category10', 'category12', 'category16'
+  'category7', 'category8', 'category10', 'category11', 'category12', 'category16'
 ]);
 
 export const DONE_CATEGORIES = new Set(['category1', 'category5', 'category9', 'category13']);

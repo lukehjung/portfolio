@@ -398,7 +398,7 @@ export default function PickemsPage() {
       if (item.kills !== undefined) return `${item.kills} kills`;
       if (item.cs !== undefined) return `${item.cs} CS`;
       if (item.fbCount !== undefined) return `${item.fbCount} FB`;
-      if (item.avgDmg !== undefined) return `${item.avgDmg} DPM`;
+      if (item.avgDmg !== undefined) return `${item.avgDmg.toLocaleString()} DMG`;
       if (item.elderDragons !== undefined) return `${item.elderDragons} Elder Dragons`;
       if (item.uniqueCount !== undefined) return `${item.uniqueCount} pool`;
       if (item.bans !== undefined) return `${item.bans} bans`;
@@ -2065,7 +2065,7 @@ export default function PickemsPage() {
                             item.kdaFormatted !== undefined ? `${item.kdaFormatted} KDA (${item.kills}/${item.deaths}/${item.assists})` :
                             item.cs !== undefined ? `${item.cs} CS` :
                             item.fbCount !== undefined ? `${item.fbCount} FB` :
-                            item.avgDmg !== undefined ? `${item.avgDmg} DPM` :
+                            item.avgDmg !== undefined ? `${item.avgDmg.toLocaleString()} DMG` :
                             item.elderDragons !== undefined ? `${item.elderDragons} Elder Dragons` :
                             item.uniqueCount !== undefined ? `${item.uniqueCount} pool size` :
                             item.bans !== undefined ? `${item.bans} bans` :
